@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Diagnostics;
+using static MobileSuit.MobileSuitIoInterface;
 
 namespace MobileSuit
 {
@@ -35,7 +37,6 @@ namespace MobileSuit
             Assembly = Assembly.GetCallingAssembly();
             Io = io ?? GeneralIo;
         }
-
 
 
         public MobileSuitHost(Assembly assembly, MobileSuitIoInterface? io = null)
@@ -71,6 +72,7 @@ namespace MobileSuit
             }
         }
 
+        public bool ShellMode { get; set; } = false;
 
         private void ErrObjectNotFound()
         {
@@ -230,8 +232,8 @@ namespace MobileSuit
         private TraceBack RunLocal(string cmd)
         {
 
-            var cmdlist = cmd.ToLower().Split(' ');
-            switch (cmdlist[0])
+            var cmdlist = cmd.Split(' ');
+            switch (cmdlist[0].ToLower())
             {
                 case "vw":
                 case "view":
@@ -269,8 +271,7 @@ namespace MobileSuit
                 case "md":
                 case "modify":
                     if (WorkType == null || Assembly == null) return TraceBack.InvalidCommand;
-                    if (cmdlist.Length == 1) return TraceBack.InvalidCommand;
-                    else return ModifyMember(cmdlist[1..]);
+                    return cmdlist.Length == 1 ? TraceBack.InvalidCommand : ModifyMember(cmdlist[1..]);
                 case "lv":
                 case "leave":
                     if (InstanceRef.Count == 0)
@@ -294,8 +295,73 @@ namespace MobileSuit
                     WorkInstance = nextobj;
                     WorkType = nextobj.GetType();
                     return TraceBack.AllOk;
+                case "echo":
+                    if (cmdlist.Length==1)
+                    {
+                        Io.WriteLine("");
+                        return TraceBack.AllOk;
+                    }
+                    Io.WriteLine(cmd[(cmdlist[0].Length + 1)..]);
+                    return TraceBack.AllOk;
+                case "echox":
+                    if (cmdlist.Length <= 2)
+                    {
+                        Io.WriteLine("");
+                        return TraceBack.AllOk;
+                    }
 
+                    
+                    Io.WriteLine(cmd[(cmdlist[0].Length + cmdlist[1].Length + 2)..],
+                        cmdlist[1].ToLower() switch
+                        {
+                            "p" => OutputType.Prompt,
+                            "prompt" => OutputType.Prompt,
+                            "error" => OutputType.Error,
+                            "err" => OutputType.Error,
+                            "allok" => OutputType.AllOk,
+                            "ok" => OutputType.AllOk,
+                            "title" => OutputType.ListTitle,
+                            "lt" => OutputType.ListTitle,
+                            "custominfo" => OutputType.CustomInfo,
+                            "info" => OutputType.CustomInfo,
+                            "mobilesuitinfo" => OutputType.MobileSuitInfo,
+                            "msi" => OutputType.MobileSuitInfo,
+                            _ => OutputType.Default
 
+                        },
+                        typeof(ConsoleColor).
+                            GetFields().
+                            FirstOrDefault(
+                                c => string.Equals(c.Name, cmdlist[1],
+                                    StringComparison.CurrentCultureIgnoreCase))
+                            ?.GetValue(null) as ConsoleColor?
+                    );
+                    return TraceBack.AllOk;
+                case "shell":
+                case "systemcall":
+                    if (cmdlist.Length == 1) return TraceBack.InvalidCommand;
+                    var proc = new Process();
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.FileName = cmdlist[1];
+                    if (cmdlist.Length>2)
+                    {
+                        foreach (var i in cmdlist[2..])
+                        {
+                            proc.StartInfo.Arguments += $"{i} ";
+                        }
+                    }
+
+                    try
+                    {
+                        proc.Start();
+                    }
+                    catch (Exception e)
+                    {
+                        Io.WriteLine($"Error:{e.ToString()}",MobileSuitIoInterface.OutputType.Error);
+                        return TraceBack.ObjectNotFound;
+                    }
+
+                    return TraceBack.AllOk;
                 case "exit":
                     return TraceBack.OnExit;
                 case "fr":
@@ -341,7 +407,7 @@ namespace MobileSuit
                 {
                     mi = type
                         .GetMethods(Flags)
-                        .Where(m => String.Equals(m.Name, cmdlist[0], StringComparison.CurrentCultureIgnoreCase))
+                        .Where(m => string.Equals(m.Name, cmdlist[0], StringComparison.CurrentCultureIgnoreCase))
                         .FirstOrDefault(m => m.GetParameters().Length == cmdlist.Length - 1);
                 }
                 catch (AmbiguousMatchException)
@@ -386,15 +452,29 @@ namespace MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                Io.Write(Prompt + '>',MobileSuitIoInterface.OutputType.Prompt);
+                if(!Io.RedirectInput) Io.Write(Prompt + '>',MobileSuitIoInterface.OutputType.Prompt);
                 var cmd = Io.ReadLine();
                 TraceBack tb;
+                if (cmd is null)
+                {
+                    if (Io.RedirectInput && ShellMode)
+                    {
+                        Io.Input = null;
+                        continue;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+
+                }
                 if (cmd == "")
                 {
                     continue;
                 }
 
-                if (cmd != null && cmd[0] == '@')
+                if (cmd[0] == '@')
                 {
                     tb = RunLocal(cmd.Remove(0, 1));
                 }
