@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MobileSuit
 {
-    public class MobileSuit
+    public class MobileSuitHost
     {
         public Stack<object> InstanceRef { get; set; } = new Stack<object>();
         public List<string> InstanceNameStk { get; set; } = new List<string>();
@@ -30,7 +30,7 @@ namespace MobileSuit
         public string? Prompt { get; set; }
         public object? WorkInstance { get; set; }
         public Type? WorkType { get; set; }
-        public MobileSuit(MobileSuitIoInterface? io = null)
+        public MobileSuitHost(MobileSuitIoInterface? io = null)
         {
             Assembly = Assembly.GetCallingAssembly();
             Io = io ?? GeneralIo;
@@ -38,12 +38,12 @@ namespace MobileSuit
 
 
 
-        public MobileSuit(Assembly assembly, MobileSuitIoInterface? io = null)
+        public MobileSuitHost(Assembly assembly, MobileSuitIoInterface? io = null)
         {
             Assembly = assembly;
             Io = io ?? GeneralIo;
         }
-        public MobileSuit(Type? type, MobileSuitIoInterface? io = null)
+        public MobileSuitHost(Type? type, MobileSuitIoInterface? io = null)
         {
 
             WorkType = type;
