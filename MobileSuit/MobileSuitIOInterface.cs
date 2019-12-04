@@ -13,7 +13,7 @@ namespace MobileSuit
             if (!RedirectOutput)
             {
                 if (type == OutputType.Error) Console.Beep();
-                if (customColor==null)
+                if (customColor == null)
                 {
                     customColor = type switch
                     {
@@ -30,12 +30,12 @@ namespace MobileSuit
 
                 var dColor = Console.ForegroundColor;
 
-                Console.ForegroundColor = (ConsoleColor) customColor;
+                Console.ForegroundColor = (ConsoleColor)customColor;
 
                 Console.Write(content);
 
                 Console.ForegroundColor = dColor;
-                
+
 
             }
             else
@@ -68,7 +68,7 @@ namespace MobileSuit
 
                 Console.ForegroundColor = (ConsoleColor)customColor;
 
-                Console.WriteLine(content);
+                Console.WriteLine(Prefix + content);
 
                 Console.ForegroundColor = dColor;
 
@@ -109,6 +109,32 @@ namespace MobileSuit
 
         }
 
+        public string Prefix => PrefixBuilder.ToString();
+        private StringBuilder PrefixBuilder { get; } = new StringBuilder();
+        private Stack<int> PrefixLengthStack { get; } = new Stack<int>();
+        public void SetWriteLinePrefix(string prefix)
+        {
+            ResetWriteLinePrefix();
+            PrefixBuilder.Append(prefix);
+            PrefixLengthStack.Push(prefix.Length);
+        }
+        public void ResetWriteLinePrefix()
+        {
+            PrefixBuilder.Clear();
+            PrefixLengthStack.Clear();
+        }
+
+        public void AppendWriteLinePrefix(string prefix)
+        {
+            PrefixBuilder.Append(prefix);
+            PrefixLengthStack.Push(prefix.Length);
+        }
+        public void SubtractWriteLinePrefix()
+        {
+            if (PrefixLengthStack.Count == 0) return;
+            var l = PrefixLengthStack.Pop();
+            PrefixBuilder.Remove(PrefixBuilder.Length - l, l);
+        }
         public string? ReadLine()
         {
             return Input != null ? Input?.ReadLine() : Console.ReadLine();
@@ -121,7 +147,7 @@ namespace MobileSuit
             PromptColor = ConsoleColor.Magenta;
             AllOkColor = ConsoleColor.Green;
             ListTitleColor = ConsoleColor.Yellow;
-            CustomInfoColor= ConsoleColor.DarkCyan;
+            CustomInfoColor = ConsoleColor.DarkCyan;
             MobileSuitInfoColor = ConsoleColor.DarkBlue;
         }
         public bool RedirectOutput => Output != null;
@@ -134,7 +160,7 @@ namespace MobileSuit
         public ConsoleColor AllOkColor { get; set; }
         public ConsoleColor ListTitleColor { get; set; }
         public ConsoleColor CustomInfoColor { get; set; }
-        public ConsoleColor MobileSuitInfoColor{ get; set; }
+        public ConsoleColor MobileSuitInfoColor { get; set; }
         //public StreamWriter? Error { get; set; }
         public StreamWriter? Output { get; set; }
         public StreamReader? Input { get; set; }
