@@ -124,7 +124,7 @@ namespace MobileSuit
             PrefixLengthStack.Clear();
         }
 
-        public void AppendWriteLinePrefix(string prefix)
+        public void AppendWriteLinePrefix(string prefix="\t")
         {
             PrefixBuilder.Append(prefix);
             PrefixLengthStack.Push(prefix.Length);
