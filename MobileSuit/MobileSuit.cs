@@ -262,8 +262,8 @@ namespace MobileSuit
                     ShowDone = !ShowDone;
                     return TraceBack.AllOk;
 
-                case "utb":
-                case "UseTraceBack":
+                case "tb":
+                case "TraceBack":
                     UseTraceBack = !UseTraceBack;
                     return TraceBack.AllOk;
                 default:
@@ -489,17 +489,17 @@ namespace MobileSuit
                 return TraceBack.AllOk;
             }
 
-            if (WorkInstance == null)
+            if (WorkInstance is null)
             {
-                var nextobj = Assembly.GetType(cmdlist[0], false, true) ??
+                var nextObject = Assembly.GetType(cmdlist[0], false, true) ??
                               Assembly.GetType(Assembly.GetName().Name + '.' + cmdlist[0], false, true);
-                if (nextobj == null)
+                if (nextObject == null)
                 {
                     return TraceBack.ObjectNotFound;
                 }
 
                 return RunObject(cmdlist[1..],
-                    Assembly.CreateInstance(nextobj.FullName ?? throw new InvalidOperationException()));
+                    Assembly.CreateInstance(nextObject.FullName ?? throw new InvalidOperationException()));
             }
             //If Null Instance
 
