@@ -12,11 +12,11 @@ namespace MobileSuit
 {
     public class MobileSuitHost
     {
-        private string[]? ArgSplit(string args)
+        private static string[]? ArgSplit(string args)
         {
             if (string.IsNullOrEmpty(args)) return null;
             string submit;
-            var l=new List<string>();
+            var l = new List<string>();
             var separating = false;
             var separationPrefix = false;
             var separationCharacter = '"';
@@ -33,7 +33,7 @@ namespace MobileSuit
                             l.Add(args[left..right]);
                             left = right + 1;
                         }
-                        else if(!separating)
+                        else if (!separating)
                         {
                             separating = true;
                             separationCharacter = '"';
@@ -196,16 +196,16 @@ namespace MobileSuit
         {
             if (WorkType == null) return TraceBack.InvalidCommand;
             var fi = (from i in (from f in WorkType.GetFields(Flags)
-                                select (MemberInfo)f).Union
+                                 select (MemberInfo)f).Union
                                (from p in WorkType.GetProperties(Flags)
                                 select (MemberInfo)p)
-                     orderby i.Name
-                     select i).ToList();
+                      orderby i.Name
+                      select i).ToList();
 
 
             if (fi.Any())
             {
-                Io.WriteLine("Members:",MobileSuitIoInterface.OutputType.ListTitle);
+                Io.WriteLine("Members:", MobileSuitIoInterface.OutputType.ListTitle);
                 foreach (var item in fi)
                 {
                     var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
@@ -221,17 +221,17 @@ namespace MobileSuit
                 }
             }
             var mi = (from m in WorkType.GetMethods(Flags)
-                     where
-                           !(from p in WorkType.GetProperties(Flags)
-                             select $"get_{p.Name}").Contains(m.Name)
-                        && !(from p in WorkType.GetProperties(Flags)
-                             select $"set_{p.Name}").Contains(m.Name)
-                     select m).ToList();
+                      where
+                            !(from p in WorkType.GetProperties(Flags)
+                              select $"get_{p.Name}").Contains(m.Name)
+                         && !(from p in WorkType.GetProperties(Flags)
+                              select $"set_{p.Name}").Contains(m.Name)
+                      select m).ToList();
 
 
             if (!mi.Any()) return TraceBack.AllOk;
             {
-                Io.WriteLine("Methods:",MobileSuitIoInterface.OutputType.ListTitle);
+                Io.WriteLine("Methods:", MobileSuitIoInterface.OutputType.ListTitle);
                 foreach (var item in mi)
                 {
                     var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
@@ -276,7 +276,7 @@ namespace MobileSuit
             var obj = WorkType?.GetProperty(args[0], Flags) as MemberInfo ?? WorkType?.GetField(args[0], Flags);
             var objProp = WorkType?.GetProperty(args[0], Flags);
             if (obj == null || objProp == null) return TraceBack.MemberNotFound;
-            var objSet = (SetProp) objProp.SetValue;
+            var objSet = (SetProp)objProp.SetValue;
 
             var cvt = (obj.GetCustomAttribute(typeof(MobileSuitDataConverterAttribute)) as MobileSuitDataConverterAttribute)?.Converter;
             try
@@ -299,7 +299,7 @@ namespace MobileSuit
                 case "vw":
                 case "view":
                     if (cmdList.Length == 1) return TraceBack.InvalidCommand;
-                    if (WorkType == null||Assembly==null) return TraceBack.InvalidCommand;
+                    if (WorkType == null || Assembly == null) return TraceBack.InvalidCommand;
 
                     var obj = WorkType.GetProperty(cmdList[1], Flags)?.GetValue(WorkInstance) ??
                                 WorkType.GetField(cmdList[1], Flags)?.GetValue(WorkInstance);
@@ -307,11 +307,11 @@ namespace MobileSuit
                     {
                         return TraceBack.ObjectNotFound;
                     }
-                    Io.WriteLine(obj.ToString()??"<Unknown>");
+                    Io.WriteLine(obj.ToString() ?? "<Unknown>");
                     return TraceBack.AllOk;
                 case "nw":
                 case "new":
-                    if (cmdList.Length == 1||Assembly==null) return TraceBack.InvalidCommand;
+                    if (cmdList.Length == 1 || Assembly == null) return TraceBack.InvalidCommand;
                     WorkType =
                         Assembly.GetType(cmdList[1], false, true) ??
                         Assembly.GetType(WorkType?.FullName + '.' + cmdList[1], false, true) ??
@@ -322,7 +322,7 @@ namespace MobileSuit
                     }
 
                     if (WorkType?.FullName == null) return TraceBack.InvalidCommand;
-                    WorkInstance = Assembly.CreateInstance(WorkType?.FullName??throw new NullReferenceException());
+                    WorkInstance = Assembly.CreateInstance(WorkType?.FullName ?? throw new NullReferenceException());
                     Prompt = (WorkType?.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute
                         ?? new MobileSuitInfoAttribute(cmdList[1])).Prompt;
                     InstanceRef.Clear();
@@ -345,7 +345,7 @@ namespace MobileSuit
                 case "et":
                 case "enter":
                     if (cmdList.Length == 1) return TraceBack.InvalidCommand;
-                    if (WorkType == null || WorkInstance==null || Assembly == null) return TraceBack.InvalidCommand;
+                    if (WorkType == null || WorkInstance == null || Assembly == null) return TraceBack.InvalidCommand;
                     var nextobj = WorkType.GetProperty(cmdList[1], Flags)?.GetValue(WorkInstance) ??
                         WorkType.GetField(cmdList[1], Flags)?.GetValue(WorkInstance);
                     InstanceRef.Push(WorkInstance);
@@ -357,7 +357,7 @@ namespace MobileSuit
                     WorkType = nextobj.GetType();
                     return TraceBack.AllOk;
                 case "echo":
-                    if (cmdList.Length==1)
+                    if (cmdList.Length == 1)
                     {
                         Io.WriteLine("");
                         return TraceBack.AllOk;
@@ -371,7 +371,7 @@ namespace MobileSuit
                         return TraceBack.AllOk;
                     }
 
-                    
+
                     Io.WriteLine(cmd[(cmdList[0].Length + cmdList[1].Length + 2)..],
                         cmdList[1].ToLower() switch
                         {
@@ -400,15 +400,15 @@ namespace MobileSuit
                     return TraceBack.AllOk;
                 case "shell":
                 case "systemcall":
-                    if (cmdList.Length < 2 ) return TraceBack.InvalidCommand;
+                    if (cmdList.Length < 2) return TraceBack.InvalidCommand;
                     var proc = new Process();
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.FileName = cmdList[1];
-                    if (cmdList.Length>2)
+                    if (cmdList.Length > 2)
                     {
 
-                        proc.StartInfo.Arguments = cmd[(cmdList[1].Length + cmdList[0].Length+3)..];
-                        
+                        proc.StartInfo.Arguments = cmd[(cmdList[1].Length + cmdList[0].Length + 3)..];
+
                     }
 
                     try
@@ -417,7 +417,7 @@ namespace MobileSuit
                     }
                     catch (Exception e)
                     {
-                        Io.WriteLine($"Error:{e}",OutputType.Error);
+                        Io.WriteLine($"Error:{e}", OutputType.Error);
                         return TraceBack.ObjectNotFound;
                     }
 
@@ -511,56 +511,57 @@ namespace MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                if(!Io.RedirectInput) Io.Write(Prompt + '>',MobileSuitIoInterface.OutputType.Prompt);
+                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', MobileSuitIoInterface.OutputType.Prompt);
                 var cmd = Io.ReadLine();
-                TraceBack tb;
-                if (cmd is null)
+                if (string.IsNullOrEmpty(cmd) && (Io.IsInputRedirected && ShellMode))
                 {
-                    if (Io.RedirectInput && ShellMode)
+                    Io.ResetInput();
+                    continue;
+                }
+                if (string.IsNullOrEmpty(cmd)) continue;
+
+                try
+                {
+                    TraceBack traceBack;
+                    if (cmd[0] == '@')
                     {
-                        Io.Input = null;
-                        continue;
+                        traceBack = RunLocal(cmd.Remove(0, 1));
                     }
                     else
                     {
-                        return 0;
+                        var commandlineList = ArgSplit(cmd);
+                        traceBack = commandlineList == null
+                            ? TraceBack.InvalidCommand
+                            : RunObject(commandlineList, WorkInstance);
+
+                    }
+                    switch (traceBack)
+                    {
+                        case TraceBack.OnExit:
+                            return 0;
+                        case TraceBack.AllOk:
+                            TbAllOk();
+                            break;
+                        case TraceBack.InvalidCommand:
+                            ErrInvalidCommand();
+                            break;
+                        case TraceBack.ObjectNotFound:
+                            ErrObjectNotFound();
+                            break;
+                        case TraceBack.MemberNotFound:
+                            ErrMemberNotFound();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
 
-
                 }
-                if (cmd == "")
+                catch (Exception e)
                 {
-                    continue;
-                }
-
-                if (cmd[0] == '@')
-                {
-                    tb = RunLocal(cmd.Remove(0, 1));
-                }
-                else
-                {
-                    var cmdlist = ArgSplit(cmd);
-                    tb = cmdlist==null?TraceBack.InvalidCommand:RunObject(cmdlist, WorkInstance);
-
-                }
-                switch (tb)
-                {
-                    case TraceBack.OnExit:
-                        return 0;
-                    case TraceBack.AllOk:
-                        TbAllOk();
-                        break;
-                    case TraceBack.InvalidCommand:
-                        ErrInvalidCommand();
-                        break;
-                    case TraceBack.ObjectNotFound:
-                        ErrObjectNotFound();
-                        break;
-                    case TraceBack.MemberNotFound:
-                        ErrMemberNotFound();
-                        break;
+                    Io.Error.WriteLine(e.ToString());
                 }
                 UpdatePrompt(prompt);
+
             }
         }
 
