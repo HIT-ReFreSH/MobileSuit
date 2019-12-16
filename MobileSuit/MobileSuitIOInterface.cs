@@ -35,7 +35,7 @@ namespace MobileSuit
 
                 var dColor = Console.ForegroundColor;
 
-                Console.ForegroundColor = (ConsoleColor) customColor;
+                Console.ForegroundColor = (ConsoleColor)customColor;
 
                 Console.Write(content);
 
@@ -105,7 +105,7 @@ namespace MobileSuit
 
                 var dColor = Console.ForegroundColor;
 
-                Console.ForegroundColor = (ConsoleColor) customColor;
+                Console.ForegroundColor = (ConsoleColor)customColor;
 
                 Console.WriteLine(Prefix + content);
 
@@ -199,7 +199,7 @@ namespace MobileSuit
                     default:
                         break;
                 }
-                
+
                 sb.Append(Prefix);
                 sb.Append(content);
                 await Output.WriteLineAsync(sb.ToString());
@@ -210,10 +210,10 @@ namespace MobileSuit
             if (!IsOutputRedirected)
             {
                 Console.Beep();
-                
+
                 Error.WriteLine(Prefix + content);
 
-                
+
             }
             else
             {
@@ -253,11 +253,35 @@ namespace MobileSuit
             PrefixBuilder.Remove(PrefixBuilder.Length - l, l);
         }
 
-        public string? ReadLine()
-            => Input.ReadLine();
+        //public string? ReadLine()
+        //=> Input.ReadLine();
+        public string? ReadLine(string? prompt = null, string? defaultValue = null, bool newLine = false, ConsoleColor? customPromptColor = null)
+        {
+            if (!string.IsNullOrEmpty(prompt))
+            {
+                if (newLine)
+                    WriteLine(prompt + '>', OutputType.Prompt, customPromptColor);
+                else
+                    Write(prompt + '>', OutputType.Prompt, customPromptColor);
+            }
 
-        public async Task<string?> ReadLineAsync() 
-            => await Input.ReadLineAsync();
+            var r = Input.ReadLine();
+            return string.IsNullOrEmpty(r) ? defaultValue : r;
+        }
+        public async Task<string?> ReadLineAsync(string? prompt = null, string? defaultValue = null, bool newLine = false, ConsoleColor? customPromptColor = null)
+        {
+            if (!string.IsNullOrEmpty(prompt))
+            {
+                if (newLine)
+                    await WriteLineAsync(prompt + '>', OutputType.Prompt, customPromptColor);
+                else
+                    await WriteAsync(prompt + '>', OutputType.Prompt, customPromptColor);
+            }
+
+            var r = await Input.ReadLineAsync();
+            return string.IsNullOrEmpty(r) ? defaultValue : r;
+        }
+
 
         public int Peek() => Input.Peek();
         public int Read() => Input.Read();
@@ -272,8 +296,8 @@ namespace MobileSuit
             ListTitleColor = ConsoleColor.Yellow;
             CustomInfoColor = ConsoleColor.DarkCyan;
             MobileSuitInfoColor = ConsoleColor.DarkBlue;
-            Console.InputEncoding = new UTF8Encoding();
-            Console.OutputEncoding = new UTF8Encoding();
+            //Console.InputEncoding = new UTF8Encoding();
+            //Console.OutputEncoding = new UTF8Encoding();
             Input = Console.In;
             Output = Console.Out;
             Error = Console.Error;
@@ -291,9 +315,9 @@ namespace MobileSuit
         public ConsoleColor ListTitleColor { get; set; }
         public ConsoleColor CustomInfoColor { get; set; }
         public ConsoleColor MobileSuitInfoColor { get; set; }
-        public TextWriter Error { get; set; } 
-        public TextWriter Output { get; set; } 
-        public TextReader Input { get; set; } 
+        public TextWriter Error { get; set; }
+        public TextWriter Output { get; set; }
+        public TextReader Input { get; set; }
         public string ConsoleTitle
         {
             get => Console.Title;
@@ -330,7 +354,7 @@ namespace MobileSuit
         }
 
         private string Clear { get; } = new string(' ', Console.BufferWidth);
-        private List<TextProgressBar> ProgressBars{ get; set; } = new List<TextProgressBar>();
+        private List<TextProgressBar> ProgressBars { get; set; } = new List<TextProgressBar>();
         internal class TextProgressBar
         {
             public delegate void ProgressChangedEventHandler(object sender, EventArgs e);
