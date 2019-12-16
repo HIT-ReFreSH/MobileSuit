@@ -112,6 +112,7 @@ namespace MobileSuit
             if (type?.FullName == null) return;
             Assembly = type.Assembly;
             WorkInstance = Assembly.CreateInstance(type.FullName);
+            (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
         }
 
         public bool UseTraceBack { get; set; } = true;
@@ -328,6 +329,7 @@ namespace MobileSuit
                     InstanceRef.Clear();
                     InstanceNameStk.Clear();
                     InstanceNameStk.Add($"(new {WorkType?.Name})");
+                    (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
                     return TraceBack.AllOk;
                 case "md":
                 case "modify":
