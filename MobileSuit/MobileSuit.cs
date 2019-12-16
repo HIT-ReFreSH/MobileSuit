@@ -10,6 +10,7 @@ using static MobileSuit.MobileSuitIoInterface;
 
 namespace MobileSuit
 {
+
     public class MobileSuitHost
     {
         private static string[]? ArgSplit(string args)
@@ -112,9 +113,14 @@ namespace MobileSuit
             if (type?.FullName == null) return;
             Assembly = type.Assembly;
             WorkInstance = Assembly.CreateInstance(type.FullName);
-            (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
+            WorkInstanceInit();
         }
 
+        private void WorkInstanceInit()
+        {
+            (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
+            (WorkInstance as IMobileSuitCommandInteractive)?.SetCommandHandler(RunCommand);
+        }
         public bool UseTraceBack { get; set; } = true;
         public bool ShowDone { get; set; }
         private void TbAllOk()
@@ -329,7 +335,7 @@ namespace MobileSuit
                     InstanceRef.Clear();
                     InstanceNameStk.Clear();
                     InstanceNameStk.Add($"(new {WorkType?.Name})");
-                    (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
+                    WorkInstanceInit();
                     return TraceBack.AllOk;
                 case "md":
                 case "modify":
@@ -343,6 +349,7 @@ namespace MobileSuit
                     WorkInstance = InstanceRef.Pop();
                     InstanceNameStk.RemoveAt(InstanceNameStk.Count - 1);//PopBack
                     WorkType = WorkInstance.GetType();
+                    WorkInstanceInit();
                     return TraceBack.AllOk;
                 case "et":
                 case "enter":
@@ -357,6 +364,7 @@ namespace MobileSuit
                     InstanceNameStk.Add(fName);
                     WorkInstance = nextobj;
                     WorkType = nextobj.GetType();
+                    WorkInstanceInit();
                     return TraceBack.AllOk;
                 case "echo":
                     if (cmdList.Length == 1)
@@ -514,59 +522,64 @@ namespace MobileSuit
             for (; ; )
             {
                 if (!Io.IsInputRedirected) Io.Write(Prompt + '>', MobileSuitIoInterface.OutputType.Prompt);
-                var cmd = Io.ReadLine();
-                if (string.IsNullOrEmpty(cmd) && (Io.IsInputRedirected && ShellMode))
-                {
-                    Io.ResetInput();
-                    continue;
-                }
-                if (string.IsNullOrEmpty(cmd)) continue;
 
-                try
-                {
-                    TraceBack traceBack;
-                    if (cmd[0] == '@')
-                    {
-                        traceBack = RunLocal(cmd.Remove(0, 1));
-                    }
-                    else
-                    {
-                        var commandlineList = ArgSplit(cmd);
-                        traceBack = commandlineList == null
-                            ? TraceBack.InvalidCommand
-                            : RunObject(commandlineList, WorkInstance);
-
-                    }
-                    switch (traceBack)
-                    {
-                        case TraceBack.OnExit:
-                            return 0;
-                        case TraceBack.AllOk:
-                            TbAllOk();
-                            break;
-                        case TraceBack.InvalidCommand:
-                            ErrInvalidCommand();
-                            break;
-                        case TraceBack.ObjectNotFound:
-                            ErrObjectNotFound();
-                            break;
-                        case TraceBack.MemberNotFound:
-                            ErrMemberNotFound();
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    Io.Error.WriteLine(e.ToString());
-                }
-                UpdatePrompt(prompt);
+                if (RunCommand(prompt, Io.ReadLine()) == 0) return 0;
 
             }
         }
 
+        public int RunCommand(string prompt, string? cmd)
+        {
+            if (string.IsNullOrEmpty(cmd) && (Io.IsInputRedirected && ShellMode))
+            {
+                Io.ResetInput();
+                return 1;
+            }
+
+            if (string.IsNullOrEmpty(cmd)) return 1;
+            try
+            {
+                TraceBack traceBack;
+                if (cmd[0] == '@')
+                {
+                    traceBack = RunLocal(cmd.Remove(0, 1));
+                }
+                else
+                {
+                    var commandlineList = ArgSplit(cmd);
+                    traceBack = commandlineList == null
+                        ? TraceBack.InvalidCommand
+                        : RunObject(commandlineList, WorkInstance);
+
+                }
+                switch (traceBack)
+                {
+                    case TraceBack.OnExit:
+                        return 0;
+                    case TraceBack.AllOk:
+                        TbAllOk();
+                        break;
+                    case TraceBack.InvalidCommand:
+                        ErrInvalidCommand();
+                        break;
+                    case TraceBack.ObjectNotFound:
+                        ErrObjectNotFound();
+                        break;
+                    case TraceBack.MemberNotFound:
+                        ErrMemberNotFound();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Io.Error.WriteLine(e.ToString());
+            }
+            UpdatePrompt(prompt);
+            return 1;
+        }
         public int Run()
             => Run("");
     }
