@@ -6,7 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Diagnostics;
-using static MobileSuit.MobileSuitIoInterface;
+using MobileSuit.IO;
+using static MobileSuit.IO.IoInterface;
 
 namespace MobileSuit
 {
@@ -77,8 +78,8 @@ namespace MobileSuit
         public List<string> InstanceNameStk { get; set; } = new List<string>();
         public bool ShowRef { get; set; } = true;
         public const BindingFlags Flags = BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
-        public MobileSuitIoInterface Io { get; set; }
-        public static MobileSuitIoInterface GeneralIo { get; set; } = new MobileSuitIoInterface();
+        public IoInterface Io { get; set; }
+        public static IoInterface GeneralIo { get; set; } = new IoInterface();
         public enum TraceBack
         {
 
@@ -93,19 +94,19 @@ namespace MobileSuit
         public string? Prompt { get; set; }
         public object? WorkInstance { get; set; }
         public Type? WorkType { get; set; }
-        public MobileSuitHost(MobileSuitIoInterface? io = null)
+        public MobileSuitHost(IoInterface? io = null)
         {
             Assembly = Assembly.GetCallingAssembly();
             Io = io ?? GeneralIo;
         }
 
 
-        public MobileSuitHost(Assembly assembly, MobileSuitIoInterface? io = null)
+        public MobileSuitHost(Assembly assembly, IoInterface? io = null)
         {
             Assembly = assembly;
             Io = io ?? GeneralIo;
         }
-        public MobileSuitHost(Type? type, MobileSuitIoInterface? io = null)
+        public MobileSuitHost(Type? type, IoInterface? io = null)
         {
 
             WorkType = type;
@@ -118,20 +119,20 @@ namespace MobileSuit
 
         private void WorkInstanceInit()
         {
-            (WorkInstance as IMobileSuitIoInteractive)?.SetIo(Io);
+            (WorkInstance as IIoInteractive)?.SetIo(Io);
             (WorkInstance as IMobileSuitCommandInteractive)?.SetCommandHandler(RunCommand);
         }
         public bool UseTraceBack { get; set; } = true;
         public bool ShowDone { get; set; }
         private void TbAllOk()
         {
-            if (UseTraceBack && ShowDone) Io.WriteLine("Done.", MobileSuitIoInterface.OutputType.AllOk);
+            if (UseTraceBack && ShowDone) Io.WriteLine("Done.", IoInterface.OutputType.AllOk);
         }
         private void ErrInvalidCommand()
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Invalid Command!", MobileSuitIoInterface.OutputType.Error);
+                Io.WriteLine("Invalid Command!", IoInterface.OutputType.Error);
             }
             else
             {
@@ -145,7 +146,7 @@ namespace MobileSuit
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Object Not Found!", MobileSuitIoInterface.OutputType.Error);
+                Io.WriteLine("Object Not Found!", IoInterface.OutputType.Error);
             }
             else
             {
@@ -156,7 +157,7 @@ namespace MobileSuit
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Member Not Found!", MobileSuitIoInterface.OutputType.Error);
+                Io.WriteLine("Member Not Found!", IoInterface.OutputType.Error);
             }
             else
             {
@@ -212,7 +213,7 @@ namespace MobileSuit
 
             if (fi.Any())
             {
-                Io.WriteLine("Members:", MobileSuitIoInterface.OutputType.ListTitle);
+                Io.WriteLine("Members:", IoInterface.OutputType.ListTitle);
                 foreach (var item in fi)
                 {
                     var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
@@ -221,8 +222,8 @@ namespace MobileSuit
                                 : $"[{info.Prompt}]";
                     Io.Write($"\t{item.Name}");
                     var otType = info == null
-                        ? MobileSuitIoInterface.OutputType.MobileSuitInfo
-                        : MobileSuitIoInterface.OutputType.CustomInfo;
+                        ? IoInterface.OutputType.MobileSuitInfo
+                        : IoInterface.OutputType.CustomInfo;
                     Io.Write(exInfo, otType);
                     Io.Write("\n");
                 }
@@ -238,7 +239,7 @@ namespace MobileSuit
 
             if (!mi.Any()) return TraceBack.AllOk;
             {
-                Io.WriteLine("Methods:", MobileSuitIoInterface.OutputType.ListTitle);
+                Io.WriteLine("Methods:", IoInterface.OutputType.ListTitle);
                 foreach (var item in mi)
                 {
                     var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
@@ -247,8 +248,8 @@ namespace MobileSuit
                         : $"[{info.Prompt}]";
                     Io.Write($"\t{item.Name}");
                     var otType = info == null
-                        ? MobileSuitIoInterface.OutputType.MobileSuitInfo
-                        : MobileSuitIoInterface.OutputType.CustomInfo;
+                        ? IoInterface.OutputType.MobileSuitInfo
+                        : IoInterface.OutputType.CustomInfo;
                     Io.Write(exInfo, otType);
                     Io.Write("\n");
                 }
@@ -385,19 +386,19 @@ namespace MobileSuit
                     Io.WriteLine(cmd[(cmdList[0].Length + cmdList[1].Length + 2)..],
                         cmdList[1].ToLower() switch
                         {
-                            "p" => OutputType.Prompt,
-                            "prompt" => OutputType.Prompt,
-                            "error" => OutputType.Error,
-                            "err" => OutputType.Error,
-                            "allok" => OutputType.AllOk,
-                            "ok" => OutputType.AllOk,
-                            "title" => OutputType.ListTitle,
-                            "lt" => OutputType.ListTitle,
-                            "custominfo" => OutputType.CustomInfo,
-                            "info" => OutputType.CustomInfo,
-                            "mobilesuitinfo" => OutputType.MobileSuitInfo,
-                            "msi" => OutputType.MobileSuitInfo,
-                            _ => OutputType.Default
+                            "p" => IoInterface.OutputType.Prompt,
+                            "prompt" => IoInterface.OutputType.Prompt,
+                            "error" => IoInterface.OutputType.Error,
+                            "err" => IoInterface.OutputType.Error,
+                            "allok" => IoInterface.OutputType.AllOk,
+                            "ok" => IoInterface.OutputType.AllOk,
+                            "title" => IoInterface.OutputType.ListTitle,
+                            "lt" => IoInterface.OutputType.ListTitle,
+                            "custominfo" => IoInterface.OutputType.CustomInfo,
+                            "info" => IoInterface.OutputType.CustomInfo,
+                            "mobilesuitinfo" => IoInterface.OutputType.MobileSuitInfo,
+                            "msi" => IoInterface.OutputType.MobileSuitInfo,
+                            _ => IoInterface.OutputType.Default
 
                         },
                         typeof(ConsoleColor).
@@ -427,7 +428,7 @@ namespace MobileSuit
                     }
                     catch (Exception e)
                     {
-                        Io.WriteLine($"Error:{e}", OutputType.Error);
+                        Io.WriteLine($"Error:{e}", IoInterface.OutputType.Error);
                         return TraceBack.ObjectNotFound;
                     }
 
@@ -521,7 +522,7 @@ namespace MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', MobileSuitIoInterface.OutputType.Prompt);
+                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', IoInterface.OutputType.Prompt);
 
                 if (RunCommand(prompt, Io.ReadLine()) == 0) return 0;
 
