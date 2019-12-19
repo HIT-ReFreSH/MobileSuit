@@ -6,14 +6,18 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using MobileSuit.IO;
 using static MobileSuit.IO.IoInterface;
 
 namespace MobileSuit
 {
 
-    public class MobileSuitHost
+    public partial class MobileSuitHost
     {
+        public static readonly Type ArgumentConverter = typeof(MobileSuitDataConverterAttribute);
+
         private static string[]? ArgSplit(string args)
         {
             if (string.IsNullOrEmpty(args)) return null;
@@ -77,7 +81,7 @@ namespace MobileSuit
         public Stack<object> InstanceRef { get; set; } = new Stack<object>();
         public List<string> InstanceNameStk { get; set; } = new List<string>();
         public bool ShowRef { get; set; } = true;
-        public const BindingFlags Flags = BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
+        public const BindingFlags Flags = BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
         public IoInterface Io { get; set; }
         public static IoInterface GeneralIo { get; set; } = new IoInterface();
         public enum TraceBack
@@ -200,104 +204,11 @@ namespace MobileSuit
             sb.Append(']');
             Prompt = sb.ToString();
         }
-        private TraceBack ListMembers()
-        {
-            if (WorkType == null) return TraceBack.InvalidCommand;
-            var fi = (from i in (from f in WorkType.GetFields(Flags)
-                                 select (MemberInfo)f).Union
-                               (from p in WorkType.GetProperties(Flags)
-                                select (MemberInfo)p)
-                      orderby i.Name
-                      select i).ToList();
 
-
-            if (fi.Any())
-            {
-                Io.WriteLine("Members:", IoInterface.OutputType.ListTitle);
-                foreach (var item in fi)
-                {
-                    var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
-                    var exInfo = info == null
-                                ? ""
-                                : $"[{info.Prompt}]";
-                    Io.Write($"\t{item.Name}");
-                    var otType = info == null
-                        ? IoInterface.OutputType.MobileSuitInfo
-                        : IoInterface.OutputType.CustomInfo;
-                    Io.Write(exInfo, otType);
-                    Io.Write("\n");
-                }
-            }
-            var mi = (from m in WorkType.GetMethods(Flags)
-                      where
-                            !(from p in WorkType.GetProperties(Flags)
-                              select $"get_{p.Name}").Contains(m.Name)
-                         && !(from p in WorkType.GetProperties(Flags)
-                              select $"set_{p.Name}").Contains(m.Name)
-                      select m).ToList();
-
-
-            if (!mi.Any()) return TraceBack.AllOk;
-            {
-                Io.WriteLine("Methods:", IoInterface.OutputType.ListTitle);
-                foreach (var item in mi)
-                {
-                    var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
-                    var exInfo = info == null
-                        ? $"({ item.GetParameters().Length} Parameters)"
-                        : $"[{info.Prompt}]";
-                    Io.Write($"\t{item.Name}");
-                    var otType = info == null
-                        ? IoInterface.OutputType.MobileSuitInfo
-                        : IoInterface.OutputType.CustomInfo;
-                    Io.Write(exInfo, otType);
-                    Io.Write("\n");
-                }
-            }
-            return TraceBack.AllOk;
-        }
         private delegate void SetProp(object? obj, object? arg);
-        private TraceBack SwitchOption(string optionName)
-        {
-            switch (optionName)
-            {
-                case "sr":
-                case "ShowRef":
-                    ShowRef = !ShowRef;
-                    return TraceBack.AllOk;
-                case "sd":
-                case "ShowDone":
-                    ShowDone = !ShowDone;
-                    return TraceBack.AllOk;
 
-                case "tb":
-                case "TraceBack":
-                    UseTraceBack = !UseTraceBack;
-                    return TraceBack.AllOk;
-                default:
-                    return TraceBack.InvalidCommand;
-            }
-        }
-        private TraceBack ModifyMember(string[] args)
-        {
-            if (WorkType == null) return TraceBack.ObjectNotFound;
-            var obj = WorkType?.GetProperty(args[0], Flags) as MemberInfo ?? WorkType?.GetField(args[0], Flags);
-            var objProp = WorkType?.GetProperty(args[0], Flags);
-            if (obj == null || objProp == null) return TraceBack.MemberNotFound;
-            var objSet = (SetProp)objProp.SetValue;
 
-            var cvt = (obj.GetCustomAttribute(typeof(MobileSuitDataConverterAttribute)) as MobileSuitDataConverterAttribute)?.Converter;
-            try
-            {
-                objSet(WorkInstance, cvt != null ? cvt(args[1]) : args[1]);
-                return TraceBack.AllOk;
-            }
-            catch
-            {
-                return TraceBack.InvalidCommand;
-            }
-        }
-        private TraceBack RunLocal(string cmd)
+        private TraceBack RunBuildInCommand(string cmd)
         {
 
             var cmdList = ArgSplit(cmd);
@@ -306,67 +217,19 @@ namespace MobileSuit
             {
                 case "vw":
                 case "view":
-                    if (cmdList.Length == 1) return TraceBack.InvalidCommand;
-                    if (WorkType == null || Assembly == null) return TraceBack.InvalidCommand;
-
-                    var obj = WorkType.GetProperty(cmdList[1], Flags)?.GetValue(WorkInstance) ??
-                                WorkType.GetField(cmdList[1], Flags)?.GetValue(WorkInstance);
-                    if (obj == null)
-                    {
-                        return TraceBack.ObjectNotFound;
-                    }
-                    Io.WriteLine(obj.ToString() ?? "<Unknown>");
-                    return TraceBack.AllOk;
+                    return cmdList.Length > 0 ? ViewObject(cmdList[1..]) : TraceBack.InvalidCommand;
                 case "nw":
                 case "new":
-                    if (cmdList.Length == 1 || Assembly == null) return TraceBack.InvalidCommand;
-                    WorkType =
-                        Assembly.GetType(cmdList[1], false, true) ??
-                        Assembly.GetType(WorkType?.FullName + '.' + cmdList[1], false, true) ??
-                        Assembly.GetType(Assembly.GetName().Name + '.' + cmdList[1], false, true);
-                    if (WorkType == null)
-                    {
-                        return TraceBack.ObjectNotFound;
-                    }
-
-                    if (WorkType?.FullName == null) return TraceBack.InvalidCommand;
-                    WorkInstance = Assembly.CreateInstance(WorkType?.FullName ?? throw new NullReferenceException());
-                    Prompt = (WorkType?.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute
-                        ?? new MobileSuitInfoAttribute(cmdList[1])).Prompt;
-                    InstanceRef.Clear();
-                    InstanceNameStk.Clear();
-                    InstanceNameStk.Add($"(new {WorkType?.Name})");
-                    WorkInstanceInit();
-                    return TraceBack.AllOk;
+                    return cmdList.Length > 0 ? CreateObject(cmdList[1..]) : TraceBack.InvalidCommand;
                 case "md":
                 case "modify":
-                    if (WorkType == null || Assembly == null) return TraceBack.InvalidCommand;
-                    return cmdList.Length == 1 ? TraceBack.InvalidCommand : ModifyMember(cmdList[1..]);
+                    return cmdList.Length > 1 ? ModifyMember(cmdList[1..]) : TraceBack.InvalidCommand;
                 case "lv":
                 case "leave":
-                    if (InstanceRef.Count == 0)
-                        return TraceBack.InvalidCommand;
-                    if (WorkType == null) return TraceBack.InvalidCommand;
-                    WorkInstance = InstanceRef.Pop();
-                    InstanceNameStk.RemoveAt(InstanceNameStk.Count - 1);//PopBack
-                    WorkType = WorkInstance.GetType();
-                    WorkInstanceInit();
-                    return TraceBack.AllOk;
+                    return LeaveObject(new[] { "" });
                 case "et":
                 case "enter":
-                    if (cmdList.Length == 1) return TraceBack.InvalidCommand;
-                    if (WorkType == null || WorkInstance == null || Assembly == null) return TraceBack.InvalidCommand;
-                    var nextobj = WorkType.GetProperty(cmdList[1], Flags)?.GetValue(WorkInstance) ??
-                        WorkType.GetField(cmdList[1], Flags)?.GetValue(WorkInstance);
-                    InstanceRef.Push(WorkInstance);
-                    var fName = WorkType?.GetProperty(cmdList[1], Flags)?.Name ??
-                                WorkType?.GetField(cmdList[1], Flags)?.Name;
-                    if (fName == null || nextobj == null) return TraceBack.ObjectNotFound;
-                    InstanceNameStk.Add(fName);
-                    WorkInstance = nextobj;
-                    WorkType = nextobj.GetType();
-                    WorkInstanceInit();
-                    return TraceBack.AllOk;
+                    return cmdList.Length > 0 ? EnterObjectMember(cmdList[1..]) : TraceBack.InvalidCommand;
                 case "echo":
                     if (cmdList.Length == 1)
                     {
@@ -381,24 +244,22 @@ namespace MobileSuit
                         Io.WriteLine("");
                         return TraceBack.AllOk;
                     }
-
-
                     Io.WriteLine(cmd[(cmdList[0].Length + cmdList[1].Length + 2)..],
                         cmdList[1].ToLower() switch
                         {
-                            "p" => IoInterface.OutputType.Prompt,
-                            "prompt" => IoInterface.OutputType.Prompt,
-                            "error" => IoInterface.OutputType.Error,
-                            "err" => IoInterface.OutputType.Error,
-                            "allok" => IoInterface.OutputType.AllOk,
-                            "ok" => IoInterface.OutputType.AllOk,
-                            "title" => IoInterface.OutputType.ListTitle,
-                            "lt" => IoInterface.OutputType.ListTitle,
-                            "custominfo" => IoInterface.OutputType.CustomInfo,
-                            "info" => IoInterface.OutputType.CustomInfo,
-                            "mobilesuitinfo" => IoInterface.OutputType.MobileSuitInfo,
-                            "msi" => IoInterface.OutputType.MobileSuitInfo,
-                            _ => IoInterface.OutputType.Default
+                            "p" => OutputType.Prompt,
+                            "prompt" => OutputType.Prompt,
+                            "error" => OutputType.Error,
+                            "err" => OutputType.Error,
+                            "allok" => OutputType.AllOk,
+                            "ok" => OutputType.AllOk,
+                            "title" => OutputType.ListTitle,
+                            "lt" => OutputType.ListTitle,
+                            "custominfo" => OutputType.CustomInfo,
+                            "info" => OutputType.CustomInfo,
+                            "mobilesuitinfo" => OutputType.MobileSuitInfo,
+                            "msi" => OutputType.MobileSuitInfo,
+                            _ => OutputType.Default
 
                         },
                         typeof(ConsoleColor).
@@ -410,7 +271,6 @@ namespace MobileSuit
                     );
                     return TraceBack.AllOk;
                 case "shell":
-                case "systemcall":
                     if (cmdList.Length < 2) return TraceBack.InvalidCommand;
                     var proc = new Process();
                     proc.StartInfo.UseShellExecute = true;
@@ -421,14 +281,13 @@ namespace MobileSuit
                         proc.StartInfo.Arguments = cmd[(cmdList[1].Length + cmdList[0].Length + 3)..];
 
                     }
-
                     try
                     {
                         proc.Start();
                     }
                     catch (Exception e)
                     {
-                        Io.WriteLine($"Error:{e}", IoInterface.OutputType.Error);
+                        Io.WriteLine($"Error:{e}", OutputType.Error);
                         return TraceBack.ObjectNotFound;
                     }
 
@@ -446,7 +305,6 @@ namespace MobileSuit
                     return TraceBack.AllOk;
                 case "ls":
                 case "list":
-
                     return ListMembers();
                 case "me":
                 case "this":
@@ -462,56 +320,124 @@ namespace MobileSuit
             }
 
         }
-        private TraceBack RunObject(string[] cmdlist, object? instance)
+        private TraceBack RunObject(string[] args, Type? type, object? instance)
         {
             if (Assembly == null) return TraceBack.InvalidCommand;
-            if (0 == cmdlist.Length)
+            if (args.Length == 0)
             {
                 return TraceBack.ObjectNotFound;
             }
-            if (instance != null)
+            if (type is null)
             {
-                var type = instance.GetType();
-                MethodInfo mi;
-                try
-                {
-                    mi = type
-                        .GetMethods(Flags)
-                        .Where(m => string.Equals(m.Name, cmdlist[0], StringComparison.CurrentCultureIgnoreCase))
-                        .FirstOrDefault(m => m.GetParameters().Length == cmdlist.Length - 1);
-                }
-                catch (AmbiguousMatchException)
-                {
+                var nextObjectType = Assembly.GetType(args[0], false, true) ??
+                                 Assembly.GetType(Assembly.GetName().Name + '.' + args[0], false, true);
+                if (nextObjectType is null)
+                    return TraceBack.ObjectNotFound;
+                return RunObject(args[1..], nextObjectType,
+                    Assembly.CreateInstance(nextObjectType.FullName ?? throw new InvalidOperationException()));
+            }
+            var methods = type
+                .GetMethods(Flags)
+                .Where(m => string.Equals(m.Name, args[0], StringComparison.CurrentCultureIgnoreCase))
+                .OrderBy(m => m.GetParameters().Length)
+                .ToList();
 
-                    return TraceBack.InvalidCommand;
-                }
-
-                //if there's no such method
-                if (mi == null)
+            if (args.Length == 1)
+            {
+                if (!methods.Any() || methods[0].GetParameters().Length != 0) return TraceBack.ObjectNotFound;
+                var r = methods[0].Invoke(instance, null);
+                if (!(r is null))
                 {
-                    var nextobj =
-                        type.GetProperty(cmdlist[0], Flags)?.GetValue(instance) ??
-                        type.GetField(cmdlist[0], Flags)?.GetValue(instance) ??
-                        type.Assembly.CreateInstance(type.FullName + "." + cmdlist[0]);
-                    return RunObject(cmdlist[1..], nextobj);
+                    Io.WriteLine(new (string, ConsoleColor?)[]
+                    {
+                            ("Command", default),
+                            ($"[{args[0]}]", Io.InformationColor),
+                            (" returned value \"", default),
+                            ($"{r}\"", Io.CustomInformationColor)
+                    });
                 }
-
-                mi.Invoke(instance, cmdlist[1..]);
                 return TraceBack.AllOk;
             }
 
-            if (WorkInstance is null)
+            var argsPassLen = args.Length - 1;
+
+            foreach (var method in methods)
             {
-                var nextObject = Assembly.GetType(cmdlist[0], false, true) ??
-                              Assembly.GetType(Assembly.GetName().Name + '.' + cmdlist[0], false, true);
-                if (nextObject == null)
+                var parameters = method.GetParameters();
+                var pass = new object?[parameters.Length];
+                var passPtr = 0;
+                if (parameters.Length > argsPassLen)
                 {
-                    return TraceBack.ObjectNotFound;
+                    foreach (var parameterInfo in parameters[..argsPassLen])
+                    {
+                        pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                                               as MobileSuitDataConverterAttribute)?.Converter ??
+                                           (source => source))//Converter
+                            (args[passPtr + 1]);
+                    }
+                    foreach (var parameter in parameters[argsPassLen..])
+                    {
+                        if (!parameter.HasDefaultValue)
+                            return RunObject(args[1..], type,
+                                type.GetProperty(args[0], Flags)?
+                                    .GetValue(instance) ??
+                                type.GetField(args[0], Flags)?.GetValue(instance) ??
+                                type.Assembly.CreateInstance(type.FullName + "." + args[0]));
+                        pass[passPtr++] = parameter.DefaultValue;
+                    }
+
+                }
+                else if (parameters.Length < argsPassLen)
+                {
+                    if (parameters[^0].ParameterType == typeof(Array))
+                    {
+
+
+                        foreach (var parameterInfo in parameters[..^1])
+                        {
+                            pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                                                   as MobileSuitDataConverterAttribute)?.Converter ??
+                                               (source => source))//Converter
+                                (args[passPtr + 1]);
+                        }
+                        pass[passPtr] = (from arg in args[(passPtr + 1)..]
+                            select ((parameters[^0].GetCustomAttribute(ArgumentConverter)
+                                        as MobileSuitDataConverterAttribute)?.Converter ??
+                                    (source => source))
+                                (arg)).ToArray();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    foreach (var parameterInfo in parameters)
+                    {
+                        pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                                               as MobileSuitDataConverterAttribute)?.Converter ??
+                                           (source => source))//Converter
+                            (args[passPtr + 1]);
+                    }
                 }
 
-                return RunObject(cmdlist[1..],
-                    Assembly.CreateInstance(nextObject.FullName ?? throw new InvalidOperationException()));
+                var r = method.Invoke(instance, pass);
+                if (!(r is null))
+                {
+                    Io.WriteLine(new (string, ConsoleColor?)[]
+                    {
+                        ("Command", default),
+                        ($"[{args[0]}]", Io.InformationColor),
+                        (" returned value \"", default),
+                        ($"{r}\"", Io.CustomInformationColor)
+                    });
+                }
+
+                return TraceBack.AllOk;
             }
+
+
             //If Null Instance
 
             return TraceBack.ObjectNotFound;
@@ -529,6 +455,38 @@ namespace MobileSuit
             }
         }
 
+        public int RunScript(string path)
+        {
+            var t = RunScriptAsync(ReadTextFileAsync(path));
+            t.Wait();
+            return t.Result;
+        }
+        public int RunScript(IEnumerable<string> scripts)
+        {
+            foreach (var script in scripts)
+            {
+                RunCommand("", script);
+            }
+            return 0;
+        }
+        public async Task<int> RunScriptAsync(IAsyncEnumerable<string?> scripts)
+        {
+            await foreach (var script in scripts)
+            {
+                if (script is null) break;
+                RunCommand("", script);
+            }
+            return 0;
+        }
+        public async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
+        {
+            var fileInfo = new FileInfo(fileName);
+            if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
+            var reader = fileInfo.OpenText();
+            yield return await reader.ReadLineAsync();
+        }
+
+
         public int RunCommand(string prompt, string? cmd)
         {
             if (string.IsNullOrEmpty(cmd) && (Io.IsInputRedirected && ShellMode))
@@ -543,14 +501,14 @@ namespace MobileSuit
                 TraceBack traceBack;
                 if (cmd[0] == '@')
                 {
-                    traceBack = RunLocal(cmd.Remove(0, 1));
+                    traceBack = RunBuildInCommand(cmd.Remove(0, 1));
                 }
                 else
                 {
                     var commandlineList = ArgSplit(cmd);
                     traceBack = commandlineList == null
                         ? TraceBack.InvalidCommand
-                        : RunObject(commandlineList, WorkInstance);
+                        : RunObject(commandlineList, WorkType, WorkInstance);
 
                 }
                 switch (traceBack)
