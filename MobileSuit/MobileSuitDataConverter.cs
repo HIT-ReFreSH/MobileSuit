@@ -11,6 +11,8 @@ namespace MobileSuit
         public MobileSuitDataConverterAttribute(Converter<string, object> converter)
         {
             Converter = converter;
+            
+
         }
 
 

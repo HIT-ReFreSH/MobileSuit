@@ -110,7 +110,7 @@ namespace MobileSuit
             Assembly = assembly;
             Io = io ?? GeneralIo;
         }
-        public MobileSuitHost(Type? type, IoInterface? io = null)
+        public MobileSuitHost(Type type, IoInterface? io = null)
         {
 
             WorkType = type;
@@ -323,10 +323,7 @@ namespace MobileSuit
         private TraceBack RunObject(string[] args, Type? type, object? instance)
         {
             if (Assembly == null) return TraceBack.InvalidCommand;
-            if (args.Length == 0)
-            {
-                return TraceBack.ObjectNotFound;
-            }
+            if (args.Length == 0) return TraceBack.ObjectNotFound;
             if (type is null)
             {
                 var nextObjectType = Assembly.GetType(args[0], false, true) ??
@@ -341,24 +338,6 @@ namespace MobileSuit
                 .Where(m => string.Equals(m.Name, args[0], StringComparison.CurrentCultureIgnoreCase))
                 .OrderBy(m => m.GetParameters().Length)
                 .ToList();
-
-            if (args.Length == 1)
-            {
-                if (!methods.Any() || methods[0].GetParameters().Length != 0) return TraceBack.ObjectNotFound;
-                var r = methods[0].Invoke(instance, null);
-                if (!(r is null))
-                {
-                    Io.WriteLine(new (string, ConsoleColor?)[]
-                    {
-                            ("Command", default),
-                            ($"[{args[0]}]", Io.InformationColor),
-                            (" returned value \"", default),
-                            ($"{r}\"", Io.CustomInformationColor)
-                    });
-                }
-                return TraceBack.AllOk;
-            }
-
             var argsPassLen = args.Length - 1;
 
             foreach (var method in methods)
@@ -370,10 +349,11 @@ namespace MobileSuit
                 {
                     foreach (var parameterInfo in parameters[..argsPassLen])
                     {
-                        pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                        pass[passPtr] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
                                                as MobileSuitDataConverterAttribute)?.Converter ??
                                            (source => source))//Converter
                             (args[passPtr + 1]);
+                        passPtr++;
                     }
                     foreach (var parameter in parameters[argsPassLen..])
                     {
@@ -387,50 +367,58 @@ namespace MobileSuit
                     }
 
                 }
-                else if (parameters.Length < argsPassLen)
+                else
                 {
-                    if (parameters[^0].ParameterType == typeof(Array))
+                    if (parameters.Length == 0)
                     {
-
-
+                        if (args.Length != 1) continue;
+                    }
+                    else if (parameters[^1].ParameterType.IsArray)
+                    {
                         foreach (var parameterInfo in parameters[..^1])
                         {
-                            pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                            pass[passPtr] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
                                                    as MobileSuitDataConverterAttribute)?.Converter ??
                                                (source => source))//Converter
                                 (args[passPtr + 1]);
+                            passPtr++;
                         }
-                        pass[passPtr] = (from arg in args[(passPtr + 1)..]
-                            select ((parameters[^0].GetCustomAttribute(ArgumentConverter)
-                                        as MobileSuitDataConverterAttribute)?.Converter ??
-                                    (source => source))
-                                (arg)).ToArray();
+                        var array = Array.CreateInstance(parameters[passPtr].ParameterType.GetElementType() 
+                                                         ?? typeof(string), 1+argsPassLen-parameters.Length);
+                        var i = 0;
+                        foreach (var arg in args[(passPtr + 1)..])
+                        {
+                            array.SetValue(((parameters[^1].GetCustomAttribute(ArgumentConverter)
+                                                as MobileSuitDataConverterAttribute)?.Converter ??
+                                            (source => source))
+                                (arg), i++);
+                        }
+                        pass[passPtr] = array;
                     }
                     else
                     {
-                        continue;
+                        if(parameters.Length < argsPassLen) continue;
+                        foreach (var parameterInfo in parameters)
+                        {
+                            pass[passPtr] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
+                                                 as MobileSuitDataConverterAttribute)?.Converter ??
+                                             (source => source))//Converter
+                                (args[passPtr + 1]);
+                            passPtr++;
+                        }
                     }
                 }
-                else
-                {
-                    foreach (var parameterInfo in parameters)
-                    {
-                        pass[passPtr++] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
-                                               as MobileSuitDataConverterAttribute)?.Converter ??
-                                           (source => source))//Converter
-                            (args[passPtr + 1]);
-                    }
-                }
+
 
                 var r = method.Invoke(instance, pass);
                 if (!(r is null))
                 {
                     Io.WriteLine(new (string, ConsoleColor?)[]
                     {
-                        ("Command", default),
-                        ($"[{args[0]}]", Io.InformationColor),
-                        (" returned value \"", default),
-                        ($"{r}\"", Io.CustomInformationColor)
+                        ("Command", Io.PromptColor),
+                        ($"[{args[0]}]", ConsoleColor.DarkGreen),
+                        ("Returned Value>", Io.PromptColor),
+                        ($"{r}", Io.CustomInformationColor)
                     });
                 }
 
@@ -496,8 +484,10 @@ namespace MobileSuit
             }
 
             if (string.IsNullOrEmpty(cmd)) return 1;
-            try
-            {
+
+            //try
+            //{
+
                 TraceBack traceBack;
                 if (cmd[0] == '@')
                 {
@@ -531,11 +521,11 @@ namespace MobileSuit
                         throw new ArgumentOutOfRangeException();
                 }
 
-            }
-            catch (Exception e)
-            {
-                Io.Error.WriteLine(e.ToString());
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Io.Error.WriteLine(e.ToString());
+            //}
             UpdatePrompt(prompt);
             return 1;
         }
