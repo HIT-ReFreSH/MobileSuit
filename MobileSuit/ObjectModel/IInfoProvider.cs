@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileSuit
+namespace MobileSuit.ObjectModel
 {
-    public interface IMobileSuitInfoProvider
+    public interface IInfoProvider
     {
         string Prompt { get; }
     }

@@ -10,6 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MobileSuit.IO;
 using static MobileSuit.IO.IoInterface;
+using MobileSuit.ObjectModel;
 
 namespace MobileSuit
 {
@@ -124,7 +125,7 @@ namespace MobileSuit
         private void WorkInstanceInit()
         {
             (WorkInstance as IIoInteractive)?.SetIo(Io);
-            (WorkInstance as IMobileSuitCommandInteractive)?.SetCommandHandler(RunCommand);
+            (WorkInstance as ICommandInteractive)?.SetCommandHandler(RunCommand);
         }
         public bool UseTraceBack { get; set; } = true;
         public bool ShowDone { get; set; }
@@ -172,9 +173,9 @@ namespace MobileSuit
         {
             if (prompt == "" && WorkInstance != null)
             {
-                if (WorkInstance is IMobileSuitInfoProvider)
+                if (WorkInstance is IInfoProvider)
                 {
-                    Prompt = ((IMobileSuitInfoProvider)WorkInstance).Prompt;
+                    Prompt = ((IInfoProvider)WorkInstance).Prompt;
                 }
                 else
                 {
@@ -203,6 +204,8 @@ namespace MobileSuit
             }
             sb.Append(']');
             Prompt = sb.ToString();
+            if (Io is null) return;
+            Io.ConsoleTitle = Prompt;
         }
 
         private delegate void SetProp(object? obj, object? arg);
@@ -224,6 +227,11 @@ namespace MobileSuit
                 case "md":
                 case "modify":
                     return cmdList.Length > 1 ? ModifyMember(cmdList[1..]) : TraceBack.InvalidCommand;
+                case "rs":
+                case "runscript":
+                    if (cmdList.Length <= 1 || !File.Exists(cmdList[1])) return TraceBack.InvalidCommand;
+                    RunScript(cmdList[1]);
+                    return TraceBack.AllOk;
                 case "lv":
                 case "leave":
                     return LeaveObject(new[] { "" });
@@ -357,13 +365,19 @@ namespace MobileSuit
                     }
                     foreach (var parameter in parameters[argsPassLen..])
                     {
-                        if (!parameter.HasDefaultValue)
+                        if (parameter.HasDefaultValue)
+                            pass[passPtr++] = parameter.DefaultValue;
+                        else if (!(parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null))
+                            pass[passPtr++] =
+                                parameter.ParameterType.Assembly.CreateInstance(
+                                    parameter.ParameterType.FullName ?? parameter.ParameterType.Name);
+                        else
                             return RunObject(args[1..], type,
-                                type.GetProperty(args[0], Flags)?
-                                    .GetValue(instance) ??
-                                type.GetField(args[0], Flags)?.GetValue(instance) ??
-                                type.Assembly.CreateInstance(type.FullName + "." + args[0]));
-                        pass[passPtr++] = parameter.DefaultValue;
+                                        type.GetProperty(args[0], Flags)?
+                                            .GetValue(instance) ??
+                                        type.GetField(args[0], Flags)?.GetValue(instance) ??
+                                        type.Assembly.CreateInstance(type.FullName + "." + args[0]));
+
                     }
 
                 }
@@ -373,7 +387,8 @@ namespace MobileSuit
                     {
                         if (args.Length != 1) continue;
                     }
-                    else if (parameters[^1].ParameterType.IsArray)
+
+                    else if (parameters[^1].ParameterType.IsArray ||!(parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) )
                     {
                         foreach (var parameterInfo in parameters[..^1])
                         {
@@ -383,21 +398,35 @@ namespace MobileSuit
                                 (args[passPtr + 1]);
                             passPtr++;
                         }
-                        var array = Array.CreateInstance(parameters[passPtr].ParameterType.GetElementType() 
-                                                         ?? typeof(string), 1+argsPassLen-parameters.Length);
-                        var i = 0;
-                        foreach (var arg in args[(passPtr + 1)..])
+
+                        if (parameters[^1].ParameterType.IsArray)
                         {
-                            array.SetValue(((parameters[^1].GetCustomAttribute(ArgumentConverter)
-                                                as MobileSuitDataConverterAttribute)?.Converter ??
-                                            (source => source))
-                                (arg), i++);
+                            var array = Array.CreateInstance(parameters[passPtr].ParameterType.GetElementType()
+                                                             ?? typeof(string), 1 + argsPassLen - parameters.Length);
+                            var i = 0;
+                            foreach (var arg in args[(passPtr + 1)..])
+                            {
+                                array.SetValue(((parameters[^1].GetCustomAttribute(ArgumentConverter)
+                                                    as MobileSuitDataConverterAttribute)?.Converter ??
+                                                (source => source))
+                                    (arg), i++);
+                            }
+                            pass[passPtr] = array;
                         }
-                        pass[passPtr] = array;
+                        else
+                        {
+                            var dArg = parameters[^1].ParameterType.Assembly
+                                .CreateInstance(parameters[^1].ParameterType.FullName ?? parameters[^1].ParameterType.Name);
+                            if ((dArg as IDynamicParameter)?.Parse(args[(passPtr + 1)..]) == false)
+                            {
+                                return TraceBack.InvalidCommand;
+                            }
+                            pass[passPtr] = dArg;
+                        }
                     }
                     else
                     {
-                        if(parameters.Length < argsPassLen) continue;
+                        if (parameters.Length < argsPassLen) continue;
                         foreach (var parameterInfo in parameters)
                         {
                             pass[passPtr] = ((parameterInfo.GetCustomAttribute(ArgumentConverter)
@@ -471,7 +500,8 @@ namespace MobileSuit
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            yield return await reader.ReadLineAsync();
+            for (; ; )
+                yield return await reader.ReadLineAsync();
         }
 
 
@@ -488,38 +518,38 @@ namespace MobileSuit
             //try
             //{
 
-                TraceBack traceBack;
-                if (cmd[0] == '@')
-                {
-                    traceBack = RunBuildInCommand(cmd.Remove(0, 1));
-                }
-                else
-                {
-                    var commandlineList = ArgSplit(cmd);
-                    traceBack = commandlineList == null
-                        ? TraceBack.InvalidCommand
-                        : RunObject(commandlineList, WorkType, WorkInstance);
+            TraceBack traceBack;
+            if (cmd[0] == '@')
+            {
+                traceBack = RunBuildInCommand(cmd.Remove(0, 1));
+            }
+            else
+            {
+                var commandlineList = ArgSplit(cmd);
+                traceBack = commandlineList == null
+                    ? TraceBack.InvalidCommand
+                    : RunObject(commandlineList, WorkType, WorkInstance);
 
-                }
-                switch (traceBack)
-                {
-                    case TraceBack.OnExit:
-                        return 0;
-                    case TraceBack.AllOk:
-                        TbAllOk();
-                        break;
-                    case TraceBack.InvalidCommand:
-                        ErrInvalidCommand();
-                        break;
-                    case TraceBack.ObjectNotFound:
-                        ErrObjectNotFound();
-                        break;
-                    case TraceBack.MemberNotFound:
-                        ErrMemberNotFound();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+            }
+            switch (traceBack)
+            {
+                case TraceBack.OnExit:
+                    return 0;
+                case TraceBack.AllOk:
+                    TbAllOk();
+                    break;
+                case TraceBack.InvalidCommand:
+                    ErrInvalidCommand();
+                    break;
+                case TraceBack.ObjectNotFound:
+                    ErrObjectNotFound();
+                    break;
+                case TraceBack.MemberNotFound:
+                    ErrMemberNotFound();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             //}
             //catch (Exception e)

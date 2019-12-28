@@ -12,11 +12,11 @@ namespace MobileSuit.IO
         public TextReader Input { get; set; }
         public bool IsInputRedirected => !Console.In.Equals(Input);
         public void ResetInput() => Input = Console.In;
-        public string? ReadLine(string? prompt, bool newLine=false, ConsoleColor? customPromptColor = null)
+        public string? ReadLine(string? prompt, bool newLine, ConsoleColor? customPromptColor = null)
             => ReadLine(prompt, null, newLine, customPromptColor);
-        public string? ReadLine(string? prompt, ConsoleColor? customPromptColor = null)
+        public string? ReadLine(string? prompt, ConsoleColor? customPromptColor)
             => ReadLine(prompt, null, false, customPromptColor);
-        public string? ReadLine(string? prompt, string? defaultValue = null,
+        public string? ReadLine(string? prompt, string? defaultValue,
             ConsoleColor? customPromptColor = null)
             => ReadLine(prompt, defaultValue, false, customPromptColor);
         public string? ReadLine(string? prompt =null , string? defaultValue = null, 

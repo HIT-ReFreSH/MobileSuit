@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MobileSuit.ObjectModel;
 
 namespace MobileSuit
 {
     [MobileSuitInfo("Test")]
-    public class MobileSuitTest : IMobileSuitInfoProvider
+    public class MobileSuitTest : IInfoProvider
     {
         public string Prompt { get; set; } = "Test";
         public TestC TestCC { get; set; } = new TestC();
