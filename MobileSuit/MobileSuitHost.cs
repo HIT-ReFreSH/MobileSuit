@@ -343,7 +343,8 @@ namespace MobileSuit
             }
             var methods = type
                 .GetMethods(Flags)
-                .Where(m => string.Equals(m.Name, args[0], StringComparison.CurrentCultureIgnoreCase))
+                .Where(m => string.Equals(m.Name, args[0], StringComparison.CurrentCultureIgnoreCase) 
+                            && m.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null)
                 .OrderBy(m => m.GetParameters().Length)
                 .ToList();
             var argsPassLen = args.Length - 1;
@@ -529,7 +530,10 @@ namespace MobileSuit
                 traceBack = commandlineList == null
                     ? TraceBack.InvalidCommand
                     : RunObject(commandlineList, WorkType, WorkInstance);
-
+                if (traceBack == TraceBack.ObjectNotFound)
+                {
+                    traceBack = RunBuildInCommand(cmd);
+                }
             }
             switch (traceBack)
             {

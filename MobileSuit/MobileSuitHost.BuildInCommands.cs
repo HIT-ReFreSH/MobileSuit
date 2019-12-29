@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using MobileSuit.IO;
+using MobileSuit.ObjectModel;
 
 namespace MobileSuit
 {
@@ -14,7 +15,7 @@ namespace MobileSuit
 
         private TraceBack EnterObjectMember(string[] args)
         {
-            
+
             if (WorkType == null || WorkInstance == null || Assembly == null) return TraceBack.InvalidCommand;
             var nextObject = WorkType.GetProperty(args[0], Flags)?.GetValue(WorkInstance) ??
                              WorkType.GetField(args[0], Flags)?.GetValue(WorkInstance);
@@ -116,10 +117,13 @@ namespace MobileSuit
         private TraceBack ListMembers()
         {
             if (WorkType == null) return TraceBack.InvalidCommand;
-            var fi = (from i in (from f in WorkType.GetFields(Flags)
-                                 select (MemberInfo)f).Union
-                               (from p in WorkType.GetProperties(Flags)
-                                select (MemberInfo)p)
+            var fi = (from i in (
+                    from f in WorkType.GetFields(Flags)
+                    where f.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
+                    select (MemberInfo)f).Union(
+                                   from p in WorkType.GetProperties(Flags)
+                                   where p.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
+                                   select (MemberInfo)p)
                       orderby i.Name
                       select i).ToList();
 
@@ -147,6 +151,7 @@ namespace MobileSuit
                               select $"get_{p.Name}").Contains(m.Name)
                          && !(from p in WorkType.GetProperties(Flags)
                               select $"set_{p.Name}").Contains(m.Name)
+                      where m.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
                       select m).ToList();
 
 
