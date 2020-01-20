@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.All)]
     public class MobileSuitIgnoreAttribute:Attribute
     {
     }

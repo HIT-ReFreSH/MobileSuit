@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MobileSuit.IO.Controls;
+using PlasticMetal.MobileSuit.IO.Controls;
 
-namespace MobileSuit.IO
+namespace PlasticMetal.MobileSuit.IO
 {
     partial class IoInterface
     {

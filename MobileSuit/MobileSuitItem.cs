@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileSuit
+namespace PlasticMetal.MobileSuit
 {
     [AttributeUsage(AttributeTargets.Class |
-                       AttributeTargets.Struct,
-                       AllowMultiple = true)]
+                       AttributeTargets.Struct)]
     public class MobileSuitItem: Attribute
     {
     }

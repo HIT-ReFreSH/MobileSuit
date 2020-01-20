@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     public interface IInfoProvider
     {
+        [MobileSuitIgnore]
         string Prompt { get; }
     }
 }

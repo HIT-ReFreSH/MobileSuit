@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     public interface IDynamicParameter
     {

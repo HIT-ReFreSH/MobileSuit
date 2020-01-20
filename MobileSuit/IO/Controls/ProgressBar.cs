@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileSuit.IO.Controls
+namespace PlasticMetal.MobileSuit.IO.Controls
 {
     public class ProgressBar
     {

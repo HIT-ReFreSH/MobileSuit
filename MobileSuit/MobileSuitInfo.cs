@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace MobileSuit
+namespace PlasticMetal.MobileSuit
 {
     [AttributeUsage(AttributeTargets.All,AllowMultiple = false)]
     public sealed class MobileSuitInfoAttribute: Attribute, IInfoProvider

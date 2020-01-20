@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using MobileSuit.IO;
-using MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.IO;
+using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Members;
 
-namespace MobileSuit
+
+namespace PlasticMetal.MobileSuit
 {
     partial class MobileSuitHost
     {
@@ -17,15 +19,14 @@ namespace MobileSuit
         {
 
             if (WorkType == null || WorkInstance == null || Assembly == null) return TraceBack.InvalidCommand;
-            var nextObject = WorkType.GetProperty(args[0], Flags)?.GetValue(WorkInstance) ??
-                             WorkType.GetField(args[0], Flags)?.GetValue(WorkInstance);
-            InstanceRef.Push(WorkInstance);
-            var fName = WorkType?.GetProperty(args[0], Flags)?.Name ??
-                        WorkType?.GetField(args[0], Flags)?.Name;
+            var nextObject = WorkType.GetProperty(args[0], IExecutable.Flags)?.GetValue(WorkInstance) ??
+                             WorkType.GetField(args[0], IExecutable.Flags)?.GetValue(WorkInstance);
+            InstanceRef.Push(Current);
+            var fName = WorkType?.GetProperty(args[0], IExecutable.Flags)?.Name ??
+                        WorkType?.GetField(args[0], IExecutable.Flags)?.Name;
             if (fName == null || nextObject == null) return TraceBack.ObjectNotFound;
             InstanceNameStk.Add(fName);
-            WorkInstance = nextObject;
-            WorkType = nextObject.GetType();
+            Current = new MobileSuitObject(nextObject);
             WorkInstanceInit();
             return TraceBack.AllOk;
         }
@@ -34,25 +35,24 @@ namespace MobileSuit
             if (InstanceRef.Count == 0)
                 return TraceBack.InvalidCommand;
             if (WorkType == null) return TraceBack.InvalidCommand;
-            WorkInstance = InstanceRef.Pop();
+            Current = InstanceRef.Pop();
             InstanceNameStk.RemoveAt(InstanceNameStk.Count - 1);//PopBack
-            WorkType = WorkInstance.GetType();
             WorkInstanceInit();
             return TraceBack.AllOk;
         }
         private TraceBack CreateObject(string[] args)
         {
             if (Assembly == null) return TraceBack.InvalidCommand;
-            WorkType =
-                Assembly.GetType(args[0], false, true) ??
-                Assembly.GetType(WorkType?.FullName + '.' + args[0], false, true) ??
-                Assembly.GetType(Assembly.GetName().Name + '.' + args[0], false, true);
-            if (WorkType == null)
+
+            var type = Assembly.GetType(args[0], false, true) ??
+            Assembly.GetType(WorkType?.FullName + '.' + args[0], false, true) ??
+            Assembly.GetType(Assembly.GetName().Name + '.' + args[0], false, true);
+            if (type is null)
             {
                 return TraceBack.ObjectNotFound;
             }
-            if (WorkType?.FullName == null) return TraceBack.InvalidCommand;
-            WorkInstance = Assembly.CreateInstance(WorkType?.FullName ?? throw new NullReferenceException());
+            if (type.FullName == null) return TraceBack.InvalidCommand;
+            Current = new MobileSuitObject(Assembly.CreateInstance(type.FullName));
             Prompt = (WorkType?.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute
                       ?? new MobileSuitInfoAttribute(args[0])).Prompt;
             InstanceRef.Clear();
@@ -65,8 +65,8 @@ namespace MobileSuit
         {
             if (WorkType == null || Assembly == null) return TraceBack.InvalidCommand;
 
-            var obj = WorkType.GetProperty(args[0], Flags)?.GetValue(WorkInstance) ??
-                      WorkType.GetField(args[0], Flags)?.GetValue(WorkInstance);
+            var obj = WorkType.GetProperty(args[0], IExecutable.Flags)?.GetValue(WorkInstance) ??
+                      WorkType.GetField(args[0], IExecutable.Flags)?.GetValue(WorkInstance);
             if (obj == null)
             {
                 return TraceBack.ObjectNotFound;
@@ -98,12 +98,12 @@ namespace MobileSuit
         private TraceBack ModifyMember(string[] args)
         {
             if (WorkType == null || Assembly == null) return TraceBack.ObjectNotFound;
-            var obj = WorkType?.GetProperty(args[0], Flags) as MemberInfo ?? WorkType?.GetField(args[0], Flags);
-            var objProp = WorkType?.GetProperty(args[0], Flags);
+            var obj = WorkType?.GetProperty(args[0], IExecutable.Flags) as MemberInfo ?? WorkType?.GetField(args[0], IExecutable.Flags);
+            var objProp = WorkType?.GetProperty(args[0], IExecutable.Flags);
             if (obj == null || objProp == null) return TraceBack.MemberNotFound;
             var objSet = (SetProp)objProp.SetValue;
 
-            var cvt = (obj.GetCustomAttribute(typeof(MobileSuitDataConverterAttribute)) as MobileSuitDataConverterAttribute)?.Converter;
+            var cvt = (obj.GetCustomAttribute(typeof(ArgumentConverterAttribute)) as ArgumentConverterAttribute)?.Converter;
             try
             {
                 objSet(WorkInstance, cvt != null ? cvt(args[1]) : args[1]);
@@ -116,62 +116,27 @@ namespace MobileSuit
         }
         private TraceBack ListMembers()
         {
-            if (WorkType == null) return TraceBack.InvalidCommand;
-            var fi = (from i in (
-                    from f in WorkType.GetFields(Flags)
-                    where f.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
-                    select (MemberInfo)f).Union(
-                                   from p in WorkType.GetProperties(Flags)
-                                   where p.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
-                                   select (MemberInfo)p)
-                      orderby i.Name
-                      select i).ToList();
-
-
-            if (fi.Any())
+            if (Current == null) return TraceBack.InvalidCommand;
+            Io.WriteLine("Members:", IoInterface.OutputType.ListTitle);
+            Io.AppendWriteLinePrefix();
+            foreach (var (name, member) in Current)
             {
-                Io.WriteLine("Members:", IoInterface.OutputType.ListTitle);
-                foreach (var item in fi)
+                var (infoColor, lChar, rChar) = member.Type switch
                 {
-                    var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
-                    var exInfo = info == null
-                                ? ""
-                                : $"[{info.Prompt}]";
-                    Io.Write($"\t{item.Name}");
-                    var otType = info == null
-                        ? IoInterface.OutputType.MobileSuitInfo
-                        : IoInterface.OutputType.CustomInfo;
-                    Io.Write(exInfo, otType);
-                    Io.Write("\n");
-                }
-            }
-            var mi = (from m in WorkType.GetMethods(Flags)
-                      where
-                            !(from p in WorkType.GetProperties(Flags)
-                              select $"get_{p.Name}").Contains(m.Name)
-                         && !(from p in WorkType.GetProperties(Flags)
-                              select $"set_{p.Name}").Contains(m.Name)
-                      where m.GetCustomAttribute(typeof(MobileSuitIgnoreAttribute)) is null
-                      select m).ToList();
+                    MemberType.MethodWithInfo => (ConsoleColor.Blue, '[', ']'),
+                    MemberType.MethodWithoutInfo => (ConsoleColor.DarkBlue, '(', ')'),
+                    MemberType.FieldWithInfo => (ConsoleColor.Green, '<', '>'),
+                    _ => (ConsoleColor.DarkGreen, '{', '}')
+                };
 
-
-            if (!mi.Any()) return TraceBack.AllOk;
-            {
-                Io.WriteLine("Methods:", IoInterface.OutputType.ListTitle);
-                foreach (var item in mi)
+                Io.WriteLine(contentGroup: new (string, ConsoleColor?)[]
                 {
-                    var info = item.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute;
-                    var exInfo = info == null
-                        ? $"({ item.GetParameters().Length} Parameters)"
-                        : $"[{info.Prompt}]";
-                    Io.Write($"\t{item.Name}");
-                    var otType = info == null
-                        ? IoInterface.OutputType.MobileSuitInfo
-                        : IoInterface.OutputType.CustomInfo;
-                    Io.Write(exInfo, otType);
-                    Io.Write("\n");
-                }
+                    (name,null),
+                    ($"{lChar}{member.Information}{rChar}",infoColor)
+                });
             }
+
+            Io.SubtractWriteLinePrefix();
             return TraceBack.AllOk;
         }
     }

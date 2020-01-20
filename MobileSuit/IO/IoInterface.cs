@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MobileSuit.IO
+namespace PlasticMetal.MobileSuit.IO
 {
     public partial class IoInterface
     {

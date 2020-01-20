@@ -9,4 +9,8 @@
     <OutputPath>D:\Projects\Obj1010_FerdinandScripts\MobileSuit\Debug\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MobileSuit\MobileSuit.csproj" />
+  </ItemGroup>
+
 </Project>

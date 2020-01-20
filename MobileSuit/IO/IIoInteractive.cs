@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace MobileSuit.IO
+namespace PlasticMetal.MobileSuit.IO
 {
     public interface IIoInteractive
     {
+        [MobileSuitIgnore]
         void SetIo(IoInterface io);
     }
 }
