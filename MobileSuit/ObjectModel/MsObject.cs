@@ -11,12 +11,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     using Members;
     public class MsObject : IExecutable, IEnumerable<(string, ObjectMember)>
     {
+        private const BindingFlags Flags = BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
         public object? Instance { get; }
-
+        
         private SortedList<string, List<(string, ObjectMember)>> Members { get; } = new
             SortedList<string, List<(string, ObjectMember)>>();
-
-
+        
         private void TryAddMember(ObjectMember? objMember)
         {
             if (objMember?.Access != MemberAccess.VisibleToUser)
@@ -41,7 +41,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Instance = instance;
             var type = instance?.GetType();
             if (type is null) return;
-            foreach (var member in type.GetMembers(IExecutable.Flags))
+            foreach (var member in type.GetMembers(Flags))
             {
                 TryAddMember(member switch
                 {
@@ -55,7 +55,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
         public TraceBack Execute(string[] args)
         {
-
             if (args.Length == 0) return TraceBack.ObjectNotFound;
             args[0] = args[0].ToLower();
             if(!Members.ContainsKey(args[0])) return TraceBack.ObjectNotFound;
@@ -109,6 +108,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
         }
 
+        public TraceBack TryGetField(string name,out ContainerMember? field)
+        {
+
+            if (!Members.ContainsKey(name.ToLower()))
+            {
+                field = null;
+                return TraceBack.ObjectNotFound;
+            }
+
+            field = Members[name][0].Item2 as ContainerMember;
+            return field is null ? TraceBack.ObjectNotFound : TraceBack.AllOk;
+        }
         public IEnumerator<(string, ObjectMember)> GetEnumerator() => new Enumerator(this);
         public int MemberCount => Members.Count;
         IEnumerator IEnumerable.GetEnumerator()

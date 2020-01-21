@@ -8,6 +8,16 @@ using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
+    public enum OutputType
+    {
+        Default = 0,
+        Prompt = 1,
+        Error = 2,
+        AllOk = 3,
+        ListTitle = 4,
+        CustomInfo = 5,
+        MobileSuitInfo = 6
+    }
     public partial class IoServer
     {
         public IoServer()
@@ -39,16 +49,7 @@ namespace PlasticMetal.MobileSuit.IO
             get => Console.Title;
             set => Console.Title = value;
         }
-        public enum OutputType
-        {
-            Default = 0,
-            Prompt = 1,
-            Error = 2,
-            AllOk = 3,
-            ListTitle = 4,
-            CustomInfo = 5,
-            MobileSuitInfo = 6
-        }
+
 
 
     }

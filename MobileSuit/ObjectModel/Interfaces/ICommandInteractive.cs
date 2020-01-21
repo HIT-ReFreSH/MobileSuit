@@ -4,7 +4,7 @@
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
 {
-    public delegate int CommandHandler(string prompt, string? cmd);
+    public delegate TraceBack CommandHandler(string prompt, string? cmd);
     public interface ICommandInteractive
     {
         [MsIgnorable]

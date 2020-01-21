@@ -106,7 +106,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             for (; i < NonArrayParameterCount; i++)
             {
                 pass[i] = i < args.Length ?
-                    (Parameters[i].GetCustomAttribute<MsArgumentParserAttribute>(true)
+                    (Parameters[i].GetCustomAttribute<MsParserAttribute>(true)
                          ?.Converter ?? (source => source))//Converter
                     (args[i])
                     : Parameters[i].DefaultValue;
@@ -138,7 +138,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 var argArray = args[i..];
                 var array = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
                                                  ?? typeof(string), argArray.Length);
-                var convert = Parameters[^1].GetCustomAttribute<MsArgumentParserAttribute>(true)?.Converter ??
+                var convert = Parameters[^1].GetCustomAttribute<MsParserAttribute>(true)?.Converter ??
                               (source => source);
                 var j = 0;
                 foreach (var arg in argArray)
