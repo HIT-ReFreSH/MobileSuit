@@ -4,23 +4,23 @@ using System.Text;
 
 using PlasticMetal.MobileSuit;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit
 {
-    [MobileSuitInfo("Test")]
-    public class MobileSuitTest : IInfoProvider
+    [MsInfo("Test")]
+    public class MsTest : MsClient
     {
-        
-        public string Prompt { get; set; } = "Test";
-        public TestC TestCC { get; set; } = new TestC();
-        public TestC tc = new TestC();
-        [Alias("slnm")]
-        [Alias("nmsl")]
+        public TestC TestCc { get; set; } = new TestC();
+        public TestC Tc = new TestC();
+        [MsAlias("slnm")]
+        [MsAlias("nmsl")]
         public void Test()
         {
-            Console.WriteLine("Test!!!!");
+            Io.WriteLine("Test!!!!");
         }
-        [MobileSuitInfo("TestC")]
+        [MsInfo("TestC")]
         public class TestC
         {
             public void T()
@@ -28,5 +28,6 @@ namespace PlasticMetal.MobileSuit
                 Console.WriteLine("t");
             }
         }
+
     }
 }

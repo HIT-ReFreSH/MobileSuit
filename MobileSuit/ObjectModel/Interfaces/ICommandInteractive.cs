@@ -1,14 +1,13 @@
-﻿using System;
-#nullable enable
-using System.Collections.Generic;
-using System.Text;
+﻿using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+#nullable enable
+
+namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
 {
     public delegate int CommandHandler(string prompt, string? cmd);
     public interface ICommandInteractive
     {
-        [MobileSuitIgnore]
+        [MsIgnorable]
         void SetCommandHandler(CommandHandler commandHandler);
     }
 }

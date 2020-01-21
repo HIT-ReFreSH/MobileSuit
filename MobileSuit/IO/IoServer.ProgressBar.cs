@@ -7,7 +7,7 @@ using PlasticMetal.MobileSuit.IO.Controls;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    partial class IoInterface
+    partial class IoServer
     {
         private void ClearProgressBars()
         {

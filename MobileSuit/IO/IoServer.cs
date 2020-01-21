@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    public partial class IoInterface
+    public partial class IoServer
     {
-        public IoInterface()
+        public IoServer()
         {
             DefaultColor = ConsoleColor.White;
             ErrorColor = ConsoleColor.Red;

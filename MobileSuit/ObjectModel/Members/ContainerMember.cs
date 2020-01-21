@@ -2,33 +2,34 @@
 using System;
 using System.Reflection;
 using System.Text;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     public class ContainerMember : ObjectMember
     {
         private Func<object?, object?> GetValue { get; }
-        private MobileSuitObject? Members { get; set; }
-        private MobileSuitInfoAttribute? InfoA { get; }
+        private MsObject? Members { get; set; }
+        private MsInfoAttribute? InfoA { get; }
         public ContainerMember(object? instance, PropertyInfo info) : base(instance, info)
         {
             GetValue = info.GetValue;
-            InfoA = info.GetCustomAttribute<MobileSuitInfoAttribute>();
-            Information = InfoA?.Prompt ?? "...";
+            InfoA = info.GetCustomAttribute<MsInfoAttribute>();
+            Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
         public ContainerMember(object? instance, FieldInfo info) : base(instance, info)
         {
             GetValue = info.GetValue;
-            InfoA = info.GetCustomAttribute<MobileSuitInfoAttribute>();
-            Information = InfoA?.Prompt ?? "...";
+            InfoA = info.GetCustomAttribute<MsInfoAttribute>();
+            Information = InfoA?.Text ?? "...";
             Type = InfoA is null? MemberType.FieldWithoutInfo: MemberType.FieldWithInfo;
         }
 
 
         public override TraceBack Execute(string[] args)
         {
-            Members = new MobileSuitObject(GetValue(Instance));
+            Members = new MsObject(GetValue(Instance));
             
             if (InfoA is null)
             {
@@ -60,7 +61,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             }
             else
             {
-                Information = InfoA.Prompt;
+                Information = InfoA.Text;
 
             }
             return Members.Execute(args);

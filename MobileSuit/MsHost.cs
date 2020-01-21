@@ -9,8 +9,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.IO;
-using static PlasticMetal.MobileSuit.IO.IoInterface;
+using static PlasticMetal.MobileSuit.IO.IoServer;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -25,9 +27,9 @@ namespace PlasticMetal.MobileSuit
 
     }
     
-    public partial class MobileSuitHost
+    public partial class MsHost
     {
-        public static readonly Type ArgumentConverter = typeof(ArgumentConverterAttribute);
+        public static readonly Type ArgumentConverter = typeof(MsArgumentParserAttribute);
 
         private static string[]? ArgSplit(string args)
         {
@@ -89,50 +91,50 @@ namespace PlasticMetal.MobileSuit
                 l.Add(submit);
             return l.ToArray();
         }
-        public Stack<MobileSuitObject> InstanceRef { get; set; } = new Stack<MobileSuitObject>();
+        public Stack<MsObject> InstanceRef { get; set; } = new Stack<MsObject>();
         public List<string> InstanceNameStk { get; set; } = new List<string>();
         public bool ShowRef { get; set; } = true;
-        public IoInterface Io { get; set; }
-        public static IoInterface GeneralIo { get; set; } = new IoInterface();
+        public IoServer Io { get; set; }
+        public static IoServer GeneralIo { get; set; } = new IoServer();
 
         public Assembly? Assembly { get; set; }
         public string? Prompt { get; set; }
-        public MobileSuitObject Current { get; set; }
+        public MsObject Current { get; set; }
         public object? WorkInstance => Current.Instance;
         public Type? WorkType => Current.Instance?.GetType();
-        public MobileSuitHost(IoInterface? io = null)
+        public MsHost(IoServer? io = null)
         {
             Assembly = Assembly.GetCallingAssembly();
             Io = io ?? GeneralIo;
-            Current = new MobileSuitObject(null);
+            Current = new MsObject(null);
         }
-        public MobileSuitHost(object? instance, IoInterface? io = null)
+        public MsHost(object? instance, IoServer? io = null)
         {
 
             Io = io ?? GeneralIo;
-            Current = new MobileSuitObject(instance);
+            Current = new MsObject(instance);
             Assembly = WorkType?.Assembly;
 
             WorkInstanceInit();
         }
 
-        public MobileSuitHost(Assembly assembly, IoInterface? io = null)
+        public MsHost(Assembly assembly, IoServer? io = null)
         {
             Assembly = assembly;
             Io = io ?? GeneralIo;
-            Current = new MobileSuitObject(null);
+            Current = new MsObject(null);
         }
-        public MobileSuitHost(Type type, IoInterface? io = null)
+        public MsHost(Type type, IoServer? io = null)
         {
 
             Io = io ?? GeneralIo;
             if (type?.FullName == null)
             {
-                Current = new MobileSuitObject(null);
+                Current = new MsObject(null);
                 return;
             }
             Assembly = type.Assembly;
-            Current = new MobileSuitObject(Assembly.CreateInstance(type.FullName));
+            Current = new MsObject(Assembly.CreateInstance(type.FullName));
             WorkInstanceInit();
         }
 
@@ -145,13 +147,13 @@ namespace PlasticMetal.MobileSuit
         public bool ShowDone { get; set; }
         private void TbAllOk()
         {
-            if (UseTraceBack && ShowDone) Io.WriteLine("Done.", IoInterface.OutputType.AllOk);
+            if (UseTraceBack && ShowDone) Io.WriteLine("Done.", IoServer.OutputType.AllOk);
         }
         private void ErrInvalidCommand()
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Invalid Command!", IoInterface.OutputType.Error);
+                Io.WriteLine("Invalid Command!", IoServer.OutputType.Error);
             }
             else
             {
@@ -165,7 +167,7 @@ namespace PlasticMetal.MobileSuit
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Object Not Found!", IoInterface.OutputType.Error);
+                Io.WriteLine("Object Not Found!", IoServer.OutputType.Error);
             }
             else
             {
@@ -176,7 +178,7 @@ namespace PlasticMetal.MobileSuit
         {
             if (UseTraceBack)
             {
-                Io.WriteLine("Member Not Found!", IoInterface.OutputType.Error);
+                Io.WriteLine("Member Not Found!", IoServer.OutputType.Error);
             }
             else
             {
@@ -189,14 +191,14 @@ namespace PlasticMetal.MobileSuit
             {
                 if (WorkInstance is IInfoProvider)
                 {
-                    Prompt = ((IInfoProvider)WorkInstance).Prompt;
+                    Prompt = ((IInfoProvider)WorkInstance).Text;
                 }
                 else
                 {
                     if (WorkType != null)
                         Prompt =
-                            (WorkType.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute
-                             ?? new MobileSuitInfoAttribute(WorkInstance.GetType().Name)).Prompt;
+                            (WorkType.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
+                             ?? new MsInfoAttribute(WorkInstance.GetType().Name)).Text;
                 }
             }
             else
@@ -319,7 +321,7 @@ namespace PlasticMetal.MobileSuit
                 case "fr":
                 case "free":
                     if (WorkType == null) return TraceBack.InvalidCommand;
-                    Current = new MobileSuitObject(null);
+                    Current = new MsObject(null);
                     Prompt = "";
                     InstanceRef.Clear();
                     InstanceNameStk.Clear();
@@ -350,7 +352,7 @@ namespace PlasticMetal.MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', IoInterface.OutputType.Prompt);
+                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', IoServer.OutputType.Prompt);
 
                 if (RunCommand(prompt, Io.ReadLine()) == 0) return 0;
 

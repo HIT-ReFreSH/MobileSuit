@@ -10,7 +10,7 @@ namespace SystemCall
         {
             for (;;)
             {
-                var ms = new MobileSuitHost(new MobileSuitTest());
+                var ms = new MsHost(new MsTest());
                 ms.Run();
                 var s = new[] {1};
                 var a = s[1..];

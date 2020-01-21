@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using System.Text;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -53,7 +55,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 for (; i >= 0 && Parameters[i].IsOptional; i--) { }
                 MinParameterCount = i + 1;
             }
-            var info = method.GetCustomAttribute<MobileSuitInfoAttribute>();
+            var info = method.GetCustomAttribute<MsInfoAttribute>();
             if (info is null)
             {
                 Type = MemberType.MethodWithoutInfo;
@@ -81,7 +83,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             else
             {
                 Type = MemberType.MethodWithInfo;
-                Information = info.Prompt;
+                Information = info.Text;
             }
 
 
@@ -104,7 +106,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             for (; i < NonArrayParameterCount; i++)
             {
                 pass[i] = i < args.Length ?
-                    (Parameters[i].GetCustomAttribute<ArgumentConverterAttribute>(true)
+                    (Parameters[i].GetCustomAttribute<MsArgumentParserAttribute>(true)
                          ?.Converter ?? (source => source))//Converter
                     (args[i])
                     : Parameters[i].DefaultValue;
@@ -136,7 +138,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 var argArray = args[i..];
                 var array = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
                                                  ?? typeof(string), argArray.Length);
-                var convert = Parameters[^1].GetCustomAttribute<ArgumentConverterAttribute>(true)?.Converter ??
+                var convert = Parameters[^1].GetCustomAttribute<MsArgumentParserAttribute>(true)?.Converter ??
                               (source => source);
                 var j = 0;
                 foreach (var arg in argArray)

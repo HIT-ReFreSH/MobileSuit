@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    public partial class IoInterface
+    public partial class IoServer
     {
         public bool IsErrorRedirected => !Console.Error.Equals(Error);
         public void ResetError() => Error = Console.Error;

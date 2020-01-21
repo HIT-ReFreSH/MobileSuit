@@ -6,12 +6,14 @@ using System.Reflection;
 using System.Text;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 
 namespace PlasticMetal.MobileSuit
 {
-    partial class MobileSuitHost
+    partial class MsHost
     {
         public delegate TraceBack BuildInCommand(string[] args);
 
@@ -26,7 +28,7 @@ namespace PlasticMetal.MobileSuit
                         WorkType?.GetField(args[0], IExecutable.Flags)?.Name;
             if (fName == null || nextObject == null) return TraceBack.ObjectNotFound;
             InstanceNameStk.Add(fName);
-            Current = new MobileSuitObject(nextObject);
+            Current = new MsObject(nextObject);
             WorkInstanceInit();
             return TraceBack.AllOk;
         }
@@ -52,9 +54,9 @@ namespace PlasticMetal.MobileSuit
                 return TraceBack.ObjectNotFound;
             }
             if (type.FullName == null) return TraceBack.InvalidCommand;
-            Current = new MobileSuitObject(Assembly.CreateInstance(type.FullName));
-            Prompt = (WorkType?.GetCustomAttribute(typeof(MobileSuitInfoAttribute)) as MobileSuitInfoAttribute
-                      ?? new MobileSuitInfoAttribute(args[0])).Prompt;
+            Current = new MsObject(Assembly.CreateInstance(type.FullName));
+            Prompt = (WorkType?.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
+                      ?? new MsInfoAttribute(args[0])).Text;
             InstanceRef.Clear();
             InstanceNameStk.Clear();
             InstanceNameStk.Add($"(new {WorkType?.Name})");
@@ -103,7 +105,7 @@ namespace PlasticMetal.MobileSuit
             if (obj == null || objProp == null) return TraceBack.MemberNotFound;
             var objSet = (SetProp)objProp.SetValue;
 
-            var cvt = (obj.GetCustomAttribute(typeof(ArgumentConverterAttribute)) as ArgumentConverterAttribute)?.Converter;
+            var cvt = (obj.GetCustomAttribute(typeof(MsArgumentParserAttribute)) as MsArgumentParserAttribute)?.Converter;
             try
             {
                 objSet(WorkInstance, cvt != null ? cvt(args[1]) : args[1]);
@@ -117,7 +119,7 @@ namespace PlasticMetal.MobileSuit
         private TraceBack ListMembers()
         {
             if (Current == null) return TraceBack.InvalidCommand;
-            Io.WriteLine("Members:", IoInterface.OutputType.ListTitle);
+            Io.WriteLine("Members:", IoServer.OutputType.ListTitle);
             Io.AppendWriteLinePrefix();
             foreach (var (name, member) in Current)
             {

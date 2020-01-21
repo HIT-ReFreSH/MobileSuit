@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -34,12 +36,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         public abstract TraceBack Execute(string[] args);
         protected ObjectMember(object? instance, MemberInfo member)
         {
-            Access = member.GetCustomAttribute<MobileSuitIgnoreAttribute>(true) is null
+            
+            Access = member.GetCustomAttribute<MsIgnorableAttribute>() is null
                 ? MemberAccess.VisibleToUser
                 : MemberAccess.Hidden;
             AbsoluteName = member.Name;
             FriendlyNames = (
-                from a in member.GetCustomAttributes<AliasAttribute>(true)
+                from a in member.GetCustomAttributes<MsAliasAttribute>(true)
                 select a.Text).Union(new[]{
                 AbsoluteName
             }).ToArray();

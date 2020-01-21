@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
 {
     [System.AttributeUsage(System.AttributeTargets.All, AllowMultiple = true)]
-    public sealed class AliasAttribute : Attribute
+    public sealed class MsAliasAttribute : Attribute
     {
         // This is a positional argument
-        public AliasAttribute(string text)
+        public MsAliasAttribute(string text)
         {
             Text = text;
         }

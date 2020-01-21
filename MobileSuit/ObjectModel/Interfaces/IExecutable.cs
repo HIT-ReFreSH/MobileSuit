@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
 {
     public interface IExecutable
     {

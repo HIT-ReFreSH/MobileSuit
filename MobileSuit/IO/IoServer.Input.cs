@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    partial class IoInterface
+    partial class IoServer
     {
         public TextReader Input { get; set; }
         public bool IsInputRedirected => !Console.In.Equals(Input);
