@@ -2,7 +2,7 @@
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
 {
-    [System.AttributeUsage(System.AttributeTargets.All, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public sealed class MsAliasAttribute : Attribute
     {
         // This is a positional argument

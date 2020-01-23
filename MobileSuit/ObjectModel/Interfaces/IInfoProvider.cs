@@ -4,7 +4,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
 {
     public interface IInfoProvider
     {
-        [MsIgnorable]
-        string Text { get; }
+        [MsIgnorable] string Text { get; }
     }
 }

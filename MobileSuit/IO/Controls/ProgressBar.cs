@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace PlasticMetal.MobileSuit.IO.Controls
@@ -7,16 +6,9 @@ namespace PlasticMetal.MobileSuit.IO.Controls
     public class ProgressBar
     {
         public delegate void ProgressChangedEventHandler(object sender, EventArgs e);
-        //public delegate void AppendProgressHandler();
-        public event ProgressChangedEventHandler ProgressChanged;
-        public string Label { get; }
-        public int MaxProgress { get; }
+
         private int _currentProgress;
-        public string Progress => new string(ProgressArray);
-        private char[] ProgressArray { get; }
-        private int ProgressLength { get; }
-        private int ProgressPrintBoarder { get; }
-        private int PrefixLength { get; }
+
         public ProgressBar(int maxProgress, int textBufferSize, string label = "")
         {
             MaxProgress = maxProgress;
@@ -34,13 +26,24 @@ namespace PlasticMetal.MobileSuit.IO.Controls
             ProgressPrintBoarder = builder.Length;
             builder.Append(suffix);
             ProgressArray = builder.ToString().ToCharArray();
-
         }
+
+        public string Label { get; }
+        public int MaxProgress { get; }
+        public string Progress => new string(ProgressArray);
+        private char[] ProgressArray { get; }
+        private int ProgressLength { get; }
+        private int ProgressPrintBoarder { get; }
+        private int PrefixLength { get; }
+
         public int CurrentProgress
         {
             get => _currentProgress > MaxProgress ? MaxProgress : _currentProgress;
             private set => _currentProgress = value;
         }
+
+        //public delegate void AppendProgressHandler();
+        public event ProgressChangedEventHandler ProgressChanged;
 
         public void AppendProgress()
         {
@@ -50,17 +53,13 @@ namespace PlasticMetal.MobileSuit.IO.Controls
             var newCurrentPrintStart = ProgressPrintBoarder + 1;
             var currentPrintEnd = PrefixLength + CurrentProgress * ProgressLength / MaxProgress + 1;
             for (; currentPrintStart < currentPrintEnd && currentPrintStart < ProgressPrintBoarder; currentPrintStart++)
-            {
                 ProgressArray[currentPrintStart] = '=';
-            }
             if (CurrentProgress != MaxProgress) ProgressArray[currentPrintStart] = '>';
-            foreach (var i in newCurrentNumber)
-            {
-                ProgressArray[newCurrentPrintStart++] = i;
-            }
+            foreach (var i in newCurrentNumber) ProgressArray[newCurrentPrintStart++] = i;
 
             ProgressChanged?.Invoke(this, new EventArgs());
         }
+
         public static ProgressBar operator ++(ProgressBar bar)
         {
             bar.AppendProgress();

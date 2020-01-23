@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using PlasticMetal.MobileSuit;
 
 namespace SystemCall
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             for (;;)
             {
@@ -16,12 +15,9 @@ namespace SystemCall
                 var a = s[1..];
                 Console.WriteLine(a.Length);
                 Console.Read();
-                
+
                 Console.Out.Flush();
             }
-
         }
-
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿#nullable enable
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
@@ -11,15 +9,29 @@ namespace PlasticMetal.MobileSuit.IO
     {
         public TextReader Input { get; set; }
         public bool IsInputRedirected => !Console.In.Equals(Input);
-        public void ResetInput() => Input = Console.In;
+
+        public void ResetInput()
+        {
+            Input = Console.In;
+        }
+
         public string? ReadLine(string? prompt, bool newLine, ConsoleColor? customPromptColor = null)
-            => ReadLine(prompt, null, newLine, customPromptColor);
+        {
+            return ReadLine(prompt, null, newLine, customPromptColor);
+        }
+
         public string? ReadLine(string? prompt, ConsoleColor? customPromptColor)
-            => ReadLine(prompt, null, false, customPromptColor);
+        {
+            return ReadLine(prompt, null, false, customPromptColor);
+        }
+
         public string? ReadLine(string? prompt, string? defaultValue,
             ConsoleColor? customPromptColor = null)
-            => ReadLine(prompt, defaultValue, false, customPromptColor);
-        public string? ReadLine(string? prompt =null , string? defaultValue = null, 
+        {
+            return ReadLine(prompt, defaultValue, false, customPromptColor);
+        }
+
+        public string? ReadLine(string? prompt = null, string? defaultValue = null,
             bool newLine = false, ConsoleColor? customPromptColor = null)
         {
             if (!string.IsNullOrEmpty(prompt))
@@ -34,14 +46,26 @@ namespace PlasticMetal.MobileSuit.IO
             if (!IsInputRedirected) LastCursorLocation = (Console.CursorLeft, Console.CursorTop);
             return string.IsNullOrEmpty(r) ? defaultValue : r;
         }
-        public async Task<string?> ReadLineAsync(string? prompt , bool newLine = false, ConsoleColor? customPromptColor = null)
-            => await ReadLineAsync(prompt, null, newLine, customPromptColor);
+
+        public async Task<string?> ReadLineAsync(string? prompt, bool newLine = false,
+            ConsoleColor? customPromptColor = null)
+        {
+            return await ReadLineAsync(prompt, null, newLine, customPromptColor);
+        }
+
         public async Task<string?> ReadLineAsync(string? prompt, ConsoleColor? customPromptColor = null)
-            => await ReadLineAsync(prompt, null, false, customPromptColor);
+        {
+            return await ReadLineAsync(prompt, null, false, customPromptColor);
+        }
+
         public async Task<string?> ReadLineAsync(string? prompt, string? defaultValue = null,
             ConsoleColor? customPromptColor = null)
-            => await ReadLineAsync(prompt, defaultValue, false, customPromptColor);
-        public async Task<string?> ReadLineAsync(string? prompt = null, string? defaultValue = null, bool newLine = false, ConsoleColor? customPromptColor = null)
+        {
+            return await ReadLineAsync(prompt, defaultValue, false, customPromptColor);
+        }
+
+        public async Task<string?> ReadLineAsync(string? prompt = null, string? defaultValue = null,
+            bool newLine = false, ConsoleColor? customPromptColor = null)
         {
             if (!string.IsNullOrEmpty(prompt))
             {
@@ -56,7 +80,10 @@ namespace PlasticMetal.MobileSuit.IO
             return string.IsNullOrEmpty(r) ? defaultValue : r;
         }
 
-        public int Peek() => Input.Peek();
+        public int Peek()
+        {
+            return Input.Peek();
+        }
 
         public int Read()
         {
@@ -64,18 +91,19 @@ namespace PlasticMetal.MobileSuit.IO
             if (!IsInputRedirected) LastCursorLocation = (Console.CursorLeft, Console.CursorTop);
             return r;
         }
+
         public string ReadToEnd()
         {
             var r = Input.ReadToEnd();
             if (!IsInputRedirected) LastCursorLocation = (Console.CursorLeft, Console.CursorTop);
             return r;
         }
+
         public async Task<string> ReadToEndAsync()
         {
             var r = await Input.ReadToEndAsync();
             if (!IsInputRedirected) LastCursorLocation = (Console.CursorLeft, Console.CursorTop);
             return r;
         }
-
     }
 }

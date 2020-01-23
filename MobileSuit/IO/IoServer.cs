@@ -1,10 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
@@ -18,6 +13,7 @@ namespace PlasticMetal.MobileSuit.IO
         CustomInfo = 5,
         MobileSuitInfo = 6
     }
+
     public partial class IoServer
     {
         public IoServer()
@@ -35,6 +31,7 @@ namespace PlasticMetal.MobileSuit.IO
             Output = Console.Out;
             Error = Console.Error;
         }
+
         public ConsoleColor DefaultColor { get; set; }
         public ConsoleColor PromptColor { get; set; }
         public ConsoleColor ErrorColor { get; set; }
@@ -49,8 +46,5 @@ namespace PlasticMetal.MobileSuit.IO
             get => Console.Title;
             set => Console.Title = value;
         }
-
-
-
     }
 }

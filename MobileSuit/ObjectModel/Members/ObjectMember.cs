@@ -1,10 +1,7 @@
 ﻿#nullable enable
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
@@ -18,35 +15,38 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
 
     public enum MemberType
     {
-        MethodWithInfo=0,
-        MethodWithoutInfo=-1,
-        FieldWithInfo=1,
-        FieldWithoutInfo=-2
+        MethodWithInfo = 0,
+        MethodWithoutInfo = -1,
+        FieldWithInfo = 1,
+        FieldWithoutInfo = -2
     }
-    public abstract class ObjectMember:IExecutable
+
+    public abstract class ObjectMember : IExecutable
     {
-        public MemberAccess Access { get; }
-        public MemberType Type { get; protected set; }
-            = MemberType.MethodWithInfo;
-        public string Information { get; protected set; }
-            = "";
-        public string[] FriendlyNames { get; protected set; }
-        public string AbsoluteName { get; protected set; }
-        public object? Instance { get; set; }
-        public abstract TraceBack Execute(string[] args);
         protected ObjectMember(object? instance, MemberInfo member)
         {
-            
             Access = member.GetCustomAttribute<MsIgnorableAttribute>() is null
                 ? MemberAccess.VisibleToUser
                 : MemberAccess.Hidden;
             AbsoluteName = member.Name;
-            FriendlyNames = (
+            Aliases = (
                 from a in member.GetCustomAttributes<MsAliasAttribute>(true)
-                select a.Text).Union(new[]{
-                AbsoluteName
-            }).ToArray();
+                select a.Text).ToArray();
             Instance = instance;
         }
+
+        public MemberAccess Access { get; }
+
+        public MemberType Type { get; protected set; }
+            = MemberType.MethodWithInfo;
+
+        public string Information { get; protected set; }
+            = "";
+
+        public IEnumerable<string> FriendlyNames => new[] {AbsoluteName}.Union(Aliases);
+        public string[] Aliases { get; protected set; }
+        public string AbsoluteName { get; protected set; }
+        public object? Instance { get; set; }
+        public abstract TraceBack Execute(string[] args);
     }
 }

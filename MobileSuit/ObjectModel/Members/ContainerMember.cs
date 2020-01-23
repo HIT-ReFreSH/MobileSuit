@@ -8,18 +8,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     public class ContainerMember : ObjectMember
     {
-        public MsObject MsValue => _msValue ??= new MsObject(Value);
-        public Type ValueType { get; }
         private MsObject? _msValue;
-        public object? Value
-        {
-            get => GetValue(Instance);
-            set => SetValue(Instance, value);
-        }
-        public Converter<string, object>? Converter { get; }
-        private Func<object?, object?> GetValue { get; }
-        private Action<object?, object?> SetValue { get; }
-        private MsInfoAttribute? InfoA { get; }
+
         public ContainerMember(object? instance, PropertyInfo info) : base(instance, info)
         {
             GetValue = info.GetValue;
@@ -30,6 +20,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
+
         public ContainerMember(object? instance, FieldInfo info) : base(instance, info)
         {
             GetValue = info.GetValue;
@@ -41,13 +32,25 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
 
+        public MsObject MsValue => _msValue ??= new MsObject(Value);
+        public Type ValueType { get; }
+
+        public object? Value
+        {
+            get => GetValue(Instance);
+            set => SetValue(Instance, value);
+        }
+
+        public Converter<string, object>? Converter { get; }
+        private Func<object?, object?> GetValue { get; }
+        private Action<object?, object?> SetValue { get; }
+        private MsInfoAttribute? InfoA { get; }
+
 
         public override TraceBack Execute(string[] args)
         {
-
             if (InfoA is null)
             {
-
                 var infoSb = new StringBuilder();
                 if (MsValue.MemberCount > 0)
                 {
@@ -70,14 +73,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                     }
 
                     Information = infoSb.ToString()[..^1];
-
                 }
             }
             else
             {
                 Information = InfoA.Text;
-
             }
+
             return MsValue
                 .Execute(args);
         }
