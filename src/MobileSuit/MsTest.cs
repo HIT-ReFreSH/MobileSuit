@@ -7,6 +7,10 @@ namespace PlasticMetal.MobileSuit
     [MsInfo("Test")]
     public class MsTest : MsClient
     {
+        public MsTest()
+        {
+            Text = "MsTest";
+        }
         public TestC Tc = new TestC();
         public TestC TestCc { get; set; } = new TestC();
 

@@ -273,6 +273,7 @@ namespace PlasticMetal.MobileSuit
         private void ListMembers(MsObject obj)
         {
             Host.Io.AppendWriteLinePrefix();
+
             foreach (var (name, member) in obj)
             {
                 var (infoColor, lChar, rChar) = member.Type switch

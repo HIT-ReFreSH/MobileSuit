@@ -111,9 +111,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     if (!ObjectEnumerator.MoveNext()) return false;
                     CurrentEnumerator?.Dispose();
                     CurrentEnumerator = ObjectEnumerator.Current.Value.GetEnumerator();
+                    CurrentEnumerator.MoveNext();
                 }
 
-                CurrentEnumerator.MoveNext();
+
                 Current = CurrentEnumerator.Current;
                 return true;
             }
