@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>MobileSuit provides an easy way to quickly build a .NET Core Console App.</Description>
-    <Copyright>Copyright (c) 2019 - 2020 Plastic Metal</Copyright>
+    <Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
     <Company>PlasticMetal</Company>
     <Authors>Ferdinand Sukhoi</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
