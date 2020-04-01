@@ -7,17 +7,38 @@ using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
+    /// <summary>
+    /// Represents type of the last parameter of a method
+    /// </summary>
     public enum TailParameterType
     {
+        /// <summary>
+        /// Last parameter exists, and is quite normal.
+        /// </summary>
         Normal = 0,
+
+        /// <summary>
+        /// Last parameter is an array.
+        /// </summary>
         Array = 1,
+        /// <summary>
+        /// Last parameter implements IDynamicParameter.
+        /// </summary>
         DynamicParameter = 2,
+        /// <summary>
+        /// Last parameter does not exist.
+        /// </summary>
         NoParameter = -1
     }
 
     public class ExecutableMember : ObjectMember
     {
-        public ExecutableMember(object? instance, MethodInfo method) : base(instance, method)
+        /// <summary>
+        /// Initialize an Object's Member with its instance and Method's information.
+        /// </summary>
+        /// <param name="instance">Instance of Object.</param>
+        /// <param name="method">Object's member(Method)'s information</param>
+        public ExecutableMember(object? instance, MethodBase method) : base(instance, method)
         {
             Invoke = method.Invoke;
             Parameters = method.GetParameters();
@@ -66,7 +87,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                         {
                             { } when parameter.ParameterType.IsArray => "[]",
                             { } when !(Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) => "{}",
-                            { HasDefaultValue: true} => $"={parameter.DefaultValue}",
+                            { HasDefaultValue: true } => $"={parameter.DefaultValue}",
                             _ => ""
                         });
                         infoSb.Append(',');
@@ -90,11 +111,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         private Func<object?, object?[]?, object?> Invoke { get; }
 
         private bool CanFitTo(int argumentCount)
-        {
-            return argumentCount >= MinParameterCount
+        => argumentCount >= MinParameterCount
                    && argumentCount <= MaxParameterCount;
-        }
-
+        /// <summary>
+        /// Execute this object.
+        /// </summary>
+        /// <param name="args">The arguments for execution.</param>
+        /// <returns>TraceBack result of this object.</returns>
         public override TraceBack Execute(string[] args)
         {
             if (!CanFitTo(args.Length)) return TraceBack.ObjectNotFound;

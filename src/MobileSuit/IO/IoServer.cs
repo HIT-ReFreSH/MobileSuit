@@ -3,48 +3,94 @@ using System;
 
 namespace PlasticMetal.MobileSuit.IO
 {
+    /// <summary>
+    /// Type of content that writes to the output stream.
+    /// </summary>
     public enum OutputType
     {
+        /// <summary>
+        /// Normal content.
+        /// </summary>
         Default = 0,
+        /// <summary>
+        /// Prompt content.
+        /// </summary>
         Prompt = 1,
+        /// <summary>
+        /// Error content.
+        /// </summary>
         Error = 2,
+        /// <summary>
+        /// All-Ok content.
+        /// </summary>
         AllOk = 3,
+        /// <summary>
+        /// Title of a list.
+        /// </summary>
         ListTitle = 4,
+        /// <summary>
+        /// Normal information.
+        /// </summary>
         CustomInfo = 5,
+        /// <summary>
+        /// Information provided by MobileSuit.
+        /// </summary>
         MobileSuitInfo = 6
     }
-
+    /// <summary>
+    /// A entity, which serves the input & output of a mobile suit.
+    /// </summary>
     public partial class IoServer
     {
+        /// <summary>
+        /// Default color settings for IoServer.
+        /// </summary>
+        public static IoServerColorSetting DefaultColorSetting { get; } = new IoServerColorSetting
+        {
+            DefaultColor = ConsoleColor.White,
+            ErrorColor = ConsoleColor.Red,
+            PromptColor = ConsoleColor.Magenta,
+            AllOkColor = ConsoleColor.Green,
+            ListTitleColor = ConsoleColor.Yellow,
+            CustomInformationColor = ConsoleColor.DarkCyan,
+            InformationColor = ConsoleColor.DarkBlue
+        };
+        /// <summary>
+        /// Color settings for this IoServer. (default DefaultColorSetting)
+        /// </summary>
+        public IoServerColorSetting ColorSetting { get; set; }
+
+        /// <summary>
+        /// Initialize a IoServer.
+        /// </summary>
         public IoServer()
         {
-            DefaultColor = ConsoleColor.White;
-            ErrorColor = ConsoleColor.Red;
-            PromptColor = ConsoleColor.Magenta;
-            AllOkColor = ConsoleColor.Green;
-            ListTitleColor = ConsoleColor.Yellow;
-            CustomInformationColor = ConsoleColor.DarkCyan;
-            InformationColor = ConsoleColor.DarkBlue;
-            //Console.InputEncoding = new UTF8Encoding();
-            //Console.OutputEncoding = new UTF8Encoding();
+            ColorSetting = DefaultColorSetting;
             Input = Console.In;
             Output = Console.Out;
             Error = Console.Error;
+            
         }
-
-        public ConsoleColor DefaultColor { get; set; }
-        public ConsoleColor PromptColor { get; set; }
-        public ConsoleColor ErrorColor { get; set; }
-        public ConsoleColor AllOkColor { get; set; }
-        public ConsoleColor ListTitleColor { get; set; }
-        public ConsoleColor CustomInformationColor { get; set; }
-        public ConsoleColor InformationColor { get; set; }
-        private (int, int) LastCursorLocation { get; set; }
-
+        /// <summary>
+        /// Console's Title. Linked to System.Console.Title.
+        /// </summary>
         public string ConsoleTitle
         {
             get => Console.Title;
             set => Console.Title = value;
+        }
+        /// <summary>
+        /// Color settings of a IoServer.
+        /// </summary>
+        public struct IoServerColorSetting
+        {
+            public ConsoleColor DefaultColor { get; set; }
+            public ConsoleColor PromptColor { get; set; }
+            public ConsoleColor ErrorColor { get; set; }
+            public ConsoleColor AllOkColor { get; set; }
+            public ConsoleColor ListTitleColor { get; set; }
+            public ConsoleColor CustomInformationColor { get; set; }
+            public ConsoleColor InformationColor { get; set; }
         }
     }
 }

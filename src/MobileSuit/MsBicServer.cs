@@ -9,41 +9,55 @@ using System.Text;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
-    ///     Built-In-Command Server
+    /// Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    internal class MsBicServer
+    public class MsBicServer : IMsBicServer
     {
-        public delegate TraceBack BuildInCommand(string[] args);
-
-        internal MsBicServer(MsHost host)
+        /// <summary>
+        /// Initialize a BicServer with the given MsHost.
+        /// </summary>
+        /// <param name="host">The given MsHost.</param>
+        public MsBicServer(MsHost host)
         {
             Host = host;
             HostRef = new MsObject(Host);
         }
-
-        private MsHost Host { get; }
-        private MsObject HostRef { get; }
-
-        private MsObject Current
+        /// <summary>
+        /// Host
+        /// </summary>
+        protected MsHost Host { get; }
+        /// <summary>
+        /// MsObject for Host
+        /// </summary>
+        protected MsObject HostRef { get; }
+        /// <summary>
+        /// Host's current MsObject.
+        /// </summary>
+        protected MsObject Current
         {
             get => Host.Current;
             set => Host.Current = value;
         }
-
+        /// <summary>
+        /// Enter a member of Current MsObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Et")]
         [MsInfo("Enter a member of Current MsObject")]
-        public TraceBack Enter(string[] args)
+        public virtual TraceBack Enter(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
             var r = Current.TryGetField(args[0], out var nextObject);
             if (r != TraceBack.AllOk || nextObject is null) return r;
-            Host.InstanceRef.Push(Host.Current);
+            Host.InstanceStack.Push(Host.Current);
             var a0L = args[0].ToLower();
             foreach (var name in nextObject.FriendlyNames)
                 if (a0L == name.ToLower())
@@ -52,26 +66,34 @@ namespace PlasticMetal.MobileSuit
                     break;
                 }
 
-            Host.InstanceNames.Add(a0L);
+            Host.InstanceNameString.Add(a0L);
             Host.Current = nextObject.MsValue;
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Leave the Current MsObject, Back to its Parent
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Lv")]
         [MsInfo("Leave the Current MsObject, Back to its Parent")]
-        public TraceBack Leave(string[] args)
+        public virtual TraceBack Leave(string[] args)
         {
-            if (Host.InstanceRef.Count == 0 || Current is null)
+            if (Host.InstanceStack.Count == 0 || Current is null)
                 return TraceBack.InvalidCommand;
-            Host.Current = Host.InstanceRef.Pop();
-            Host.InstanceNames.RemoveAt(Host.InstanceNames.Count - 1); //PopBack
+            Host.Current = Host.InstanceStack.Pop();
+            Host.InstanceNameString.RemoveAt(Host.InstanceNameString.Count - 1); //PopBack
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Create and Enter a new MsObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsInfo("Create and Enter a new MsObject")]
-        public TraceBack New(string[] args)
+        public virtual TraceBack New(string[] args)
         {
             if (Host.Assembly == null) return TraceBack.InvalidCommand;
 
@@ -81,19 +103,23 @@ namespace PlasticMetal.MobileSuit
                 ?? Host.Assembly.GetType(Host.Assembly.GetName().Name + '.' + args[0], false, true);
             if (type?.FullName == null) return TraceBack.ObjectNotFound;
 
-            Host.InstanceNamesRef.Push(Host.InstanceNames);
-            Host.InstanceRef.Push(Host.Current);
+            Host.InstanceNameStringStack.Push(Host.InstanceNameString);
+            Host.InstanceStack.Push(Host.Current);
             Host.Current = new MsObject(Host.Assembly.CreateInstance(type.FullName));
             Host.Prompt = (Host.WorkType?.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
                            ?? new MsInfoAttribute(args[0])).Text;
-            Host.InstanceNames = new List<string> {$"(new {Host.WorkType?.Name})"};
+            Host.InstanceNameString = new List<string> { $"(new {Host.WorkType?.Name})" };
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Show Certain Member's Value of the Current MsObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Vw")]
         [MsInfo("Show Certain Member's Value of the Current MsObject")]
-        public TraceBack View(string[] args)
+        public virtual TraceBack View(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
@@ -102,34 +128,50 @@ namespace PlasticMetal.MobileSuit
             Host.Io.WriteLine(obj.ToString() ?? "<Unknown>");
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Run MsScript at the given location
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Rs")]
         [MsInfo("Run MsScript at the given location")]
-        public TraceBack RunScript(string[] args)
+        public virtual TraceBack RunScript(string[] args)
         {
             if (args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
-            var t = Host.RunScriptAsync(ReadTextFileAsync(args[1]));
+            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]));
             t.Wait();
             return t.Result;
         }
-
+        /// <summary>
+        /// Switch Options for MobileSuit
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Sw")]
         [MsInfo("Switch Options for MobileSuit")]
-        public TraceBack SwitchOption(string[] args)
+        public virtual TraceBack SwitchOption(string[] args)
         {
             return ModifyValue(HostRef, args);
         }
-
+        /// <summary>
+        /// Modify Certain Member's Value of the Current MsObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Md")]
         [MsInfo("Modify Certain Member's Value of the Current MsObject")]
-        public TraceBack ModifyMember(string[] args)
+        public virtual TraceBack ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
         }
-
+        /// <summary>
+        /// Show Members of the Current MsObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Ls")]
         [MsInfo("Show Members of the Current MsObject")]
-        public TraceBack List(string[] args)
+        public virtual TraceBack List(string[] args)
         {
             if (Host.Current == null) return TraceBack.InvalidCommand;
             Host.Io.WriteLine("Members:", OutputType.ListTitle);
@@ -143,40 +185,56 @@ namespace PlasticMetal.MobileSuit
             }, OutputType.AllOk);
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Free the Current MsObject, and back to the last one.
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Fr")]
         [MsInfo("Free the Current MsObject, and back to the last one.")]
-        public TraceBack Free(string[] args)
+        public virtual TraceBack Free(string[] args)
         {
             if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
             Host.Prompt = "";
-            Current = Host.InstanceRef.Count != 0
-                ? Host.InstanceRef.Pop()
+            Current = Host.InstanceStack.Count != 0
+                ? Host.InstanceStack.Pop()
                 : new MsObject(null);
-            Host.InstanceNames = Host.InstanceNamesRef.Count != 0
-                ? Host.InstanceNamesRef.Pop()
+            Host.InstanceNameString = Host.InstanceNameStringStack.Count != 0
+                ? Host.InstanceNameStringStack.Pop()
                 : new List<string>();
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Exit MobileSuit
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsInfo("Exit MobileSuit")]
-        public TraceBack Exit(string[] args)
+        public virtual TraceBack Exit(string[] args)
         {
             return TraceBack.OnExit;
         }
-
+        /// <summary>
+        /// Show Current MsObject Information
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Me")]
         [MsInfo("Show Current MsObject Information")]
-        public TraceBack This(string[] args)
+        public virtual TraceBack This(string[] args)
         {
             if (Host.WorkType == null) return TraceBack.InvalidCommand;
             Host.Io.WriteLine($"Work Instance:{Host.WorkType.FullName}");
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Output something in default way
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Echo")]
         [MsInfo("Output something in default way")]
-        public TraceBack Print(string[] args)
+        public virtual TraceBack Print(string[] args)
         {
             if (args.Length == 1)
             {
@@ -189,10 +247,14 @@ namespace PlasticMetal.MobileSuit
             Host.Io.WriteLine(argumentSb.ToString()[..^1]);
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// A more powerful way to output something, with arg1 as option
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("EchoX")]
         [MsInfo("A more powerful way to output something, with arg1 as option")]
-        public TraceBack SuperPrint(string[] args)
+        public virtual TraceBack SuperPrint(string[] args)
         {
             if (args.Length <= 2)
             {
@@ -226,13 +288,17 @@ namespace PlasticMetal.MobileSuit
             );
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Execute command with the System Shell
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsAlias("Sh")]
         [MsInfo("Execute command with the System Shell")]
-        public TraceBack Shell(string[] args)
+        public virtual TraceBack Shell(string[] args)
         {
             if (args.Length < 2) return TraceBack.InvalidCommand;
-            var proc = new Process {StartInfo = {UseShellExecute = true, FileName = args[1]}};
+            var proc = new Process { StartInfo = { UseShellExecute = true, FileName = args[1] } };
             if (args.Length > 2)
             {
                 var argumentSb = new StringBuilder();
@@ -253,9 +319,13 @@ namespace PlasticMetal.MobileSuit
 
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// Show Help of MobileSuit
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         [MsInfo("Show Help of MobileSuit")]
-        public TraceBack Help(string[] args)
+        public virtual TraceBack Help(string[] args)
         {
             Host.Io.WriteLine("Built-In Commands:", OutputType.ListTitle);
             ListMembers(Host.BicServer);
@@ -270,7 +340,7 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
 
-        private void ListMembers(MsObject obj)
+        protected void ListMembers(MsObject obj)
         {
             Host.Io.AppendWriteLinePrefix();
 
@@ -296,16 +366,16 @@ namespace PlasticMetal.MobileSuit
             Host.Io.SubtractWriteLinePrefix();
         }
 
-        private async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
+        protected async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
         {
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            for (;;)
+            for (; ; )
                 yield return await reader.ReadLineAsync();
         }
 
-        private TraceBack ModifyValue(MsObject obj, string[] args)
+        protected TraceBack ModifyValue(MsObject obj, string[] args)
         {
             if (args.Length == 0) return TraceBack.InvalidCommand;
             var r = obj.TryGetField(args[0], out var target);
@@ -314,7 +384,7 @@ namespace PlasticMetal.MobileSuit
             if (args.Length == 1)
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool) target.Value;
+                var currentBool = (bool)target.Value;
                 val = currentBool.ToString();
                 currentBool = !currentBool;
                 newVal = currentBool.ToString();
@@ -323,7 +393,7 @@ namespace PlasticMetal.MobileSuit
             else if (target.ValueType == typeof(bool))
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool) target.Value;
+                var currentBool = (bool)target.Value;
                 val = currentBool.ToString();
                 var setV = args[1].ToLower();
                 currentBool = setV switch

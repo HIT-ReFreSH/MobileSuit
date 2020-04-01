@@ -11,22 +11,24 @@ namespace PlasticMetal.MobileSuit
         {
             Text = "MsTest";
         }
-        public TestC Tc = new TestC();
-        public TestC TestCc { get; set; } = new TestC();
+        [MsAlias("TscF")]
+        public TestSubClass TscField = new TestSubClass();
+        [MsAlias("TscP")]
+        public TestSubClass TscProperty { get; set; } = new TestSubClass();
 
-        [MsAlias("slnm")]
-        [MsAlias("nmsl")]
+        [MsAlias("alias1")]
+        [MsAlias("alias2")]
         public void Test()
         {
-            Io.WriteLine("Test!!!!");
+            Io.WriteLine("Test() function executed.");
         }
 
-        [MsInfo("TestC")]
-        public class TestC
+        [MsInfo("TestSubClass")]
+        public class TestSubClass
         {
             public void T()
             {
-                Console.WriteLine("t");
+                Console.WriteLine("TestSubClass.T() function executed.");
             }
         }
     }

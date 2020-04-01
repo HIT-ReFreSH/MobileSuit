@@ -7,6 +7,9 @@ using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
+    /// <summary>
+    /// Represents an object in Mobile Suit.
+    /// </summary>
     public class MsObject : IExecutable, IEnumerable<(string, ObjectMember)>
     {
         private const BindingFlags Flags = BindingFlags.IgnoreCase
@@ -15,6 +18,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                                            | BindingFlags.Instance
                                            | BindingFlags.Static;
 
+        /// <summary>
+        /// Initialize a MsObject with an instance.
+        /// </summary>
+        /// <param name="instance">The instance that this MsObject represents.</param>
         public MsObject(object? instance)
         {
             Instance = instance;
@@ -29,7 +36,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     _ => null
                 });
         }
-
+        /// <summary>
+        /// The instance that this MsObject represents.
+        /// </summary>
         public object? Instance { get; }
 
         private SortedList<string, List<(string, ObjectMember)>> Members { get; } = new
@@ -37,19 +46,32 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
         private SortedList<string, List<(string, ObjectMember)>> MembersAbs { get; } = new
             SortedList<string, List<(string, ObjectMember)>>();
-
+        /// <summary>
+        /// Count of Members that this object contains.
+        /// </summary>
         public int MemberCount => Members.Count;
 
+        /// <summary>
+        /// Get Enumerator of its (AbsoluteName,Member)[]
+        /// </summary>
+        /// <returns>Enumerator of its (AbsoluteName,Member)[]</returns>
         public IEnumerator<(string, ObjectMember)> GetEnumerator()
         {
             return new Enumerator(this);
         }
-
+        /// <summary>
+        /// Get Enumerator of its (AbsoluteName,Member)[]
+        /// </summary>
+        /// <returns>Enumerator of its (AbsoluteName,Member)[]</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-
+        /// <summary>
+        /// Execute this object.
+        /// </summary>
+        /// <param name="args">The arguments for execution.</param>
+        /// <returns>TraceBack result of this object.</returns>
         public TraceBack Execute(string[] args)
         {
             if (args.Length == 0) return TraceBack.ObjectNotFound;
@@ -81,7 +103,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 else Members.Add(lName, new List<(string, ObjectMember)> {(name, objMember)});
             }
         }
-
+        /// <summary>
+        /// Try to get the field/property with certain name.
+        /// </summary>
+        /// <param name="name">Name the field/property.</param>
+        /// <param name="field">The field/property with the certain name.</param>
+        /// <returns>TraceBack of the find operation.</returns>
         public TraceBack TryGetField(string name, out ContainerMember? field)
         {
             if (!Members.ContainsKey(name.ToLower()))
