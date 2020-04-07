@@ -30,7 +30,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// </summary>
         NoParameter = -1
     }
-
+    /// <summary>
+    /// Object's Member which may be a method.
+    /// </summary>
     public class ExecutableMember : ObjectMember
     {
         /// <summary>

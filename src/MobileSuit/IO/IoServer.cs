@@ -38,7 +38,7 @@ namespace PlasticMetal.MobileSuit.IO
         MobileSuitInfo = 6
     }
     /// <summary>
-    /// A entity, which serves the input & output of a mobile suit.
+    /// A entity, which serves the input/output of a mobile suit.
     /// </summary>
     public partial class IoServer
     {
@@ -84,12 +84,33 @@ namespace PlasticMetal.MobileSuit.IO
         /// </summary>
         public struct IoServerColorSetting
         {
+            /// <summary>
+            /// Default color. For OutputType.Default
+            /// </summary>
             public ConsoleColor DefaultColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.Prompt
+            /// </summary>
             public ConsoleColor PromptColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.Error
+            /// </summary>
             public ConsoleColor ErrorColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.AllOK
+            /// </summary>
             public ConsoleColor AllOkColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.ListTitle
+            /// </summary>
             public ConsoleColor ListTitleColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.CustomInformation
+            /// </summary>
             public ConsoleColor CustomInformationColor { get; set; }
+            /// <summary>
+            /// Prompt Color. For OutputType.Information
+            /// </summary>
             public ConsoleColor InformationColor { get; set; }
         }
     }

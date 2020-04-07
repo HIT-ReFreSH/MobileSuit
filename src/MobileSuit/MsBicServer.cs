@@ -339,7 +339,10 @@ namespace PlasticMetal.MobileSuit
             }, OutputType.AllOk);
             return TraceBack.AllOk;
         }
-
+        /// <summary>
+        /// List members of a MsObject
+        /// </summary>
+        /// <param name="obj">The MsObject, Maybe this BicServer.</param>
         protected void ListMembers(MsObject obj)
         {
             Host.Io.AppendWriteLinePrefix();
@@ -365,16 +368,30 @@ namespace PlasticMetal.MobileSuit
 
             Host.Io.SubtractWriteLinePrefix();
         }
-
+        /// <summary>
+        /// Asynchronously read all lines in a text file into a IAsyncEnumerable
+        /// </summary>
+        /// <param name="fileName">The file's name.</param>
+        /// <returns>The file's content</returns>
         protected async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
         {
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            for (; ; )
-                yield return await reader.ReadLineAsync();
-        }
+            for (;;)
+            {
+                var r= await reader.ReadLineAsync();
+                yield return r;
+                if (r is null) break;
+            }
 
+        }
+        /// <summary>
+        /// Modify member's value of a MsObject
+        /// </summary>
+        /// <param name="obj">the MsObject, maybe MsHost.</param>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
         protected TraceBack ModifyValue(MsObject obj, string[] args)
         {
             if (args.Length == 0) return TraceBack.InvalidCommand;

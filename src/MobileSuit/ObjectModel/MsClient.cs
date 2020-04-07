@@ -9,7 +9,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// </summary>
     public abstract class MsClient : IInfoProvider, IIoInteractive, ICommandInteractive
     {
+        /// <summary>
+        /// The CommandHandler for current MsHost.
+        /// </summary>
         protected CommandHandler RunCommand { get; private set; }
+        /// <summary>
+        /// The IoServer for current MsHost.
+        /// </summary>
         protected IoServer Io { get; private set; }
         /// <summary>
         /// Provides Interface for MsHost to set commandHandler

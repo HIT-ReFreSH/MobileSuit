@@ -43,9 +43,16 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// </summary>
         FieldWithoutInfo = -2
     }
-
+    /// <summary>
+    /// A MsObject's member.
+    /// </summary>
     public abstract class ObjectMember : IExecutable
     {
+        /// <summary>
+        /// Initialize a ObjectMember with MsObject's instance and the member's information.
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="member"></param>
         protected ObjectMember(object? instance, MemberInfo member)
         {
             Access = member.GetCustomAttribute<MsIgnorableAttribute>() is null

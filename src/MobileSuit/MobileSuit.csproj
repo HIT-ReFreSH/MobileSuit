@@ -8,6 +8,7 @@
     <AssemblyName>PlasticMetal.MobileSuit</AssemblyName>
     <RootNamespace>PlasticMetal.MobileSuit</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentFile>true</GenerateDocumentFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>MobileSuit provides an easy way to quickly build a .NET Core Console App.</Description>
     <Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
@@ -17,14 +18,21 @@
     <PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>D:\Projects\Obj1010_FerdinandScripts\MobileSuit\Debug\</OutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Projects\Obj1010_FerdinandScripts\MobileSuit\src\MobileSuit\PlasticMetal.MobileSuit.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="..\..\..\HIT_SM_Pro\HIT-Schedule-Master-CLI\src\PlasticMetal.MobileSuit\LICENSE">
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

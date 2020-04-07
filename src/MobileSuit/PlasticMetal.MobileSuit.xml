@@ -1,0 +1,1219 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PlasticMetal.MobileSuit</name>
+    </assembly>
+    <members>
+        <member name="T:PlasticMetal.MobileSuit.IO.OutputType">
+            <summary>
+            Type of content that writes to the output stream.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.Default">
+            <summary>
+            Normal content.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.Prompt">
+            <summary>
+            Prompt content.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.Error">
+            <summary>
+            Error content.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.AllOk">
+            <summary>
+            All-Ok content.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.ListTitle">
+            <summary>
+            Title of a list.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.CustomInfo">
+            <summary>
+            Normal information.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.IO.OutputType.MobileSuitInfo">
+            <summary>
+            Information provided by MobileSuit.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.IO.IoServer">
+            <summary>
+            A entity, which serves the input/output of a mobile suit.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.DefaultColorSetting">
+            <summary>
+            Default color settings for IoServer.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.ColorSetting">
+            <summary>
+            Color settings for this IoServer. (default DefaultColorSetting)
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.#ctor">
+            <summary>
+            Initialize a IoServer.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.ConsoleTitle">
+            <summary>
+            Console's Title. Linked to System.Console.Title.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting">
+            <summary>
+            Color settings of a IoServer.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.DefaultColor">
+            <summary>
+            Default color. For OutputType.Default
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.PromptColor">
+            <summary>
+            Prompt Color. For OutputType.Prompt
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.ErrorColor">
+            <summary>
+            Prompt Color. For OutputType.Error
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.AllOkColor">
+            <summary>
+            Prompt Color. For OutputType.AllOK
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.ListTitleColor">
+            <summary>
+            Prompt Color. For OutputType.ListTitle
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.CustomInformationColor">
+            <summary>
+            Prompt Color. For OutputType.CustomInformation
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IoServerColorSetting.InformationColor">
+            <summary>
+            Prompt Color. For OutputType.Information
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.Input">
+            <summary>
+            Input stream (default stdin)
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IsInputRedirected">
+            <summary>
+            Checks if this IoServer's input stream is redirected (NOT stdin)
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ResetInput">
+            <summary>
+            Reset this IoServer's input stream to stdin
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLine(System.String,System.Boolean,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Reads a line from input stream, with prompt.
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="newLine">If the prompt will display in a single line</param>
+            <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLine(System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Reads a line from input stream, with prompt.
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLine(System.String,System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Reads a line from input stream, with prompt. Return something default if user input "".
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="defaultValue">Default return value if user input ""</param>
+            <param name="customPromptColor"></param>
+            <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLine(System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Reads a line from input stream, with prompt. Return something default if user input "".
+            </summary>
+            <param name="prompt">Optional. The prompt display (output to output stream) before user input.</param>
+            <param name="defaultValue">Optional. Default return value if user input ""</param>
+            <param name="newLine">Optional. If the prompt will display in a single line</param>
+            <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLineAsync(System.String,System.Boolean,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously reads a line from input stream, with prompt.
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="newLine">If the prompt will display in a single line</param>
+            <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLineAsync(System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously reads a line from input stream, with prompt.
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLineAsync(System.String,System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
+            </summary>
+            <param name="prompt">The prompt display (output to output stream) before user input.</param>
+            <param name="defaultValue">Default return value if user input ""</param>
+            <param name="customPromptColor"></param>
+            <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadLineAsync(System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
+            </summary>
+            <param name="prompt">Optional. The prompt display (output to output stream) before user input.</param>
+            <param name="defaultValue">Optional. Default return value if user input ""</param>
+            <param name="newLine">Optional. If the prompt will display in a single line</param>
+            <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
+            <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.Peek">
+            <summary>
+            Reads the next character from input stream without changing the state of the reader or the character source. 
+            </summary>
+            <returns>The next available character.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.Read">
+            <summary>
+            Reads the next character from input stream.
+            </summary>
+            <returns>The next available character.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadToEnd">
+            <summary>
+            Reads all characters from the current position to the end of the input stream and returns them as one string.
+            </summary>
+            <returns>All characters from the current position to the end.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ReadToEndAsync">
+            <summary>
+            Asynchronously reads all characters from the current position to the end of the input stream and returns them as one string.
+            </summary>
+            <returns>All characters from the current position to the end.</returns>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IsErrorRedirected">
+            <summary>
+            Check if this IoServer's error stream is redirected (NOT stderr)
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.IsOutputRedirected">
+            <summary>
+            Check if this IoServer's output stream is redirected (NOT stdout)
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.Error">
+            <summary>
+            Error stream (default stderr)
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.Output">
+            <summary>
+            Output stream (default stdout)
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.IO.IoServer.Prefix">
+            <summary>
+            The prefix of WriteLine() output, usually used to make indentation.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ResetError">
+            <summary>
+            Reset this IoServer's error stream to stderr
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.ResetOutput">
+            <summary>
+            Reset this IoServer's output stream to stdout
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.AppendWriteLinePrefix(System.String)">
+            <summary>
+            Append a str to Prefix, usually used to increase indentation
+            </summary>
+            <param name="str">the str to append</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.SubtractWriteLinePrefix">
+            <summary>
+            Subtract a str from Prefix, usually used to decrease indentation
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.Write(System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Writes some content to output stream. With certain color in console.
+            </summary>
+            <param name="content">content to output.</param>
+            <param name="customColor">Customized color in console</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.Write(System.String,PlasticMetal.MobileSuit.IO.OutputType,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Writes some content to output stream. With certain color in console.
+            </summary>
+            <param name="content">Content to output.</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like.</param>
+            <param name="customColor">Optional. Customized color in console</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteAsync(System.String,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously writes some content to output stream. With certain color in console.
+            </summary>
+            <param name="content">content to output.</param>
+            <param name="customColor">Customized color in console</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteAsync(System.String,PlasticMetal.MobileSuit.IO.OutputType,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously writes some content to output stream. With certain color in console.
+            </summary>
+            <param name="content">Content to output.</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like.</param>
+            <param name="customColor">Optional. Customized color in console</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLine">
+            <summary>
+            Write a blank line to output stream.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLine(System.String,System.ConsoleColor)">
+            <summary>
+            Writes some content to output stream, with line break. With certain color in console.
+            </summary>
+            <param name="content">content to output.</param>
+            <param name="customColor">Customized color in console.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLine(System.String,PlasticMetal.MobileSuit.IO.OutputType,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Writes some content to output stream, with line break. With certain color in console.
+            </summary>
+            <param name="content">Content to output.</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+            <param name="customColor">Optional. Customized color in console.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLine(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Nullable{System.ConsoleColor}}},PlasticMetal.MobileSuit.IO.OutputType)">
+            <summary>
+            Writes some content to output stream, with line break. With certain color for each part of content in console.
+            </summary>
+            <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLineAsync">
+            <summary>
+            Asynchronously writes a blank line to output stream.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLineAsync(System.String,System.ConsoleColor)">
+            <summary>
+            Asynchronously writes some content to output stream, with line break. With certain color in console.
+            </summary>
+            <param name="content">content to output.</param>
+            <param name="customColor">Customized color in console.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLineAsync(System.String,PlasticMetal.MobileSuit.IO.OutputType,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Asynchronously writes some content to output stream, with line break. With certain color in console.
+            </summary>
+            <param name="content">Content to output.</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+            <param name="customColor">Optional. Customized color in console.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLineAsync(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Nullable{System.ConsoleColor}}},PlasticMetal.MobileSuit.IO.OutputType)">
+            <summary>
+            Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+            </summary>
+            <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.IO.IoServer.WriteLineAsync(System.Collections.Generic.IAsyncEnumerable{System.ValueTuple{System.String,System.Nullable{System.ConsoleColor}}},PlasticMetal.MobileSuit.IO.OutputType)">
+            <summary>
+            Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+            </summary>
+            <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+            <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.MsBicServer">
+            <summary>
+            Built-In-Command Server. May be Override if necessary.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.#ctor(PlasticMetal.MobileSuit.MsHost)">
+            <summary>
+            Initialize a BicServer with the given MsHost.
+            </summary>
+            <param name="host">The given MsHost.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsBicServer.Host">
+            <summary>
+            Host
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsBicServer.HostRef">
+            <summary>
+            MsObject for Host
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsBicServer.Current">
+            <summary>
+            Host's current MsObject.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Enter(System.String[])">
+            <summary>
+            Enter a member of Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Leave(System.String[])">
+            <summary>
+            Leave the Current MsObject, Back to its Parent
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.New(System.String[])">
+            <summary>
+            Create and Enter a new MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.View(System.String[])">
+            <summary>
+            Show Certain Member's Value of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.RunScript(System.String[])">
+            <summary>
+            Run MsScript at the given location
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.SwitchOption(System.String[])">
+            <summary>
+            Switch Options for MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.ModifyMember(System.String[])">
+            <summary>
+            Modify Certain Member's Value of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.List(System.String[])">
+            <summary>
+            Show Members of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Free(System.String[])">
+            <summary>
+            Free the Current MsObject, and back to the last one.
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Exit(System.String[])">
+            <summary>
+            Exit MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.This(System.String[])">
+            <summary>
+            Show Current MsObject Information
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Print(System.String[])">
+            <summary>
+            Output something in default way
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.SuperPrint(System.String[])">
+            <summary>
+            A more powerful way to output something, with arg1 as option
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Shell(System.String[])">
+            <summary>
+            Execute command with the System Shell
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.Help(System.String[])">
+            <summary>
+            Show Help of MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.ListMembers(PlasticMetal.MobileSuit.ObjectModel.MsObject)">
+            <summary>
+            List members of a MsObject
+            </summary>
+            <param name="obj">The MsObject, Maybe this BicServer.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.ReadTextFileAsync(System.String)">
+            <summary>
+            Asynchronously read all lines in a text file into a IAsyncEnumerable
+            </summary>
+            <param name="fileName">The file's name.</param>
+            <returns>The file's content</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsBicServer.ModifyValue(PlasticMetal.MobileSuit.ObjectModel.MsObject,System.String[])">
+            <summary>
+            Modify member's value of a MsObject
+            </summary>
+            <param name="obj">the MsObject, maybe MsHost.</param>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.TraceBack">
+            <summary>
+                Status of the last Commandline. Return value type for Built-In-Commands and Host Functions.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.TraceBack.OnExit">
+            <summary>
+                The Progress is Exiting
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.TraceBack.AllOk">
+            <summary>
+                Everything is OK
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.TraceBack.InvalidCommand">
+            <summary>
+                This is not a command.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.TraceBack.ObjectNotFound">
+            <summary>
+                Cannot find the object referring to.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.TraceBack.MemberNotFound">
+            <summary>
+                Cannot find the member in the object referring to.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.MsHost">
+            <summary>
+            A entity, which serves the shell functions of a mobile-suit program.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.#ctor(PlasticMetal.MobileSuit.IO.IoServer,PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer)">
+            <summary>
+            Initialize a MsHost with given/general IoServer, given/default BicServer, Calling Assembly.
+            </summary>
+            <param name="io">Optional. An IoServer, GeneralIo as default.</param>
+            <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.#ctor(System.Object,PlasticMetal.MobileSuit.IO.IoServer,PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer)">
+            <summary>
+            Initialize a MsHost with given/general IoServer,  an instance, and its type's Assembly.
+            </summary>
+            <param name="instance">The instance for Mobile Suit to drive.</param>
+            <param name="io">Optional. An IoServer, GeneralIo as default.</param>
+            <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.#ctor(System.Reflection.Assembly,PlasticMetal.MobileSuit.IO.IoServer,PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer)">
+            <summary>
+            Initialize a MsHost with given/general IoServer, given Assembly.
+            </summary>
+            <param name="assembly">The given Assembly.</param>
+            <param name="io">Optional. An IoServer, GeneralIo as default.</param>
+            <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.#ctor(System.Type,PlasticMetal.MobileSuit.IO.IoServer,PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer)">
+            <summary>
+            Initialize a MsHost with given/general IoServer,  a given type, and its  Assembly.
+            </summary>
+            <param name="type">The given Type</param>
+            <param name="io">Optional. An IoServer, GeneralIo as default.</param>
+            <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.InstanceStack">
+            <summary>
+            Stack of Instance, created in this Mobile Suit.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.InstanceNameString">
+            <summary>
+            String of Current Instance's Name.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.InstanceNameStringStack">
+            <summary>
+            Stack of Instance's Name Strings.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.ShowReference">
+            <summary>
+            If the prompt contains the reference (For example, System.Console.Title) of current instance.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.Io">
+            <summary>
+            The IoServer for this MsHost
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.GeneralIo">
+            <summary>
+            Default IoServer, using stdin, stdout, stderr.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.Assembly">
+            <summary>
+            The Assembly which instance are from.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.Prompt">
+            <summary>
+            The prompt in Console.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.Current">
+            <summary>
+            Current Instance's MsObject Container.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.BicServer">
+            <summary>
+            Current BicServer's MsObject Container.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.WorkInstance">
+            <summary>
+            Current Instance
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.WorkType">
+            <summary>
+            Current Instance's type.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.UseTraceBack">
+            <summary>
+            Use TraceBack, or just throw Exceptions.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.ShowDone">
+            <summary>
+            If show that a command has been executed.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsHost.ShellMode">
+            <summary>
+            If this MsHost runs like a shell that will not exit UNLESS user input exit command.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.WorkInstanceInit">
+            <summary>
+            Initialize the current instance, if it is a MsClient, or implements IIoInteractive or ICommandInteractive.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.Run(System.String)">
+            <summary>
+            Run a Mobile Suit with Prompt.
+            </summary>
+            <param name="prompt">The prompt.</param>
+            <returns>0, is All ok.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.RunScripts(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Run some MsCommands in current environment, until one of them returns a non-AllOK TraceBack.
+            </summary>
+            <param name="scripts">MsCommands</param>
+            <returns>The TraceBack of the last executed command.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.RunScriptsAsync(System.Collections.Generic.IAsyncEnumerable{System.String})">
+            <summary>
+            Asynchronously run some MsCommands in current environment, until one of them returns a non-AllOK TraceBack.
+            </summary>
+            <param name="scripts">MsCommands</param>
+            <returns>The TraceBack of the last executed command.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsHost.Run">
+            <summary>
+            Run a Mobile Suit with default Prompt.
+            </summary>
+            <returns>0, is All ok.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.MsTest">
+            <summary>
+            A test class for basic Mobile Suit Test.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsTest.#ctor">
+            <summary>
+            Initialize a MsTest class.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.MsTest.TscField">
+            <summary>
+            A test Field for MsTest class.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.MsTest.TscProperty">
+            <summary>
+            A test Property for MsTest class.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsTest.Test">
+            <summary>
+            A test Method for MsTest class, with two aliases.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.MsTest.TestSubClass">
+            <summary>
+            A subclass for MsTest.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.MsTest.TestSubClass.T">
+            <summary>
+            Subclass' test method.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsAliasAttribute">
+            <summary>
+            Alias for a MsObject's member
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsAliasAttribute.#ctor(System.String)">
+            <summary>
+            Initialize a MsAlias with its text.
+            </summary>
+            <param name="text">The alias.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsAliasAttribute.Text">
+            <summary>
+            The alias.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsIgnorableAttribute">
+            <summary>
+            Represents that this member should be ignored by Mobile Suit.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsInfoAttribute">
+            <summary>
+            Stores the information of a member to be displayed.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsInfoAttribute.#ctor(System.String)">
+            <summary>
+            Initialize with the information.
+            </summary>
+            <param name="text">The information.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsInfoAttribute.Text">
+            <summary>
+            The information.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsParserAttribute">
+            <summary>
+            Stores a parser which convert string argument to certain type.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsParserAttribute.#ctor(System.Converter{System.String,System.Object})">
+            <summary>
+            Initialize with a parser.
+            </summary>
+            <param name="converter">The parser which convert string argument to certain type.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsParserAttribute.Converter">
+            <summary>
+            The parser which convert string argument to certain type.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.CommandHandler">
+            <summary>
+            Represents a command handler in MobileSuit.
+            </summary>
+            <param name="prompt">the prompt display in the Console</param>
+            <param name="cmd">the command to execute</param>
+            <returns>TraceBack of this Command</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.ICommandInteractive">
+            <summary>
+            Represents that an object is interactive to MsHost's command handler.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.ICommandInteractive.SetCommandHandler(PlasticMetal.MobileSuit.ObjectModel.Interfaces.CommandHandler)">
+            <summary>
+            Provides Interface for MsHost to set commandHandler
+            </summary>
+            <param name="commandHandler">MsHost's command handler.</param>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IDynamicParameter">
+            <summary>
+            Represents a Parameter which can be parsed from a String[].
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IDynamicParameter.Parse(System.String[])">
+            <summary>
+            Parse this Parameter from String[].
+            </summary>
+            <param name="options">String[] to parse from.</param>
+            <returns>Whether the parsing is successful</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IExecutable">
+            <summary>
+            Represents an entity which can be executed.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IExecutable.Execute(System.String[])">
+            <summary>
+            Execute this object.
+            </summary>
+            <param name="args">The arguments for execution.</param>
+            <returns>TraceBack result of this object.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IInfoProvider">
+            <summary>
+            Represents an object which can provide information to Mobile Suit.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IInfoProvider.Text">
+            <summary>
+            The information provided.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IIoInteractive">
+            <summary>
+            Represents that an object is interactive to MsHost's IoServer
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IIoInteractive.SetIo(PlasticMetal.MobileSuit.IO.IoServer)">
+            <summary>
+            Provides Interface for MsHost to set ioServer
+            </summary>
+            <param name="io">MsHost's IoServer.</param>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.BuildInCommand">
+            <summary>
+            Build-In-Command's model
+            </summary>
+            <param name="args">Arguments for the command</param>
+            <returns>Command's TraceBack result.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer">
+            <summary>
+            Built-In-Command Server's Model.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Enter(System.String[])">
+            <summary>
+            Enter a member of Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Leave(System.String[])">
+            <summary>
+            Leave the Current MsObject, Back to its Parent
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.New(System.String[])">
+            <summary>
+            Create and Enter a new MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.View(System.String[])">
+            <summary>
+            Show Certain Member's Value of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.RunScript(System.String[])">
+            <summary>
+            Run MsScript at the given location
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.SwitchOption(System.String[])">
+            <summary>
+            Switch Options for MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.ModifyMember(System.String[])">
+            <summary>
+            Modify Certain Member's Value of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.List(System.String[])">
+            <summary>
+            Show Members of the Current MsObject
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Free(System.String[])">
+            <summary>
+            Free the Current MsObject, and back to the last one.
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Exit(System.String[])">
+            <summary>
+            Exit MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.This(System.String[])">
+            <summary>
+            Show Current MsObject Information
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Print(System.String[])">
+            <summary>
+            Output something in default way
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.SuperPrint(System.String[])">
+            <summary>
+            A more powerful way to output something, with arg1 as option
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Shell(System.String[])">
+            <summary>
+            Execute command with the System Shell
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Interfaces.IMsBicServer.Help(System.String[])">
+            <summary>
+            Show Help of MobileSuit
+            </summary>
+            <param name="args">command args</param>
+            <returns>Command status</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember">
+            <summary>
+            Stands for MsObject's members which can also be MsObjects (Field/Property).
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.#ctor(System.Object,System.Reflection.PropertyInfo)">
+            <summary>
+            Initialize an Object's Member with its instance and Property's information.
+            </summary>
+            <param name="instance">Instance of Object.</param>
+            <param name="info">Object's member(Property)'s information</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.#ctor(System.Object,System.Reflection.FieldInfo)">
+            <summary>
+            Initialize an Object's Member with its instance and Field's information.
+            </summary>
+            <param name="instance">Instance of Object.</param>
+            <param name="info">Object's member(Field)'s information</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.MsValue">
+            <summary>
+            Member's value as a MsObject
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.ValueType">
+            <summary>
+            Type of Member's value
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.Value">
+            <summary>
+            Member's value.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.Converter">
+            <summary>
+            Converter which can convert String to value's type of this member.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember.Execute(System.String[])">
+            <summary>
+            Execute this object.
+            </summary>
+            <param name="args">The arguments for execution.</param>
+            <returns>TraceBack result of this object.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.TailParameterType">
+            <summary>
+            Represents type of the last parameter of a method
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.TailParameterType.Normal">
+            <summary>
+            Last parameter exists, and is quite normal.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.TailParameterType.Array">
+            <summary>
+            Last parameter is an array.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.TailParameterType.DynamicParameter">
+            <summary>
+            Last parameter implements IDynamicParameter.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.TailParameterType.NoParameter">
+            <summary>
+            Last parameter does not exist.
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.ExecutableMember">
+            <summary>
+            Object's Member which may be a method.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ExecutableMember.#ctor(System.Object,System.Reflection.MethodBase)">
+            <summary>
+            Initialize an Object's Member with its instance and Method's information.
+            </summary>
+            <param name="instance">Instance of Object.</param>
+            <param name="method">Object's member(Method)'s information</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ExecutableMember.Execute(System.String[])">
+            <summary>
+            Execute this object.
+            </summary>
+            <param name="args">The arguments for execution.</param>
+            <returns>TraceBack result of this object.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.MemberAccess">
+            <summary>
+            Whether a member is MsIgnore or not.
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberAccess.Hidden">
+            <summary>
+            With MsIgnore Attribute
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberAccess.VisibleToUser">
+            <summary>
+            Without MsIgnore Attribute
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.MemberType">
+            <summary>
+            Type of a member
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberType.MethodWithInfo">
+            <summary>
+            A Method with customized information
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberType.MethodWithoutInfo">
+            <summary>
+            A Method without customized information
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberType.FieldWithInfo">
+            <summary>
+            A Field/Property with customized information
+            </summary>
+        </member>
+        <member name="F:PlasticMetal.MobileSuit.ObjectModel.Members.MemberType.FieldWithoutInfo">
+            <summary>
+            A Field/Property without customized information
+            </summary>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember">
+            <summary>
+            A MsObject's member.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.#ctor(System.Object,System.Reflection.MemberInfo)">
+            <summary>
+            Initialize a ObjectMember with MsObject's instance and the member's information.
+            </summary>
+            <param name="instance"></param>
+            <param name="member"></param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Access">
+            <summary>
+            Whether this member is MsIgnore or not.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Type">
+            <summary>
+            Type of the member
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Information">
+            <summary>
+            Information of this member, customized or generated by Mobile Suit.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.FriendlyNames">
+            <summary>
+            Absolute name, and aliases.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Aliases">
+            <summary>
+            Aliases of this member.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.AbsoluteName">
+            <summary>
+            Absolute name of this member.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Instance">
+            <summary>
+            Instance which contains this member.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Members.ObjectMember.Execute(System.String[])">
+            <summary>
+            Execute this object.
+            </summary>
+            <param name="args">The arguments for execution.</param>
+            <returns>TraceBack result of this object.</returns>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.MsClient">
+            <summary>
+            An Standard mobile suit client driver-class.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.MsClient.RunCommand">
+            <summary>
+            The CommandHandler for current MsHost.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.MsClient.Io">
+            <summary>
+            The IoServer for current MsHost.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsClient.SetCommandHandler(PlasticMetal.MobileSuit.ObjectModel.Interfaces.CommandHandler)">
+            <summary>
+            Provides Interface for MsHost to set commandHandler
+            </summary>
+            <param name="commandHandler">MsHost's command handler.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.MsClient.Text">
+            <summary>
+            The information provided.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsClient.SetIo(PlasticMetal.MobileSuit.IO.IoServer)">
+            <summary>
+            Provides Interface for MsHost to set ioServer
+            </summary>
+            <param name="io">MsHost's IoServer.</param>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.ObjectModel.MsObject">
+            <summary>
+            Represents an object in Mobile Suit.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsObject.#ctor(System.Object)">
+            <summary>
+            Initialize a MsObject with an instance.
+            </summary>
+            <param name="instance">The instance that this MsObject represents.</param>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.MsObject.Instance">
+            <summary>
+            The instance that this MsObject represents.
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.ObjectModel.MsObject.MemberCount">
+            <summary>
+            Count of Members that this object contains.
+            </summary>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsObject.GetEnumerator">
+            <summary>
+            Get Enumerator of its (AbsoluteName,Member)[]
+            </summary>
+            <returns>Enumerator of its (AbsoluteName,Member)[]</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsObject.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get Enumerator of its (AbsoluteName,Member)[]
+            </summary>
+            <returns>Enumerator of its (AbsoluteName,Member)[]</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsObject.Execute(System.String[])">
+            <summary>
+            Execute this object.
+            </summary>
+            <param name="args">The arguments for execution.</param>
+            <returns>TraceBack result of this object.</returns>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.MsObject.TryGetField(System.String,PlasticMetal.MobileSuit.ObjectModel.Members.ContainerMember@)">
+            <summary>
+            Try to get the field/property with certain name.
+            </summary>
+            <param name="name">Name the field/property.</param>
+            <param name="field">The field/property with the certain name.</param>
+            <returns>TraceBack of the find operation.</returns>
+        </member>
+    </members>
+</doc>
