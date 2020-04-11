@@ -1,6 +1,6 @@
 # MobileSuit
 
-![publish to nuget](https://github.com/Plastic-Metal/MobileSuit/workflows/publish%20to%20nuget/badge.svg)
+![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square)
 
 MobileSuit provides an easy way to quickly build a .NET Console App.
 
