@@ -1,6 +1,6 @@
 # MobileSuit
 
-[View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
+![publish to nuget](https://github.com/Plastic-Metal/MobileSuit/workflows/publish%20to%20nuget/badge.svg)
 
 MobileSuit provides an easy way to quickly build a .NET Console App.
 
@@ -10,3 +10,4 @@ For Example: HIT-Schedule-Master CLI
 
 ![MsRtExample-1](images/MsRtExample-1.png)
 
+[View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
