@@ -11,3 +11,7 @@ For Example: HIT-Schedule-Master CLI
 ![MsRtExample-1](images/MsRtExample-1.png)
 
 [View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
+
+[View English Documents](https://ferdinandsukhoi.github.io/docs/en-US/MobileSuit/) in my Blog
+
+在我的博客[查看中文文档](https://ferdinandsukhoi.github.io/docs/zh-CN/MobileSuit/)

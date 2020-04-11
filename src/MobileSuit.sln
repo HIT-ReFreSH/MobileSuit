@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSuit", "MobileSuit\MobileSuit.csproj", "{C0F0C424-A276-45CB-BAFA-558F9B26AB2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemCall", "SystemCall\SystemCall.csproj", "{54357130-96EC-477E-B7A4-68A76CDA0B7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemCall", "SystemCall\SystemCall.csproj", "{54357130-96EC-477E-B7A4-68A76CDA0B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSuitDemo", "MobileSuitDemo\MobileSuitDemo.csproj", "{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{54357130-96EC-477E-B7A4-68A76CDA0B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54357130-96EC-477E-B7A4-68A76CDA0B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54357130-96EC-477E-B7A4-68A76CDA0B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
