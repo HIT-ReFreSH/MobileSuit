@@ -50,7 +50,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Et")]
-        [MsInfo("Enter a member of Current MsObject")]
+        [MsInfo(typeof(BicInfo), "Enter")]
         public virtual TraceBack Enter(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
@@ -77,7 +77,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Lv")]
-        [MsInfo("Leave the Current MsObject, Back to its Parent")]
+        [MsInfo(typeof(BicInfo), "Leave")]
         public virtual TraceBack Leave(string[] args)
         {
             if (Host.InstanceStack.Count == 0 || Current is null)
@@ -92,7 +92,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo("Create and Enter a new MsObject")]
+        [MsInfo(typeof(BicInfo), "New")]
         public virtual TraceBack New(string[] args)
         {
             if (Host.Assembly == null) return TraceBack.InvalidCommand;
@@ -118,14 +118,14 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Vw")]
-        [MsInfo("Show Certain Member's Value of the Current MsObject")]
+        [MsInfo(typeof(BicInfo),"View")]
         public virtual TraceBack View(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
             if (r != TraceBack.AllOk || obj is null) return r;
-            Host.Io.WriteLine(obj.ToString() ?? "<Unknown>");
+            Host.Io.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -134,7 +134,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Rs")]
-        [MsInfo("Run MsScript at the given location")]
+        [MsInfo(typeof(BicInfo), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
             if (args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
@@ -148,7 +148,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Sw")]
-        [MsInfo("Switch Options for MobileSuit")]
+        [MsInfo(typeof(BicInfo), "SwitchOption")]
         public virtual TraceBack SwitchOption(string[] args)
         {
             return ModifyValue(HostRef, args);
@@ -159,7 +159,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Md")]
-        [MsInfo("Modify Certain Member's Value of the Current MsObject")]
+        [MsInfo(typeof(BicInfo),"ModifyMember")]
         public virtual TraceBack ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
@@ -170,16 +170,16 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Ls")]
-        [MsInfo("Show Members of the Current MsObject")]
+        [MsInfo(typeof(BicInfo), "List")]
         public virtual TraceBack List(string[] args)
         {
             if (Host.Current == null) return TraceBack.InvalidCommand;
-            Host.Io.WriteLine("Members:", OutputType.ListTitle);
+            Host.Io.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
             Host.Io.WriteLine();
             Host.Io.WriteLine(new (string, ConsoleColor?)[]
             {
-                ("To View Built-In Commands, use Command '", null),
+                (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
             }, OutputType.AllOk);
@@ -191,7 +191,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Fr")]
-        [MsInfo("Free the Current MsObject, and back to the last one.")]
+        [MsInfo(typeof(BicInfo), "Free")]
         public virtual TraceBack Free(string[] args)
         {
             if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
@@ -209,7 +209,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo("Exit MobileSuit")]
+        [MsInfo(typeof(BicInfo), "Exit")]
         public virtual TraceBack Exit(string[] args)
         {
             return TraceBack.OnExit;
@@ -220,11 +220,11 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Me")]
-        [MsInfo("Show Current MsObject Information")]
+        [MsInfo(typeof(BicInfo), "This")]
         public virtual TraceBack This(string[] args)
         {
             if (Host.WorkType == null) return TraceBack.InvalidCommand;
-            Host.Io.WriteLine($"Work Instance:{Host.WorkType.FullName}");
+            Host.Io.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -233,7 +233,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Echo")]
-        [MsInfo("Output something in default way")]
+        [MsInfo(typeof(BicInfo), "Print")]
         public virtual TraceBack Print(string[] args)
         {
             if (args.Length == 1)
@@ -253,7 +253,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("EchoX")]
-        [MsInfo("A more powerful way to output something, with arg1 as option")]
+        [MsInfo(typeof(BicInfo), "SuperPrint")]
         public virtual TraceBack SuperPrint(string[] args)
         {
             if (args.Length <= 2)
@@ -294,7 +294,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [MsAlias("Sh")]
-        [MsInfo("Execute command with the System Shell")]
+        [MsInfo(typeof(BicInfo), "Shell")]
         public virtual TraceBack Shell(string[] args)
         {
             if (args.Length < 2) return TraceBack.InvalidCommand;
@@ -313,7 +313,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
-                Host.Io.WriteLine($"Error:{e}", OutputType.Error);
+                Host.Io.WriteLine($"{Lang.Error}{e}", OutputType.Error);
                 return TraceBack.ObjectNotFound;
             }
 
@@ -324,17 +324,17 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo("Show Help of MobileSuit")]
+        [MsInfo(typeof(BicInfo), "Help")]
         public virtual TraceBack Help(string[] args)
         {
-            Host.Io.WriteLine("Built-In Commands:", OutputType.ListTitle);
+            Host.Io.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
             Host.Io.WriteLine();
             Host.Io.WriteLine(new (string, ConsoleColor?)[]
             {
-                ("All of the Built-In Commands Can be used as default with the starting'", null),
+                (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
-                ("'; However, if the object do not contains commands which have the same name as a certain Built-In Command, '@' is not necessary.",
+                (Lang.BicExp2,
                     null)
             }, OutputType.AllOk);
             return TraceBack.AllOk;
@@ -423,7 +423,7 @@ namespace PlasticMetal.MobileSuit
             }
             else
             {
-                val = target.Value.ToString() ?? "<Unknown>";
+                val = target.Value.ToString() ?? $"<{Lang.Unknown}>";
                 target.Value = (target.Converter ?? (a => a))(args[1]);
                 newVal = args[1];
             }

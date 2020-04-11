@@ -6,15 +6,20 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.0": {
-      "PlasticMetal.MobileSuit/1.0.0": {
+      "PlasticMetal.MobileSuit/1.1.0": {
         "runtime": {
           "PlasticMetal.MobileSuit.dll": {}
+        },
+        "resources": {
+          "zh-CN/PlasticMetal.MobileSuit.resources.dll": {
+            "locale": "zh-CN"
+          }
         }
       }
     }
   },
   "libraries": {
-    "PlasticMetal.MobileSuit/1.0.0": {
+    "PlasticMetal.MobileSuit/1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

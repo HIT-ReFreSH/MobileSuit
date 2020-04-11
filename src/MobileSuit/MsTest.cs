@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Resources;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 

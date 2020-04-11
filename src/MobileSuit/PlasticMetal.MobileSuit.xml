@@ -4,6 +4,97 @@
         <name>PlasticMetal.MobileSuit</name>
     </assembly>
     <members>
+        <member name="T:PlasticMetal.MobileSuit.BicInfo">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Enter">
+            <summary>
+              查找类似 Enter a member of Current MsObject 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Exit">
+            <summary>
+              查找类似 Exit MobileSuit 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Free">
+            <summary>
+              查找类似 Free the Current MsObject, and back to the last one. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Help">
+            <summary>
+              查找类似 Show Help of MobileSuit 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Leave">
+            <summary>
+              查找类似 Leave the Current MsObject, Back to its Parent 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.List">
+            <summary>
+              查找类似 Show Members of the Current MsObject 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.ModifyMember">
+            <summary>
+              查找类似 Modify Certain Member&apos;s Value of the Current MsObject 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.New">
+            <summary>
+              查找类似 Create and Enter a new MsObject 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Print">
+            <summary>
+              查找类似 Output something in default way 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.RunScript">
+            <summary>
+              查找类似 Run MsScript at the given location 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.Shell">
+            <summary>
+              查找类似 Execute command with the System Shell 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.SuperPrint">
+            <summary>
+              查找类似 A more powerful way to output something, with arg1 as option 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.SwitchOption">
+            <summary>
+              查找类似 Switch Options for MobileSuit 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.This">
+            <summary>
+              查找类似 Show Current MsObject Information 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.BicInfo.View">
+            <summary>
+              查找类似 Show Certain Member&apos;s Value of the Current MsObject 的本地化字符串。
+            </summary>
+        </member>
         <member name="T:PlasticMetal.MobileSuit.IO.OutputType">
             <summary>
             Type of content that writes to the output stream.
@@ -356,6 +447,82 @@
             </summary>
             <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
             <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        </member>
+        <member name="T:PlasticMetal.MobileSuit.Lang">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Bic">
+            <summary>
+              查找类似 Built-In Commands: 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.BicExp1">
+            <summary>
+              查找类似 All of the Built-In Commands Can be used as default with the starting&apos; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.BicExp2">
+            <summary>
+              查找类似 &apos; as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Done">
+            <summary>
+              查找类似 Done. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Error">
+            <summary>
+              查找类似 Error: 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.InvalidCommand">
+            <summary>
+              查找类似 Invalid Command! 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.MemberNotFound">
+            <summary>
+              查找类似 Member Not Found! 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Members">
+            <summary>
+              查找类似 Members: 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.ObjectNotFound">
+            <summary>
+              查找类似 Object Not Found! 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.Unknown">
+            <summary>
+              查找类似 Unknown 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.ViewBic">
+            <summary>
+              查找类似 To View Built-In Commands, use Command &apos; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:PlasticMetal.MobileSuit.Lang.WorkInstance">
+            <summary>
+              查找类似 Work Instance: 的本地化字符串。
+            </summary>
         </member>
         <member name="T:PlasticMetal.MobileSuit.MsBicServer">
             <summary>
@@ -748,6 +915,16 @@
             Initialize with the information.
             </summary>
             <param name="text">The information.</param>
+        </member>
+        <member name="M:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsInfoAttribute.#ctor(System.Type,System.String)">
+            <summary>
+            Initialize with a resource file's type, and the resource key.
+            </summary>
+            <summary lang="zh-CN">
+            使用资源文件，和键值初始化一个信息类。
+            </summary>
+            <param name="resourceType">Resource file's type</param>
+            <param name="key">The resource key</param>
         </member>
         <member name="P:PlasticMetal.MobileSuit.ObjectModel.Attributes.MsInfoAttribute.Text">
             <summary>

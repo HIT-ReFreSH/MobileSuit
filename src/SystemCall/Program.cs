@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using PlasticMetal.MobileSuit;
 
 namespace SystemCall
@@ -9,6 +10,8 @@ namespace SystemCall
         {
             for (;;)
             {
+                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("zh-CN");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
                 var ms = new MsHost(new MsTest());
                 ms.Run();
                 var s = new[] {1};

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
@@ -235,7 +236,7 @@ namespace PlasticMetal.MobileSuit
 
         private void NotifyAllOk() 
         {
-            if (UseTraceBack && ShowDone) Io.WriteLine("Done.", OutputType.AllOk);
+            if (UseTraceBack && ShowDone) Io.WriteLine(Lang.Done, OutputType.AllOk);
         }
 
 
@@ -249,17 +250,11 @@ namespace PlasticMetal.MobileSuit
         {
             if (prompt == "" && WorkInstance != null)
             {
-                if (WorkInstance is IInfoProvider)
-                {
-                    Prompt = ((IInfoProvider) WorkInstance).Text;
-                }
-                else
-                {
-                    if (WorkType != null)
-                        Prompt =
-                            (WorkType.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
-                             ?? new MsInfoAttribute(WorkInstance.GetType().Name)).Text;
-                }
+                Prompt = (WorkInstance as IInfoProvider)?.Text
+                         ?? (WorkType != null
+                             ? (WorkType.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
+                                ?? new MsInfoAttribute(WorkInstance.GetType().Name)).Text
+                             : prompt);
             }
             else
             {
@@ -312,13 +307,13 @@ namespace PlasticMetal.MobileSuit
                         NotifyAllOk();
                         break;
                     case TraceBack.ObjectNotFound:
-                        NotifyError("Object Not Found!");
+                        NotifyError(Lang.ObjectNotFound);
                         break;
                     case TraceBack.MemberNotFound:
-                        NotifyError("Member Not Found!");
+                        NotifyError(Lang.MemberNotFound);
                         break;
                     default:
-                        NotifyError("Invalid Command!");
+                        NotifyError(Lang.InvalidCommand);
                         break;
                 }
             }
