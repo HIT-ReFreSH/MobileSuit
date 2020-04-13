@@ -75,7 +75,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 MinParameterCount = i + 1;
             }
 
-            var info = method.GetCustomAttribute<MsInfoAttribute>();
+            var info = method.GetCustomAttribute<SuitInfoAttribute>();
             if (info is null)
             {
                 Type = MemberType.MethodWithoutInfo;
@@ -133,7 +133,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             var i = 0;
             for (; i < NonArrayParameterCount; i++)
                 pass[i] = i < args.Length
-                    ? (Parameters[i].GetCustomAttribute<MsParserAttribute>(true)
+                    ? (Parameters[i].GetCustomAttribute<SuitParserAttribute>(true)
                            ?.Converter
                        ?? (source => source)) //Converter
                     (args[i])
@@ -165,7 +165,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 var argArray = args[i..];
                 var array = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
                                                  ?? typeof(string), argArray.Length);
-                var convert = Parameters[^1].GetCustomAttribute<MsParserAttribute>(true)?.Converter
+                var convert = Parameters[^1].GetCustomAttribute<SuitParserAttribute>(true)?.Converter
                               ?? (source => source);
                 var j = 0;
                 foreach (var arg in argArray) array.SetValue(convert(arg), j++);

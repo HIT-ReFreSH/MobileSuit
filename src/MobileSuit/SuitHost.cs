@@ -46,67 +46,67 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     /// A entity, which serves the shell functions of a mobile-suit program.
     /// </summary>
-    public class MsHost
+    public class SuitHost
     {
         /// <summary>
-        /// Initialize a MsHost with given/general IoServer, given/default BicServer, Calling Assembly.
+        /// Initialize a SuitHost with given/general IOServer, given/default BicServer, Calling Assembly.
         /// </summary>
-        /// <param name="io">Optional. An IoServer, GeneralIo as default.</param>
-        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
-        public MsHost(IoServer? io = null, IMsBicServer? bicServer=null)
+        /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
+        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
+        public SuitHost(IOServer? io = null, ISuitBuiltInCommandServer? bicServer=null)
         {
             Assembly = Assembly.GetCallingAssembly();
-            Io = io ?? GeneralIo;
-            Current = new MsObject(null);
-            BicServer = new MsObject(bicServer ?? new MsBicServer(this));
+            IO = io ?? GeneralIO;
+            Current = new SuitObject(null);
+            BicServer = new SuitObject(bicServer ?? new SuitBuiltInCommandServer(this));
         }
 
         /// <summary>
-        /// Initialize a MsHost with given/general IoServer,  an instance, and its type's Assembly.
+        /// Initialize a SuitHost with given/general IOServer,  an instance, and its type's Assembly.
         /// </summary>
         /// <param name="instance">The instance for Mobile Suit to drive.</param>
-        /// <param name="io">Optional. An IoServer, GeneralIo as default.</param>
-        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
-        public MsHost(object? instance, IoServer? io = null, IMsBicServer? bicServer = null) : this(io,bicServer)
+        /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
+        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
+        public SuitHost(object? instance, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
-            Current = new MsObject(instance);
+            Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
 
             WorkInstanceInit();
         }
         /// <summary>
-        /// Initialize a MsHost with given/general IoServer, given Assembly.
+        /// Initialize a SuitHost with given/general IOServer, given Assembly.
         /// </summary>
         /// <param name="assembly">The given Assembly.</param>
-        /// <param name="io">Optional. An IoServer, GeneralIo as default.</param>
-        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
-        public MsHost(Assembly assembly, IoServer? io = null, IMsBicServer? bicServer = null) : this(io,bicServer)
+        /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
+        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
+        public SuitHost(Assembly assembly, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
             Assembly = assembly;
-            Current = new MsObject(null);
+            Current = new SuitObject(null);
         }
         /// <summary>
-        /// Initialize a MsHost with given/general IoServer,  a given type, and its  Assembly.
+        /// Initialize a SuitHost with given/general IOServer,  a given type, and its  Assembly.
         /// </summary>
         /// <param name="type">The given Type</param>
-        /// <param name="io">Optional. An IoServer, GeneralIo as default.</param>
-        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.MsBicServer as default.</param>
-        public MsHost(Type type, IoServer? io = null, IMsBicServer? bicServer = null) : this(io,bicServer)
+        /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
+        /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
+        public SuitHost(Type type, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
             if (type?.FullName == null)
             {
-                Current = new MsObject(null);
+                Current = new SuitObject(null);
                 return;
             }
 
             Assembly = type.Assembly;
-            Current = new MsObject(Assembly.CreateInstance(type.FullName));
+            Current = new SuitObject(Assembly.CreateInstance(type.FullName));
             WorkInstanceInit();
         }
         /// <summary>
         /// Stack of Instance, created in this Mobile Suit.
         /// </summary>
-        public Stack<MsObject> InstanceStack { get; set; } = new Stack<MsObject>();
+        public Stack<SuitObject> InstanceStack { get; set; } = new Stack<SuitObject>();
         /// <summary>
         /// String of Current Instance's Name.
         /// </summary>
@@ -120,13 +120,13 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public bool ShowReference { get; set; } = true;
         /// <summary>
-        /// The IoServer for this MsHost
+        /// The IOServer for this SuitHost
         /// </summary>
-        public IoServer Io { get; set; }
+        public IOServer IO { get; set; }
         /// <summary>
-        /// Default IoServer, using stdin, stdout, stderr.
+        /// Default IOServer, using stdin, stdout, stderr.
         /// </summary>
-        public static IoServer GeneralIo { get; set; } = new IoServer();
+        public static IOServer GeneralIO { get; set; } = new IOServer();
         /// <summary>
         /// The Assembly which instance are from.
         /// </summary>
@@ -136,13 +136,13 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public string? Prompt { get; set; }
         /// <summary>
-        /// Current Instance's MsObject Container.
+        /// Current Instance's SuitObject Container.
         /// </summary>
-        public MsObject Current { get; set; }
+        public SuitObject Current { get; set; }
         /// <summary>
-        /// Current BicServer's MsObject Container.
+        /// Current BicServer's SuitObject Container.
         /// </summary>
-        public MsObject BicServer { get; set; }
+        public SuitObject BicServer { get; set; }
         /// <summary>
         /// Current Instance
         /// </summary>
@@ -160,7 +160,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public bool ShowDone { get; set; }
         /// <summary>
-        /// If this MsHost runs like a shell that will not exit UNLESS user input exit command.
+        /// If this SuitHost runs like a shell that will not exit UNLESS user input exit command.
         /// </summary>
         public bool ShellMode { get; set; } = false;
 
@@ -226,23 +226,23 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <summary>
-        /// Initialize the current instance, if it is a MsClient, or implements IIoInteractive or ICommandInteractive.
+        /// Initialize the current instance, if it is a SuitClient, or implements IIOInteractive or ICommandInteractive.
         /// </summary>
         public void WorkInstanceInit()
         {
-            (WorkInstance as IIoInteractive)?.SetIo(Io);
+            (WorkInstance as IIOInteractive)?.SetIO(IO);
             (WorkInstance as ICommandInteractive)?.SetCommandHandler(RunCommand);
         }
 
         private void NotifyAllOk() 
         {
-            if (UseTraceBack && ShowDone) Io.WriteLine(Lang.Done, OutputType.AllOk);
+            if (UseTraceBack && ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
         }
 
 
         private void NotifyError(string errorDescription)
         {
-            if (UseTraceBack) Io.WriteLine(errorDescription, OutputType.Error);
+            if (UseTraceBack) IO.WriteLine(errorDescription, OutputType.Error);
             else throw new Exception(errorDescription);
         }
 
@@ -252,8 +252,8 @@ namespace PlasticMetal.MobileSuit
             {
                 Prompt = (WorkInstance as IInfoProvider)?.Text
                          ?? (WorkType != null
-                             ? (WorkType.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
-                                ?? new MsInfoAttribute(WorkInstance.GetType().Name)).Text
+                             ? (WorkType.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
+                                ?? new SuitInfoAttribute(WorkInstance.GetType().Name)).Text
                              : prompt);
             }
             else
@@ -271,8 +271,8 @@ namespace PlasticMetal.MobileSuit
                     sb.Append($".{InstanceNameString[i]}");
             sb.Append(']');
             Prompt = sb.ToString();
-            if (Io is null) return;
-            Io.ConsoleTitle = Prompt;
+            if (IO is null) return;
+            IO.ConsoleTitle = Prompt;
         }
 
 
@@ -297,8 +297,8 @@ namespace PlasticMetal.MobileSuit
             UpdatePrompt(prompt);
             for (;;)
             {
-                if (!Io.IsInputRedirected) Io.Write(Prompt + '>', OutputType.Prompt);
-                var traceBack = RunCommand(prompt, Io.ReadLine());
+                if (!IO.IsInputRedirected) IO.Write(Prompt + '>', OutputType.Prompt);
+                var traceBack = RunCommand(prompt, IO.ReadLine());
                 switch (traceBack)
                 {
                     case TraceBack.OnExit:
@@ -319,9 +319,9 @@ namespace PlasticMetal.MobileSuit
             }
         }
         /// <summary>
-        /// Run some MsCommands in current environment, until one of them returns a non-AllOK TraceBack.
+        /// Run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
-        /// <param name="scripts">MsCommands</param>
+        /// <param name="scripts">SuitCommands</param>
         /// <returns>The TraceBack of the last executed command.</returns>
         public TraceBack RunScripts(IEnumerable<string> scripts)
         {
@@ -335,9 +335,9 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Asynchronously run some MsCommands in current environment, until one of them returns a non-AllOK TraceBack.
+        /// Asynchronously run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
-        /// <param name="scripts">MsCommands</param>
+        /// <param name="scripts">SuitCommands</param>
         /// <returns>The TraceBack of the last executed command.</returns>
         public async Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts)
         {
@@ -353,9 +353,9 @@ namespace PlasticMetal.MobileSuit
 
         private TraceBack RunCommand(string prompt, string? cmd)
         {
-            if (string.IsNullOrEmpty(cmd) && Io.IsInputRedirected && ShellMode)
+            if (string.IsNullOrEmpty(cmd) && IO.IsInputRedirected && ShellMode)
             {
-                Io.ResetInput();
+                IO.ResetInput();
                 return TraceBack.AllOk;
             }
 
@@ -376,7 +376,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
-                Io.Error.WriteLine(e.ToString());
+                IO.Error.WriteLine(e.ToString());
                 traceBack = TraceBack.InvalidCommand;
             }
 

@@ -10,6 +10,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
         /// <summary>
         /// The information provided.
         /// </summary>
-        [MsIgnorable] string Text { get; }
+        [SuitIgnore] string Text { get; }
     }
 }

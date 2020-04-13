@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PlasticMetal.MobileSuit" Version="1.2.0" />
+    <ProjectReference Include="..\MobileSuit\MobileSuit.csproj" />
   </ItemGroup>
 
 </Project>

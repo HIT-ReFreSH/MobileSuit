@@ -12,15 +12,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
     /// <returns>TraceBack of this Command</returns>
     public delegate TraceBack CommandHandler(string prompt, string? cmd);
     /// <summary>
-    /// Represents that an object is interactive to MsHost's command handler.
+    /// Represents that an object is interactive to SuitHost's command handler.
     /// </summary>
     public interface ICommandInteractive
     {
         /// <summary>
-        /// Provides Interface for MsHost to set commandHandler
+        /// Provides Interface for SuitHost to set commandHandler
         /// </summary>
-        /// <param name="commandHandler">MsHost's command handler.</param>
-        [MsIgnorable]
+        /// <param name="commandHandler">SuitHost's command handler.</param>
+        [SuitIgnore]
         void SetCommandHandler(CommandHandler commandHandler);
     }
 }

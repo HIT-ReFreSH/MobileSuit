@@ -7,21 +7,21 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     /// An Standard mobile suit client driver-class.
     /// </summary>
-    public abstract class MsClient : IInfoProvider, IIoInteractive, ICommandInteractive
+    public abstract class SuitClient : IInfoProvider, IIOInteractive, ICommandInteractive
     {
         /// <summary>
-        /// The CommandHandler for current MsHost.
+        /// The CommandHandler for current SuitHost.
         /// </summary>
         protected CommandHandler RunCommand { get; private set; }
         /// <summary>
-        /// The IoServer for current MsHost.
+        /// The IOServer for current SuitHost.
         /// </summary>
-        protected IoServer Io { get; private set; }
+        protected IOServer IO { get; private set; }
         /// <summary>
-        /// Provides Interface for MsHost to set commandHandler
+        /// Provides Interface for SuitHost to set commandHandler
         /// </summary>
-        /// <param name="commandHandler">MsHost's command handler.</param>
-        [MsIgnorable]
+        /// <param name="commandHandler">SuitHost's command handler.</param>
+        [SuitIgnore]
         public void SetCommandHandler(CommandHandler commandHandler)
         {
             RunCommand = commandHandler;
@@ -31,13 +31,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// </summary>
         public string Text { get; protected set; }
         /// <summary>
-        /// Provides Interface for MsHost to set ioServer
+        /// Provides Interface for SuitHost to set ioServer
         /// </summary>
-        /// <param name="io">MsHost's IoServer.</param>
-        [MsIgnorable]
-        public void SetIo(IoServer io)
+        /// <param name="io">SuitHost's IOServer.</param>
+        [SuitIgnore]
+        public void SetIO(IOServer io)
         {
-            Io = io;
+            IO = io;
         }
     }
 }

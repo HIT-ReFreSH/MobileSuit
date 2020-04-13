@@ -4,15 +4,15 @@ using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
 {
     /// <summary>
-    /// Represents that an object is interactive to MsHost's IoServer
+    /// Represents that an object is interactive to SuitHost's IOServer
     /// </summary>
-    public interface IIoInteractive
+    public interface IIOInteractive
     {
         /// <summary>
-        /// Provides Interface for MsHost to set ioServer
+        /// Provides Interface for SuitHost to set ioServer
         /// </summary>
-        /// <param name="io">MsHost's IoServer.</param>
-        [MsIgnorable]
-        void SetIo(IoServer io);
+        /// <param name="io">SuitHost's IOServer.</param>
+        [SuitIgnore]
+        void SetIO(IOServer io);
     }
 }

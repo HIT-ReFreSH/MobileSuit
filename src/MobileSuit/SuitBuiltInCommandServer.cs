@@ -17,40 +17,40 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     /// Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class MsBicServer : IMsBicServer
+    public class SuitBuiltInCommandServer : ISuitBuiltInCommandServer
     {
         /// <summary>
-        /// Initialize a BicServer with the given MsHost.
+        /// Initialize a BicServer with the given SuitHost.
         /// </summary>
-        /// <param name="host">The given MsHost.</param>
-        public MsBicServer(MsHost host)
+        /// <param name="host">The given SuitHost.</param>
+        public SuitBuiltInCommandServer(SuitHost host)
         {
             Host = host;
-            HostRef = new MsObject(Host);
+            HostRef = new SuitObject(Host);
         }
         /// <summary>
         /// Host
         /// </summary>
-        protected MsHost Host { get; }
+        protected SuitHost Host { get; }
         /// <summary>
-        /// MsObject for Host
+        /// SuitObject for Host
         /// </summary>
-        protected MsObject HostRef { get; }
+        protected SuitObject HostRef { get; }
         /// <summary>
-        /// Host's current MsObject.
+        /// Host's current SuitObject.
         /// </summary>
-        protected MsObject Current
+        protected SuitObject Current
         {
             get => Host.Current;
             set => Host.Current = value;
         }
         /// <summary>
-        /// Enter a member of Current MsObject
+        /// Enter a member of Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Et")]
-        [MsInfo(typeof(BicInfo), "Enter")]
+        [SuitAlias("Et")]
+        [SuitInfo(typeof(BicInfo), "Enter")]
         public virtual TraceBack Enter(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
@@ -67,17 +67,17 @@ namespace PlasticMetal.MobileSuit
                 }
 
             Host.InstanceNameString.Add(a0L);
-            Host.Current = nextObject.MsValue;
+            Host.Current = nextObject.SuitValue;
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Leave the Current MsObject, Back to its Parent
+        /// Leave the Current SuitObject, Back to its Parent
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Lv")]
-        [MsInfo(typeof(BicInfo), "Leave")]
+        [SuitAlias("Lv")]
+        [SuitInfo(typeof(BicInfo), "Leave")]
         public virtual TraceBack Leave(string[] args)
         {
             if (Host.InstanceStack.Count == 0 || Current is null)
@@ -88,11 +88,11 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Create and Enter a new MsObject
+        /// Create and Enter a new SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo(typeof(BicInfo), "New")]
+        [SuitInfo(typeof(BicInfo), "New")]
         public virtual TraceBack New(string[] args)
         {
             if (Host.Assembly == null) return TraceBack.InvalidCommand;
@@ -105,36 +105,36 @@ namespace PlasticMetal.MobileSuit
 
             Host.InstanceNameStringStack.Push(Host.InstanceNameString);
             Host.InstanceStack.Push(Host.Current);
-            Host.Current = new MsObject(Host.Assembly.CreateInstance(type.FullName));
-            Host.Prompt = (Host.WorkType?.GetCustomAttribute(typeof(MsInfoAttribute)) as MsInfoAttribute
-                           ?? new MsInfoAttribute(args[0])).Text;
+            Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
+            Host.Prompt = (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
+                           ?? new SuitInfoAttribute(args[0])).Text;
             Host.InstanceNameString = new List<string> { $"(new {Host.WorkType?.Name})" };
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Show Certain Member's Value of the Current MsObject
+        /// Show Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Vw")]
-        [MsInfo(typeof(BicInfo),"View")]
+        [SuitAlias("Vw")]
+        [SuitInfo(typeof(BicInfo),"View")]
         public virtual TraceBack View(string[] args)
         {
             if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
             if (r != TraceBack.AllOk || obj is null) return r;
-            Host.Io.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
+            Host.IO.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Run MsScript at the given location
+        /// Run SuitScript at the given location
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Rs")]
-        [MsInfo(typeof(BicInfo), "RunScript")]
+        [SuitAlias("Rs")]
+        [SuitInfo(typeof(BicInfo), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
             if (args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
@@ -147,37 +147,37 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Sw")]
-        [MsInfo(typeof(BicInfo), "SwitchOption")]
+        [SuitAlias("Sw")]
+        [SuitInfo(typeof(BicInfo), "SwitchOption")]
         public virtual TraceBack SwitchOption(string[] args)
         {
             return ModifyValue(HostRef, args);
         }
         /// <summary>
-        /// Modify Certain Member's Value of the Current MsObject
+        /// Modify Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Md")]
-        [MsInfo(typeof(BicInfo),"ModifyMember")]
+        [SuitAlias("Md")]
+        [SuitInfo(typeof(BicInfo),"ModifyMember")]
         public virtual TraceBack ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
         }
         /// <summary>
-        /// Show Members of the Current MsObject
+        /// Show Members of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Ls")]
-        [MsInfo(typeof(BicInfo), "List")]
+        [SuitAlias("Ls")]
+        [SuitInfo(typeof(BicInfo), "List")]
         public virtual TraceBack List(string[] args)
         {
             if (Host.Current == null) return TraceBack.InvalidCommand;
-            Host.Io.WriteLine(Lang.Members, OutputType.ListTitle);
+            Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
-            Host.Io.WriteLine();
-            Host.Io.WriteLine(new (string, ConsoleColor?)[]
+            Host.IO.WriteLine();
+            Host.IO.WriteLine(new (string, ConsoleColor?)[]
             {
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
@@ -186,19 +186,19 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// Free the Current MsObject, and back to the last one.
+        /// Free the Current SuitObject, and back to the last one.
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Fr")]
-        [MsInfo(typeof(BicInfo), "Free")]
+        [SuitAlias("Fr")]
+        [SuitInfo(typeof(BicInfo), "Free")]
         public virtual TraceBack Free(string[] args)
         {
             if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
             Host.Prompt = "";
             Current = Host.InstanceStack.Count != 0
                 ? Host.InstanceStack.Pop()
-                : new MsObject(null);
+                : new SuitObject(null);
             Host.InstanceNameString = Host.InstanceNameStringStack.Count != 0
                 ? Host.InstanceNameStringStack.Pop()
                 : new List<string>();
@@ -209,22 +209,22 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo(typeof(BicInfo), "Exit")]
+        [SuitInfo(typeof(BicInfo), "Exit")]
         public virtual TraceBack Exit(string[] args)
         {
             return TraceBack.OnExit;
         }
         /// <summary>
-        /// Show Current MsObject Information
+        /// Show Current SuitObject Information
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Me")]
-        [MsInfo(typeof(BicInfo), "This")]
+        [SuitAlias("Me")]
+        [SuitInfo(typeof(BicInfo), "This")]
         public virtual TraceBack This(string[] args)
         {
             if (Host.WorkType == null) return TraceBack.InvalidCommand;
-            Host.Io.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
+            Host.IO.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -232,19 +232,19 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Echo")]
-        [MsInfo(typeof(BicInfo), "Print")]
+        [SuitAlias("Echo")]
+        [SuitInfo(typeof(BicInfo), "Print")]
         public virtual TraceBack Print(string[] args)
         {
             if (args.Length == 1)
             {
-                Host.Io.WriteLine("");
+                Host.IO.WriteLine("");
                 return TraceBack.AllOk;
             }
 
             var argumentSb = new StringBuilder();
             foreach (var arg in args[1..]) argumentSb.Append($"{arg} ");
-            Host.Io.WriteLine(argumentSb.ToString()[..^1]);
+            Host.IO.WriteLine(argumentSb.ToString()[..^1]);
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -252,19 +252,19 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("EchoX")]
-        [MsInfo(typeof(BicInfo), "SuperPrint")]
+        [SuitAlias("EchoX")]
+        [SuitInfo(typeof(BicInfo), "SuperPrint")]
         public virtual TraceBack SuperPrint(string[] args)
         {
             if (args.Length <= 2)
             {
-                Host.Io.WriteLine("");
+                Host.IO.WriteLine("");
                 return TraceBack.AllOk;
             }
 
             var argumentSb = new StringBuilder();
             foreach (var arg in args[1..]) argumentSb.Append($"{arg} ");
-            Host.Io.WriteLine(argumentSb.ToString()[..^1],
+            Host.IO.WriteLine(argumentSb.ToString()[..^1],
                 args[1].ToLower() switch
                 {
                     "p" => OutputType.Prompt,
@@ -293,8 +293,8 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsAlias("Sh")]
-        [MsInfo(typeof(BicInfo), "Shell")]
+        [SuitAlias("Sh")]
+        [SuitInfo(typeof(BicInfo), "Shell")]
         public virtual TraceBack Shell(string[] args)
         {
             if (args.Length < 2) return TraceBack.InvalidCommand;
@@ -313,7 +313,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
-                Host.Io.WriteLine($"{Lang.Error}{e}", OutputType.Error);
+                Host.IO.WriteLine($"{Lang.Error}{e}", OutputType.Error);
                 return TraceBack.ObjectNotFound;
             }
 
@@ -324,13 +324,13 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [MsInfo(typeof(BicInfo), "Help")]
+        [SuitInfo(typeof(BicInfo), "Help")]
         public virtual TraceBack Help(string[] args)
         {
-            Host.Io.WriteLine(Lang.Bic, OutputType.ListTitle);
+            Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
-            Host.Io.WriteLine();
-            Host.Io.WriteLine(new (string, ConsoleColor?)[]
+            Host.IO.WriteLine();
+            Host.IO.WriteLine(new (string, ConsoleColor?)[]
             {
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
@@ -340,12 +340,12 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
         /// <summary>
-        /// List members of a MsObject
+        /// List members of a SuitObject
         /// </summary>
-        /// <param name="obj">The MsObject, Maybe this BicServer.</param>
-        protected void ListMembers(MsObject obj)
+        /// <param name="obj">The SuitObject, Maybe this BicServer.</param>
+        protected void ListMembers(SuitObject obj)
         {
-            Host.Io.AppendWriteLinePrefix();
+            Host.IO.AppendWriteLinePrefix();
 
             foreach (var (name, member) in obj)
             {
@@ -358,7 +358,7 @@ namespace PlasticMetal.MobileSuit
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in member.Aliases) aliasesExpression.Append($"/{alias}");
-                Host.Io.WriteLine(new (string, ConsoleColor?)[]
+                Host.IO.WriteLine(new (string, ConsoleColor?)[]
                 {
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
@@ -366,7 +366,7 @@ namespace PlasticMetal.MobileSuit
                 });
             }
 
-            Host.Io.SubtractWriteLinePrefix();
+            Host.IO.SubtractWriteLinePrefix();
         }
         /// <summary>
         /// Asynchronously read all lines in a text file into a IAsyncEnumerable
@@ -387,12 +387,12 @@ namespace PlasticMetal.MobileSuit
 
         }
         /// <summary>
-        /// Modify member's value of a MsObject
+        /// Modify member's value of a SuitObject
         /// </summary>
-        /// <param name="obj">the MsObject, maybe MsHost.</param>
+        /// <param name="obj">the SuitObject, maybe SuitHost.</param>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        protected TraceBack ModifyValue(MsObject obj, string[] args)
+        protected TraceBack ModifyValue(SuitObject obj, string[] args)
         {
             if (args.Length == 0) return TraceBack.InvalidCommand;
             var r = obj.TryGetField(args[0], out var target);
@@ -436,7 +436,7 @@ namespace PlasticMetal.MobileSuit
                     break;
                 }
 
-            Host.Io.WriteLine($"{a0L}:{val}->{newVal}", ConsoleColor.Green);
+            Host.IO.WriteLine($"{a0L}:{val}->{newVal}", ConsoleColor.Green);
             return TraceBack.AllOk;
         }
     }

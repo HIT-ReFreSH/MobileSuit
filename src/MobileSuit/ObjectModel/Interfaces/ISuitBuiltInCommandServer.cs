@@ -9,38 +9,38 @@
     /// <summary>
     /// Built-In-Command Server's Model.
     /// </summary>
-    public interface IMsBicServer
+    public interface ISuitBuiltInCommandServer
     {
         /// <summary>
-        /// Enter a member of Current MsObject
+        /// Enter a member of Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack Enter(string[] args);
 
         /// <summary>
-        /// Leave the Current MsObject, Back to its Parent
+        /// Leave the Current SuitObject, Back to its Parent
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack Leave(string[] args);
 
         /// <summary>
-        /// Create and Enter a new MsObject
+        /// Create and Enter a new SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack New(string[] args);
 
         /// <summary>
-        /// Show Certain Member's Value of the Current MsObject
+        /// Show Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack View(string[] args);
 
         /// <summary>
-        /// Run MsScript at the given location
+        /// Run SuitScript at the given location
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -54,21 +54,21 @@
         TraceBack SwitchOption(string[] args);
 
         /// <summary>
-        /// Modify Certain Member's Value of the Current MsObject
+        /// Modify Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack ModifyMember(string[] args);
 
         /// <summary>
-        /// Show Members of the Current MsObject
+        /// Show Members of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack List(string[] args);
 
         /// <summary>
-        /// Free the Current MsObject, and back to the last one.
+        /// Free the Current SuitObject, and back to the last one.
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -82,7 +82,7 @@
         TraceBack Exit(string[] args);
 
         /// <summary>
-        /// Show Current MsObject Information
+        /// Show Current SuitObject Information
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>

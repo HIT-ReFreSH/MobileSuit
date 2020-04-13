@@ -7,13 +7,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
     /// Stores a parser which convert string argument to certain type.
     /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false)]
-    public sealed class MsParserAttribute : Attribute
+    public sealed class SuitParserAttribute : Attribute
     {
         /// <summary>
         /// Initialize with a parser.
         /// </summary>
         /// <param name="converter">The parser which convert string argument to certain type.</param>
-        public MsParserAttribute(Converter<string, object> converter)
+        public SuitParserAttribute(Converter<string, object> converter)
         {
             Converter = converter;
         }

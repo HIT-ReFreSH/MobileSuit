@@ -8,16 +8,16 @@ using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     /// <summary>
-    /// Whether a member is MsIgnore or not.
+    /// Whether a member is SuitIgnore or not.
     /// </summary>
     public enum MemberAccess
     {
         /// <summary>
-        /// With MsIgnore Attribute
+        /// With SuitIgnore Attribute
         /// </summary>
         Hidden = 0,
         /// <summary>
-        /// Without MsIgnore Attribute
+        /// Without SuitIgnore Attribute
         /// </summary>
         VisibleToUser = 1
     }
@@ -44,28 +44,28 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         FieldWithoutInfo = -2
     }
     /// <summary>
-    /// A MsObject's member.
+    /// A SuitObject's member.
     /// </summary>
     public abstract class ObjectMember : IExecutable
     {
         /// <summary>
-        /// Initialize a ObjectMember with MsObject's instance and the member's information.
+        /// Initialize a ObjectMember with SuitObject's instance and the member's information.
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="member"></param>
         protected ObjectMember(object? instance, MemberInfo member)
         {
-            Access = member.GetCustomAttribute<MsIgnorableAttribute>() is null
+            Access = member.GetCustomAttribute<SuitIgnoreAttribute>() is null
                 ? MemberAccess.VisibleToUser
                 : MemberAccess.Hidden;
             AbsoluteName = member.Name;
             Aliases = (
-                from a in member.GetCustomAttributes<MsAliasAttribute>(true)
+                from a in member.GetCustomAttributes<SuitAliasAttribute>(true)
                 select a.Text).ToArray();
             Instance = instance;
         }
         /// <summary>
-        /// Whether this member is MsIgnore or not.
+        /// Whether this member is SuitIgnore or not.
         /// </summary>
         public MemberAccess Access { get; }
         /// <summary>

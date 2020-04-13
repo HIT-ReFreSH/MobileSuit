@@ -8,13 +8,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
     /// Stores the information of a member to be displayed.
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class MsInfoAttribute : Attribute, IInfoProvider
+    public sealed class SuitInfoAttribute : Attribute, IInfoProvider
     {
         /// <summary>
         /// Initialize with the information.
         /// </summary>
         /// <param name="text">The information.</param>
-        public MsInfoAttribute(string text)
+        public SuitInfoAttribute(string text)
         {
             Text = text;
         }
@@ -26,7 +26,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
         /// </summary>
         /// <param name="resourceType">Resource file's type</param>
         /// <param name="key">The resource key</param>
-        public MsInfoAttribute(Type resourceType, string key)
+        public SuitInfoAttribute(Type resourceType, string key)
         {
             Text = new ResourceManager(resourceType).GetString(key);
         }

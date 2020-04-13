@@ -39,9 +39,7 @@ namespace PlasticMetal.MobileSuit {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = 
-                        new global::System.Resources.ResourceManager("PlasticMetal.MobileSuit.BicInfo", 
-                            typeof(BicInfo).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PlasticMetal.MobileSuit.BicInfo", typeof(BicInfo).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,7 +61,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Enter a member of Current MsObject 的本地化字符串。
+        ///   查找类似 Enter a member of Current SuitObject 的本地化字符串。
         /// </summary>
         public static string Enter {
             get {
@@ -81,7 +79,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Free the Current MsObject, and back to the last one. 的本地化字符串。
+        ///   查找类似 Free the Current SuitObject, and back to the last one. 的本地化字符串。
         /// </summary>
         public static string Free {
             get {
@@ -99,7 +97,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Leave the Current MsObject, Back to its Parent 的本地化字符串。
+        ///   查找类似 Leave the Current SuitObject, Back to its Parent 的本地化字符串。
         /// </summary>
         public static string Leave {
             get {
@@ -108,7 +106,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Show Members of the Current MsObject 的本地化字符串。
+        ///   查找类似 Show Members of the Current SuitObject 的本地化字符串。
         /// </summary>
         public static string List {
             get {
@@ -117,7 +115,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Modify Certain Member&apos;s Value of the Current MsObject 的本地化字符串。
+        ///   查找类似 Modify Certain Member&apos;s Value of the Current SuitObject 的本地化字符串。
         /// </summary>
         public static string ModifyMember {
             get {
@@ -126,7 +124,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Create and Enter a new MsObject 的本地化字符串。
+        ///   查找类似 Create and Enter a new SuitObject 的本地化字符串。
         /// </summary>
         public static string New {
             get {
@@ -144,7 +142,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Run MsScript at the given location 的本地化字符串。
+        ///   查找类似 Run SuitScript at the given location 的本地化字符串。
         /// </summary>
         public static string RunScript {
             get {
@@ -180,7 +178,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Show Current MsObject Information 的本地化字符串。
+        ///   查找类似 Show Current SuitObject Information 的本地化字符串。
         /// </summary>
         public static string This {
             get {
@@ -189,7 +187,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Show Certain Member&apos;s Value of the Current MsObject 的本地化字符串。
+        ///   查找类似 Show Certain Member&apos;s Value of the Current SuitObject 的本地化字符串。
         /// </summary>
         public static string View {
             get {
