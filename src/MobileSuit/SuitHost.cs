@@ -53,12 +53,12 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(IOServer? io = null, ISuitBuiltInServer? bicServer=null)
+        public SuitHost(IOServer? io = null, ISuitBuiltInCommandServer? bicServer=null)
         {
             Assembly = Assembly.GetCallingAssembly();
             IO = io ?? GeneralIO;
             Current = new SuitObject(null);
-            BicServer = new SuitObject(bicServer ?? new SuitBuiltInServer(this));
+            BicServer = new SuitObject(bicServer ?? new SuitBuiltInCommandServer(this));
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="instance">The instance for Mobile Suit to drive.</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(object? instance, IOServer? io = null, ISuitBuiltInServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(object? instance, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
             Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
@@ -80,7 +80,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="assembly">The given Assembly.</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(Assembly assembly, IOServer? io = null, ISuitBuiltInServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(Assembly assembly, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
             Assembly = assembly;
             Current = new SuitObject(null);
@@ -91,7 +91,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="type">The given Type</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(Type type, IOServer? io = null, ISuitBuiltInServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(Type type, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
         {
             if (type?.FullName == null)
             {
