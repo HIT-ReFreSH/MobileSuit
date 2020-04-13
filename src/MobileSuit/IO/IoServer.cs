@@ -40,12 +40,12 @@ namespace PlasticMetal.MobileSuit.IO
     /// <summary>
     /// A entity, which serves the input/output of a mobile suit.
     /// </summary>
-    public partial class IoServer
+    public partial class IOServer
     {
         /// <summary>
-        /// Default color settings for IoServer.
+        /// Default color settings for IOServer.
         /// </summary>
-        public static IoServerColorSetting DefaultColorSetting { get; } = new IoServerColorSetting
+        public static IOServerColorSetting DefaultColorSetting { get; } = new IOServerColorSetting
         {
             DefaultColor = ConsoleColor.White,
             ErrorColor = ConsoleColor.Red,
@@ -56,14 +56,14 @@ namespace PlasticMetal.MobileSuit.IO
             InformationColor = ConsoleColor.DarkBlue
         };
         /// <summary>
-        /// Color settings for this IoServer. (default DefaultColorSetting)
+        /// Color settings for this IOServer. (default DefaultColorSetting)
         /// </summary>
-        public IoServerColorSetting ColorSetting { get; set; }
+        public IOServerColorSetting ColorSetting { get; set; }
 
         /// <summary>
-        /// Initialize a IoServer.
+        /// Initialize a IOServer.
         /// </summary>
-        public IoServer()
+        public IOServer()
         {
             ColorSetting = DefaultColorSetting;
             Input = Console.In;
@@ -80,9 +80,9 @@ namespace PlasticMetal.MobileSuit.IO
             set => Console.Title = value;
         }
         /// <summary>
-        /// Color settings of a IoServer.
+        /// Color settings of a IOServer.
         /// </summary>
-        public struct IoServerColorSetting
+        public struct IOServerColorSetting
         {
             /// <summary>
             /// Default color. For OutputType.Default
@@ -112,6 +112,32 @@ namespace PlasticMetal.MobileSuit.IO
             /// Prompt Color. For OutputType.Information
             /// </summary>
             public ConsoleColor InformationColor { get; set; }
+
+
+            /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+            /// <param name="other">The object to compare with the current instance.</param>
+            /// <returns>
+            /// <see langword="true" /> if <paramref name="other" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
+            public bool Equals(IOServerColorSetting other)
+            {
+                return DefaultColor == other.DefaultColor && PromptColor == other.PromptColor && ErrorColor == other.ErrorColor && AllOkColor == other.AllOkColor && ListTitleColor == other.ListTitleColor && CustomInformationColor == other.CustomInformationColor && InformationColor == other.InformationColor;
+            }
+
+            /// <inheritdoc />
+            public override int GetHashCode()
+            {
+                return HashCode.Combine((int) DefaultColor, (int) PromptColor, (int) ErrorColor, (int) AllOkColor, (int) ListTitleColor, (int) CustomInformationColor, (int) InformationColor);
+            }
+
+            public static bool operator ==(IOServerColorSetting left, IOServerColorSetting right)
+            {
+                return left.Equals(right);
+            }
+
+            public static bool operator !=(IOServerColorSetting left, IOServerColorSetting right)
+            {
+                return !(left == right);
+            }
         }
     }
 }

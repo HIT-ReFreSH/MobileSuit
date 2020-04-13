@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace PlasticMetal.MobileSuit.IO
 {
 
-    public partial class IoServer
+    public partial class IOServer
     {
         /// <summary>
-        /// Check if this IoServer's error stream is redirected (NOT stderr)
+        /// Check if this IOServer's error stream is redirected (NOT stderr)
         /// </summary>
         public bool IsErrorRedirected => !Console.Error.Equals(Error);
         /// <summary>
-        /// Check if this IoServer's output stream is redirected (NOT stdout)
+        /// Check if this IOServer's output stream is redirected (NOT stdout)
         /// </summary>
         public bool IsOutputRedirected => !Console.Out.Equals(Output);
         /// <summary>
@@ -73,14 +73,14 @@ namespace PlasticMetal.MobileSuit.IO
         }
 
         /// <summary>
-        /// Reset this IoServer's error stream to stderr
+        /// Reset this IOServer's error stream to stderr
         /// </summary>
         public void ResetError()
         {
             Error = Console.Error;
         }
         /// <summary>
-        /// Reset this IoServer's output stream to stdout
+        /// Reset this IOServer's output stream to stdout
         /// </summary>
         public void ResetOutput()
         {

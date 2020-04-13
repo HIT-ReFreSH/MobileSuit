@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    partial class IoServer
+    partial class IOServer
     {
         /// <summary>
         /// Input stream (default stdin)
         /// </summary>
         public TextReader Input { get; set; }
         /// <summary>
-        /// Checks if this IoServer's input stream is redirected (NOT stdin)
+        /// Checks if this IOServer's input stream is redirected (NOT stdin)
         /// </summary>
         public bool IsInputRedirected => !Console.In.Equals(Input);
         /// <summary>
-        /// Reset this IoServer's input stream to stdin
+        /// Reset this IOServer's input stream to stdin
         /// </summary>
         public void ResetInput() => Input = Console.In;
         /// <summary>

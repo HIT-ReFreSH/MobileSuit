@@ -3,16 +3,16 @@
 namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
 {
     /// <summary>
-    /// Alias for a MsObject's member
+    /// Alias for a SuitObject's member
     /// </summary>
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-    public sealed class MsAliasAttribute : Attribute
+    public sealed class SuitAliasAttribute : Attribute
     {
         /// <summary>
-        /// Initialize a MsAlias with its text.
+        /// Initialize a SuitAlias with its text.
         /// </summary>
         /// <param name="text">The alias.</param>
-        public MsAliasAttribute(string text)
+        public SuitAliasAttribute(string text)
         {
             Text = text;
         }

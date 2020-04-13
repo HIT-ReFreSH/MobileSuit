@@ -6,7 +6,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
     /// Represents that this member should be ignored by Mobile Suit.
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class MsIgnorableAttribute : Attribute
+    public sealed class SuitIgnoreAttribute : Attribute
     {
     }
 }

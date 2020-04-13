@@ -3,18 +3,18 @@ using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
 namespace MobileSuitDemo
 {
-    public class Client : MsClient
+    public class Client : SuitClient
     {
-        [MsAlias("H")]
-        [MsInfo("hello command.")]
+        [SuitAlias("H")]
+        [SuitInfo("hello command.")]
         public void Hello()
         {
-            Io.WriteLine("Hello! MobileSuit!");
+            IO.WriteLine("Hello! MobileSuit!");
         }
 
         public string Bye(string name)
         {
-            Io.WriteLine($"Bye! {name}");
+            IO.WriteLine($"Bye! {name}");
             return "bye";
         }
     }

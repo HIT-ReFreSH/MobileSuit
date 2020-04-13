@@ -10,7 +10,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     /// Represents an object in Mobile Suit.
     /// </summary>
-    public class MsObject : IExecutable, IEnumerable<(string, ObjectMember)>
+    public class SuitObject : IExecutable, IEnumerable<(string, ObjectMember)>
     {
         private const BindingFlags Flags = BindingFlags.IgnoreCase
                                            | BindingFlags.DeclaredOnly
@@ -19,10 +19,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                                            | BindingFlags.Static;
 
         /// <summary>
-        /// Initialize a MsObject with an instance.
+        /// Initialize a SuitObject with an instance.
         /// </summary>
-        /// <param name="instance">The instance that this MsObject represents.</param>
-        public MsObject(object? instance)
+        /// <param name="instance">The instance that this SuitObject represents.</param>
+        public SuitObject(object? instance)
         {
             Instance = instance;
             var type = instance?.GetType();
@@ -37,7 +37,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 });
         }
         /// <summary>
-        /// The instance that this MsObject represents.
+        /// The instance that this SuitObject represents.
         /// </summary>
         public object? Instance { get; }
 
@@ -123,7 +123,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
         private class Enumerator : IEnumerator<(string, ObjectMember)>
         {
-            public Enumerator(MsObject obj)
+            public Enumerator(SuitObject obj)
             {
                 ObjectEnumerator = obj.MembersAbs.GetEnumerator();
             }

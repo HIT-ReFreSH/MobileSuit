@@ -7,11 +7,11 @@ using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     /// <summary>
-    /// Stands for MsObject's members which can also be MsObjects (Field/Property).
+    /// Stands for SuitObject's members which can also be SuitObjects (Field/Property).
     /// </summary>
     public class ContainerMember : ObjectMember
     {
-        private MsObject? _msValue;
+        private SuitObject? _msValue;
         /// <summary>
         /// Initialize an Object's Member with its instance and Property's information.
         /// </summary>
@@ -22,8 +22,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             GetValue = info.GetValue;
             SetValue = info.SetValue;
             ValueType = info.PropertyType;
-            Converter = info.GetCustomAttribute<MsParserAttribute>()?.Converter;
-            InfoA = info.GetCustomAttribute<MsInfoAttribute>();
+            Converter = info.GetCustomAttribute<SuitParserAttribute>()?.Converter;
+            InfoA = info.GetCustomAttribute<SuitInfoAttribute>();
             Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
@@ -37,15 +37,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             GetValue = info.GetValue;
             SetValue = info.SetValue;
             ValueType = info.FieldType;
-            Converter = info.GetCustomAttribute<MsParserAttribute>()?.Converter;
-            InfoA = info.GetCustomAttribute<MsInfoAttribute>();
+            Converter = info.GetCustomAttribute<SuitParserAttribute>()?.Converter;
+            InfoA = info.GetCustomAttribute<SuitInfoAttribute>();
             Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
         /// <summary>
-        /// Member's value as a MsObject
+        /// Member's value as a SuitObject
         /// </summary>
-        public MsObject MsValue => _msValue ??= new MsObject(Value);
+        public SuitObject SuitValue => _msValue ??= new SuitObject(Value);
         /// <summary>
         /// Type of Member's value
         /// </summary>
@@ -64,7 +64,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         public Converter<string, object>? Converter { get; }
         private Func<object?, object?> GetValue { get; }
         private Action<object?, object?> SetValue { get; }
-        private MsInfoAttribute? InfoA { get; }
+        private SuitInfoAttribute? InfoA { get; }
 
         /// <summary>
         /// Execute this object.
@@ -76,10 +76,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             if (InfoA is null)
             {
                 var infoSb = new StringBuilder();
-                if (MsValue.MemberCount > 0)
+                if (SuitValue.MemberCount > 0)
                 {
                     var i = 0;
-                    foreach (var (name, member) in MsValue)
+                    foreach (var (name, member) in SuitValue)
                     {
                         infoSb.Append(name);
                         infoSb.Append(member switch
@@ -104,7 +104,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 Information = InfoA.Text;
             }
 
-            return MsValue
+            return SuitValue
                 .Execute(args);
         }
     }
