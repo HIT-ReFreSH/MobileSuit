@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Resources;
+using System.Threading;
 using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
@@ -28,7 +29,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
         /// <param name="key">The resource key</param>
         public SuitInfoAttribute(Type resourceType, string key)
         {
-            Text = new ResourceManager(resourceType).GetString(key);
+            Text = new ResourceManager(resourceType).GetString(key,Thread.CurrentThread.CurrentCulture);
         }
         /// <summary>
         /// The information.
