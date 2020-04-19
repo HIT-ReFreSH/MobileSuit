@@ -53,7 +53,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(IOServer? io = null, ISuitBuiltInCommandServer? bicServer=null)
+        public SuitHost(IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null)
         {
             Assembly = Assembly.GetCallingAssembly();
             IO = io ?? GeneralIO;
@@ -67,7 +67,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="instance">The instance for Mobile Suit to drive.</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(object? instance, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(object? instance, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io, bicServer)
         {
             Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
@@ -80,7 +80,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="assembly">The given Assembly.</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(Assembly assembly, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(Assembly assembly, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io, bicServer)
         {
             Assembly = assembly;
             Current = new SuitObject(null);
@@ -91,7 +91,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="type">The given Type</param>
         /// <param name="io">Optional. An IOServer, GeneralIO as default.</param>
         /// <param name="bicServer">Optional. An BicServer, new MobileSuit.SuitBicServer as default.</param>
-        public SuitHost(Type type, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io,bicServer)
+        public SuitHost(Type type, IOServer? io = null, ISuitBuiltInCommandServer? bicServer = null) : this(io, bicServer)
         {
             if (type?.FullName == null)
             {
@@ -234,7 +234,7 @@ namespace PlasticMetal.MobileSuit
             (WorkInstance as ICommandInteractive)?.SetCommandHandler(RunCommand);
         }
 
-        private void NotifyAllOk() 
+        private void NotifyAllOk()
         {
             if (UseTraceBack && ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
         }
@@ -280,12 +280,20 @@ namespace PlasticMetal.MobileSuit
         {
             var cmdList = SplitCommandLine(cmd);
             if (cmdList is null) return TraceBack.InvalidCommand;
-            return BicServer.Execute(cmdList);
+            return BicServer.Execute(cmdList, out _);
         }
 
         private TraceBack RunObject(string[] args)
         {
-            return Current.Execute(args);
+            var r = Current.Execute(args, out var result);
+            if (r == TraceBack.AllOk)
+                IO.WriteLine(new (string, ConsoleColor?)[]
+                {
+                (Lang.ReturnValue, IO.ColorSetting.PromptColor),
+                (result.ToString(), null)
+                });
+            return r;
+
         }
         /// <summary>
         /// Run a Mobile Suit with Prompt.
@@ -295,7 +303,7 @@ namespace PlasticMetal.MobileSuit
         public int Run(string prompt)
         {
             UpdatePrompt(prompt);
-            for (;;)
+            for (; ; )
             {
                 if (!IO.IsInputRedirected) IO.Write(Prompt + '>', OutputType.Prompt);
                 var traceBack = RunCommand(prompt, IO.ReadLine());
@@ -368,7 +376,7 @@ namespace PlasticMetal.MobileSuit
                 if (cmd[0] == '@')
                 {
                     args[0] = args[0][1..];
-                    traceBack = BicServer.Execute(args);
+                    traceBack = BicServer.Execute(args, out _);
                 }
 
                 traceBack = RunObject(args);

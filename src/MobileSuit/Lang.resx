@@ -144,6 +144,9 @@
   <data name="ObjectNotFound" xml:space="preserve">
     <value>Object Not Found!</value>
   </data>
+  <data name="ReturnValue" xml:space="preserve">
+    <value>Return Value&gt;</value>
+  </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>

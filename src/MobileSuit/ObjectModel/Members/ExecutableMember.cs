@@ -42,7 +42,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// <param name="method">Object's member(Method)'s information</param>
         public ExecutableMember(object? instance, MethodBase method) : base(instance, method)
         {
-            Invoke = method.Invoke;
+            if (method == null) throw new Exception();
+            InvokeMember = method.Invoke;
             Parameters = method.GetParameters();
 
             if (Parameters.Length == 0)
@@ -88,7 +89,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                         infoSb.Append(parameter switch
                         {
                             { } when parameter.ParameterType.IsArray => "[]",
-                            { } when !(Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) => "{}",
+                            { } when !(Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) =>
+                            "{}",
                             { HasDefaultValue: true } => $"={parameter.DefaultValue}",
                             _ => ""
                         });
@@ -110,23 +112,37 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         private int MinParameterCount { get; }
         private int NonArrayParameterCount { get; }
         private int MaxParameterCount { get; }
-        private Func<object?, object?[]?, object?> Invoke { get; }
+        private Func<object?, object?[]?, object?> InvokeMember { get; }
+
+        private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
+        {
+            returnValue= InvokeMember(Instance, null);
+            return (returnValue as TraceBack?) ?? TraceBack.AllOk;
+
+
+        }
 
         private bool CanFitTo(int argumentCount)
         => argumentCount >= MinParameterCount
                    && argumentCount <= MaxParameterCount;
+
         /// <summary>
         /// Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
+        /// <param name="returnValue"></param>
         /// <returns>TraceBack result of this object.</returns>
-        public override TraceBack Execute(string[] args)
+        public override TraceBack Execute(string[] args, out object? returnValue)
         {
-            if (!CanFitTo(args.Length)) return TraceBack.ObjectNotFound;
+            if (args == null || !CanFitTo(args.Length))
+            {
+                returnValue = null;
+                return TraceBack.ObjectNotFound;
+            }
             if (TailParameterType == TailParameterType.NoParameter)
             {
-                Invoke(Instance, null);
-                return TraceBack.AllOk;
+
+                return Execute(Instance, null, out returnValue);
             }
 
             var pass = new object?[Parameters.Length];
@@ -141,8 +157,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
 
             if (TailParameterType == TailParameterType.Normal)
             {
-                Invoke(Instance, pass);
-                return TraceBack.AllOk;
+                return Execute(Instance, pass, out returnValue);
             }
 
             if (TailParameterType == TailParameterType.DynamicParameter)
@@ -153,10 +168,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 if (dynamicParameter?.Parse(i < args.Length ? args[i..] : null) ?? false)
                 {
                     pass[i] = dynamicParameter;
-                    Invoke(Instance, pass);
-                    return TraceBack.AllOk;
+
+                    return Execute(Instance, pass, out returnValue);
                 }
 
+                returnValue = null;
                 return TraceBack.InvalidCommand;
             }
 
@@ -177,8 +193,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                                                ?? typeof(string), 0);
             }
 
-            Invoke(Instance, pass);
-            return TraceBack.AllOk;
+            return Execute(Instance, pass, out returnValue);
         }
     }
 }

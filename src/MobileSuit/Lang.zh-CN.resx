@@ -144,6 +144,9 @@
   <data name="ObjectNotFound" xml:space="preserve">
     <value>找不到对象！</value>
   </data>
+  <data name="ReturnValue" xml:space="preserve">
+    <value>返回值&gt;</value>
+  </data>
   <data name="Unknown" xml:space="preserve">
     <value>未知</value>
   </data>

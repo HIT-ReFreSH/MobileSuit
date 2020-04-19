@@ -70,8 +70,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
+        /// <param name="returnValue"></param>
         /// <returns>TraceBack result of this object.</returns>
-        public override TraceBack Execute(string[] args)
+        public override TraceBack Execute(string[] args, out object? returnValue)
         {
             if (InfoA is null)
             {
@@ -105,7 +106,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             }
 
             return SuitValue
-                .Execute(args);
+                .Execute(args, out returnValue);
         }
     }
 }

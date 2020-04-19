@@ -67,23 +67,33 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             return GetEnumerator();
         }
+
         /// <summary>
         /// Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
+        /// <param name="returnValue"></param>
         /// <returns>TraceBack result of this object.</returns>
-        public TraceBack Execute(string[] args)
+        public TraceBack Execute(string[] args, out object? returnValue)
         {
-            if (args.Length == 0) return TraceBack.ObjectNotFound;
+            if (args.Length == 0)
+            {
+                returnValue = null;
+                return TraceBack.ObjectNotFound;
+            }
             args[0] = args[0].ToLower();
-            if (!Members.ContainsKey(args[0])) return TraceBack.ObjectNotFound;
+            if (!Members.ContainsKey(args[0]))
+            {
+                returnValue = null;
+                return TraceBack.ObjectNotFound;
+            }
             foreach (var (_, exe) in Members[args[0]])
             {
-                var r = exe.Execute(args[1..]);
+                var r = exe.Execute(args[1..], out returnValue);
                 if (r == TraceBack.ObjectNotFound) continue;
                 return r;
             }
-
+            returnValue = null;
             return TraceBack.ObjectNotFound;
         }
 

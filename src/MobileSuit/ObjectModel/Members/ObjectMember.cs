@@ -94,11 +94,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// Instance which contains this member.
         /// </summary>
         public object? Instance { get; set; }
+
         /// <summary>
         /// Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
+        /// <param name="returnValue"></param>
         /// <returns>TraceBack result of this object.</returns>
-        public abstract TraceBack Execute(string[] args);
+        public abstract TraceBack Execute(string[] args, out object? returnValue);
     }
 }

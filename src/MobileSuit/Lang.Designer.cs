@@ -142,6 +142,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Return Value&gt; 的本地化字符串。
+        /// </summary>
+        internal static string ReturnValue {
+            get {
+                return ResourceManager.GetString("ReturnValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Unknown 的本地化字符串。
         /// </summary>
         internal static string Unknown {
