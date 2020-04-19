@@ -276,9 +276,8 @@ namespace PlasticMetal.MobileSuit
         }
 
 
-        private TraceBack RunBuildInCommand(string cmd)
+        private TraceBack RunBuildInCommand(string[] cmdList)
         {
-            var cmdList = SplitCommandLine(cmd);
             if (cmdList is null) return TraceBack.InvalidCommand;
             return BicServer.Execute(cmdList, out _);
         }
@@ -376,11 +375,11 @@ namespace PlasticMetal.MobileSuit
                 if (cmd[0] == '@')
                 {
                     args[0] = args[0][1..];
-                    traceBack = BicServer.Execute(args, out _);
+                    traceBack = RunBuildInCommand(args);
                 }
 
                 traceBack = RunObject(args);
-                if (traceBack == TraceBack.ObjectNotFound) traceBack = RunBuildInCommand(cmd);
+                if (traceBack == TraceBack.ObjectNotFound) traceBack = RunBuildInCommand(args);
             }
             catch (Exception e)
             {
