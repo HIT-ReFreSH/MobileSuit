@@ -362,7 +362,7 @@ namespace PlasticMetal.MobileSuit
                 {
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
-                    ($"{lChar}{member.Information}{rChar}", infoColor)
+                    ($" {lChar}{member.Information}{rChar}", infoColor)
                 });
             }
 

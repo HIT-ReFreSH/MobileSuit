@@ -6,7 +6,9 @@ namespace MobileSuitDemo
     {
         static void Main(string[] args)
         {
-            new PlasticMetal.MobileSuit.SuitHost(new Client()).Run();
+            var ms= new PlasticMetal.MobileSuit.SuitHost(new Client());
+            ms.UseTraceBack = false;
+                ms.Run();
         }
     }
 }

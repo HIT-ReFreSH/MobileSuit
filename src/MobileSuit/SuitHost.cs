@@ -285,7 +285,7 @@ namespace PlasticMetal.MobileSuit
         private TraceBack RunObject(string[] args)
         {
             var r = Current.Execute(args, out var result);
-            if (r == TraceBack.AllOk)
+            if (!(result is null) && r == TraceBack.AllOk)
                 IO.WriteLine(new (string, ConsoleColor?)[]
                 {
                 (Lang.ReturnValue, IO.ColorSetting.PromptColor),
@@ -304,7 +304,7 @@ namespace PlasticMetal.MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                if (!IO.IsInputRedirected) IO.Write(Prompt + '>', OutputType.Prompt);
+                if (!IO.IsInputRedirected) IO.Write(Prompt + '>'+' ', OutputType.Prompt);
                 var traceBack = RunCommand(prompt, IO.ReadLine());
                 switch (traceBack)
                 {

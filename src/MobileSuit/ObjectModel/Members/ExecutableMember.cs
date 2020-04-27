@@ -116,7 +116,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
 
         private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
         {
-            returnValue= InvokeMember(Instance, null);
+            returnValue = InvokeMember(instance, args);
             return (returnValue as TraceBack?) ?? TraceBack.AllOk;
 
 
