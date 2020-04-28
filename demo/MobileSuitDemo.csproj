@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MobileSuit\MobileSuit.csproj" />
+    <ProjectReference Include="..\src\MobileSuit.csproj" />
   </ItemGroup>
 
 </Project>

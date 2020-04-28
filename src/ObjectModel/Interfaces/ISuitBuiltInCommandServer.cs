@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack New(string[] args);
+        TraceBack CreateObject(string[] args);
 
         /// <summary>
         /// Show Certain Member's Value of the Current SuitObject
@@ -79,7 +79,7 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Exit(string[] args);
+        TraceBack ExitSuit(string[] args);
 
         /// <summary>
         /// Show Current SuitObject Information

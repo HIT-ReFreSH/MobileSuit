@@ -1,9 +1,9 @@
 ﻿#nullable enable
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using System;
 using System.Reflection;
 using System.Text;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -97,7 +97,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                         infoSb.Append(',');
                     }
 
-                    Information = infoSb.ToString()[..^1];
+                    Information = infoSb.ToString(CultureInfo.CurrentCulture)[..^1];
                 }
             }
             else

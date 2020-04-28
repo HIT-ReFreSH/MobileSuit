@@ -1,16 +1,17 @@
 ﻿#nullable enable
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -53,14 +54,16 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "Enter")]
         public virtual TraceBack Enter(string[] args)
         {
-            if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
+            if (args == null || (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null))
                 return TraceBack.InvalidCommand;
+
             var r = Current.TryGetField(args[0], out var nextObject);
             if (r != TraceBack.AllOk || nextObject is null) return r;
+
             Host.InstanceStack.Push(Host.Current);
-            var a0L = args[0].ToLower();
+            var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
             foreach (var name in nextObject.FriendlyNames)
-                if (a0L == name.ToLower())
+                if (a0L == name.ToLower(CultureInfo.CurrentCulture))
                 {
                     args[0] = name;
                     break;
@@ -93,9 +96,10 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitInfo(typeof(BicInfo), "New")]
-        public virtual TraceBack New(string[] args)
+        [SuitAlias("New")]
+        public virtual TraceBack CreateObject(string[] args)
         {
-            if (Host.Assembly == null) return TraceBack.InvalidCommand;
+            if (Host.Assembly == null || args == null) return TraceBack.InvalidCommand;
 
             var type =
                 Host.Assembly.GetType(args[0], false, true)
@@ -108,7 +112,8 @@ namespace PlasticMetal.MobileSuit
             Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
             Host.Prompt = (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
                            ?? new SuitInfoAttribute(args[0])).Text;
-            Host.InstanceNameString = new List<string> { $"(new {Host.WorkType?.Name})" };
+            Host.InstanceNameString.Clear();
+            Host.InstanceNameString.Add($"(new {Host.WorkType?.Name})");
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
@@ -118,10 +123,10 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Vw")]
-        [SuitInfo(typeof(BicInfo),"View")]
+        [SuitInfo(typeof(BicInfo), "View")]
         public virtual TraceBack View(string[] args)
         {
-            if (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
+            if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
             if (r != TraceBack.AllOk || obj is null) return r;
@@ -137,8 +142,8 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
-            if (args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
-            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]));
+            if (args == null || (args.Length <= 1 || !File.Exists(args[1]))) return TraceBack.InvalidCommand;
+            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]),true,Path.GetFileNameWithoutExtension(args[1]));
             t.Wait();
             return t.Result;
         }
@@ -159,7 +164,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Md")]
-        [SuitInfo(typeof(BicInfo),"ModifyMember")]
+        [SuitInfo(typeof(BicInfo), "ModifyMember")]
         public virtual TraceBack ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
@@ -177,12 +182,12 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(new (string, ConsoleColor?)[]
-            {
+            Host.IO.WriteLine(IOServer.CreateContentArray
+            (
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
-            }, OutputType.AllOk);
+            ), OutputType.AllOk);
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -199,9 +204,10 @@ namespace PlasticMetal.MobileSuit
             Current = Host.InstanceStack.Count != 0
                 ? Host.InstanceStack.Pop()
                 : new SuitObject(null);
-            Host.InstanceNameString = Host.InstanceNameStringStack.Count != 0
-                ? Host.InstanceNameStringStack.Pop()
-                : new List<string>();
+            Host.InstanceNameString.Clear();
+            if (Host.InstanceNameStringStack.Count != 0)
+                Host.InstanceNameString.AddRange(Host.InstanceNameStringStack.Pop());
+
             return TraceBack.AllOk;
         }
         /// <summary>
@@ -210,7 +216,8 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitInfo(typeof(BicInfo), "Exit")]
-        public virtual TraceBack Exit(string[] args)
+        [SuitAlias("Exit")]
+        public virtual TraceBack ExitSuit(string[] args)
         {
             return TraceBack.OnExit;
         }
@@ -236,7 +243,7 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "Print")]
         public virtual TraceBack Print(string[] args)
         {
-            if (args.Length == 1)
+            if (args == null || args.Length == 1)
             {
                 Host.IO.WriteLine("");
                 return TraceBack.AllOk;
@@ -256,7 +263,7 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "SuperPrint")]
         public virtual TraceBack SuperPrint(string[] args)
         {
-            if (args.Length <= 2)
+            if (args == null || args.Length <= 2)
             {
                 Host.IO.WriteLine("");
                 return TraceBack.AllOk;
@@ -265,7 +272,7 @@ namespace PlasticMetal.MobileSuit
             var argumentSb = new StringBuilder();
             foreach (var arg in args[1..]) argumentSb.Append($"{arg} ");
             Host.IO.WriteLine(argumentSb.ToString()[..^1],
-                args[1].ToLower() switch
+                args[1].ToLower(CultureInfo.CurrentCulture) switch
                 {
                     "p" => OutputType.Prompt,
                     "prompt" => OutputType.Prompt,
@@ -282,7 +289,7 @@ namespace PlasticMetal.MobileSuit
                     _ => OutputType.Default
                 },
                 typeof(ConsoleColor).GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(
-                        c => string.Equals(c.Name.ToLower(), args[1].ToLower(),
+                        c => string.Equals(c.Name.ToLower(CultureInfo.CurrentCulture), args[1].ToLower(CultureInfo.CurrentCulture),
                             StringComparison.CurrentCultureIgnoreCase))
                     ?.GetValue(null) as ConsoleColor?
             );
@@ -297,7 +304,7 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "Shell")]
         public virtual TraceBack Shell(string[] args)
         {
-            if (args.Length < 2) return TraceBack.InvalidCommand;
+            if (args == null || args.Length < 2) return TraceBack.InvalidCommand;
             var proc = new Process { StartInfo = { UseShellExecute = true, FileName = args[1] } };
             if (args.Length > 2)
             {
@@ -313,6 +320,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
+                if (!Host.UseTraceBack) throw;
                 Host.IO.WriteLine($"{Lang.Error}{e}", OutputType.Error);
                 return TraceBack.ObjectNotFound;
             }
@@ -330,24 +338,25 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(new (string, ConsoleColor?)[]
-            {
+            Host.IO.WriteLine(IOServer.CreateContentArray
+            (
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
                 (Lang.BicExp2,
                     null)
-            }, OutputType.AllOk);
+            ), OutputType.AllOk);
             return TraceBack.AllOk;
         }
         /// <summary>
         /// List members of a SuitObject
         /// </summary>
-        /// <param name="obj">The SuitObject, Maybe this BicServer.</param>
-        protected void ListMembers(SuitObject obj)
+        /// <param name="suitObject">The SuitObject, Maybe this BicServer.</param>
+        protected void ListMembers(SuitObject suitObject)
         {
+            if (suitObject == null) return;
             Host.IO.AppendWriteLinePrefix();
 
-            foreach (var (name, member) in obj)
+            foreach (var (name, member) in suitObject)
             {
                 var (infoColor, lChar, rChar) = member.Type switch
                 {
@@ -358,12 +367,12 @@ namespace PlasticMetal.MobileSuit
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in member.Aliases) aliasesExpression.Append($"/{alias}");
-                Host.IO.WriteLine(new (string, ConsoleColor?)[]
-                {
+                Host.IO.WriteLine(IOServer.CreateContentArray
+                (
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
                     ($" {lChar}{member.Information}{rChar}", infoColor)
-                });
+                ));
             }
 
             Host.IO.SubtractWriteLinePrefix();
@@ -373,14 +382,14 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="fileName">The file's name.</param>
         /// <returns>The file's content</returns>
-        protected async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
+        protected static async IAsyncEnumerable<string?> ReadTextFileAsync(string fileName)
         {
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            for (;;)
+            for (; ; )
             {
-                var r= await reader.ReadLineAsync();
+                var r = await reader.ReadLineAsync().ConfigureAwait(false);
                 yield return r;
                 if (r is null) break;
             }
@@ -389,36 +398,36 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// Modify member's value of a SuitObject
         /// </summary>
-        /// <param name="obj">the SuitObject, maybe SuitHost.</param>
+        /// <param name="suitObject">the SuitObject, maybe SuitHost.</param>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        protected TraceBack ModifyValue(SuitObject obj, string[] args)
+        protected TraceBack ModifyValue(SuitObject suitObject, string[] args)
         {
-            if (args.Length == 0) return TraceBack.InvalidCommand;
-            var r = obj.TryGetField(args[0], out var target);
+            if (args == null || args.Length == 0 || suitObject == null) return TraceBack.InvalidCommand;
+            var r = suitObject.TryGetField(args[0], out var target);
             if (r != TraceBack.AllOk || target?.Value is null) return r;
             string val, newVal;
             if (args.Length == 1)
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
                 var currentBool = (bool)target.Value;
-                val = currentBool.ToString();
+                val = currentBool.ToString(CultureInfo.CurrentCulture);
                 currentBool = !currentBool;
-                newVal = currentBool.ToString();
+                newVal = currentBool.ToString(CultureInfo.CurrentCulture);
                 target.Value = currentBool;
             }
             else if (target.ValueType == typeof(bool))
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
                 var currentBool = (bool)target.Value;
-                val = currentBool.ToString();
-                var setV = args[1].ToLower();
+                val = currentBool.ToString(CultureInfo.CurrentCulture);
+                var setV = args[1].ToLower(CultureInfo.CurrentCulture);
                 currentBool = setV switch
                 {
                     { } when setV[0] == 't' => true,
                     _ => false
                 };
-                newVal = currentBool.ToString();
+                newVal = currentBool.ToString(CultureInfo.CurrentCulture);
                 target.Value = currentBool;
             }
             else
@@ -428,9 +437,9 @@ namespace PlasticMetal.MobileSuit
                 newVal = args[1];
             }
 
-            var a0L = args[0].ToLower();
+            var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
             foreach (var name in target.FriendlyNames)
-                if (a0L == name.ToLower())
+                if (a0L == name.ToLower(CultureInfo.CurrentCulture))
                 {
                     args[0] = name;
                     break;

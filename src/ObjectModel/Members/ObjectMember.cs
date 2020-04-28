@@ -1,9 +1,9 @@
 ﻿#nullable enable
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -81,7 +81,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// <summary>
         /// Absolute name, and aliases.
         /// </summary>
-        public IEnumerable<string> FriendlyNames => new[] {AbsoluteName}.Union(Aliases);
+        public IEnumerable<string> FriendlyNames => new[] { AbsoluteName }.Union(Aliases);
         /// <summary>
         /// Aliases of this member.
         /// </summary>

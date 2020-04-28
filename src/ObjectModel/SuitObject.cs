@@ -1,9 +1,9 @@
 ﻿#nullable enable
+using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
+using PlasticMetal.MobileSuit.ObjectModel.Members;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
-using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -81,7 +81,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 returnValue = null;
                 return TraceBack.ObjectNotFound;
             }
-            args[0] = args[0].ToLower();
+            args[0] = args[0].ToLower(CultureInfo.CurrentCulture);
             if (!Members.ContainsKey(args[0]))
             {
                 returnValue = null;
@@ -103,14 +103,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 return;
             if (objMember.AbsoluteName.Length > 4
                 && (objMember.AbsoluteName[..4] == "get_" || objMember.AbsoluteName[..4] == "set_")) return;
-            var lAbsName = objMember.AbsoluteName.ToLower();
+            var lAbsName = objMember.AbsoluteName.ToLower(CultureInfo.CurrentCulture);
             if (MembersAbs.ContainsKey(lAbsName)) MembersAbs[lAbsName].Add((objMember.AbsoluteName, objMember));
-            else MembersAbs.Add(lAbsName, new List<(string, ObjectMember)> {(objMember.AbsoluteName, objMember)});
+            else MembersAbs.Add(lAbsName, new List<(string, ObjectMember)> { (objMember.AbsoluteName, objMember) });
             foreach (var name in objMember.FriendlyNames)
             {
-                var lName = name.ToLower();
+                var lName = name.ToLower(CultureInfo.CurrentCulture);
                 if (Members.ContainsKey(lName)) Members[lName].Add((name, objMember));
-                else Members.Add(lName, new List<(string, ObjectMember)> {(name, objMember)});
+                else Members.Add(lName, new List<(string, ObjectMember)> { (name, objMember) });
             }
         }
         /// <summary>
@@ -121,7 +121,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>TraceBack of the find operation.</returns>
         public TraceBack TryGetField(string name, out ContainerMember? field)
         {
-            if (!Members.ContainsKey(name.ToLower()))
+            if (!Members.ContainsKey(name.ToLower(CultureInfo.CurrentCulture)))
             {
                 field = null;
                 return TraceBack.ObjectNotFound;

@@ -36,7 +36,7 @@ namespace PlasticMetal.MobileSuit.IO
             {
                 ResetWriteLinePrefix();
                 PrefixBuilder.Append(value);
-                PrefixLengthStack.Push(value.Length);
+                PrefixLengthStack.Push(value?.Length ?? 0);
             }
         }
 
@@ -99,7 +99,7 @@ namespace PlasticMetal.MobileSuit.IO
         public void AppendWriteLinePrefix(string str = "\t")
         {
             PrefixBuilder.Append(str);
-            PrefixLengthStack.Push(str.Length);
+            PrefixLengthStack.Push(str?.Length ?? 0);
         }
         /// <summary>
         /// Subtract a str from Prefix, usually used to decrease indentation
@@ -143,7 +143,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
-        public async Task WriteAsync(string content, ConsoleColor? customColor) => await WriteAsync(content, default, customColor);
+        public async Task WriteAsync(string content, ConsoleColor? customColor) => await WriteAsync(content, default, customColor).ConfigureAwait(false);
         /// <summary>
         /// Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
@@ -159,13 +159,13 @@ namespace PlasticMetal.MobileSuit.IO
 
                 var dColor = Console.ForegroundColor;
                 Console.ForegroundColor = SelectColor(type, customColor);
-                await Output.WriteAsync(content);
+                await Output.WriteAsync(content).ConfigureAwait(false);
                 Console.ForegroundColor = dColor;
             }
             else
             {
                 if (type != OutputType.Prompt)
-                    await Output.WriteAsync(content);
+                    await Output.WriteAsync(content).ConfigureAwait(false);
             }
         }
         /// <summary>
@@ -211,6 +211,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public void WriteLine(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
         {
+            if (contentArray == null) return;
             if (!IsOutputRedirected)
             {
                 if (type == OutputType.Error) Console.Beep();
@@ -225,7 +226,7 @@ namespace PlasticMetal.MobileSuit.IO
                     Console.Write(content);
                 }
 
-                Console.Write("\n");
+                Console.WriteLine();
                 Console.ForegroundColor = dColor;
             }
             else
@@ -243,13 +244,14 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         /// Asynchronously writes a blank line to output stream.
         /// </summary>
-        public async Task WriteLineAsync() => await WriteLineAsync("");
+        public async Task WriteLineAsync() => await WriteLineAsync("").ConfigureAwait(false);
         /// <summary>
         /// Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console.</param>
-        public async Task WriteLineAsync(string content, ConsoleColor customColor) => await WriteLineAsync(content, default, customColor);
+        public async Task WriteLineAsync(string content, ConsoleColor customColor)
+            => await WriteLineAsync(content, default, customColor).ConfigureAwait(false);
         /// <summary>
         /// Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
@@ -264,7 +266,7 @@ namespace PlasticMetal.MobileSuit.IO
                 if (type == OutputType.Error) Console.Beep();
                 var dColor = Console.ForegroundColor;
                 Console.ForegroundColor = SelectColor(type, customColor);
-                await Output.WriteLineAsync(Prefix + content);
+                await Output.WriteLineAsync(Prefix + content).ConfigureAwait(false);
                 Console.ForegroundColor = dColor;
             }
             else
@@ -275,7 +277,7 @@ namespace PlasticMetal.MobileSuit.IO
                 sb.Append(GetLabel(type));
                 sb.Append(Prefix);
                 sb.Append(content);
-                await Output.WriteLineAsync(sb.ToString());
+                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
         /// <summary>
@@ -286,20 +288,21 @@ namespace PlasticMetal.MobileSuit.IO
         public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
         {
+            if (contentArray == null) return;
             if (!IsOutputRedirected)
             {
                 if (type == OutputType.Error) Console.Beep();
                 var dColor = Console.ForegroundColor;
                 var defaultColor = Console.ForegroundColor = SelectColor(type);
                 Console.ForegroundColor = defaultColor;
-                await Output.WriteAsync(Prefix);
+                await Output.WriteAsync(Prefix).ConfigureAwait(false);
                 foreach (var (content, color) in contentArray)
                 {
                     Console.ForegroundColor = color ?? defaultColor;
-                    await Output.WriteAsync(content);
+                    await Output.WriteAsync(content).ConfigureAwait(false);
                 }
 
-                await Output.WriteAsync("\n");
+                await Output.WriteLineAsync().ConfigureAwait(false);
                 Console.ForegroundColor = dColor;
             }
             else
@@ -311,9 +314,17 @@ namespace PlasticMetal.MobileSuit.IO
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
-                await Output.WriteLineAsync(sb.ToString());
+                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
+
+        /// <summary>
+        /// provides packaging for ContentArray
+        /// </summary>
+        /// <param name="contents">ContentArray</param>
+        /// <returns>packaged ContentArray</returns>
+        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents) => contents;
+
         /// <summary>
         /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
         /// </summary>
@@ -322,20 +333,21 @@ namespace PlasticMetal.MobileSuit.IO
         public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
         {
+            if (contentArray == null) return;
             if (!IsOutputRedirected)
             {
                 if (type == OutputType.Error) Console.Beep();
                 var dColor = Console.ForegroundColor;
                 var defaultColor = Console.ForegroundColor = SelectColor(type);
                 Console.ForegroundColor = defaultColor;
-                await Output.WriteAsync(Prefix);
+                await Output.WriteAsync(Prefix).ConfigureAwait(false);
                 await foreach (var (content, color) in contentArray)
                 {
                     Console.ForegroundColor = color ?? defaultColor;
-                    await Output.WriteAsync(content);
+                    await Output.WriteAsync(content).ConfigureAwait(false);
                 }
 
-                await Output.WriteAsync("\n");
+                await Output.WriteAsync("\n").ConfigureAwait(false);
                 Console.ForegroundColor = dColor;
             }
             else
@@ -347,7 +359,7 @@ namespace PlasticMetal.MobileSuit.IO
 
                 await foreach (var (content, _) in contentArray) sb.Append(content);
 
-                await Output.WriteLineAsync(sb.ToString());
+                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
 

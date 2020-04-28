@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSuit", "MobileSuit\MobileSuit.csproj", "{C0F0C424-A276-45CB-BAFA-558F9B26AB2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSuit", "src\MobileSuit.csproj", "{C0F0C424-A276-45CB-BAFA-558F9B26AB2B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSuitDemo", "MobileSuitDemo\MobileSuitDemo.csproj", "{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSuitDemo", "demo\MobileSuitDemo.csproj", "{8F594CD5-1D7B-4A3B-8440-CD564380CEA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

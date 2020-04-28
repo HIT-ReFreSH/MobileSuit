@@ -1,15 +1,16 @@
 ﻿#nullable enable
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using static System.String;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -106,15 +107,15 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// Stack of Instance, created in this Mobile Suit.
         /// </summary>
-        public Stack<SuitObject> InstanceStack { get; set; } = new Stack<SuitObject>();
+        public Stack<SuitObject> InstanceStack { get; } = new Stack<SuitObject>();
         /// <summary>
         /// String of Current Instance's Name.
         /// </summary>
-        public List<string> InstanceNameString { get; set; } = new List<string>();
+        public List<string> InstanceNameString { get; } = new List<string>();
         /// <summary>
         /// Stack of Instance's Name Strings.
         /// </summary>
-        public Stack<List<string>> InstanceNameStringStack { get; set; } = new Stack<List<string>>();
+        public Stack<List<string>> InstanceNameStringStack { get; } = new Stack<List<string>>();
         /// <summary>
         /// If the prompt contains the reference (For example, System.Console.Title) of current instance.
         /// </summary>
@@ -166,7 +167,7 @@ namespace PlasticMetal.MobileSuit
 
         private static string[]? SplitCommandLine(string commandLine)
         {
-            if (string.IsNullOrEmpty(commandLine)) return null;
+            if (IsNullOrEmpty(commandLine)) return null;
             string submit;
             var l = new List<string>();
             var separating = false;
@@ -209,7 +210,7 @@ namespace PlasticMetal.MobileSuit
                         break;
                     case ' ':
                         submit = commandLine[left..right];
-                        if (!string.IsNullOrEmpty(submit))
+                        if (!IsNullOrEmpty(submit))
                             l.Add(submit);
                         left = right + 1;
                         separationPrefix = false;
@@ -220,7 +221,7 @@ namespace PlasticMetal.MobileSuit
                 }
 
             submit = commandLine[left..right];
-            if (!string.IsNullOrEmpty(submit))
+            if (!IsNullOrEmpty(submit))
                 l.Add(submit);
             return l.ToArray();
         }
@@ -248,7 +249,7 @@ namespace PlasticMetal.MobileSuit
 
         private void UpdatePrompt(string prompt)
         {
-            if (prompt == "" && WorkInstance != null)
+            if (IsNullOrEmpty(prompt) && WorkInstance != null)
             {
                 Prompt = (WorkInstance as IInfoProvider)?.Text
                          ?? (WorkType != null
@@ -271,8 +272,7 @@ namespace PlasticMetal.MobileSuit
                     sb.Append($".{InstanceNameString[i]}");
             sb.Append(']');
             Prompt = sb.ToString();
-            if (IO is null) return;
-            IO.ConsoleTitle = Prompt;
+
         }
 
 
@@ -286,11 +286,11 @@ namespace PlasticMetal.MobileSuit
         {
             var r = Current.Execute(args, out var result);
             if (!(result is null) && r == TraceBack.AllOk)
-                IO.WriteLine(new (string, ConsoleColor?)[]
-                {
+                IO.WriteLine(IOServer.CreateContentArray
+                (
                 (Lang.ReturnValue, IO.ColorSetting.PromptColor),
                 (result.ToString(), null)
-                });
+                ));
             return r;
 
         }
@@ -304,7 +304,7 @@ namespace PlasticMetal.MobileSuit
             UpdatePrompt(prompt);
             for (; ; )
             {
-                if (!IO.IsInputRedirected) IO.Write(Prompt + '>'+' ', OutputType.Prompt);
+                if (!IO.IsInputRedirected) IO.Write(Prompt + '>' + ' ', OutputType.Prompt);
                 var traceBack = RunCommand(prompt, IO.ReadLine());
                 switch (traceBack)
                 {
@@ -319,24 +319,54 @@ namespace PlasticMetal.MobileSuit
                     case TraceBack.MemberNotFound:
                         NotifyError(Lang.MemberNotFound);
                         break;
+                    case TraceBack.InvalidCommand:
+                        NotifyError(Lang.InvalidCommand);
+                        break;
                     default:
                         NotifyError(Lang.InvalidCommand);
                         break;
                 }
             }
         }
+
         /// <summary>
         /// Run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
         /// <param name="scripts">SuitCommands</param>
+        /// <param name="withPrompt">if this run contains prompt, or silent</param>
+        /// <param name="scriptName">name of these scripts</param>
         /// <returns>The TraceBack of the last executed command.</returns>
-        public TraceBack RunScripts(IEnumerable<string> scripts)
+        public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
         {
+            var i = 1;
+            if (scripts == null) return TraceBack.AllOk;
             foreach (var script in scripts)
             {
                 if (script is null) break;
+                if (withPrompt)
+                {
+                    IO.WriteLine(IOServer.CreateContentArray(
+                        ("<Script:", IO.ColorSetting.PromptColor),
+                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
+                        (">", IO.ColorSetting.PromptColor),
+                        (script, null)));
+                }
                 var traceBack = RunCommand("", script);
-                if (traceBack != TraceBack.AllOk) return traceBack;
+                if (traceBack != TraceBack.AllOk)
+                {
+                    if (withPrompt)
+                    {
+                        IO.WriteLine(IOServer.CreateContentArray(
+                                ("TraceBack:", null),
+                                (traceBack.ToString(), IO.ColorSetting.InformationColor),
+                                (" at line ", null),
+                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.InformationColor)
+                            ),
+                            OutputType.Error);
+                    }
+                    return traceBack;
+                }
+                i++;
             }
 
             return TraceBack.AllOk;
@@ -345,14 +375,43 @@ namespace PlasticMetal.MobileSuit
         /// Asynchronously run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
         /// <param name="scripts">SuitCommands</param>
+        /// <param name="withPrompt">if this run contains prompt, or silent</param>
+        /// <param name="scriptName">name of these scripts</param>
         /// <returns>The TraceBack of the last executed command.</returns>
-        public async Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts)
+        public async Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false, string? scriptName = null)
         {
+            var i = 1;
+            if (scripts == null) return TraceBack.AllOk;
             await foreach (var script in scripts)
             {
                 if (script is null) break;
+                if (withPrompt)
+                {
+                    IO.WriteLine(IOServer.CreateContentArray(
+                        ("<Script:", IO.ColorSetting.PromptColor),
+                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
+                        (">", IO.ColorSetting.PromptColor),
+                        (script, null)));
+                }
+
                 var traceBack = RunCommand("", script);
-                if (traceBack != TraceBack.AllOk) return traceBack;
+                if (traceBack != TraceBack.AllOk)
+                {
+                    if (withPrompt)
+                    {
+                        IO.WriteLine(IOServer.CreateContentArray(
+                                ("TraceBack:", null),
+                                (traceBack.ToString(), IO.ColorSetting.InformationColor),
+                                (" at line ", null),
+                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.InformationColor)
+                            ),
+                            OutputType.Error);
+                    }
+
+                    return traceBack;
+                }
+
+                i++;
             }
 
             return TraceBack.AllOk;
@@ -360,13 +419,13 @@ namespace PlasticMetal.MobileSuit
 
         private TraceBack RunCommand(string prompt, string? cmd)
         {
-            if (string.IsNullOrEmpty(cmd) && IO.IsInputRedirected && ShellMode)
+            if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && ShellMode)
             {
                 IO.ResetInput();
                 return TraceBack.AllOk;
             }
 
-            if (string.IsNullOrEmpty(cmd)) return TraceBack.AllOk;
+            if (IsNullOrEmpty(cmd)) return TraceBack.AllOk;
             TraceBack traceBack;
             var args = SplitCommandLine(cmd);
             if (args is null) return TraceBack.InvalidCommand;
@@ -383,6 +442,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
+                if (!UseTraceBack) throw;
                 IO.Error.WriteLine(e.ToString());
                 traceBack = TraceBack.InvalidCommand;
             }
