@@ -289,7 +289,7 @@ namespace PlasticMetal.MobileSuit
                 IO.WriteLine(IOServer.CreateContentArray
                 (
                 (Lang.ReturnValue, IO.ColorSetting.PromptColor),
-                (result.ToString(), null)
+                (result.ToString()??"", null)
                 ));
             return r;
 
