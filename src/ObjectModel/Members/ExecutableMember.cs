@@ -2,6 +2,7 @@
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
@@ -97,7 +98,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                         infoSb.Append(',');
                     }
 
-                    Information = infoSb.ToString(CultureInfo.CurrentCulture)[..^1];
+                    Information = infoSb.ToString()[..^1];
                 }
             }
             else

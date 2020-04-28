@@ -12,11 +12,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         /// The CommandHandler for current SuitHost.
         /// </summary>
-        protected CommandHandler RunCommand { get; private set; }
+        protected CommandHandler? RunCommand { get; private set; }
+
         /// <summary>
         /// The IOServer for current SuitHost.
         /// </summary>
-        protected IOServer IO { get; private set; }
+        protected IOServer IO { get; private set; } = SuitHost.GeneralIO;
         /// <summary>
         /// Provides Interface for SuitHost to set commandHandler
         /// </summary>
@@ -26,10 +27,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             RunCommand = commandHandler;
         }
+
         /// <summary>
         /// The information provided.
         /// </summary>
-        public string Text { get; protected set; }
+        public string Text { get; protected set; } = string.Empty;
         /// <summary>
         /// Provides Interface for SuitHost to set ioServer
         /// </summary>

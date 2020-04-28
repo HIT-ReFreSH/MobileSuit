@@ -58,7 +58,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             Access = member.GetCustomAttribute<SuitIgnoreAttribute>() is null
                 ? MemberAccess.VisibleToUser
                 : MemberAccess.Hidden;
-            AbsoluteName = member.Name;
+            AbsoluteName = member?.Name??"";
             Aliases = (
                 from a in member.GetCustomAttributes<SuitAliasAttribute>(true)
                 select a.Text).ToArray();
@@ -85,7 +85,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         /// <summary>
         /// Aliases of this member.
         /// </summary>
-        public string[] Aliases { get; protected set; }
+        public IEnumerable< string> Aliases { get; protected set; }
         /// <summary>
         /// Absolute name of this member.
         /// </summary>

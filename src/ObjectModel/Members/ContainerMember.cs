@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
@@ -97,7 +98,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                         }
                     }
 
-                    Information = infoSb.ToString(CultureInfo.CurrentCulture)[..^1];
+                    Information = infoSb.ToString()[..^1];
                 }
             }
             else

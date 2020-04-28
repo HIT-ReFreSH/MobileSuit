@@ -3,6 +3,7 @@ using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
@@ -76,7 +77,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>TraceBack result of this object.</returns>
         public TraceBack Execute(string[] args, out object? returnValue)
         {
-            if (args.Length == 0)
+            if (args==null|| args.Length == 0)
             {
                 returnValue = null;
                 return TraceBack.ObjectNotFound;
@@ -121,6 +122,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>TraceBack of the find operation.</returns>
         public TraceBack TryGetField(string name, out ContainerMember? field)
         {
+            if (name == null)
+            {
+                field = null;
+                return TraceBack.InvalidCommand;
+            }
             if (!Members.ContainsKey(name.ToLower(CultureInfo.CurrentCulture)))
             {
                 field = null;

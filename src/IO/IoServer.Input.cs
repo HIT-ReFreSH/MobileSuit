@@ -66,7 +66,7 @@ namespace PlasticMetal.MobileSuit.IO
             }
 
             var r = Input.ReadLine();
-            return r == "" ? defaultValue : r;
+            return string.IsNullOrEmpty(r) ? defaultValue : r;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <returns>Content from input stream, null if EOF</returns>
         public async Task<string?> ReadLineAsync(string? prompt, bool newLine,
             ConsoleColor? customPromptColor = null)
-            => await ReadLineAsync(prompt, null, newLine, customPromptColor);
+            => await ReadLineAsync(prompt, null, newLine, customPromptColor).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously reads a line from input stream, with prompt.
@@ -86,7 +86,8 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
         /// <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
-        public async Task<string?> ReadLineAsync(string? prompt, ConsoleColor? customPromptColor) => await ReadLineAsync(prompt, null, false, customPromptColor);
+        public async Task<string?> ReadLineAsync(string? prompt, ConsoleColor? customPromptColor) 
+            => await ReadLineAsync(prompt, null, false, customPromptColor).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
@@ -97,7 +98,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
         public async Task<string?> ReadLineAsync(string? prompt, string? defaultValue,
             ConsoleColor? customPromptColor)
-            => await ReadLineAsync(prompt, defaultValue, false, customPromptColor);
+            => await ReadLineAsync(prompt, defaultValue, false, customPromptColor).ConfigureAwait(false);
 
         /// <summary>
         /// Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
@@ -113,12 +114,12 @@ namespace PlasticMetal.MobileSuit.IO
             if (!string.IsNullOrEmpty(prompt))
             {
                 if (newLine)
-                    await WriteLineAsync(prompt + '>', OutputType.Prompt, customPromptColor);
+                    await WriteLineAsync(prompt + '>', OutputType.Prompt, customPromptColor).ConfigureAwait(false);
                 else
-                    await WriteAsync(prompt + '>', OutputType.Prompt, customPromptColor);
+                    await WriteAsync(prompt + '>', OutputType.Prompt, customPromptColor).ConfigureAwait(false);
             }
 
-            var r = await Input.ReadLineAsync();
+            var r = await Input.ReadLineAsync().ConfigureAwait(false);
             return string.IsNullOrEmpty(r) ? defaultValue : r;
         }
 
@@ -144,6 +145,6 @@ namespace PlasticMetal.MobileSuit.IO
         /// Asynchronously reads all characters from the current position to the end of the input stream and returns them as one string.
         /// </summary>
         /// <returns>All characters from the current position to the end.</returns>
-        public async Task<string> ReadToEndAsync() => await Input.ReadToEndAsync();
+        public async Task<string> ReadToEndAsync() => await Input.ReadToEndAsync().ConfigureAwait(false);
     }
 }
