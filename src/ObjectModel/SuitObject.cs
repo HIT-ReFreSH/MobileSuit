@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 using System.Collections;
 using System.Collections.Generic;

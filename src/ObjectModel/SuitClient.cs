@@ -1,6 +1,5 @@
 ﻿using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -17,7 +16,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         /// The IOServer for current SuitHost.
         /// </summary>
-        protected IOServer IO { get; private set; } = SuitHost.GeneralIO;
+        protected IIOServer IO { get; private set; } = IIOServer.GeneralIO;
         /// <summary>
         /// Provides Interface for SuitHost to set commandHandler
         /// </summary>
@@ -37,7 +36,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// </summary>
         /// <param name="io">SuitHost's IOServer.</param>
         [SuitIgnore]
-        public void SetIO(IOServer io)
+        public void SetIO(IIOServer io)
         {
             IO = io;
         }

@@ -2,7 +2,6 @@
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 using System;
 using System.Collections.Generic;
@@ -18,13 +17,13 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     /// Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class SuitBuiltInCommandServer : ISuitBuiltInCommandServer
+    public class BuiltInCommandServer : IBuiltInCommandServer
     {
         /// <summary>
         /// Initialize a BicServer with the given SuitHost.
         /// </summary>
         /// <param name="host">The given SuitHost.</param>
-        public SuitBuiltInCommandServer(SuitHost host)
+        public BuiltInCommandServer(SuitHost host)
         {
             Host = host;
             HostRef = new SuitObject(Host);
@@ -110,8 +109,9 @@ namespace PlasticMetal.MobileSuit
             Host.InstanceNameStringStack.Push(Host.InstanceNameString);
             Host.InstanceStack.Push(Host.Current);
             Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
-            Host.Prompt = (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
-                           ?? new SuitInfoAttribute(args[0])).Text;
+            Host.Prompt.Update("",  
+                (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
+                                                     ?? new SuitInfoAttribute(args[0])).Text,TraceBack.AllOk);
             Host.InstanceNameString.Clear();
             Host.InstanceNameString.Add($"(new {Host.WorkType?.Name})");
             Host.WorkInstanceInit();
@@ -182,7 +182,7 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IOServer.CreateContentArray
+            Host.IO.WriteLine(IIOServer.CreateContentArray
             (
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
@@ -200,7 +200,8 @@ namespace PlasticMetal.MobileSuit
         public virtual TraceBack Free(string[] args)
         {
             if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
-            Host.Prompt = "";
+            Host.Prompt.Update("",
+                "", TraceBack.AllOk);
             Current = Host.InstanceStack.Count != 0
                 ? Host.InstanceStack.Pop()
                 : new SuitObject(null);
@@ -338,7 +339,7 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IOServer.CreateContentArray
+            Host.IO.WriteLine(IIOServer.CreateContentArray
             (
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
@@ -367,7 +368,7 @@ namespace PlasticMetal.MobileSuit
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in member.Aliases) aliasesExpression.Append($"/{alias}");
-                Host.IO.WriteLine(IOServer.CreateContentArray
+                Host.IO.WriteLine(IIOServer.CreateContentArray
                 (
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),

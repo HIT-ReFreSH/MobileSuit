@@ -2,7 +2,7 @@
 
 #nullable enable
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     /// Represents a command handler in MobileSuit.

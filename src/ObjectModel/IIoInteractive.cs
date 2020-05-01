@@ -1,7 +1,7 @@
 ﻿using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     /// Represents that an object is interactive to SuitHost's IOServer
@@ -13,6 +13,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
         /// </summary>
         /// <param name="io">SuitHost's IOServer.</param>
         [SuitIgnore]
-        void SetIO(IOServer io);
+        void SetIO(IIOServer io);
     }
 }

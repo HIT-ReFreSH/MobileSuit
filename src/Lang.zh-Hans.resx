@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllOK" xml:space="preserve">
+    <value>一切正常</value>
+  </data>
   <data name="Bic" xml:space="preserve">
     <value>内置指令：</value>
   </data>
@@ -126,6 +129,9 @@
   <data name="BicExp2" xml:space="preserve">
     <value>”而被调用; 然而, 如果当前的对象含有与内置指令有命名冲突的成员，调用内置指令时使用前缀是必要的。</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>就绪。</value>
   </data>
@@ -133,19 +139,19 @@
     <value>错误：</value>
   </data>
   <data name="InvalidCommand" xml:space="preserve">
-    <value>非法的命令。</value>
+    <value>非法的命令</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>没有找到这种成员。</value>
+    <value>没有找到这种成员</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>成员：</value>
   </data>
   <data name="ObjectNotFound" xml:space="preserve">
-    <value>找不到对象！</value>
+    <value>找不到对象</value>
   </data>
   <data name="ReturnValue" xml:space="preserve">
-    <value>返回值&gt;</value>
+    <value>返回值</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>未知</value>

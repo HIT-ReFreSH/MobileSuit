@@ -61,6 +61,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 All OK 的本地化字符串。
+        /// </summary>
+        internal static string AllOK {
+            get {
+                return ResourceManager.GetString("AllOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Built-In Commands: 的本地化字符串。
         /// </summary>
         internal static string Bic {
@@ -88,6 +97,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Default 的本地化字符串。
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Done. 的本地化字符串。
         /// </summary>
         internal static string Done {
@@ -106,7 +124,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Invalid Command! 的本地化字符串。
+        ///   查找类似 Invalid Command 的本地化字符串。
         /// </summary>
         internal static string InvalidCommand {
             get {
@@ -115,7 +133,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Member Not Found! 的本地化字符串。
+        ///   查找类似 Member Not Found 的本地化字符串。
         /// </summary>
         internal static string MemberNotFound {
             get {
@@ -133,7 +151,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Object Not Found! 的本地化字符串。
+        ///   查找类似 Object Not Found 的本地化字符串。
         /// </summary>
         internal static string ObjectNotFound {
             get {
@@ -142,7 +160,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Return Value&gt; 的本地化字符串。
+        ///   查找类似 Return Value 的本地化字符串。
         /// </summary>
         internal static string ReturnValue {
             get {

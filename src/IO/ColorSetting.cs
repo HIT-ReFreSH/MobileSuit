@@ -3,9 +3,9 @@
 namespace PlasticMetal.MobileSuit.IO
 {
     /// <summary>
-    /// Color settings of a IOServer.
+    /// Color settings of a Mobile Suit.
     /// </summary>
-    public struct IOServerColorSetting : IEquatable<IOServerColorSetting>
+    public struct ColorSetting : IEquatable<IColorSetting>, IColorSetting, IEquatable<ColorSetting>
     {
         /// <summary>
         /// Default color. For OutputType.Default
@@ -39,22 +39,21 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="other">The object to compare with the current instance.</param>
         /// <returns>whether this instance and a specified object are equal.</returns>
-        public bool Equals(IOServerColorSetting other)
+        public bool Equals(IColorSetting other)
         {
-            return DefaultColor == other.DefaultColor && PromptColor == other.PromptColor && ErrorColor == other.ErrorColor && AllOkColor == other.AllOkColor && ListTitleColor == other.ListTitleColor && CustomInformationColor == other.CustomInformationColor && InformationColor == other.InformationColor;
+            return other != null &&
+                   DefaultColor == other.DefaultColor && PromptColor == other.PromptColor && ErrorColor == other.ErrorColor && AllOkColor == other.AllOkColor && ListTitleColor == other.ListTitleColor && CustomInformationColor == other.CustomInformationColor && InformationColor == other.InformationColor;
         }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="that">The object to compare with the current instance.</param>
         /// <returns>whether this instance and a specified object are equal.</returns>
-        public override bool Equals(object that)
-        {
-            return that is IOServerColorSetting && Equals((IOServerColorSetting)that);
+        public override bool Equals(object? that) => that is IColorSetting && Equals((ColorSetting)that);
 
-
-        }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// generate hash code of all colors
+        /// </summary>
+        /// <returns> hash code of all colors</returns>
         public override int GetHashCode()
         {
             return HashCode.Combine((int)DefaultColor, (int)PromptColor, (int)ErrorColor, (int)AllOkColor, (int)ListTitleColor, (int)CustomInformationColor, (int)InformationColor);
@@ -66,7 +65,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="left">left instance</param>
         /// <param name="right">right instance</param>
         /// <returns>true for equal</returns>
-        public static bool operator ==(IOServerColorSetting left, IOServerColorSetting right)
+        public static bool operator ==(ColorSetting left, ColorSetting right)
         {
             return left.Equals(right);
         }
@@ -76,10 +75,13 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="left">left instance</param>
         /// <param name="right">right instance</param>
         /// <returns>true for not-equal</returns>
-        public static bool operator !=(IOServerColorSetting left, IOServerColorSetting right)
+        public static bool operator !=(ColorSetting left, ColorSetting right)
         {
             return !(left == right);
         }
-
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="other">The object to compare with the current instance.</param>
+        /// <returns>whether this instance and a specified object are equal.</returns>
+        public bool Equals(ColorSetting other) => Equals(other as IColorSetting);
     }
 }

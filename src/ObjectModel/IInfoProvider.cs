@@ -1,6 +1,6 @@
 ﻿using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     /// Represents an object which can provide information to Mobile Suit.

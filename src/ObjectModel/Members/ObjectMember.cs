@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -59,9 +58,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 ? MemberAccess.VisibleToUser
                 : MemberAccess.Hidden;
             AbsoluteName = member?.Name??"";
-            Aliases = (
+            Aliases = member!=null? (
                 from a in member.GetCustomAttributes<SuitAliasAttribute>(true)
-                select a.Text).ToArray();
+                select a.Text).ToArray(): System.Array.Empty<string>();
             Instance = instance;
         }
         /// <summary>

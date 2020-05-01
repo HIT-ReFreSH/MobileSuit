@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllOK" xml:space="preserve">
+    <value>All OK</value>
+  </data>
   <data name="Bic" xml:space="preserve">
     <value>Built-In Commands:</value>
   </data>
@@ -126,6 +129,9 @@
   <data name="BicExp2" xml:space="preserve">
     <value>' as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary.</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>Done.</value>
   </data>
@@ -133,19 +139,19 @@
     <value>Error:</value>
   </data>
   <data name="InvalidCommand" xml:space="preserve">
-    <value>Invalid Command!</value>
+    <value>Invalid Command</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>Member Not Found!</value>
+    <value>Member Not Found</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members:</value>
   </data>
   <data name="ObjectNotFound" xml:space="preserve">
-    <value>Object Not Found!</value>
+    <value>Object Not Found</value>
   </data>
   <data name="ReturnValue" xml:space="preserve">
-    <value>Return Value&gt;</value>
+    <value>Return Value</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>

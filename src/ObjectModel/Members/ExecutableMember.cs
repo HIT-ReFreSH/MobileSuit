@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Interfaces;
 using System;
 using System.Globalization;
 using System.Reflection;

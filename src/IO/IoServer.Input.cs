@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
@@ -59,14 +60,29 @@ namespace PlasticMetal.MobileSuit.IO
         {
             if (!string.IsNullOrEmpty(prompt))
             {
-                if (newLine)
-                    WriteLine(prompt + '>', OutputType.Prompt, customPromptColor);
+                if(string.IsNullOrEmpty(defaultValue))
+                    Prompt.Update("", prompt, TraceBack.Prompt);
                 else
-                    Write(prompt + '>', OutputType.Prompt, customPromptColor);
+                    Prompt.Update("", prompt, TraceBack.Prompt, 
+                        $"{Lang.Default}: {defaultValue}");
+                Prompt.Print();
+
+                if (newLine)
+                    WriteLine();
             }
 
             var r = Input.ReadLine();
-            return string.IsNullOrEmpty(r) ? defaultValue : r;
+            if (r == null) return null;
+            StringBuilder stringBuilder = new StringBuilder(r);
+            while (stringBuilder.Length>0 && stringBuilder[^1] == '%')
+            {
+                stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                if ((r = Input.ReadLine()) == null) break;
+                stringBuilder.Append(r);
+
+            }
+
+            return stringBuilder.Length == 0 ? defaultValue : stringBuilder.ToString();
         }
 
         /// <summary>
@@ -113,14 +129,30 @@ namespace PlasticMetal.MobileSuit.IO
         {
             if (!string.IsNullOrEmpty(prompt))
             {
-                if (newLine)
-                    await WriteLineAsync(prompt + '>', OutputType.Prompt, customPromptColor).ConfigureAwait(false);
+                if (string.IsNullOrEmpty(defaultValue))
+                    Prompt.Update("", prompt, TraceBack.Prompt);
                 else
-                    await WriteAsync(prompt + '>', OutputType.Prompt, customPromptColor).ConfigureAwait(false);
+                    Prompt.Update("", prompt, TraceBack.Prompt,
+                        $"{Lang.Default}: {defaultValue}");
+                Prompt.Print();
+
+                if (newLine)
+                    await WriteLineAsync().ConfigureAwait(false);
             }
 
             var r = await Input.ReadLineAsync().ConfigureAwait(false);
-            return string.IsNullOrEmpty(r) ? defaultValue : r;
+            if (r == null) return null;
+            StringBuilder stringBuilder = new StringBuilder(r);
+            while (stringBuilder.Length > 0 && stringBuilder[^1] == '%')
+            {
+                stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                r = await Input.ReadLineAsync().ConfigureAwait(false);
+                if (r==null) break;
+                stringBuilder.Append(r);
+
+            }
+
+            return stringBuilder.Length == 0 ? defaultValue : stringBuilder.ToString();
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
+﻿namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     /// Build-In-Command's model
@@ -9,7 +9,7 @@
     /// <summary>
     /// Built-In-Command Server's Model.
     /// </summary>
-    public interface ISuitBuiltInCommandServer
+    public interface IBuiltInCommandServer
     {
         /// <summary>
         /// Enter a member of Current SuitObject

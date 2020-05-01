@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Interfaces
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     /// Represents a Parameter which can be parsed from a String[].

@@ -13,7 +13,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         /// Check if this IOServer's error stream is redirected (NOT stderr)
         /// </summary>
-        public bool IsErrorRedirected => !Console.Error.Equals(Error);
+        public bool IsErrorRedirected => !Console.Error.Equals(ErrorStream);
         /// <summary>
         /// Check if this IOServer's output stream is redirected (NOT stdout)
         /// </summary>
@@ -21,7 +21,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         /// Error stream (default stderr)
         /// </summary>
-        public TextWriter Error { get; set; }
+        public TextWriter ErrorStream { get; set; }
         /// <summary>
         /// Output stream (default stdout)
         /// </summary>
@@ -42,42 +42,15 @@ namespace PlasticMetal.MobileSuit.IO
 
         private StringBuilder PrefixBuilder { get; } = new StringBuilder();
         private Stack<int> PrefixLengthStack { get; } = new Stack<int>();
-        private ConsoleColor SelectColor(OutputType type = OutputType.Default, ConsoleColor? customColor = null)
-        {
-            return customColor
-                   ?? type switch
-                   {
-                       OutputType.Default => ColorSetting.DefaultColor,
-                       OutputType.Prompt => ColorSetting.PromptColor,
-                       OutputType.Error => ColorSetting.ErrorColor,
-                       OutputType.AllOk => ColorSetting.AllOkColor,
-                       OutputType.ListTitle => ColorSetting.ListTitleColor,
-                       OutputType.CustomInfo => ColorSetting.CustomInformationColor,
-                       OutputType.MobileSuitInfo => ColorSetting.InformationColor,
-                       _ => ColorSetting.DefaultColor
-                   };
-        }
-        private static string GetLabel(OutputType type = OutputType.Default)
-        {
-            return type switch
-            {
-                OutputType.Default => "",
-                OutputType.Prompt => "[Prompt]",
-                OutputType.Error => "[Error]",
-                OutputType.AllOk => "[AllOk]",
-                OutputType.ListTitle => "[List]",
-                OutputType.CustomInfo => "[Info]",
-                OutputType.MobileSuitInfo => "[Info]",
-                _ => ""
-            };
-        }
 
+        private ConsoleColor SelectColor(OutputType type = OutputType.Default, ConsoleColor? customColor = null)
+            => IColorSetting.SelectColor(ColorSetting, type, customColor);
         /// <summary>
         /// Reset this IOServer's error stream to stderr
         /// </summary>
         public void ResetError()
         {
-            Error = Console.Error;
+            ErrorStream = Console.Error;
         }
         /// <summary>
         /// Reset this IOServer's output stream to stdout
@@ -115,7 +88,27 @@ namespace PlasticMetal.MobileSuit.IO
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
-        public void Write(string content, ConsoleColor? customColor) => Write(content, default, customColor);
+        public void Write(string content, ConsoleColor? customColor) => Write(content, OutputType.Default, customColor);
+        /// <inheritdoc/>
+        public void Write(string content, ConsoleColor frontColor, ConsoleColor backColor)
+        {
+            if (!IsOutputRedirected)
+            {
+                var dColor = Console.ForegroundColor;
+                var bColor = Console.BackgroundColor;
+                Console.ForegroundColor = frontColor;
+                Console.BackgroundColor = backColor;
+                Console.Write(content);
+                Console.ForegroundColor = dColor;
+                Console.BackgroundColor = bColor;
+            }
+            else
+            {
+
+                Output?.Write(content);
+            }
+        }
+
         /// <summary>
         /// Writes some content to output stream. With certain color in console.
         /// </summary>
@@ -138,6 +131,26 @@ namespace PlasticMetal.MobileSuit.IO
                     Output?.Write(content);
             }
         }
+        /// <inheritdoc/>
+        public async Task WriteAsync(string content, ConsoleColor frontColor, ConsoleColor backColor)
+        {
+            if (!IsOutputRedirected)
+            {
+                var dColor = Console.ForegroundColor;
+                var bColor = Console.BackgroundColor;
+                Console.ForegroundColor = frontColor;
+                Console.BackgroundColor = backColor;
+                await Output.WriteAsync(content).ConfigureAwait(false);
+                Console.ForegroundColor = dColor;
+                Console.BackgroundColor = bColor;
+            }
+            else
+            {
+
+                 await Output.WriteAsync(content).ConfigureAwait(false);
+            }
+        }
+
         /// <summary>
         /// Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
@@ -199,7 +212,7 @@ namespace PlasticMetal.MobileSuit.IO
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append("]");
-                sb.Append(GetLabel(type));
+                sb.Append(IIOServer.GetLabel(type));
                 sb.Append(content);
                 Output?.WriteLine(sb.ToString());
             }
@@ -234,7 +247,7 @@ namespace PlasticMetal.MobileSuit.IO
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append("]");
-                sb.Append(GetLabel(type));
+                sb.Append(IIOServer.GetLabel(type));
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
@@ -274,7 +287,7 @@ namespace PlasticMetal.MobileSuit.IO
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append("]");
-                sb.Append(GetLabel(type));
+                sb.Append(IIOServer.GetLabel(type));
                 sb.Append(Prefix);
                 sb.Append(content);
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -310,20 +323,13 @@ namespace PlasticMetal.MobileSuit.IO
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append("]");
-                sb.Append(GetLabel(type));
+                sb.Append(IIOServer.GetLabel(type));
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
-
-        /// <summary>
-        /// provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents) => contents;
 
         /// <summary>
         /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
@@ -355,13 +361,12 @@ namespace PlasticMetal.MobileSuit.IO
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append("]");
-                sb.Append(GetLabel(type));
+                sb.Append(IIOServer.GetLabel(type));
 
                 await foreach (var (content, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
-
     }
 }

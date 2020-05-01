@@ -1,74 +1,55 @@
 ﻿#nullable enable
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.IO
 {
-    /// <summary>
-    /// Type of content that writes to the output stream.
-    /// </summary>
-    public enum OutputType
-    {
-        /// <summary>
-        /// Normal content.
-        /// </summary>
-        Default = 0,
-        /// <summary>
-        /// Prompt content.
-        /// </summary>
-        Prompt = 1,
-        /// <summary>
-        /// Error content.
-        /// </summary>
-        Error = 2,
-        /// <summary>
-        /// All-Ok content.
-        /// </summary>
-        AllOk = 3,
-        /// <summary>
-        /// Title of a list.
-        /// </summary>
-        ListTitle = 4,
-        /// <summary>
-        /// Normal information.
-        /// </summary>
-        CustomInfo = 5,
-        /// <summary>
-        /// Information provided by MobileSuit.
-        /// </summary>
-        MobileSuitInfo = 6
-    }
+
+
     /// <summary>
     /// A entity, which serves the input/output of a mobile suit.
     /// </summary>
-    public partial class IOServer
+    public partial class IOServer : IIOServer
     {
-        /// <summary>
-        /// Default color settings for IOServer.
-        /// </summary>
-        public static IOServerColorSetting DefaultColorSetting { get; } = new IOServerColorSetting
-        {
-            DefaultColor = ConsoleColor.White,
-            ErrorColor = ConsoleColor.Red,
-            PromptColor = ConsoleColor.Magenta,
-            AllOkColor = ConsoleColor.Green,
-            ListTitleColor = ConsoleColor.Yellow,
-            CustomInformationColor = ConsoleColor.DarkCyan,
-            InformationColor = ConsoleColor.DarkBlue
-        };
         /// <summary>
         /// Color settings for this IOServer. (default DefaultColorSetting)
         /// </summary>
-        public IOServerColorSetting ColorSetting { get; set; }
+        public IColorSetting ColorSetting { get; set; }
+
 
         /// <summary>
         /// Initialize a IOServer.
         /// </summary>
         public IOServer()
         {
-            ColorSetting = DefaultColorSetting;
+            ColorSetting = IColorSetting.DefaultColorSetting;
             Input = Console.In;
             Output = Console.Out;
-            Error = Console.Error;
+            ErrorStream = Console.Error;
+
+        }
+        private IPromptServer? _prompt;
+
+        /// <summary>
+        /// Prompt server for the io server.
+        /// </summary>
+        public IPromptServer Prompt {
+            get => _prompt ??= IPromptServer.DefaultPromptServer;
+            set => _prompt = value;
+        }
+
+        /// <summary>
+        /// Initialize a IOServer.
+        /// </summary>
+        public IOServer(ISuitConfiguration configuration)
+        {
+            ColorSetting = configuration?.ColorSetting??IColorSetting.DefaultColorSetting;
+            Prompt = configuration?.PromptServer ?? IPromptServer.DefaultPromptServer;
+            Input = Console.In;
+            Output = Console.Out;
+            ErrorStream = Console.Error;
 
         }
 
