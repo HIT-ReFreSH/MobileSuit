@@ -27,6 +27,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="configuration">given configuration</param>
         public SuitHost(ISuitConfiguration configuration)
         {
+            _returnValue = "";
             Configuration = configuration ?? ISuitConfiguration.GetDefaultConfiguration();
             Assembly = Assembly.GetCallingAssembly();
             Current = new SuitObject(null);
@@ -41,7 +42,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="instance">The instance for Mobile Suit to drive.</param>
         /// <param name="configuration">given configuration</param>
-        public SuitHost(object? instance, ISuitConfiguration? configuration=null) : this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        public SuitHost(object? instance, ISuitConfiguration? configuration = null) : this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
             Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
@@ -53,7 +54,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="assembly">The given Assembly.</param>
         /// <param name="configuration">given configuration, default if null</param>
-        public SuitHost(Assembly assembly, ISuitConfiguration? configuration) : this(configuration??ISuitConfiguration.GetDefaultConfiguration())
+        public SuitHost(Assembly assembly, ISuitConfiguration? configuration) : this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
             Assembly = assembly;
             Current = new SuitObject(null);
@@ -217,7 +218,7 @@ namespace PlasticMetal.MobileSuit
 
         private void NotifyError(string errorDescription)
         {
-            if (UseTraceBack) IO.WriteLine(errorDescription+'!', OutputType.Error);
+            if (UseTraceBack) IO.WriteLine(errorDescription + '!', OutputType.Error);
             else throw new Exception(errorDescription);
         }
 
@@ -225,11 +226,11 @@ namespace PlasticMetal.MobileSuit
         {
             if (IsNullOrEmpty(prompt) && WorkInstance != null)
             {
-                return (WorkInstance as IInfoProvider)?.Text
-                       ?? (WorkType != null
-                           ? (WorkType.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
-                              ?? new SuitInfoAttribute(WorkInstance.GetType().Name)).Text
-                           : prompt);
+                return WorkType != null
+                           ? ((WorkType.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute)?.Text ??
+                              (WorkInstance as IInfoProvider)?.Text ??
+                              (new SuitInfoAttribute(WorkInstance.GetType().Name)).Text)
+                           : prompt;
             }
 
             if (!ShowReference || InstanceNameString.Count <= 0) return prompt;
@@ -263,15 +264,14 @@ namespace PlasticMetal.MobileSuit
             {
                 var retVal = result.ToString() ?? "";
                 if (!string.IsNullOrEmpty(retVal)) _returnValue = retVal;
-                if(ShowReturnValue) IO.WriteLine(IIOServer.CreateContentArray
-                (
-                (Lang.ReturnValue+' '+'>'+' ', IO.ColorSetting.PromptColor),
-                    (retVal, null)
-                    )
-                );
+                if (ShowReturnValue) IO.WriteLine(IIOServer.CreateContentArray
+                 (
+                 (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
+                     (retVal, null)
+                     )
+                 );
             }
 
-            _returnValue = result;
             return r;
 
         }
@@ -398,7 +398,7 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
 
-        private object? _returnValue;
+        private string _returnValue;
 
         private TraceBack RunCommand(string prompt, string? cmd)
         {
@@ -434,7 +434,7 @@ namespace PlasticMetal.MobileSuit
                 traceBack = TraceBack.InvalidCommand;
             }
 
-            Prompt.Update(_returnValue?.ToString() ?? "", UpdatePrompt(prompt), traceBack);
+            Prompt.Update(_returnValue, UpdatePrompt(prompt), traceBack);
             return traceBack;
         }
         /// <summary>

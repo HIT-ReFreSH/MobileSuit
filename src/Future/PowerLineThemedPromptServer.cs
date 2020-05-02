@@ -9,16 +9,16 @@ namespace PlasticMetal.MobileSuit.Future
     /// <summary>
     /// a power line themed prompt server for mobile suit
     /// </summary>
-    public class PowerLineThemePromptServer : PromptServer
+    public class PowerLineThemedPromptServer : PromptServer
     {
         /// <inheritdoc />
-        public PowerLineThemePromptServer() : base(){}
+        public PowerLineThemedPromptServer() : base(){}
 
         /// <inheritdoc />
-        private PowerLineThemePromptServer(IIOServer io) : base(io,IColorSetting.DefaultColorSetting) { }
+        private PowerLineThemedPromptServer(IIOServer io) : base(io,IColorSetting.DefaultColorSetting) { }
 
         /// <inheritdoc />
-        public PowerLineThemePromptServer(ISuitConfiguration configuration) : base(configuration) { }
+        public PowerLineThemedPromptServer(ISuitConfiguration configuration) : base(configuration) { }
         /// <summary>
         /// Create a mobile suit configuration with power line theme
         /// </summary>
@@ -27,7 +27,7 @@ namespace PlasticMetal.MobileSuit.Future
         {
             var io = new IOServer();
             var r = new SuitConfiguration(typeof(BuildInCommandServer), io,
-                new PowerLineThemePromptServer(io), IColorSetting.DefaultColorSetting);
+                new PowerLineThemedPromptServer(io), IColorSetting.DefaultColorSetting);
             io.Prompt = r.PromptServer;
             return r;
         }

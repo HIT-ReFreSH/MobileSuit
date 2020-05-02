@@ -88,10 +88,10 @@ namespace PlasticMetal.MobileSuit.IO
         /// <inheritdoc />
         public virtual void Print()
         {
-            IO.Write(LastInformation, OutputType.Prompt);
+            IO.Write(" "+LastInformation, OutputType.Prompt);
             if (LastTraceBack == TraceBack.Prompt)
             {
-                IO.Write($"[{Lang.Default}: {LastPromptInformation}]", OutputType.Prompt);
+                IO.Write($"[{LastPromptInformation}]", OutputType.Prompt);
             }
 
             IO.Write(" > ", OutputType.Prompt);

@@ -4,7 +4,7 @@
     {
         private static void Main()
         {
-            var ms = new PlasticMetal.MobileSuit.SuitHost(new Client(),MobileSuit.Future.PowerLineThemePromptServer.CreatePowerLineThemeConfiguration()) {UseTraceBack = true};
+            var ms = new PlasticMetal.MobileSuit.SuitHost(new Client(),MobileSuit.Future.PowerLineThemedPromptServer.CreatePowerLineThemeConfiguration()) {UseTraceBack = true};
             ms.Run();
         }
     }
