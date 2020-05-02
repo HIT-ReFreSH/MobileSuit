@@ -17,13 +17,13 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     /// Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class BuiltInCommandServer : IBuiltInCommandServer
+    public class BuildInCommandServer : IBuildInCommandServer
     {
         /// <summary>
         /// Initialize a BicServer with the given SuitHost.
         /// </summary>
         /// <param name="host">The given SuitHost.</param>
-        public BuiltInCommandServer(SuitHost host)
+        public BuildInCommandServer(SuitHost host)
         {
             Host = host;
             HostRef = new SuitObject(Host);

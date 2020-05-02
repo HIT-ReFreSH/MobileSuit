@@ -30,8 +30,8 @@ namespace PlasticMetal.MobileSuit
             Configuration = configuration ?? ISuitConfiguration.GetDefaultConfiguration();
             Assembly = Assembly.GetCallingAssembly();
             Current = new SuitObject(null);
-            Configuration.InitializeBuiltInCommandServer(this);
-            BicServer = new SuitObject(Configuration.BuiltInCommandServer);
+            Configuration.InitializeBuildInCommandServer(this);
+            BicServer = new SuitObject(Configuration.BuildInCommandServer);
             IO.ColorSetting = Configuration.ColorSetting;
             IO.Prompt = Prompt;
         }

@@ -26,7 +26,7 @@ namespace PlasticMetal.MobileSuit.Future
         public static ISuitConfiguration CreatePowerLineThemeConfiguration()
         {
             var io = new IOServer();
-            var r = new SuitConfiguration(typeof(BuiltInCommandServer), io,
+            var r = new SuitConfiguration(typeof(BuildInCommandServer), io,
                 new PowerLineThemePromptServer(io), IColorSetting.DefaultColorSetting);
             io.Prompt = r.PromptServer;
             return r;

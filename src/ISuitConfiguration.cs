@@ -11,13 +11,13 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// Type of BuiltInCommandServer
         /// </summary>
-        Type BuiltInCommandServerType { get; }
+        Type BuildInCommandServerType { get; }
 
         /// <summary>
         /// Initialize the BuiltInCommandServer with BuiltInCommandServerType and given host
         /// </summary>
         /// <param name="host">host for BuiltInCommandServer</param>
-        void InitializeBuiltInCommandServer(SuitHost host);
+        void InitializeBuildInCommandServer(SuitHost host);
 
         /// <summary>
         /// IOServer for the Mobile Suit
@@ -26,7 +26,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// BuildInCommandServer for the Mobile Suit
         /// </summary>
-        IBuiltInCommandServer? BuiltInCommandServer { get; }
+        IBuildInCommandServer? BuildInCommandServer { get; }
         /// <summary>
         /// PromptServer for the Mobile Suit
         /// </summary>
@@ -41,7 +41,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <returns></returns>
         static ISuitConfiguration GetDefaultConfiguration()
-            => new SuitConfiguration(typeof(BuiltInCommandServer), 
+            => new SuitConfiguration(typeof(BuildInCommandServer), 
                 new IOServer(),
                 new PromptServer(),
                 IColorSetting.DefaultColorSetting);

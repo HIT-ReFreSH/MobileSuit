@@ -11,32 +11,32 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// Initialize a configuration
         /// </summary>
-        /// <param name="builtInCommandServerType">type of builtInCommandServerType</param>
+        /// <param name="buildInCommandServerType">type of builtInCommandServerType</param>
         /// <param name="io">io server</param>
         /// <param name="promptServer">prompt server</param>
         /// <param name="colorSetting">color setting </param>
-        public SuitConfiguration(Type builtInCommandServerType, IIOServer io, IPromptServer promptServer, IColorSetting colorSetting)
+        public SuitConfiguration(Type buildInCommandServerType, IIOServer io, IPromptServer promptServer, IColorSetting colorSetting)
         {
-            BuiltInCommandServerType = builtInCommandServerType;
+            BuildInCommandServerType = buildInCommandServerType;
             IO = io;
             PromptServer = promptServer;
             ColorSetting = colorSetting;
         }
 
         /// <inheritdoc/>
-        public Type BuiltInCommandServerType { get; }
+        public Type BuildInCommandServerType { get; }
         /// <inheritdoc/>
-        public void InitializeBuiltInCommandServer(SuitHost host)
+        public void InitializeBuildInCommandServer(SuitHost host)
         {
-            BuiltInCommandServer = BuiltInCommandServerType.Assembly.CreateInstance(
-                BuiltInCommandServerType.FullName ?? BuiltInCommandServerType.Name, true,
+            BuildInCommandServer = BuildInCommandServerType.Assembly.CreateInstance(
+                BuildInCommandServerType.FullName ?? BuildInCommandServerType.Name, true,
                 BindingFlags.Default, null,
-                new object[] { host }, CultureInfo.CurrentCulture, null) as IBuiltInCommandServer;
+                new object[] { host }, CultureInfo.CurrentCulture, null) as IBuildInCommandServer;
         }
         /// <inheritdoc/>
         public IIOServer IO { get; }
         /// <inheritdoc/>
-        public IBuiltInCommandServer? BuiltInCommandServer { get; protected set; }
+        public IBuildInCommandServer? BuildInCommandServer { get; protected set; }
         /// <inheritdoc/>
         public IPromptServer PromptServer { get; }
         /// <inheritdoc/>

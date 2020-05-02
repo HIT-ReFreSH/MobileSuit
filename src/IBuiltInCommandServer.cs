@@ -9,7 +9,7 @@
     /// <summary>
     /// Built-In-Command Server's Model.
     /// </summary>
-    public interface IBuiltInCommandServer
+    public interface IBuildInCommandServer
     {
         /// <summary>
         /// Enter a member of Current SuitObject
