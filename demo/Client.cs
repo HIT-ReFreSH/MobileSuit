@@ -29,7 +29,7 @@ namespace PlasticMetal.MobileSuitDemo
         public string Bye()
         {
             ;
-            return $"bye, {IO.ReadLine("Name", "foo")}";
+            return $"bye, {IO.ReadLine("Name", "foo",true)}";
         }
     }
 }

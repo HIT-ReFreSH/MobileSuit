@@ -11,14 +11,9 @@ namespace PlasticMetal.MobileSuit.IO
     public interface IIOServer
     {
         /// <summary>
-        /// Prompt server for the io server.
+        /// Default IOServer, using stdin, stdout, stderr.
         /// </summary>
-        public IPromptServer Prompt { get; set; }
-
-        /// <summary>
-        /// Color settings for this IOServer. (default DefaultColorSetting)
-        /// </summary>
-        IColorSetting ColorSetting { get; set; }
+        public static IOServer GeneralIO { get; } = new IOServer();
 
         /// <summary>
         /// Check if this IOServer's error stream is redirected (NOT stderr)
@@ -46,6 +41,16 @@ namespace PlasticMetal.MobileSuit.IO
         string Prefix { get; set; }
 
         /// <summary>
+        /// Color settings for this IOServer. (default DefaultColorSetting)
+        /// </summary>
+        IColorSetting ColorSetting { get; set; }
+
+        /// <summary>
+        /// Prompt server for the io server.
+        /// </summary>
+        IPromptServer Prompt { get; set; }
+
+        /// <summary>
         /// Input stream (default stdin)
         /// </summary>
         TextReader Input { get; set; }
@@ -55,6 +60,40 @@ namespace PlasticMetal.MobileSuit.IO
         /// </summary>
         bool IsInputRedirected { get; }
 
+        /// <summary>
+        /// get label of given output type
+        /// </summary>
+        /// <param name="type">output type</param>
+        /// <returns>label</returns>
+        protected static string GetLabel(OutputType type = OutputType.Default)
+        {
+            return type switch
+            {
+                OutputType.Default => "",
+                OutputType.Prompt => "[Prompt]",
+                OutputType.Error => "[Error]",
+                OutputType.AllOk => "[AllOk]",
+                OutputType.ListTitle => "[List]",
+                OutputType.CustomInfo => "[Info]",
+                OutputType.MobileSuitInfo => "[Info]",
+                _ => ""
+            };
+        }
+
+        /// <summary>
+        /// provides packaging for ContentArray
+        /// </summary>
+        /// <param name="contents">ContentArray</param>
+        /// <returns>packaged ContentArray</returns>
+        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents) => contents;
+
+
+        /// <summary>
+        /// provides packaging for ContentArray
+        /// </summary>
+        /// <param name="contents">ContentArray</param>
+        /// <returns>packaged ContentArray</returns>
+        public static IEnumerable<(string, ConsoleColor?,ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?,ConsoleColor?)[] contents) => contents;
         /// <summary>
         /// Reset this IOServer's error stream to stderr
         /// </summary>
@@ -80,15 +119,10 @@ namespace PlasticMetal.MobileSuit.IO
         /// Writes some content to output stream. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
-        /// <param name="frontColor">Customized color in console</param>
-        void Write(string content, ConsoleColor? frontColor);
+        /// <param name="customColor">Customized color in console</param>
+        void Write(string content, ConsoleColor? customColor);
 
-        /// <summary>
-        /// Writes some content to output stream. With certain color in console.
-        /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="frontColor">Customized front color in console</param>
-        /// <param name="backColor">Customized background color in console</param>
+        /// <inheritdoc/>
         void Write(string content, ConsoleColor frontColor, ConsoleColor backColor);
 
         /// <summary>
@@ -99,12 +133,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="customColor">Optional. Customized color in console</param>
         void Write(string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
 
-        /// <summary>
-        /// Asynchronously writes some content to output stream. With certain color in console.
-        /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="frontColor">Customized front color in console</param>
-        /// <param name="backColor">Customized background color in console</param>
+        /// <inheritdoc/>
         Task WriteAsync(string content, ConsoleColor frontColor, ConsoleColor backColor);
 
         /// <summary>
@@ -151,6 +180,17 @@ namespace PlasticMetal.MobileSuit.IO
         void WriteLine(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
 
         /// <summary>
+        /// Writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        void WriteLine(IEnumerable<(string, ConsoleColor?,ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
+
+        /// <summary>
         /// Asynchronously writes a blank line to output stream.
         /// </summary>
         Task WriteLineAsync();
@@ -186,6 +226,28 @@ namespace PlasticMetal.MobileSuit.IO
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default);
+
+        /// <summary>
+        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
+
+        /// <summary>
+        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
 
         /// <summary>
         /// Reset this IOServer's input stream to stdin
@@ -292,37 +354,5 @@ namespace PlasticMetal.MobileSuit.IO
         /// </summary>
         /// <returns>All characters from the current position to the end.</returns>
         Task<string> ReadToEndAsync();
-
-        /// <summary>
-        /// Default IOServer, using stdin, stdout, stderr.
-        /// </summary>
-        public static IOServer GeneralIO { get; } = new IOServer();
-
-        /// <summary>
-        /// get label of given output type
-        /// </summary>
-        /// <param name="type">output type</param>
-        /// <returns>label</returns>
-        protected static string GetLabel(OutputType type = OutputType.Default)
-        {
-            return type switch
-            {
-                OutputType.Default => "",
-                OutputType.Prompt => "[Prompt]",
-                OutputType.Error => "[Error]",
-                OutputType.AllOk => "[AllOk]",
-                OutputType.ListTitle => "[List]",
-                OutputType.CustomInfo => "[Info]",
-                OutputType.MobileSuitInfo => "[Info]",
-                _ => ""
-            };
-        }
-
-        /// <summary>
-        /// provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents) => contents;
     }
 }
