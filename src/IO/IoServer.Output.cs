@@ -254,6 +254,51 @@ namespace PlasticMetal.MobileSuit.IO
                 Output?.WriteLine(sb.ToString());
             }
         }
+
+        /// <summary>
+        /// Writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        public void WriteLine(IEnumerable<(string, ConsoleColor?,ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            if (contentArray == null) return;
+            if (!IsOutputRedirected)
+            {
+                if (type == OutputType.Error) Console.Beep();
+                var oldForeColor = Console.ForegroundColor;
+                var oldBackColor = Console.BackgroundColor;
+                var defaultColor = SelectColor(type);
+
+                Console.ForegroundColor = defaultColor;
+                Console.Write(Prefix);
+                foreach (var (content, inputForeColor,inputBackColor) in contentArray)
+                {
+                    Console.ForegroundColor = inputForeColor ?? defaultColor;
+                    Console.BackgroundColor = inputBackColor ?? oldBackColor;
+                    Console.Write(content);
+                }
+
+                Console.WriteLine();
+                Console.ForegroundColor = oldForeColor;
+                Console.BackgroundColor = oldBackColor;
+            }
+            else
+            {
+                var sb = new StringBuilder("[");
+                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                sb.Append("]");
+                sb.Append(IIOServer.GetLabel(type));
+
+                foreach (var (content, _,_) in contentArray) sb.Append(content);
+
+                Output?.WriteLine(sb.ToString());
+            }
+        }
         /// <summary>
         /// Asynchronously writes a blank line to output stream.
         /// </summary>
@@ -368,5 +413,96 @@ namespace PlasticMetal.MobileSuit.IO
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
+
+        /// <summary>
+        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            if (contentArray == null) return;
+            if (!IsOutputRedirected)
+            {
+                if (type == OutputType.Error) Console.Beep();
+                var oldForeColor = Console.ForegroundColor;
+                var oldBackColor = Console.BackgroundColor;
+                var defaultColor = SelectColor(type);
+
+                Console.ForegroundColor = defaultColor;
+                await Output.WriteAsync(Prefix).ConfigureAwait(false);
+                foreach (var (content, inputForeColor, inputBackColor) in contentArray)
+                {
+                    Console.ForegroundColor = inputForeColor ?? defaultColor;
+                    Console.BackgroundColor = inputBackColor ?? oldBackColor;
+                    await Output.WriteAsync(content).ConfigureAwait(false);
+                }
+
+                await Output.WriteLineAsync().ConfigureAwait(false);
+                Console.ForegroundColor = oldForeColor;
+                Console.BackgroundColor = oldBackColor;
+            }
+            else
+            {
+                var sb = new StringBuilder("[");
+                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                sb.Append("]");
+                sb.Append(IIOServer.GetLabel(type));
+
+                foreach (var (content, _, _) in contentArray) sb.Append(content);
+
+                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        /// </summary>
+        /// <param name="contentArray">TupleArray.
+        /// FOR EACH Tuple, first is a part of content;
+        /// second is optional, the foreground color of output (in console),
+        /// third is optional, the background color of output.
+        /// </param>
+        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
+        public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            if (contentArray == null) return;
+            if (!IsOutputRedirected)
+            {
+                if (type == OutputType.Error) Console.Beep();
+                var oldForeColor = Console.ForegroundColor;
+                var oldBackColor = Console.BackgroundColor;
+                var defaultColor = SelectColor(type);
+
+                Console.ForegroundColor = defaultColor;
+                await Output.WriteAsync(Prefix).ConfigureAwait(false);
+                await foreach (var (content, inputForeColor, inputBackColor) in contentArray)
+                {
+                    Console.ForegroundColor = inputForeColor ?? defaultColor;
+                    Console.BackgroundColor = inputBackColor ?? oldBackColor;
+                    await Output.WriteAsync(content).ConfigureAwait(false);
+                }
+
+                await Output.WriteLineAsync().ConfigureAwait(false);
+                Console.ForegroundColor = oldForeColor;
+                Console.BackgroundColor = oldBackColor;
+            }
+            else
+            {
+                var sb = new StringBuilder("[");
+                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                sb.Append("]");
+                sb.Append(IIOServer.GetLabel(type));
+
+                await foreach (var (content, _, _) in contentArray) sb.Append(content);
+
+                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
+            }
+        }
+
     }
 }
