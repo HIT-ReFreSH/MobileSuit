@@ -1,6 +1,11 @@
 # MobileSuit
 
-![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square)
+![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square) 
+![GitHub](https://img.shields.io/github/license/Plastic-Metal/MobileSuit?style=flat-square)
+![Nuget](https://img.shields.io/nuget/dt/PlasticMetal.MobileSuit?style=flat-square)
+
+
+[View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
 
 MobileSuit provides an easy way to quickly build a .NET Console App.
 
@@ -10,7 +15,7 @@ For Example: HIT-Schedule-Master CLI
 
 ![MsRtExample-1](images/MsRtExample-1.png)
 
-[View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
+
 
 [View English Documentation ](https://ferdinandsukhoi.github.io/docs/en-US/MobileSuit/) in my Blog
 
