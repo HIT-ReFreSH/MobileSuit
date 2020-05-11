@@ -2,7 +2,7 @@
     <img src="src/icon.png" width = 30% height = 30%  />
 </div>
 
-# MobileSuit
+# PlasticMetal.MobileSuit
 
 ![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square) 
 ![GitHub](https://img.shields.io/github/license/Plastic-Metal/MobileSuit?style=flat-square)
