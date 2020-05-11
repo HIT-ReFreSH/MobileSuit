@@ -1,5 +1,5 @@
 <div  align=center>
-    <img src="src/icon.png" width = 30% height = 30%  />
+    <img src="Plastic-Metal.png" width = 30% height = 30%  />
 </div>
 
 # PlasticMetal.MobileSuit

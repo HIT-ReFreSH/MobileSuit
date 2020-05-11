@@ -32,12 +32,12 @@
     <Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>Plastic-Metal.png</PackageIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\Plastic-Metal.png" Pack="true" PackagePath="\" />
 
   </ItemGroup>
 
