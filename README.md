@@ -1,3 +1,7 @@
+<div  align=center>
+    <img src="src/icon.png" width = 30% height = 30%  />
+</div>
+
 # MobileSuit
 
 ![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square) 
@@ -15,8 +19,10 @@ For Example: HIT-Schedule-Master CLI
 
 ![MsRtExample-1](images/MsRtExample-1.png)
 
+with PowerLine theme & I18N support
 
+![MsRtExample-2](images/MsRtExample-2.png)
 
-[View English Documentation ](https://ferdinandsukhoi.github.io/docs/en-US/MobileSuit/) in my Blog
+[View English Documentation](https://ferdinandsukhoi.github.io/docs/en-US/MobileSuit/) in my Blog
 
 在我的博客[查看中文文档](https://ferdinandsukhoi.github.io/docs/zh-CN/MobileSuit/)
