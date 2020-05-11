@@ -23,6 +23,6 @@ with PowerLine theme & I18N support
 
 ![MsRtExample-2](images/MsRtExample-2.png)
 
-[View English Documentation](https://ferdinandsukhoi.github.io/docs/en-US/MobileSuit/) in my Blog
+[View English Documentation](https://plastic-metal.github.io/en-US/MobileSuit/index.html)
 
-在我的博客[查看中文文档](https://ferdinandsukhoi.github.io/docs/zh-CN/MobileSuit/)
+[查看中文文档](https://plastic-metal.github.io/zh-CN/MobileSuit/index.html)
