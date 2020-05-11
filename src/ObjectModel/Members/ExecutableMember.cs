@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -117,9 +118,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
         {
             returnValue = InvokeMember(instance, args);
+            //Process Task
+            if (returnValue is Task task)
+            {
+                task.Wait();
+                var result = task.GetType().GetProperty("Result");
+                returnValue = result?.GetValue(task);
+            }
             return (returnValue as TraceBack?) ?? TraceBack.AllOk;
-
-
         }
 
         private bool CanFitTo(int argumentCount)

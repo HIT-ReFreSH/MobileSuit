@@ -263,7 +263,7 @@ namespace PlasticMetal.MobileSuit
             if (!(result is null) && r == TraceBack.AllOk)
             {
                 var retVal = result.ToString() ?? "";
-                if (!string.IsNullOrEmpty(retVal)) _returnValue = retVal;
+                if (!IsNullOrEmpty(retVal)) _returnValue = retVal;
                 if (ShowReturnValue) IO.WriteLine(IIOServer.CreateContentArray
                  (
                  (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
