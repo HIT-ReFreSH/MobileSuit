@@ -4,21 +4,22 @@ using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
-    /// An Standard mobile suit client driver-class.
+    ///     An Standard mobile suit client driver-class.
     /// </summary>
     public abstract class SuitClient : IInfoProvider, IIOInteractive, ICommandInteractive
     {
         /// <summary>
-        /// The CommandHandler for current SuitHost.
+        ///     The CommandHandler for current SuitHost.
         /// </summary>
         protected CommandHandler? RunCommand { get; private set; }
 
         /// <summary>
-        /// The IOServer for current SuitHost.
+        ///     The IOServer for current SuitHost.
         /// </summary>
         protected IIOServer IO { get; private set; } = IIOServer.GeneralIO;
+
         /// <summary>
-        /// Provides Interface for SuitHost to set commandHandler
+        ///     Provides Interface for SuitHost to set commandHandler
         /// </summary>
         /// <param name="commandHandler">SuitHost's command handler.</param>
         [SuitIgnore]
@@ -28,11 +29,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <summary>
-        /// The information provided.
+        ///     The information provided.
         /// </summary>
         public string Text { get; protected set; } = string.Empty;
+
         /// <summary>
-        /// Provides Interface for SuitHost to set ioServer
+        ///     Provides Interface for SuitHost to set ioServer
         /// </summary>
         /// <param name="io">SuitHost's IOServer.</param>
         [SuitIgnore]
