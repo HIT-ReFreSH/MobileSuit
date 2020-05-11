@@ -5,17 +5,18 @@ using PlasticMetal.MobileSuit.IO;
 
 namespace PlasticMetal.MobileSuit
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class SuitConfiguration : ISuitConfiguration
     {
         /// <summary>
-        /// Initialize a configuration
+        ///     Initialize a configuration
         /// </summary>
         /// <param name="buildInCommandServerType">type of builtInCommandServerType</param>
         /// <param name="io">io server</param>
         /// <param name="promptServer">prompt server</param>
         /// <param name="colorSetting">color setting </param>
-        public SuitConfiguration(Type buildInCommandServerType, IIOServer io, IPromptServer promptServer, IColorSetting colorSetting)
+        public SuitConfiguration(Type buildInCommandServerType, IIOServer io, IPromptServer promptServer,
+            IColorSetting colorSetting)
         {
             BuildInCommandServerType = buildInCommandServerType;
             IO = io;
@@ -23,23 +24,28 @@ namespace PlasticMetal.MobileSuit
             ColorSetting = colorSetting;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Type BuildInCommandServerType { get; }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public void InitializeBuildInCommandServer(SuitHost host)
         {
             BuildInCommandServer = BuildInCommandServerType.Assembly.CreateInstance(
                 BuildInCommandServerType.FullName ?? BuildInCommandServerType.Name, true,
                 BindingFlags.Default, null,
-                new object[] { host }, CultureInfo.CurrentCulture, null) as IBuildInCommandServer;
+                new object[] {host}, CultureInfo.CurrentCulture, null) as IBuildInCommandServer;
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public IIOServer IO { get; }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public IBuildInCommandServer? BuildInCommandServer { get; protected set; }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public IPromptServer PromptServer { get; }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public IColorSetting ColorSetting { get; }
     }
 }

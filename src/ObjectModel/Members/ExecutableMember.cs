@@ -1,42 +1,45 @@
 ﻿#nullable enable
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using System;
-using System.Globalization;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     /// <summary>
-    /// Represents type of the last parameter of a method
+    ///     Represents type of the last parameter of a method
     /// </summary>
     public enum TailParameterType
     {
         /// <summary>
-        /// Last parameter exists, and is quite normal.
+        ///     Last parameter exists, and is quite normal.
         /// </summary>
         Normal = 0,
 
         /// <summary>
-        /// Last parameter is an array.
+        ///     Last parameter is an array.
         /// </summary>
         Array = 1,
+
         /// <summary>
-        /// Last parameter implements IDynamicParameter.
+        ///     Last parameter implements IDynamicParameter.
         /// </summary>
         DynamicParameter = 2,
+
         /// <summary>
-        /// Last parameter does not exist.
+        ///     Last parameter does not exist.
         /// </summary>
         NoParameter = -1
     }
+
     /// <summary>
-    /// Object's Member which may be a method.
+    ///     Object's Member which may be a method.
     /// </summary>
     public class ExecutableMember : ObjectMember
     {
         /// <summary>
-        /// Initialize an Object's Member with its instance and Method's information.
+        ///     Initialize an Object's Member with its instance and Method's information.
         /// </summary>
         /// <param name="instance">Instance of Object.</param>
         /// <param name="method">Object's member(Method)'s information</param>
@@ -117,17 +120,25 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
         private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
         {
             returnValue = InvokeMember(instance, args);
-            return (returnValue as TraceBack?) ?? TraceBack.AllOk;
+            //Process Task
+            if (returnValue is Task task)
+            {
+                task.Wait();
+                var result = task.GetType().GetProperty("Result");
+                returnValue = result?.GetValue(task);
+            }
 
-
+            return returnValue as TraceBack? ?? TraceBack.AllOk;
         }
 
         private bool CanFitTo(int argumentCount)
-        => argumentCount >= MinParameterCount
+        {
+            return argumentCount >= MinParameterCount
                    && argumentCount <= MaxParameterCount;
+        }
 
         /// <summary>
-        /// Execute this object.
+        ///     Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
         /// <param name="returnValue"></param>
@@ -139,11 +150,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                 returnValue = null;
                 return TraceBack.ObjectNotFound;
             }
-            if (TailParameterType == TailParameterType.NoParameter)
-            {
 
-                return Execute(Instance, null, out returnValue);
-            }
+            if (TailParameterType == TailParameterType.NoParameter) return Execute(Instance, null, out returnValue);
 
             var pass = new object?[Parameters.Length];
             var i = 0;
@@ -155,10 +163,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
                     (args[i])
                     : Parameters[i].DefaultValue;
 
-            if (TailParameterType == TailParameterType.Normal)
-            {
-                return Execute(Instance, pass, out returnValue);
-            }
+            if (TailParameterType == TailParameterType.Normal) return Execute(Instance, pass, out returnValue);
 
             if (TailParameterType == TailParameterType.DynamicParameter)
             {

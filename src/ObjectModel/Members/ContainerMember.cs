@@ -1,20 +1,20 @@
 ﻿#nullable enable
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using System;
-using System.Globalization;
 using System.Reflection;
 using System.Text;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
     /// <summary>
-    /// Stands for SuitObject's members which can also be SuitObjects (Field/Property).
+    ///     Stands for SuitObject's members which can also be SuitObjects (Field/Property).
     /// </summary>
     public class ContainerMember : ObjectMember
     {
         private SuitObject? _msValue;
+
         /// <summary>
-        /// Initialize an Object's Member with its instance and Property's information.
+        ///     Initialize an Object's Member with its instance and Property's information.
         /// </summary>
         /// <param name="instance">Instance of Object.</param>
         /// <param name="info">Object's member(Property)'s information</param>
@@ -28,8 +28,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
+
         /// <summary>
-        /// Initialize an Object's Member with its instance and Field's information.
+        ///     Initialize an Object's Member with its instance and Field's information.
         /// </summary>
         /// <param name="instance">Instance of Object.</param>
         /// <param name="info">Object's member(Field)'s information</param>
@@ -43,32 +44,37 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
             Information = InfoA?.Text ?? "...";
             Type = InfoA is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo;
         }
+
         /// <summary>
-        /// Member's value as a SuitObject
+        ///     Member's value as a SuitObject
         /// </summary>
         public SuitObject SuitValue => _msValue ??= new SuitObject(Value);
+
         /// <summary>
-        /// Type of Member's value
+        ///     Type of Member's value
         /// </summary>
         public Type ValueType { get; }
+
         /// <summary>
-        /// Member's value.
+        ///     Member's value.
         /// </summary>
         public object? Value
         {
             get => GetValue(Instance);
             set => SetValue(Instance, value);
         }
+
         /// <summary>
-        /// Converter which can convert String to value's type of this member.
+        ///     Converter which can convert String to value's type of this member.
         /// </summary>
         public Converter<string, object>? Converter { get; }
+
         private Func<object?, object?> GetValue { get; }
         private Action<object?, object?> SetValue { get; }
         private SuitInfoAttribute? InfoA { get; }
 
         /// <summary>
-        /// Execute this object.
+        ///     Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
         /// <param name="returnValue"></param>

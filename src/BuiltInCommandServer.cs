@@ -1,8 +1,4 @@
 ﻿#nullable enable
-using PlasticMetal.MobileSuit.IO;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel.Members;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,16 +7,20 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using PlasticMetal.MobileSuit.IO;
+using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
-    /// Built-In-Command Server. May be Override if necessary.
+    ///     Built-In-Command Server. May be Override if necessary.
     /// </summary>
     public class BuildInCommandServer : IBuildInCommandServer
     {
         /// <summary>
-        /// Initialize a BicServer with the given SuitHost.
+        ///     Initialize a BicServer with the given SuitHost.
         /// </summary>
         /// <param name="host">The given SuitHost.</param>
         public BuildInCommandServer(SuitHost host)
@@ -28,24 +28,28 @@ namespace PlasticMetal.MobileSuit
             Host = host;
             HostRef = new SuitObject(Host);
         }
+
         /// <summary>
-        /// Host
+        ///     Host
         /// </summary>
         protected SuitHost Host { get; }
+
         /// <summary>
-        /// SuitObject for Host
+        ///     SuitObject for Host
         /// </summary>
         protected SuitObject HostRef { get; }
+
         /// <summary>
-        /// Host's current SuitObject.
+        ///     Host's current SuitObject.
         /// </summary>
         protected SuitObject Current
         {
             get => Host.Current;
             set => Host.Current = value;
         }
+
         /// <summary>
-        /// Enter a member of Current SuitObject
+        ///     Enter a member of Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -53,7 +57,8 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "Enter")]
         public virtual TraceBack Enter(string[] args)
         {
-            if (args == null || (args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null))
+            if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
+                Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
 
             var r = Current.TryGetField(args[0], out var nextObject);
@@ -73,8 +78,9 @@ namespace PlasticMetal.MobileSuit
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Leave the Current SuitObject, Back to its Parent
+        ///     Leave the Current SuitObject, Back to its Parent
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -89,8 +95,9 @@ namespace PlasticMetal.MobileSuit
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Create and Enter a new SuitObject
+        ///     Create and Enter a new SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -109,16 +116,17 @@ namespace PlasticMetal.MobileSuit
             Host.InstanceNameStringStack.Push(Host.InstanceNameString);
             Host.InstanceStack.Push(Host.Current);
             Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
-            Host.Prompt.Update("",  
+            Host.Prompt.Update("",
                 (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
-                                                     ?? new SuitInfoAttribute(args[0])).Text,TraceBack.AllOk);
+                 ?? new SuitInfoAttribute(args[0])).Text, TraceBack.AllOk);
             Host.InstanceNameString.Clear();
             Host.InstanceNameString.Add($"(new {Host.WorkType?.Name})");
             Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Show Certain Member's Value of the Current SuitObject
+        ///     Show Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -126,15 +134,17 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "View")]
         public virtual TraceBack View(string[] args)
         {
-            if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null || Host.WorkInstance == null)
+            if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
+                Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
             if (r != TraceBack.AllOk || obj is null) return r;
             Host.IO.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Run SuitScript at the given location
+        ///     Run SuitScript at the given location
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -142,13 +152,14 @@ namespace PlasticMetal.MobileSuit
         [SuitInfo(typeof(BicInfo), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
-            if (args == null || (args.Length <= 1 || !File.Exists(args[1]))) return TraceBack.InvalidCommand;
-            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]),true,Path.GetFileNameWithoutExtension(args[1]));
+            if (args == null || args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
+            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]), true, Path.GetFileNameWithoutExtension(args[1]));
             t.Wait();
             return t.Result;
         }
+
         /// <summary>
-        /// Switch Options for MobileSuit
+        ///     Switch Options for MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -158,8 +169,9 @@ namespace PlasticMetal.MobileSuit
         {
             return ModifyValue(HostRef, args);
         }
+
         /// <summary>
-        /// Modify Certain Member's Value of the Current SuitObject
+        ///     Modify Certain Member's Value of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -169,8 +181,9 @@ namespace PlasticMetal.MobileSuit
         {
             return ModifyValue(Current, args);
         }
+
         /// <summary>
-        /// Show Members of the Current SuitObject
+        ///     Show Members of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -190,8 +203,9 @@ namespace PlasticMetal.MobileSuit
             ), OutputType.AllOk);
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Free the Current SuitObject, and back to the last one.
+        ///     Free the Current SuitObject, and back to the last one.
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -211,8 +225,9 @@ namespace PlasticMetal.MobileSuit
 
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Exit MobileSuit
+        ///     Exit MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -222,8 +237,9 @@ namespace PlasticMetal.MobileSuit
         {
             return TraceBack.OnExit;
         }
+
         /// <summary>
-        /// Show Current SuitObject Information
+        ///     Show Current SuitObject Information
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -235,8 +251,9 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Output something in default way
+        ///     Output something in default way
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -255,8 +272,9 @@ namespace PlasticMetal.MobileSuit
             Host.IO.WriteLine(argumentSb.ToString()[..^1]);
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// A more powerful way to output something, with arg1 as option
+        ///     A more powerful way to output something, with arg1 as option
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -290,14 +308,16 @@ namespace PlasticMetal.MobileSuit
                     _ => OutputType.Default
                 },
                 typeof(ConsoleColor).GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(
-                        c => string.Equals(c.Name.ToLower(CultureInfo.CurrentCulture), args[1].ToLower(CultureInfo.CurrentCulture),
+                        c => string.Equals(c.Name.ToLower(CultureInfo.CurrentCulture),
+                            args[1].ToLower(CultureInfo.CurrentCulture),
                             StringComparison.CurrentCultureIgnoreCase))
                     ?.GetValue(null) as ConsoleColor?
             );
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Execute command with the System Shell
+        ///     Execute command with the System Shell
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -306,7 +326,7 @@ namespace PlasticMetal.MobileSuit
         public virtual TraceBack Shell(string[] args)
         {
             if (args == null || args.Length < 2) return TraceBack.InvalidCommand;
-            var proc = new Process { StartInfo = { UseShellExecute = true, FileName = args[1] } };
+            var proc = new Process {StartInfo = {UseShellExecute = true, FileName = args[1]}};
             if (args.Length > 2)
             {
                 var argumentSb = new StringBuilder();
@@ -328,8 +348,9 @@ namespace PlasticMetal.MobileSuit
 
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Show Help of MobileSuit
+        ///     Show Help of MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
@@ -348,8 +369,9 @@ namespace PlasticMetal.MobileSuit
             ), OutputType.AllOk);
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// List members of a SuitObject
+        ///     List members of a SuitObject
         /// </summary>
         /// <param name="suitObject">The SuitObject, Maybe this BicServer.</param>
         protected void ListMembers(SuitObject suitObject)
@@ -378,8 +400,9 @@ namespace PlasticMetal.MobileSuit
 
             Host.IO.SubtractWriteLinePrefix();
         }
+
         /// <summary>
-        /// Asynchronously read all lines in a text file into a IAsyncEnumerable
+        ///     Asynchronously read all lines in a text file into a IAsyncEnumerable
         /// </summary>
         /// <param name="fileName">The file's name.</param>
         /// <returns>The file's content</returns>
@@ -388,16 +411,16 @@ namespace PlasticMetal.MobileSuit
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            for (; ; )
+            for (;;)
             {
                 var r = await reader.ReadLineAsync().ConfigureAwait(false);
                 yield return r;
                 if (r is null) break;
             }
-
         }
+
         /// <summary>
-        /// Modify member's value of a SuitObject
+        ///     Modify member's value of a SuitObject
         /// </summary>
         /// <param name="suitObject">the SuitObject, maybe SuitHost.</param>
         /// <param name="args">command args</param>
@@ -411,7 +434,7 @@ namespace PlasticMetal.MobileSuit
             if (args.Length == 1)
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool)target.Value;
+                var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 currentBool = !currentBool;
                 newVal = currentBool.ToString(CultureInfo.CurrentCulture);
@@ -420,7 +443,7 @@ namespace PlasticMetal.MobileSuit
             else if (target.ValueType == typeof(bool))
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool)target.Value;
+                var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 var setV = args[1].ToLower(CultureInfo.CurrentCulture);
                 currentBool = setV switch

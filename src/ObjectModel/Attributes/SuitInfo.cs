@@ -5,24 +5,25 @@ using System.Threading;
 namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
 {
     /// <summary>
-    /// Stores the information of a member to be displayed.
+    ///     Stores the information of a member to be displayed.
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
     public sealed class SuitInfoAttribute : Attribute, IInfoProvider
     {
         /// <summary>
-        /// Initialize with the information.
+        ///     Initialize with the information.
         /// </summary>
         /// <param name="text">The information.</param>
         public SuitInfoAttribute(string text)
         {
             Text = text;
         }
+
         /// <summary>
-        /// Initialize with a resource file's type, and the resource key.
+        ///     Initialize with a resource file's type, and the resource key.
         /// </summary>
         /// <summary lang="zh-CN">
-        /// 使用资源文件，和键值初始化一个信息类。
+        ///     使用资源文件，和键值初始化一个信息类。
         /// </summary>
         /// <param name="resourceType">Resource file's type</param>
         /// <param name="key">The resource key</param>
@@ -30,8 +31,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
         {
             Text = new ResourceManager(resourceType).GetString(key, Thread.CurrentThread.CurrentCulture) ?? "";
         }
+
         /// <summary>
-        /// The information.
+        ///     The information.
         /// </summary>
         public string Text { get; }
     }

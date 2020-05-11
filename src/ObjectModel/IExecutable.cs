@@ -1,12 +1,12 @@
 ﻿namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
-    /// Represents an entity which can be executed.
+    ///     Represents an entity which can be executed.
     /// </summary>
     public interface IExecutable
     {
         /// <summary>
-        /// Execute this object.
+        ///     Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
         /// <param name="returnValue">the return value of execute.</param>

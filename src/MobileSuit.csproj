@@ -18,7 +18,7 @@
     <RepositoryType>Github</RepositoryType>
     <AssemblyVersion>1.4.0.2</AssemblyVersion>
     <FileVersion>1.4.0.2</FileVersion>
-    <Version>1.4.0.2</Version>
+    <Version>1.4.1.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
@@ -27,7 +27,7 @@
 
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <PackageReleaseNotes>Added Configuration System</PackageReleaseNotes>
+    <PackageReleaseNotes>Add support for Task in client.</PackageReleaseNotes>
     <Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
     <Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlasticMetal.MobileSuit
+﻿namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Status of the last Commandline. Return value type for Built-In-Commands and Host Functions.
@@ -10,9 +6,9 @@ namespace PlasticMetal.MobileSuit
     public enum TraceBack
     {
         /// <summary>
-        ///    Needs more input
+        ///     Needs more input
         /// </summary>
-        Prompt=2,
+        Prompt = 2,
 
         /// <summary>
         ///     The Progress is Exiting
