@@ -5,8 +5,13 @@
 # PlasticMetal.MobileSuit
 
 ![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square) 
-![GitHub](https://img.shields.io/github/license/Plastic-Metal/MobileSuit?style=flat-square)
 ![Nuget](https://img.shields.io/nuget/dt/PlasticMetal.MobileSuit?style=flat-square)
+![GitHub](https://img.shields.io/github/license/Plastic-Metal/MobileSuit?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/Plastic-Metal/MobileSuit?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Plastic-Metal/MobileSuit/publish_to_nuget?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/Plastic-Metal/MobileSuit?style=flat-square)
+![GitHub code size](https://img.shields.io/github/languages/code-size/Plastic-Metal/MobileSuit?style=flat-square)
+
 
 
 [View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
