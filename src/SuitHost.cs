@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using static System.String;
 
 namespace PlasticMetal.MobileSuit

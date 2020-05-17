@@ -12,11 +12,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// </summary>
     public class SuitObject : IExecutable, IEnumerable<(string, ObjectMember)>
     {
-        private const BindingFlags Flags = BindingFlags.IgnoreCase
+        /// <summary>
+        /// The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
+        /// </summary>
+        public const BindingFlags Flags = BindingFlags.IgnoreCase
                                            | BindingFlags.DeclaredOnly
                                            | BindingFlags.Public
                                            | BindingFlags.Instance
-                                           | BindingFlags.Static;
+                                           //| BindingFlags.Static
+            ;
 
         /// <summary>
         ///     Initialize a SuitObject with an instance.

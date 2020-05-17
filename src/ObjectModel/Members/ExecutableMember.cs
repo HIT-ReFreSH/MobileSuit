@@ -1,9 +1,10 @@
 ﻿#nullable enable
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Parsing;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {
@@ -155,50 +156,59 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
 
             var pass = new object?[Parameters.Length];
             var i = 0;
-            for (; i < NonArrayParameterCount; i++)
-                pass[i] = i < args.Length
-                    ? (Parameters[i].GetCustomAttribute<SuitParserAttribute>(true)
-                           ?.Converter
-                       ?? (source => source)) //Converter
-                    (args[i])
-                    : Parameters[i].DefaultValue;
-
-            if (TailParameterType == TailParameterType.Normal) return Execute(Instance, pass, out returnValue);
-
-            if (TailParameterType == TailParameterType.DynamicParameter)
+            try
             {
-                var dynamicParameter = Parameters[^1].ParameterType.Assembly
-                    .CreateInstance(Parameters[^1].ParameterType.FullName
-                                    ?? Parameters[^1].ParameterType.Name) as IDynamicParameter;
-                if (dynamicParameter?.Parse(i < args.Length ? args[i..] : null) ?? false)
-                {
-                    pass[i] = dynamicParameter;
+                for (; i < NonArrayParameterCount; i++)
+                    pass[i] = i < args.Length
+                        ? (Parameters[i].GetCustomAttribute<SuitParserAttribute>(true)
+                               ?.Converter
+                           ?? (source => source)) //Converter
+                        (args[i])
+                        : Parameters[i].DefaultValue;
 
-                    return Execute(Instance, pass, out returnValue);
+                if (TailParameterType == TailParameterType.Normal) return Execute(Instance, pass, out returnValue);
+
+                if (TailParameterType == TailParameterType.DynamicParameter)
+                {
+                    var dynamicParameter = Parameters[^1].ParameterType.Assembly
+                        .CreateInstance(Parameters[^1].ParameterType.FullName
+                                        ?? Parameters[^1].ParameterType.Name) as IDynamicParameter;
+                    if (dynamicParameter?.Parse(i < args.Length ? args[i..] : null) ?? false)
+                    {
+                        pass[i] = dynamicParameter;
+
+                        return Execute(Instance, pass, out returnValue);
+                    }
+                    returnValue = null;
+                    return TraceBack.InvalidCommand;
                 }
 
-                returnValue = null;
+                if (i < args.Length)
+                {
+                    var argArray = args[i..];
+                    var array = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
+                                                     ?? typeof(string), argArray.Length);
+                    var convert = Parameters[^1].GetCustomAttribute<SuitParserAttribute>(true)?.Converter
+                                  ?? (source => source);
+                    var j = 0;
+                    foreach (var arg in argArray) array.SetValue(convert(arg), j++);
+                    pass[i] = array;
+                }
+                else
+                {
+                    pass[i] = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
+                                                   ?? typeof(string), 0);
+                }
+
+                return Execute(Instance, pass, out returnValue);
+            }
+            catch(System.FormatException e)
+            {
+                returnValue = e;
+
                 return TraceBack.InvalidCommand;
             }
-
-            if (i < args.Length)
-            {
-                var argArray = args[i..];
-                var array = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
-                                                 ?? typeof(string), argArray.Length);
-                var convert = Parameters[^1].GetCustomAttribute<SuitParserAttribute>(true)?.Converter
-                              ?? (source => source);
-                var j = 0;
-                foreach (var arg in argArray) array.SetValue(convert(arg), j++);
-                pass[i] = array;
-            }
-            else
-            {
-                pass[i] = Array.CreateInstance(Parameters[^1].ParameterType.GetElementType()
-                                               ?? typeof(string), 0);
-            }
-
-            return Execute(Instance, pass, out returnValue);
+            
         }
     }
 }

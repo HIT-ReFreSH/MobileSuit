@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit

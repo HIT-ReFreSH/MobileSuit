@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 using System.Text;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Parsing;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Members
 {

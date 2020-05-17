@@ -1,12 +1,20 @@
 ﻿using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Attributes;
+using PlasticMetal.MobileSuit.ObjectModel.Parsing;
 
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
     public class Client : SuitClient
     {
+        public class SleepArgument : AutoDynamicParameter
+        {
+            [Option("n")]
+            public string Name{ get; protected set; }
+            [Switch("s")]
+            public bool IsSleeping{ get; protected set; }
+        }
+
         /// <summary>
         ///     Initialize a client
         /// </summary>
@@ -20,6 +28,20 @@ namespace PlasticMetal.MobileSuitDemo
         public void Hello()
         {
             IO.WriteLine("Hello! MobileSuit!");
+        }
+        
+        [SuitAlias("Sl")]
+        public void Sleep(SleepArgument sleep)
+        {
+            IO.WriteLine(sleep.Name + (sleep.IsSleeping ? " is" : " is not") + " sleeping!");
+        }
+
+       
+        public static object NumberConvert(string arg) => int.Parse(arg);
+
+        public void Number([SuitParser(typeof(Client),nameof(NumberConvert))]int i)
+        {
+            IO.WriteLine(i.ToString());
         }
 
         public string Bye(string name)

@@ -2,7 +2,7 @@
 using System.Resources;
 using System.Threading;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Attributes
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Stores the information of a member to be displayed.
