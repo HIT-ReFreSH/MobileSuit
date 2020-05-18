@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.ObjectModel.Parsing;
 
@@ -9,10 +10,13 @@ namespace PlasticMetal.MobileSuitDemo
     {
         public class SleepArgument : AutoDynamicParameter
         {
-            [Option("n")]
-            public string Name{ get; protected set; }
+            [Option("n")] 
+            [AsCollection]
+            public List<string> Name { get; } = new List<string>();
             [Switch("s")]
             public bool IsSleeping{ get; protected set; }
+
+
         }
 
         /// <summary>
@@ -33,13 +37,13 @@ namespace PlasticMetal.MobileSuitDemo
         [SuitAlias("Sl")]
         public void Sleep(SleepArgument sleep)
         {
-            IO.WriteLine(sleep.Name + (sleep.IsSleeping ? " is" : " is not") + " sleeping!");
+            IO.WriteLine(sleep.Name[0] + (sleep.IsSleeping ? " is" : " is not") + " sleeping!");
         }
 
        
         public static object NumberConvert(string arg) => int.Parse(arg);
 
-        public void Number([SuitParser(typeof(Client),nameof(NumberConvert))]int i)
+        public void Number([SuitParser(typeof(int),nameof(int.Parse))]int i)
         {
             IO.WriteLine(i.ToString());
         }

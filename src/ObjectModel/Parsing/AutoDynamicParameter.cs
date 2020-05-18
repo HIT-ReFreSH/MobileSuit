@@ -30,9 +30,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
             {
                 if (!(property.GetCustomAttribute(typeof(ParsingMemberAttribute), true) is ParsingMemberAttribute memberAttr)) continue;
                 var parseAttr = property.GetCustomAttribute(typeof(SuitParserAttribute), true) as SuitParserAttribute;
-                Members.Add(memberAttr.Name, new ParsingMember(property.SetValue,
+                Members.Add(memberAttr.Name, new ParsingMember(property.GetCustomAttribute(typeof(AsCollectionAttribute), true) is AsCollectionAttribute? new Action<object?, object?>((obj, value) =>
+                    {
+                        property.PropertyType.GetMethod("Add", new []{
+                            property.GetType().GetElementType()??typeof(string)
+                        })?.Invoke(property.GetValue(obj),new[]{value});
+                    }
+                    ) : property.SetValue,
                     parseAttr?.Converter ?? (a => a),
-                    memberAttr.Name,
                     memberAttr.Length,
                     property.GetCustomAttribute(typeof(WithDefaultAttribute)) != null));
             }
@@ -56,7 +61,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
 
             public bool Assigned { get; private set; }
             public int ParseLength { get; }
-            public string Name { get; }
 
             public void Set(AutoDynamicParameter instance, string value)
             {
@@ -65,12 +69,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
             }
 
             public ParsingMember(Action<object?, object?> setter,
-                Converter<string, object> converter, string name, int parseLength, bool withDefault
+                Converter<string, object> converter, int parseLength, bool withDefault
                 )
             {
                 Setter = setter;
                 Converter = converter;
-                Name = name;
                 ParseLength = parseLength;
                 Assigned = withDefault || parseLength == 0;
             }
