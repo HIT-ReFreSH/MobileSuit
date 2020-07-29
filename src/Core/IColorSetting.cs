@@ -1,6 +1,8 @@
 ﻿using System;
+using PlasticMetal.MobileSuit.IO;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Color settings of a Mobile Suit.

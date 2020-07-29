@@ -1,7 +1,9 @@
 ﻿#nullable enable
 using System;
+using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.IO;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
@@ -37,7 +39,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         ///     Color settings for this IOServer. (default DefaultColorSetting)
         /// </summary>
-        public IColorSetting? ColorSetting { get; set; }
+        public IColorSetting ColorSetting { get; set; }
 
         /// <summary>
         ///     Prompt server for the io server.

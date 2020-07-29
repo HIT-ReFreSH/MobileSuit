@@ -1,4 +1,6 @@
-﻿namespace PlasticMetal.MobileSuit.IO
+﻿using PlasticMetal.MobileSuit.IO;
+
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     represents a server provides prompt output.

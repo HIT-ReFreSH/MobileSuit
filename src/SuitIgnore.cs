@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.Core
+namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Represents that this member should be ignored by Mobile Suit.

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.IO;
+using IOServer = PlasticMetal.MobileSuit.ObjectModel.IOServer;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.

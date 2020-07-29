@@ -1,6 +1,7 @@
 ﻿using System;
+using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Color settings of a Mobile Suit.
@@ -45,7 +46,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="other">The object to compare with the current instance.</param>
         /// <returns>whether this instance and a specified object are equal.</returns>
-        public bool Equals(IColorSetting other)
+        public bool Equals(IColorSetting? other)
         {
             return other != null &&
                    DefaultColor == other.DefaultColor && PromptColor == other.PromptColor &&

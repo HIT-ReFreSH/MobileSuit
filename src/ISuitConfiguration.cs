@@ -1,5 +1,8 @@
 ﻿using System;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.IO;
+using PlasticMetal.MobileSuit.ObjectModel.Premium;
+using IOServer = PlasticMetal.MobileSuit.ObjectModel.IOServer;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -45,7 +48,7 @@ namespace PlasticMetal.MobileSuit
         /// <returns></returns>
         static ISuitConfiguration GetDefaultConfiguration()
         {
-            return new SuitConfiguration(typeof(BuildInCommandServer),
+            return new SuitConfiguration(typeof(PremiumBuildInCommandServer),
                 new IOServer(),
                 new PromptServer(),
                 IColorSetting.DefaultColorSetting);

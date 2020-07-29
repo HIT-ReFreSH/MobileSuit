@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit
+﻿namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Build-In-Command's model
@@ -26,12 +26,7 @@
         /// <returns>Command status</returns>
         TraceBack Leave(string[] args);
 
-        /// <summary>
-        ///     Create and Enter a new SuitObject
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack CreateObject(string[] args);
+
 
         /// <summary>
         ///     Show Certain Member's Value of the Current SuitObject
@@ -47,12 +42,6 @@
         /// <returns>Command status</returns>
         TraceBack RunScript(string[] args);
 
-        /// <summary>
-        ///     Switch Options for MobileSuit
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack SwitchOption(string[] args);
 
         /// <summary>
         ///     Modify Certain Member's Value of the Current SuitObject
@@ -68,12 +57,7 @@
         /// <returns>Command status</returns>
         TraceBack List(string[] args);
 
-        /// <summary>
-        ///     Free the Current SuitObject, and back to the last one.
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack Free(string[] args);
+
 
         /// <summary>
         ///     Exit MobileSuit
@@ -89,26 +73,8 @@
         /// <returns>Command status</returns>
         TraceBack This(string[] args);
 
-        /// <summary>
-        ///     Output something in default way
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack Print(string[] args);
 
-        /// <summary>
-        ///     A more powerful way to output something, with arg1 as option
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack SuperPrint(string[] args);
 
-        /// <summary>
-        ///     Execute command with the System Shell
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        TraceBack Shell(string[] args);
 
         /// <summary>
         ///     Show Help of MobileSuit

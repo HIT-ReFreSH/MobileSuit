@@ -1,4 +1,6 @@
-﻿namespace PlasticMetal.MobileSuit.IO
+﻿using PlasticMetal.MobileSuit.Core;
+
+namespace PlasticMetal.MobileSuit.IO
 {
     /// <summary>
     ///     a prompt server for mobile suit

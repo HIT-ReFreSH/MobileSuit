@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.IO;
 
-namespace PlasticMetal.MobileSuit.Future
+namespace PlasticMetal.MobileSuit.ObjectModel.Future
 {
     /// <summary>
     ///     a power line themed prompt server for mobile suit
@@ -50,7 +51,7 @@ namespace PlasticMetal.MobileSuit.Future
         public static ISuitConfiguration CreatePowerLineThemeConfiguration()
         {
             var io = new IOServer();
-            var r = new SuitConfiguration(typeof(BuildInCommandServer), io,
+            var r = new SuitConfiguration(typeof(Premium.PremiumBuildInCommandServer), io,
                 new PowerLineThemedPromptServer(io), IColorSetting.DefaultColorSetting);
             io.Prompt = r.PromptServer;
             return r;

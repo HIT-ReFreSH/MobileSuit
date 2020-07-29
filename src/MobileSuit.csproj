@@ -78,8 +78,4 @@
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IO\" />
-  </ItemGroup>
 </Project>

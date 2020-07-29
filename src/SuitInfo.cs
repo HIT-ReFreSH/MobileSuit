@@ -3,7 +3,7 @@ using System.Resources;
 using System.Threading;
 using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuit.Core
+namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Stores the information of a member to be displayed.

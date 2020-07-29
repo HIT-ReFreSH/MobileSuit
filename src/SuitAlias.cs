@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.Core
+namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Alias for a SuitObject's member

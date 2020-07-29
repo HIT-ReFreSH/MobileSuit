@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     partial class IOServer
     {

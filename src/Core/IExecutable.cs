@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.ObjectModel
+﻿namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Represents an entity which can be executed.
