@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Members
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Whether a member is SuitIgnore or not.
@@ -51,14 +52,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
     /// <summary>
     ///     A SuitObject's member.
     /// </summary>
-    public abstract class ObjectMember : IExecutable
+    public abstract class Member : IExecutable
     {
         /// <summary>
         ///     Initialize a ObjectMember with SuitObject's instance and the member's information.
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="member"></param>
-        protected ObjectMember(object? instance, MemberInfo member)
+        protected Member(object? instance, MemberInfo member)
         {
             Access = member.GetCustomAttribute<SuitIgnoreAttribute>() is null
                 ? MemberAccess.VisibleToUser

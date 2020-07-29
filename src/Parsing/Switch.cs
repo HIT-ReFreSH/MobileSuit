@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
+namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
     /// A switch used in a dynamic parameter

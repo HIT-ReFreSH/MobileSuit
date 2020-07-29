@@ -2,14 +2,16 @@
 using System;
 using System.Reflection;
 using System.Text;
-using PlasticMetal.MobileSuit.ObjectModel.Parsing;
+using PlasticMetal.MobileSuit.Core.Members;
+using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Members
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Stands for SuitObject's members which can also be SuitObjects (Field/Property).
     /// </summary>
-    public class ContainerMember : ObjectMember
+    public class ContainerMember : Member
     {
         private SuitObject? _msValue;
 

@@ -16,9 +16,9 @@
     <PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <AssemblyVersion>1.5.1</AssemblyVersion>
-    <FileVersion>1.5.1</FileVersion>
-    <Version>1.5.1</Version>
+    <AssemblyVersion>1.6</AssemblyVersion>
+    <FileVersion>1.6</FileVersion>
+    <Version>1.6</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
@@ -49,17 +49,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="BicInfo.Designer.cs">
+    <Compile Update="BuildInCommandInformations.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>BicInfo.resx</DependentUpon>
+      <DependentUpon>BuildInCommandInformations.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="BicInfo.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BicInfo.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="BuildInCommandInformations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BuildInCommandInformations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
 
   </ItemGroup>
@@ -77,5 +77,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IO\" />
   </ItemGroup>
 </Project>

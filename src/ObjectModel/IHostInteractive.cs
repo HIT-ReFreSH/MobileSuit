@@ -1,4 +1,6 @@
-﻿#nullable enable
+﻿using PlasticMetal.MobileSuit.Core;
+
+#nullable enable
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -13,13 +15,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     ///     Represents that an object is interactive to SuitHost's command handler.
     /// </summary>
-    public interface ICommandInteractive
+    public interface IHostInteractive
     {
         /// <summary>
-        ///     Provides Interface for SuitHost to set commandHandler
+        ///     Provides Interface for SuitHost.
         /// </summary>
-        /// <param name="commandHandler">SuitHost's command handler.</param>
         [SuitIgnore]
-        void SetCommandHandler(CommandHandler commandHandler);
+        IAssignOnceHost Host { get; }
     }
 }

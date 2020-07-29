@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using System.Linq;
-using Microsoft.VisualBasic;
 using System.Reflection;
-
 using System.Text.RegularExpressions;
-using System.Diagnostics;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
+namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
     /// A DynamicParameter which can parse itself automatically

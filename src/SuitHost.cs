@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using static System.String;
@@ -15,7 +16,7 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     ///     A entity, which serves the shell functions of a mobile-suit program.
     /// </summary>
-    public class SuitHost
+    public class SuitHost:IMobileSuitHost
     {
         private string _returnValue;
 
@@ -141,105 +142,28 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public Type? WorkType => Current.Instance?.GetType();
 
-        /// <summary>
-        ///     Use TraceBack, or just throw Exceptions.
-        /// </summary>
-        public bool UseTraceBack { get; set; } = true;
 
-        /// <summary>
-        ///     If show that a command has been executed.
-        /// </summary>
-        public bool ShowDone { get; set; }
 
-        /// <summary>
-        ///     If this SuitHost runs like a shell that will not exit UNLESS user input exit command.
-        /// </summary>
-        public bool ShellMode { get; set; } = false;
 
-        /// <summary>
-        ///     whether mobile Suit shows command return value or not.
-        /// </summary>
-        public bool ShowReturnValue { get; set; }
-
-        private static string[]? SplitCommandLine(string commandLine)
-        {
-            if (IsNullOrEmpty(commandLine)) return null;
-            string submit;
-            var l = new List<string>();
-            var separating = false;
-            var separationPrefix = false;
-            var separationCharacter = '"';
-            var left = 0;
-            var right = 0;
-            for (; right < commandLine.Length; right++)
-                switch (commandLine[right])
-                {
-                    case '"':
-                        if (separationPrefix) continue;
-                        if (separating && separationCharacter == '"')
-                        {
-                            l.Add(commandLine[left..right]);
-                            left = right + 1;
-                        }
-                        else if (!separating)
-                        {
-                            separating = true;
-                            separationCharacter = '"';
-                            left = right + 1;
-                        }
-
-                        break;
-                    case '\'':
-                        if (separationPrefix) continue;
-                        if (separating && separationCharacter == '\'')
-                        {
-                            l.Add(commandLine[left..right]);
-                            left = right + 1;
-                        }
-                        else if (!separating)
-                        {
-                            separating = true;
-                            separationCharacter = '\'';
-                            left = right + 1;
-                        }
-
-                        break;
-                    case ' ':
-                        submit = commandLine[left..right];
-                        if (!IsNullOrEmpty(submit))
-                            l.Add(submit);
-                        left = right + 1;
-                        separationPrefix = false;
-                        break;
-                    default:
-                        if (!separating) separationPrefix = true;
-                        break;
-                }
-
-            submit = commandLine[left..right];
-            if (!IsNullOrEmpty(submit))
-                l.Add(submit);
-            return l.ToArray();
-        }
 
         /// <summary>
         ///     Initialize the current instance, if it is a SuitClient, or implements IIOInteractive or ICommandInteractive.
         /// </summary>
         public void WorkInstanceInit()
         {
-            (WorkInstance as IIOInteractive)?.SetIO(IO);
-            (WorkInstance as ICommandInteractive)?.SetCommandHandler(RunCommand);
+            (WorkInstance as IIOInteractive)?.IO.Assign(IO);
+            (WorkInstance as IHostInteractive)?.Host.Assign(this);
         }
 
         private void NotifyAllOk()
         {
-            if (UseTraceBack && ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
+            if (!Settings.EnableThrows && Settings.ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
         }
 
 
         private void NotifyError(string errorDescription)
         {
-            if (UseTraceBack) IO.WriteLine(errorDescription + '!', OutputType.Error);
+            if (!Settings.EnableThrows) IO.WriteLine(errorDescription + '!', OutputType.Error);
             else throw new Exception(errorDescription);
         }
 
@@ -267,8 +191,7 @@ namespace PlasticMetal.MobileSuit
 
         private TraceBack RunBuildInCommand(string[] cmdList)
         {
-            if (cmdList is null) return TraceBack.InvalidCommand;
-            return BicServer.Execute(cmdList, out _);
+            return cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out _);
         }
 
         private TraceBack RunObject(string[] args)
@@ -278,7 +201,7 @@ namespace PlasticMetal.MobileSuit
             {
                 var retVal = result.ToString() ?? "";
                 if (!IsNullOrEmpty(retVal)) _returnValue = retVal;
-                if (ShowReturnValue)
+                if (!Settings.HideReturnValue)
                     IO.WriteLine(IIOServer.CreateContentArray
                         (
                             (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
@@ -290,18 +213,15 @@ namespace PlasticMetal.MobileSuit
             return r;
         }
 
-        /// <summary>
-        ///     Run a Mobile Suit with Prompt.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <returns>0, is All ok.</returns>
+
+        /// <inheritdoc />
         public int Run(string prompt)
         {
             Prompt.Update("", UpdatePrompt(prompt), TraceBack.AllOk);
             for (;;)
             {
                 if (!IO.IsInputRedirected) Prompt.Print();
-                var traceBack = RunCommand(prompt, IO.ReadLine());
+                var traceBack = RunCommand( IO.ReadLine(),prompt);
                 switch (traceBack)
                 {
                     case TraceBack.OnExit:
@@ -325,13 +245,7 @@ namespace PlasticMetal.MobileSuit
             }
         }
 
-        /// <summary>
-        ///     Run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
-        /// </summary>
-        /// <param name="scripts">SuitCommands</param>
-        /// <param name="withPrompt">if this run contains prompt, or silent</param>
-        /// <param name="scriptName">name of these scripts</param>
-        /// <returns>The TraceBack of the last executed command.</returns>
+        /// <inheritdoc/>
         public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
         {
             var i = 1;
@@ -345,7 +259,7 @@ namespace PlasticMetal.MobileSuit
                         (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
                         (">", IO.ColorSetting.PromptColor),
                         (script, null)));
-                var traceBack = RunCommand("", script);
+                var traceBack = RunCommand(script);
                 if (traceBack != TraceBack.AllOk)
                 {
                     if (withPrompt)
@@ -365,13 +279,8 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
 
-        /// <summary>
-        ///     Asynchronously run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
-        /// </summary>
-        /// <param name="scripts">SuitCommands</param>
-        /// <param name="withPrompt">if this run contains prompt, or silent</param>
-        /// <param name="scriptName">name of these scripts</param>
-        /// <returns>The TraceBack of the last executed command.</returns>
+
+        /// <inheritdoc />
         public async Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
             string? scriptName = null)
         {
@@ -381,23 +290,23 @@ namespace PlasticMetal.MobileSuit
             {
                 if (script is null) break;
                 if (withPrompt)
-                    IO.WriteLine(IIOServer.CreateContentArray(
+                    await IO.WriteLineAsync(IIOServer.CreateContentArray(
                         ("<Script:", IO.ColorSetting.PromptColor),
                         (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
                         (">", IO.ColorSetting.PromptColor),
-                        (script, null)));
+                        (script, null))).ConfigureAwait(false);
 
-                var traceBack = RunCommand("", script);
+                var traceBack = RunCommand( script);
                 if (traceBack != TraceBack.AllOk)
                 {
                     if (withPrompt)
-                        IO.WriteLine(IIOServer.CreateContentArray(
+                        await IO.WriteLineAsync(IIOServer.CreateContentArray(
                                 ("TraceBack:", null),
                                 (traceBack.ToString(), IO.ColorSetting.InformationColor),
                                 (" at line ", null),
                                 (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.InformationColor)
                             ),
-                            OutputType.Error);
+                            OutputType.Error).ConfigureAwait(false);
 
                     return traceBack;
                 }
@@ -407,10 +316,10 @@ namespace PlasticMetal.MobileSuit
 
             return TraceBack.AllOk;
         }
-
-        private TraceBack RunCommand(string prompt, string? cmd)
+        /// <inheritdoc />
+        public TraceBack RunCommand(string? cmd, string prompt="")
         {
-            if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && ShellMode)
+            if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && Settings.NoExit)
             {
                 IO.ResetInput();
                 return TraceBack.AllOk;
@@ -418,7 +327,7 @@ namespace PlasticMetal.MobileSuit
 
             if (IsNullOrEmpty(cmd)) return TraceBack.AllOk;
             TraceBack traceBack;
-            var args = SplitCommandLine(cmd);
+            var args = IMobileSuitHost.SplitCommandLine(cmd);
             if (args is null) return TraceBack.InvalidCommand;
             try
             {
@@ -435,7 +344,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
-                if (!UseTraceBack) throw;
+                if (Settings.EnableThrows) throw;
                 IO.ErrorStream.WriteLine(e.ToString());
                 traceBack = TraceBack.InvalidCommand;
             }
@@ -444,13 +353,14 @@ namespace PlasticMetal.MobileSuit
             return traceBack;
         }
 
-        /// <summary>
-        ///     Run a Mobile Suit with default Prompt.
-        /// </summary>
-        /// <returns>0, is All ok.</returns>
+
+        /// <inheritdoc />
         public int Run()
         {
             return Run("");
         }
+
+        /// <inheritdoc />
+        public HostSettings Settings { get; set; } = new HostSettings();
     }
 }

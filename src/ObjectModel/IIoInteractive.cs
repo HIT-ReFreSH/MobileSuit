@@ -1,4 +1,5 @@
-﻿using PlasticMetal.MobileSuit.IO;
+﻿using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.IO;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -10,8 +11,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         ///     Provides Interface for SuitHost to set ioServer
         /// </summary>
-        /// <param name="io">SuitHost's IOServer.</param>
         [SuitIgnore]
-        void SetIO(IIOServer io);
+        IAssignOnceIOServer IO { get; }
     }
 }

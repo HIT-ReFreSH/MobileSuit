@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
+namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
     ///     Stores a parser which convert string argument to certain type.

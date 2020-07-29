@@ -7,9 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Members;
 using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Members;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -53,7 +54,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Et")]
-        [SuitInfo(typeof(BicInfo), "Enter")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Enter")]
         public virtual TraceBack Enter(string[] args)
         {
             if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
@@ -84,7 +85,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Lv")]
-        [SuitInfo(typeof(BicInfo), "Leave")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Leave")]
         public virtual TraceBack Leave(string[] args)
         {
             if (Host.InstanceStack.Count == 0 || Current is null)
@@ -100,7 +101,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [SuitInfo(typeof(BicInfo), "New")]
+        [SuitInfo(typeof(BuildInCommandInformations), "New")]
         [SuitAlias("New")]
         public virtual TraceBack CreateObject(string[] args)
         {
@@ -130,7 +131,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Vw")]
-        [SuitInfo(typeof(BicInfo), "View")]
+        [SuitInfo(typeof(BuildInCommandInformations), "View")]
         public virtual TraceBack View(string[] args)
         {
             if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
@@ -148,7 +149,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Rs")]
-        [SuitInfo(typeof(BicInfo), "RunScript")]
+        [SuitInfo(typeof(BuildInCommandInformations), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
             if (args == null || args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
@@ -163,7 +164,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Sw")]
-        [SuitInfo(typeof(BicInfo), "SwitchOption")]
+        [SuitInfo(typeof(BuildInCommandInformations), "SwitchOption")]
         public virtual TraceBack SwitchOption(string[] args)
         {
             return ModifyValue(HostRef, args);
@@ -175,7 +176,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Md")]
-        [SuitInfo(typeof(BicInfo), "ModifyMember")]
+        [SuitInfo(typeof(BuildInCommandInformations), "ModifyMember")]
         public virtual TraceBack ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
@@ -187,7 +188,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Ls")]
-        [SuitInfo(typeof(BicInfo), "List")]
+        [SuitInfo(typeof(BuildInCommandInformations), "List")]
         public virtual TraceBack List(string[] args)
         {
             if (Host.Current == null) return TraceBack.InvalidCommand;
@@ -209,7 +210,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Fr")]
-        [SuitInfo(typeof(BicInfo), "Free")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Free")]
         public virtual TraceBack Free(string[] args)
         {
             if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
@@ -230,7 +231,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [SuitInfo(typeof(BicInfo), "Exit")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Exit")]
         [SuitAlias("Exit")]
         public virtual TraceBack ExitSuit(string[] args)
         {
@@ -243,7 +244,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Me")]
-        [SuitInfo(typeof(BicInfo), "This")]
+        [SuitInfo(typeof(BuildInCommandInformations), "This")]
         public virtual TraceBack This(string[] args)
         {
             if (Host.WorkType == null) return TraceBack.InvalidCommand;
@@ -257,7 +258,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Echo")]
-        [SuitInfo(typeof(BicInfo), "Print")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Print")]
         public virtual TraceBack Print(string[] args)
         {
             if (args == null || args.Length == 1)
@@ -278,7 +279,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("EchoX")]
-        [SuitInfo(typeof(BicInfo), "SuperPrint")]
+        [SuitInfo(typeof(BuildInCommandInformations), "SuperPrint")]
         public virtual TraceBack SuperPrint(string[] args)
         {
             if (args == null || args.Length <= 2)
@@ -321,7 +322,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitAlias("Sh")]
-        [SuitInfo(typeof(BicInfo), "Shell")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Shell")]
         public virtual TraceBack Shell(string[] args)
         {
             if (args == null || args.Length < 2) return TraceBack.InvalidCommand;
@@ -340,7 +341,7 @@ namespace PlasticMetal.MobileSuit
             }
             catch (Exception e)
             {
-                if (!Host.UseTraceBack) throw;
+                if (!Host.!Settings.EnableThrows) throw;
                 Host.IO.WriteLine($"{Lang.Error}{e}", OutputType.Error);
                 return TraceBack.ObjectNotFound;
             }
@@ -353,7 +354,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        [SuitInfo(typeof(BicInfo), "Help")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Help")]
         public virtual TraceBack Help(string[] args)
         {
             Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);

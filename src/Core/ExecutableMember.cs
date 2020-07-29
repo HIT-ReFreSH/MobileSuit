@@ -1,12 +1,12 @@
 ﻿#nullable enable
 using System;
-using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.ObjectModel.Parsing;
+using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Members
+namespace PlasticMetal.MobileSuit.Core.Members
 {
     /// <summary>
     ///     Represents type of the last parameter of a method
@@ -37,7 +37,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Members
     /// <summary>
     ///     Object's Member which may be a method.
     /// </summary>
-    public class ExecutableMember : ObjectMember
+    public class ExecutableMember : Member
     {
         /// <summary>
         ///     Initialize an Object's Member with its instance and Method's information.

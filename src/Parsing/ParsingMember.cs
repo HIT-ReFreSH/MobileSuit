@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PlasticMetal.MobileSuit.ObjectModel.Parsing
+namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
     /// A member of a dynamic parameter

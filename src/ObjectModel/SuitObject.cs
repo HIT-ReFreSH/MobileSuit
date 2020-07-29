@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using PlasticMetal.MobileSuit.ObjectModel.Members;
+using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Members;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Represents an object in Mobile Suit.
     /// </summary>
-    public class SuitObject : IExecutable, IEnumerable<(string, ObjectMember)>
+    public class SuitObject : IExecutable, IEnumerable<(string, Member)>
     {
         /// <summary>
         /// The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
@@ -46,11 +47,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// </summary>
         public object? Instance { get; }
 
-        private SortedList<string, List<(string, ObjectMember)>> Members { get; } = new
-            SortedList<string, List<(string, ObjectMember)>>();
+        private SortedList<string, List<(string, Member)>> Members { get; } = new
+            SortedList<string, List<(string, Member)>>();
 
-        private SortedList<string, List<(string, ObjectMember)>> MembersAbs { get; } = new
-            SortedList<string, List<(string, ObjectMember)>>();
+        private SortedList<string, List<(string, Member)>> MembersAbs { get; } = new
+            SortedList<string, List<(string, Member)>>();
 
         /// <summary>
         ///     Count of Members that this object contains.
@@ -61,7 +62,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         ///     Get Enumerator of its (AbsoluteName,Member)[]
         /// </summary>
         /// <returns>Enumerator of its (AbsoluteName,Member)[]</returns>
-        public IEnumerator<(string, ObjectMember)> GetEnumerator()
+        public IEnumerator<(string, Member)> GetEnumerator()
         {
             return new Enumerator(this);
         }
@@ -107,7 +108,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             return TraceBack.ObjectNotFound;
         }
 
-        private void TryAddMember(ObjectMember? objMember)
+        private void TryAddMember(Member? objMember)
         {
             if (objMember?.Access != MemberAccess.VisibleToUser)
                 return;
@@ -115,12 +116,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 && (objMember.AbsoluteName[..4] == "get_" || objMember.AbsoluteName[..4] == "set_")) return;
             var lAbsName = objMember.AbsoluteName.ToLower(CultureInfo.CurrentCulture);
             if (MembersAbs.ContainsKey(lAbsName)) MembersAbs[lAbsName].Add((objMember.AbsoluteName, objMember));
-            else MembersAbs.Add(lAbsName, new List<(string, ObjectMember)> {(objMember.AbsoluteName, objMember)});
+            else MembersAbs.Add(lAbsName, new List<(string, Member)> {(objMember.AbsoluteName, objMember)});
             foreach (var name in objMember.FriendlyNames)
             {
                 var lName = name.ToLower(CultureInfo.CurrentCulture);
                 if (Members.ContainsKey(lName)) Members[lName].Add((name, objMember));
-                else Members.Add(lName, new List<(string, ObjectMember)> {(name, objMember)});
+                else Members.Add(lName, new List<(string, Member)> {(name, objMember)});
             }
         }
 
@@ -148,15 +149,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             return field is null ? TraceBack.ObjectNotFound : TraceBack.AllOk;
         }
 
-        private class Enumerator : IEnumerator<(string, ObjectMember)>
+        private class Enumerator : IEnumerator<(string, Member)>
         {
             public Enumerator(SuitObject obj)
             {
                 ObjectEnumerator = obj.MembersAbs.GetEnumerator();
             }
 
-            private IEnumerator<KeyValuePair<string, List<(string, ObjectMember)>>> ObjectEnumerator { get; }
-            private IEnumerator<(string, ObjectMember)>? CurrentEnumerator { get; set; }
+            private IEnumerator<KeyValuePair<string, List<(string, Member)>>> ObjectEnumerator { get; }
+            private IEnumerator<(string, Member)>? CurrentEnumerator { get; set; }
 
             public bool MoveNext()
             {
@@ -180,7 +181,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 CurrentEnumerator = null;
             }
 
-            public (string, ObjectMember) Current { get; private set; }
+            public (string, Member) Current { get; private set; }
 
             object? IEnumerator.Current => Current;
 

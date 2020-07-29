@@ -37,7 +37,7 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         ///     Color settings for this IOServer. (default DefaultColorSetting)
         /// </summary>
-        public IColorSetting ColorSetting { get; set; }
+        public IColorSetting? ColorSetting { get; set; }
 
         /// <summary>
         ///     Prompt server for the io server.

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.ObjectModel.Parsing;
+using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuitDemo
 {
