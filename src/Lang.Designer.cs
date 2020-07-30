@@ -70,6 +70,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Exception in application 的本地化字符串。
+        /// </summary>
+        internal static string ApplicationError {
+            get {
+                return ResourceManager.GetString("ApplicationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Built-In Commands: 的本地化字符串。
         /// </summary>
         internal static string Bic {

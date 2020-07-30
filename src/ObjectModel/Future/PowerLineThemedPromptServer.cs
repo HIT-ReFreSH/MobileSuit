@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.IO;
 
 namespace PlasticMetal.MobileSuit.ObjectModel.Future
 {
@@ -34,28 +33,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Future
         {
         }
 
-        /// <inheritdoc />
-        private PowerLineThemedPromptServer(IIOServer io) : base(io, IColorSetting.DefaultColorSetting)
-        {
-        }
 
-        /// <inheritdoc />
-        public PowerLineThemedPromptServer(ISuitConfiguration configuration) : base(configuration)
-        {
-        }
 
-        /// <summary>
-        ///     Create a mobile suit configuration with power line theme
-        /// </summary>
-        /// <returns></returns>
-        public static ISuitConfiguration CreatePowerLineThemeConfiguration()
-        {
-            var io = new IOServer();
-            var r = new SuitConfiguration(typeof(Premium.PremiumBuildInCommandServer), io,
-                new PowerLineThemedPromptServer(io), IColorSetting.DefaultColorSetting);
-            io.Prompt = r.PromptServer;
-            return r;
-        }
 
         /// <inheritdoc />
         public override void Print()

@@ -1,11 +1,11 @@
-﻿using PlasticMetal.MobileSuit.IO;
+﻿using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     represents a server provides prompt output.
     /// </summary>
-    public interface IPromptServer
+    public interface IPromptServer:IIOInteractive
     {
         /// <summary>
         ///     get the default prompt server of Mobile Suit

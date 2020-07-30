@@ -1,5 +1,7 @@
 ﻿using PlasticMetal.MobileSuit;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.ObjectModel.Future;
+using PlasticMetal.MobileSuit.ObjectModel.Premium;
 
 namespace PlasticMetal.MobileSuitDemo
 {
@@ -7,9 +9,12 @@ namespace PlasticMetal.MobileSuitDemo
     {
         private static void Main()
         {
-            var ms = new SuitHost(new Client(), PowerLineThemedPromptServer.CreatePowerLineThemeConfiguration());
-                
-            ms.Run();
+            Suit.GetBuilder()
+                .UseLog(ILogger.OfDirectory(@"D:\\"))
+                .UsePrompt<PowerLineThemedPromptServer>()
+                .UseBuildInCommand<DiagnosticBuildInCommandServer>()
+                .Build<Client>().Run();
+
         }
     }
 }

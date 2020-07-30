@@ -1,5 +1,4 @@
 ﻿using System;
-using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core

@@ -1,6 +1,6 @@
 ﻿using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.IO
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     a prompt server for mobile suit
@@ -10,41 +10,19 @@ namespace PlasticMetal.MobileSuit.IO
         /// <summary>
         ///     Initialize a prompt with GeneralIO
         /// </summary>
-        public PromptServer() : this(IIOServer.GeneralIO, IColorSetting.DefaultColorSetting)
+        public PromptServer() 
         {
         }
 
-        /// <summary>
-        ///     Initialize a prompt with IO and color setting.
-        /// </summary>
-        /// <param name="io">io</param>
-        /// <param name="colorSetting">color setting</param>
-        protected PromptServer(IIOServer? io, IColorSetting? colorSetting)
-        {
-            IO = io ?? IIOServer.GeneralIO;
-            ColorSetting = colorSetting ?? IColorSetting.DefaultColorSetting;
-        }
 
-        /// <summary>
-        ///     Initialize a prompt Server with given configuration
-        /// </summary>
-        /// <param name="configuration"></param>
-        public PromptServer(ISuitConfiguration configuration)
-            : this(configuration?.IO,
-                configuration?.ColorSetting)
-        {
-        }
 
-        /// <summary>
-        ///     IO server of this prompt server
-        /// </summary>
-        protected IIOServer IO { get; }
+
+
 
         /// <summary>
         ///     Color setting of this prompt server
         /// </summary>
-        protected IColorSetting ColorSetting { get; }
-
+        protected IColorSetting ColorSetting => IO.ColorSetting;
         /// <summary>
         ///     return value from last update
         /// </summary>
@@ -88,5 +66,8 @@ namespace PlasticMetal.MobileSuit.IO
 
             IO.Write(" > ", OutputType.Prompt);
         }
+
+        /// <inheritdoc />
+        public IAssignOnceIOServer IO { get; } = new AssignOnceIOServer();
     }
 }

@@ -117,52 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllOK" xml:space="preserve">
-    <value>All OK</value>
+  <data name="Class" xml:space="preserve">
+    <value>Log Manager</value>
   </data>
-  <data name="ApplicationError" xml:space="preserve">
-    <value>Exception in application</value>
+  <data name="Disable" xml:space="preserve">
+    <value>Turn off runtime query</value>
   </data>
-  <data name="Bic" xml:space="preserve">
-    <value>Built-In Commands:</value>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Runtime Query</value>
   </data>
-  <data name="BicExp1" xml:space="preserve">
-    <value>All of the Built-In Commands Can be used as default with the starting'</value>
+  <data name="Enable" xml:space="preserve">
+    <value>Turn on runtime query</value>
   </data>
-  <data name="BicExp2" xml:space="preserve">
-    <value>' as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary.</value>
+  <data name="Find" xml:space="preserve">
+    <value>Find logs with given args, return result count: -s startTime(yyMMdd HH:mm:ss) -e endTime(yyMMdd HH:mm:ss) -t Type(regex pattern) -m Message(regex pattern)</value>
   </data>
-  <data name="Default" xml:space="preserve">
-    <value>Default</value>
+  <data name="Info" xml:space="preserve">
+    <value>Details</value>
   </data>
-  <data name="Done" xml:space="preserve">
-    <value>Done.</value>
+  <data name="LogFileAt" xml:space="preserve">
+    <value>Log File At</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error:</value>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
   </data>
-  <data name="InvalidCommand" xml:space="preserve">
-    <value>Invalid Command</value>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
   </data>
-  <data name="MemberNotFound" xml:space="preserve">
-    <value>Member Not Found</value>
+  <data name="Server" xml:space="preserve">
+    <value>Log Operations{Log:Enter Log Manager;Log On/Off:Turn on/off runtime query;Log F:Find logs;Log S:Get Status}</value>
   </data>
-  <data name="Members" xml:space="preserve">
-    <value>Members:</value>
+  <data name="Status" xml:space="preserve">
+    <value>Get status of Logs</value>
   </data>
-  <data name="ObjectNotFound" xml:space="preserve">
-    <value>Object Not Found</value>
-  </data>
-  <data name="ReturnValue" xml:space="preserve">
-    <value>Return Value</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>Unknown</value>
-  </data>
-  <data name="ViewBic" xml:space="preserve">
-    <value>To View Built-In Commands, use Command '</value>
-  </data>
-  <data name="WorkInstance" xml:space="preserve">
-    <value>Work Instance:</value>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
   </data>
 </root>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Parsing
@@ -24,18 +25,20 @@ namespace PlasticMetal.MobileSuit.Parsing
             var myType = this.GetType();
             foreach (var property in myType.GetProperties(SuitObject.Flags))
             {
-                if (!(property.GetCustomAttribute(typeof(ParsingMemberAttribute), true) is ParsingMemberAttribute memberAttr)) continue;
-                var parseAttr = property.GetCustomAttribute(typeof(SuitParserAttribute), true) as SuitParserAttribute;
-                Members.Add(memberAttr.Name, new ParsingMember(property.GetCustomAttribute(typeof(AsCollectionAttribute), true) is AsCollectionAttribute? new Action<object?, object?>((obj, value) =>
+                var memberAttr = property.GetCustomAttribute<ParsingMemberAttribute>(true);
+                if (memberAttr is null) continue;
+                var parseAttr = property.GetCustomAttribute<SuitParserAttribute>(true);
+                Members.Add(memberAttr.Name, new ParsingMember(property.GetCustomAttribute<AsCollectionAttribute>( true) !=null? new Action<object?, object?>((obj, value) =>
                     {
                         property.PropertyType.GetMethod("Add", new []{
                             property.GetType().GetElementType()??typeof(string)
                         })?.Invoke(property.GetValue(obj),new[]{value});
                     }
                     ) : property.SetValue,
-                    parseAttr?.Converter ?? (a => a),
+                    parseAttr?.Converter ??
+                    (a => a),
                     memberAttr.Length,
-                    property.GetCustomAttribute(typeof(WithDefaultAttribute)) != null));
+                    property.GetCustomAttribute<WithDefaultAttribute>(true) != null));
             }
         }
 

@@ -18,7 +18,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public BuildInCommandServer(SuitHost host)
         {
             Host = host;
-            HostRef = new SuitObject(Host);
+            HostRef = new SuitObject(Host?.Settings);
         }
 
         /// <summary>
@@ -52,9 +52,21 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
                 Host.WorkInstance == null)
                 return TraceBack.InvalidCommand;
-
-            var r = Current.TryGetField(args[0], out var nextObject);
-            if (r != TraceBack.AllOk || nextObject is null) return r;
+            ContainerMember? nextObject;
+            TraceBack r;
+            if (args[0].Length > 1 && args[0][0] == '@')
+            {
+                r = Host.BicServer.TryGetField(args[0][1..], out nextObject);
+            }
+            else
+            {
+                r = Current.TryGetField(args[0], out nextObject);
+                if (r != TraceBack.AllOk || nextObject is null)
+                {
+                    r = Host.BicServer.TryGetField(args[0], out nextObject);
+                }
+            }
+            if (r != TraceBack.AllOk || nextObject is null) {return r;}
 
             Host.InstanceStack.Push(Host.Current);
             var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
@@ -84,7 +96,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 return TraceBack.InvalidCommand;
             Host.Current = Host.InstanceStack.Pop();
             Host.InstanceNameString.RemoveAt(Host.InstanceNameString.Count - 1); //PopBack
-            Host.WorkInstanceInit();
+            //Host.WorkInstanceInit();
             return TraceBack.AllOk;
         }
 

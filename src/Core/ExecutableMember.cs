@@ -120,16 +120,26 @@ namespace PlasticMetal.MobileSuit.Core.Members
 
         private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
         {
-            returnValue = InvokeMember(instance, args);
-            //Process Task
-            if (returnValue is Task task)
+            try
             {
-                task.Wait();
-                var result = task.GetType().GetProperty("Result");
-                returnValue = result?.GetValue(task);
+                returnValue = InvokeMember(instance, args);
+                //Process Task
+                if (returnValue is Task task)
+                {
+                    task.Wait();
+                    var result = task.GetType().GetProperty("Result");
+                    returnValue = result?.GetValue(task);
+                }
+
+                return returnValue as TraceBack? ?? TraceBack.AllOk;
+            }
+            catch (TargetInvocationException e)
+            {
+                returnValue = e.InnerException;
+                return TraceBack.ApplicationError;
             }
 
-            return returnValue as TraceBack? ?? TraceBack.AllOk;
+
         }
 
         private bool CanFitTo(int argumentCount)
@@ -202,7 +212,7 @@ namespace PlasticMetal.MobileSuit.Core.Members
 
                 return Execute(Instance, pass, out returnValue);
             }
-            catch(System.FormatException e)
+            catch(FormatException e)
             {
                 returnValue = e;
 

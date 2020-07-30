@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.IO;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {

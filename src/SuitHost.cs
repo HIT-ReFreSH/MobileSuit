@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.IO;
 using PlasticMetal.MobileSuit.ObjectModel;
 using static System.String;
 
@@ -16,71 +15,90 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     ///     A entity, which serves the shell functions of a mobile-suit program.
     /// </summary>
-    public class SuitHost:IMobileSuitHost
+    public class SuitHost : IMobileSuitHost
     {
-        private string _returnValue;
-
-
-        /// <summary>
-        ///     Initialize a SuitHost with given configuration, Calling Assembly.
-        /// </summary>
-        /// <param name="configuration">given configuration</param>
-        public SuitHost(ISuitConfiguration configuration)
-        {
-            _returnValue = "";
-            Configuration = configuration ?? ISuitConfiguration.GetDefaultConfiguration();
-            Assembly = Assembly.GetCallingAssembly();
-            Current = new SuitObject(null);
-            Configuration.InitializeBuildInCommandServer(this);
-            BicServer = new SuitObject(Configuration.BuildInCommandServer);
-            IO.ColorSetting = Configuration.ColorSetting;
-            IO.Prompt = Prompt;
-        }
+        private object? _returnValue;
 
         /// <summary>
-        ///     Initialize a SuitHost with given/default configuration,  an instance, and its type's Assembly.
+        /// Initialize a SuitHost with instance, logger, io, bic-server and prompt-server
         /// </summary>
-        /// <param name="instance">The instance for Mobile Suit to drive.</param>
-        /// <param name="configuration">given configuration</param>
-        public SuitHost(object? instance, ISuitConfiguration? configuration = null) : this(
-            configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        /// <param name="instance"></param>
+        /// <param name="logger"></param>
+        /// <param name="io"></param>
+        /// <param name="buildInCommandServer"></param>
+        /// <param name="prompt"></param>
+        public SuitHost(object? instance, Logger logger, IIOServer io, Type buildInCommandServer, IPromptServer prompt)
+        //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
             Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
-
+            Logger = logger;
+            IO = io;
+            Prompt = prompt;
+            BicServer = new SuitObject(buildInCommandServer?.GetConstructor(new[] { typeof(SuitHost) })?.Invoke(new object?[] { this }));
             WorkInstanceInit();
         }
 
-        /// <summary>
-        ///     Initialize a SuitHost with given/default configuration, given Assembly.
-        /// </summary>
-        /// <param name="assembly">The given Assembly.</param>
-        /// <param name="configuration">given configuration, default if null</param>
-        public SuitHost(Assembly assembly, ISuitConfiguration? configuration) : this(
-            configuration ?? ISuitConfiguration.GetDefaultConfiguration())
-        {
-            Assembly = assembly;
-            Current = new SuitObject(null);
-        }
+        ///// <summary>
+        /////     Initialize a SuitHost with given configuration, Calling Assembly.
+        ///// </summary>
+        ///// <param name="configuration">given configuration</param>
+        //public SuitHost(ISuitConfiguration configuration)
+        //{
+        //    _returnValue = "";
+        //    Configuration = configuration ?? ISuitConfiguration.GetDefaultConfiguration();
+        //    Assembly = Assembly.GetCallingAssembly();
+        //    Current = new SuitObject(null);
+        //    Configuration.InitializeBuildInCommandServer(this);
+        //    BicServer = new SuitObject(Configuration.BuildInCommandServer);
+        //    IO.ColorSetting = Configuration.ColorSetting;
+        //    IO.Prompt = Prompt;
+        //}
 
-        /// <summary>
-        ///     Initialize a SuitHost with given configuration,  a given type, and its  Assembly.
-        /// </summary>
-        /// <param name="type">The given Type</param>
-        /// <param name="configuration">given configuration, default if null</param>
-        public SuitHost(Type type, ISuitConfiguration? configuration) : this(
-            configuration ?? ISuitConfiguration.GetDefaultConfiguration())
-        {
-            if (type?.FullName == null)
-            {
-                Current = new SuitObject(null);
-                return;
-            }
+        ///// <summary>
+        /////     Initialize a SuitHost with given/default configuration,  an instance, and its type's Assembly.
+        ///// </summary>
+        ///// <param name="instance">The instance for Mobile Suit to drive.</param>
+        ///// <param name="configuration">given configuration</param>
+        //public SuitHost(object? instance, ISuitConfiguration? configuration = null)
+        //    //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        //{
+        //    Current = new SuitObject(instance);
+        //    Assembly = WorkType?.Assembly;
 
-            Assembly = type.Assembly;
-            Current = new SuitObject(Assembly.CreateInstance(type.FullName));
-            WorkInstanceInit();
-        }
+        //    WorkInstanceInit();
+        //}
+
+        ///// <summary>
+        /////     Initialize a SuitHost with given/default configuration, given Assembly.
+        ///// </summary>
+        ///// <param name="assembly">The given Assembly.</param>
+        ///// <param name="configuration">given configuration, default if null</param>
+        //public SuitHost(Assembly assembly, ISuitConfiguration? configuration) : this(
+        //    configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        //{
+        //    Assembly = assembly;
+        //    Current = new SuitObject(null);
+        //}
+
+        ///// <summary>
+        /////     Initialize a SuitHost with given configuration,  a given type, and its  Assembly.
+        ///// </summary>
+        ///// <param name="type">The given Type</param>
+        ///// <param name="configuration">given configuration, default if null</param>
+        //public SuitHost(Type type, ISuitConfiguration? configuration) : this(
+        //    configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        //{
+        //    if (type?.FullName == null)
+        //    {
+        //        Current = new SuitObject(null);
+        //        return;
+        //    }
+
+        //    Assembly = type.Assembly;
+        //    Current = new SuitObject(Assembly.CreateInstance(type.FullName));
+        //    WorkInstanceInit();
+        //}
 
         /// <summary>
         ///     Stack of Instance, created in this Mobile Suit.
@@ -97,20 +115,17 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public Stack<List<string>> InstanceNameStringStack { get; } = new Stack<List<string>>();
 
-        /// <summary>
-        ///     If the prompt contains the reference (For example, System.Console.Title) of current instance.
-        /// </summary>
-        public bool ShowReference { get; set; } = true;
+
 
         /// <summary>
         ///     The IOServer for this SuitHost
         /// </summary>
-        public IIOServer IO => Configuration.IO;
+        public IIOServer IO { get; }
 
-        /// <summary>
-        ///     The configuration used to initialize the mobile suit
-        /// </summary>
-        public ISuitConfiguration Configuration { get; }
+        ///// <summary>
+        /////     The configuration used to initialize the mobile suit
+        ///// </summary>
+        //public ISuitConfiguration Configuration { get; }
 
         /// <summary>
         ///     The Assembly which instance are from.
@@ -120,7 +135,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     The prompt in Console.
         /// </summary>
-        public IPromptServer Prompt => Configuration.PromptServer;
+        public IPromptServer Prompt { get; }
 
         /// <summary>
         ///     Current Instance's SuitObject Container.
@@ -153,6 +168,7 @@ namespace PlasticMetal.MobileSuit
         {
             (WorkInstance as IIOInteractive)?.IO.Assign(IO);
             (WorkInstance as IHostInteractive)?.Host.Assign(this);
+            (WorkInstance as ILogInteractive)?.Log.Assign(Logger);
         }
 
         private void NotifyAllOk()
@@ -176,7 +192,7 @@ namespace PlasticMetal.MobileSuit
                       new SuitInfoAttribute(WorkInstance.GetType().Name).Text
                     : prompt;
 
-            if (!ShowReference || InstanceNameString.Count <= 0) return prompt;
+            if (Settings.HideReference || InstanceNameString.Count <= 0) return prompt;
             var sb = new StringBuilder();
             sb.Append(prompt);
             sb.Append('[');
@@ -191,26 +207,43 @@ namespace PlasticMetal.MobileSuit
 
         private TraceBack RunBuildInCommand(string[] cmdList)
         {
-            return cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out _);
+            object? r = null;
+            var t = cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out r);
+            if (t == TraceBack.AllOk && r != null)
+            {
+                _returnValue = r;
+            }
+
+            if (r is Exception e)
+            {
+                Logger.LogException(e);
+            }
+            Logger.LogTraceBack(t, r as Exception);
+            return t;
         }
 
         private TraceBack RunObject(string[] args)
         {
-            var r = Current.Execute(args, out var result);
-            if (!(result is null) && r == TraceBack.AllOk)
+            var t = Current.Execute(args, out var result);
+            if (t == TraceBack.AllOk && result != null)
             {
-                var retVal = result.ToString() ?? "";
-                if (!IsNullOrEmpty(retVal)) _returnValue = retVal;
+
+                _returnValue = result;
                 if (!Settings.HideReturnValue)
                     IO.WriteLine(IIOServer.CreateContentArray
                         (
                             (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
-                            (retVal, null)
+                            (result.ToString()??"", null)
                         )
                     );
             }
+            if (result is Exception e)
+            {
+                Logger.LogException(e);
+            }
+            Logger.LogTraceBack(t, result);
 
-            return r;
+            return t;
         }
 
 
@@ -218,10 +251,10 @@ namespace PlasticMetal.MobileSuit
         public int Run(string prompt)
         {
             Prompt.Update("", UpdatePrompt(prompt), TraceBack.AllOk);
-            for (;;)
+            for (; ; )
             {
                 if (!IO.IsInputRedirected) Prompt.Print();
-                var traceBack = RunCommand( IO.ReadLine(),prompt);
+                var traceBack = RunCommand(IO.ReadLine(), prompt);
                 switch (traceBack)
                 {
                     case TraceBack.OnExit:
@@ -237,6 +270,9 @@ namespace PlasticMetal.MobileSuit
                         break;
                     case TraceBack.InvalidCommand:
                         NotifyError(Lang.InvalidCommand);
+                        break;
+                    case TraceBack.ApplicationError:
+                        NotifyError(Lang.ApplicationError);
                         break;
                     default:
                         NotifyError(Lang.InvalidCommand);
@@ -296,7 +332,7 @@ namespace PlasticMetal.MobileSuit
                         (">", IO.ColorSetting.PromptColor),
                         (script, null))).ConfigureAwait(false);
 
-                var traceBack = RunCommand( script);
+                var traceBack = RunCommand(script);
                 if (traceBack != TraceBack.AllOk)
                 {
                     if (withPrompt)
@@ -317,7 +353,7 @@ namespace PlasticMetal.MobileSuit
             return TraceBack.AllOk;
         }
         /// <inheritdoc />
-        public TraceBack RunCommand(string? cmd, string prompt="")
+        public TraceBack RunCommand(string? cmd, string prompt = "")
         {
             if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && Settings.NoExit)
             {
@@ -326,6 +362,7 @@ namespace PlasticMetal.MobileSuit
             }
 
             if (IsNullOrEmpty(cmd)) return TraceBack.AllOk;
+            Logger.LogCommand(cmd);
             TraceBack traceBack;
             var args = IMobileSuitHost.SplitCommandLine(cmd);
             if (args is null) return TraceBack.InvalidCommand;
@@ -349,9 +386,12 @@ namespace PlasticMetal.MobileSuit
                 traceBack = TraceBack.InvalidCommand;
             }
 
-            Prompt.Update(_returnValue, UpdatePrompt(prompt), traceBack);
+            Prompt.Update(_returnValue?.ToString() ?? "", UpdatePrompt(prompt), traceBack);
             return traceBack;
         }
+
+        /// <inheritdoc />
+        public Logger Logger { get; }
 
 
         /// <inheritdoc />

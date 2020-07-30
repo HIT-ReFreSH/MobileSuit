@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.IO;
 using IOServer = PlasticMetal.MobileSuit.ObjectModel.IOServer;
 
 namespace PlasticMetal.MobileSuit.Core
@@ -15,7 +14,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>
-        public static IOServer GeneralIO { get; } = new IOServer();
+        public static IOServer GeneralIO => Suit.GeneralIO;
 
         /// <summary>
         ///     Check if this IOServer's error stream is redirected (NOT stderr)

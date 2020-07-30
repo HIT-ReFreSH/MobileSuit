@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using System;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.IO;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -24,17 +23,17 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             ErrorStream = Console.Error;
         }
 
-        /// <summary>
-        ///     Initialize a IOServer.
-        /// </summary>
-        public IOServer(ISuitConfiguration configuration)
-        {
-            ColorSetting = configuration?.ColorSetting ?? IColorSetting.DefaultColorSetting;
-            Prompt = configuration?.PromptServer ?? IPromptServer.DefaultPromptServer;
-            Input = Console.In;
-            Output = Console.Out;
-            ErrorStream = Console.Error;
-        }
+        ///// <summary>
+        /////     Initialize a IOServer.
+        ///// </summary>
+        //public IOServer(ISuitConfiguration configuration)
+        //{
+        //    ColorSetting = configuration?.ColorSetting ?? IColorSetting.DefaultColorSetting;
+        //    Prompt = configuration?.PromptServer ?? IPromptServer.DefaultPromptServer;
+        //    Input = Console.In;
+        //    Output = Console.Out;
+        //    ErrorStream = Console.Error;
+        //}
 
         /// <summary>
         ///     Color settings for this IOServer. (default DefaultColorSetting)

@@ -1,25 +1,29 @@
 ﻿#nullable enable
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Members;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Represents an object in Mobile Suit.
     /// </summary>
     public class SuitObject : IExecutable, IEnumerable<(string, Member)>
     {
+
+        private static readonly SortedSet<string> BlockList = new SortedSet<string>{"ToString","Equals","GetHashCode","GetType" };
+
         /// <summary>
         /// The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
         /// </summary>
         public const BindingFlags Flags = BindingFlags.IgnoreCase
-                                           | BindingFlags.DeclaredOnly
+                                           //| BindingFlags.DeclaredOnly
                                            | BindingFlags.Public
                                            | BindingFlags.Instance
+                                           
                                            //| BindingFlags.Static
             ;
 
@@ -110,6 +114,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
         private void TryAddMember(Member? objMember)
         {
+            if (BlockList.Contains(objMember?.AbsoluteName ?? "ToString")) return;
             if (objMember?.Access != MemberAccess.VisibleToUser)
                 return;
             if (objMember.AbsoluteName.Length > 4

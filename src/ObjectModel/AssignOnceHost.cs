@@ -43,5 +43,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <inheritdoc />
         public TraceBack RunCommand(string? command, string prompt = "")
             => Element?.RunCommand(command, prompt) ?? TraceBack.ObjectNotFound;
+
+        /// <inheritdoc />
+        public Logger Logger => Element?.Logger??ILogger.OfTemp();
+
+        /// <inheritdoc />
+        public IIOServer IO => Element?.IO??IIOServer.GeneralIO;
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,8 +120,15 @@ namespace PlasticMetal.MobileSuit
         /// <param name="command">the command to run</param>
         /// <param name="prompt">the prompt</param>
         /// <returns>result of the command</returns>
-        public TraceBack RunCommand( string? command,string prompt="");
-
+        public TraceBack RunCommand(string? command, string prompt = "");
+        /// <summary>
+        /// Logger for current host
+        /// </summary>
+        public Logger Logger { get; }
+        /// <summary>
+        /// IOServer for current host
+        /// </summary>
+        public IIOServer IO { get; }
     }
 
     /// <summary>
@@ -127,7 +136,10 @@ namespace PlasticMetal.MobileSuit
     /// </summary>
     public struct HostSettings : IEquatable<HostSettings>
     {
-
+        /// <summary>
+        ///     If the prompt contains the reference (For example, System.Console.Title) of current instance.
+        /// </summary>
+        public bool HideReference { get; set; }
         /// <summary>
         ///     Throw Exceptions, instead of using TraceBack.
         /// </summary>
@@ -158,7 +170,9 @@ namespace PlasticMetal.MobileSuit
             return EnableThrows == other.EnableThrows
                    && ShowDone == other.ShowDone
                    && NoExit == other.NoExit
-                   && HideReturnValue == other.HideReturnValue;
+                   && HideReturnValue == other.HideReturnValue
+                && HideReference == other.HideReference;
+
         }
 
         /// <inheritdoc />
@@ -170,7 +184,7 @@ namespace PlasticMetal.MobileSuit
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue);
+            return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue,HideReference);
         }
 
         /// <summary>
