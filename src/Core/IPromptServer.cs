@@ -5,7 +5,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// <summary>
     ///     represents a server provides prompt output.
     /// </summary>
-    public interface IPromptServer:IIOInteractive
+    public interface IPromptServer:IIoInteractive
     {
         /// <summary>
         ///     get the default prompt server of Mobile Suit
