@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.Core
+﻿namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Type of content that writes to the output stream.
