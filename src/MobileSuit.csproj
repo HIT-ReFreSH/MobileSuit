@@ -16,9 +16,9 @@
     <PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <AssemblyVersion>2.0.0-alpha1</AssemblyVersion>
-    <FileVersion>2.0.0-alpha1</FileVersion>
-    <Version>2.0.0-alpha1</Version>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
+    <Version>2.0.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
