@@ -94,7 +94,11 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <returns>0, is All ok.</returns>
         public int Run();
-
+        /// <summary>
+        ///     Run a Mobile Suit with default Prompt.
+        /// </summary>
+        /// <returns>0, is All ok.</returns>
+        public int Run(string[] args);
         /// <summary>
         ///     Asynchronously run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
@@ -175,13 +179,20 @@ namespace PlasticMetal.MobileSuit
 
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Compares a HostSettings to another object
+        /// </summary>
+        /// <param name="obj">Another Object</param>
+        /// <returns></returns>
         public override bool Equals(object? obj)
         {
             return obj is HostSettings other && Equals(other);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Get hash code of HostSettings, combine with the booleans
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue,HideReference);

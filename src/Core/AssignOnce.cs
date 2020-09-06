@@ -20,7 +20,10 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="t">The value to assign.</param>
         public void Assign(T t);
     }
-    ///<inheritdoc/>
+    /// <summary>
+    /// A read-only container which contains a T object. Once T is put in, it will never change.
+    /// </summary>
+    /// <typeparam name="T">The type of object contained by AssignOnce. Must be a reference type.</typeparam>
     public abstract class AssignOnce<T>:IAssignOnce<T>
         where T:class
     {

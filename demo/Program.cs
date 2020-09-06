@@ -7,13 +7,13 @@ namespace PlasticMetal.MobileSuitDemo
 {
     internal class Program
     {
-        private static void Main()
+        private static int Main(string[] args)
         {
-            Suit.GetBuilder()
+            return Suit.GetBuilder()
                 .UseLog(ILogger.OfDirectory(@"D:\\"))
                 .UsePrompt<PowerLineThemedPromptServer>()
                 .UseBuildInCommand<DiagnosticBuildInCommandServer>()
-                .Build<Client>().Run();
+                .Build<Client>().Run(args);
 
         }
     }

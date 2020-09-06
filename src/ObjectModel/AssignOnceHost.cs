@@ -34,20 +34,25 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public int Run() => Element?.Run() ?? -1;
         /// <inheritdoc />
         public Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false, string? scriptName = null)
+        => Element?.RunScriptsAsync(scripts, withPrompt, scriptName) ??
+            Task.Run(() =>
         {
-            throw new NotImplementedException();
-        }
+            return TraceBack.ObjectNotFound;
+        });
         /// <inheritdoc />
         public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
             => Element?.RunScripts(scripts, withPrompt, scriptName) ?? TraceBack.ObjectNotFound;
         /// <inheritdoc />
         public TraceBack RunCommand(string? command, string prompt = "")
             => Element?.RunCommand(command, prompt) ?? TraceBack.ObjectNotFound;
+        /// <inheritdoc />
+        public int Run(string[] args) => Element?.Run(args) ?? -1;
+
 
         /// <inheritdoc />
-        public Logger Logger => Element?.Logger??ILogger.OfTemp();
+        public Logger Logger => Element?.Logger ?? ILogger.OfTemp();
 
         /// <inheritdoc />
-        public IIOServer IO => Element?.IO??IIOServer.GeneralIO;
+        public IIOServer IO => Element?.IO ?? IIOServer.GeneralIO;
     }
 }

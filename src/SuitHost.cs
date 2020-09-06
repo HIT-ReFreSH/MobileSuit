@@ -399,6 +399,26 @@ namespace PlasticMetal.MobileSuit
         {
             return Run("");
         }
+        /// <inheritdoc />
+        public int Run(string[]? args)
+        {
+            if (args?.Length ==0) return Run();
+
+            if(WorkInstance is ICommandLineApplication)
+            {
+                if(args==null|| RunObject(args) != TraceBack.AllOk)
+                {
+                    return (WorkInstance as ICommandLineApplication)?.SuitStartUp(args)??0;
+                }
+                return 0;
+            }
+            else
+            {
+                if (args == null || RunObject(args) != TraceBack.AllOk)
+                    return -1;
+                return 0;
+            }
+        }
 
         /// <inheritdoc />
         public HostSettings Settings { get; set; } = new HostSettings();
