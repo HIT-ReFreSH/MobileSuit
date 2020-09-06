@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Use Special Parameters in Commands </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Use Special Parameters in Commands ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="use-special-parameters-in-commands">Use Special Parameters in Commands</h1>
+
+<h2 id="parsable-type-parameters">Parsable-type Parameters</h2>
+<p>MobileSuit's parameter type can be anything you like, in case there is a parser.</p>
+<h3 id="create-or-select-a-parser">Create or Select a parser</h3>
+<p>A parser is a method that takes a String as input, then output a object;
+For example:</p>
+<pre><code class="lang-csharp">public static object NumberConvert(string arg) =&gt; int.Parse(arg);
+</code></pre>
+<p>Parsers must be <strong>public static</strong> modified, returning <strong>object</strong> and taking a <strong>string</strong> as input.</p>
+<h3 id="create-a-command-with-parsable-type-parameter">Create a command with Parsable-type parameter</h3>
+<p>Add a <em><strong>SuitParser</strong></em> attribute to the parameter, which can tell the parser's name and Container Class</p>
+<p>For example:</p>
+<pre><code class="lang-csharp">[SuitAlias(&quot;Sn&quot;)]
+public void ShowNumber([SuitParser(typeof(Client),nameof(NumberConvert))]int i)
+{
+    IO.WriteLine(i.ToString());
+}
+</code></pre>
+<p>If the user inputs a illegal argument that can't be parsed, <em><strong>TraceBack</strong></em> will be <strong>InvalidCommand</strong>.</p>
+<h2 id="array-parameter">Array parameter</h2>
+<h3 id="create-a-command-with-only-a-array-parameter">Create a command with only a array parameter</h3>
+<p>Add a method called <em><strong>GoodEvening</strong></em> . It has a <em><strong>String[]</strong></em> parameter. You may add a alias 'GE' for this method. The content of method can be anything you like.</p>
+<p>Build and run your application.</p>
+<p>In the console, you may input:</p>
+<p><strong>GoodEvening</strong> with 0, 1, 2 ... arguments, which will be seen as an array.</p>
+<p>Code:</p>
+<pre><code class="lang-csharp">        [SuitAlias(&quot;GE&quot;)]
+        public void GoodEvening(string[] arg)
+        {
+
+            IO.WriteLine(&quot;Good Evening, &quot; + (arg.Length &gt;= 1 ? arg[0] : &quot;&quot;));
+        }
+</code></pre>
+<h3 id="create-a-command-with-a-array-parameter-and-other-parameters">Create a command with a array parameter and other parameters</h3>
+<p>Add a method called <em><strong>GoodEvening2</strong></em> . It has a <em><strong>string[]</strong></em> parameter, and a <em><strong>string</strong></em> parameter. The parameter with <em><strong>string[]</strong></em> type <strong>MUST BE</strong> the last parameter of the method.  You may add a alias 'GE2' for this method. The content of method can be anything you like.</p>
+<p>Build and run your application.</p>
+<p>In the console, you may input:</p>
+<p><strong>GoodEvening2</strong> with 1, 2 ... arguments, first will be mapped to the <em><strong>string</strong></em> parameter, else will be seen as an array and mapped to the <em><strong>string[]</strong></em> one.</p>
+<p>The most important thing when you're using this type of command is that The parameter with <em><strong>string[]</strong></em> type <strong>MUST BE</strong> the last parameter of the method. If not, JMobileSuit will not parse you command correctly.</p>
+<p>Code:</p>
+<pre><code class="lang-csharp">        [SuitAlias(&quot;GE2&quot;)]
+        public void GoodEvening2(string arg0, string[] args)
+        {
+
+            IO.WriteLine(&quot;Good Evening, &quot; + arg0 + (args.Length &gt;= 1 ? &quot; and &quot; + args[0] : &quot;&quot;));
+        }
+</code></pre>
+<h3 id="array-parameter-for-parsable-types">Array parameter for Parsable-types</h3>
+<p>The array can not only be <em><strong>string[]</strong></em>, but also other types. You just need to add a <em><strong>SuitParser</strong></em> before the array parameter.</p>
+<p>For example:</p>
+<pre><code class="lang-csharp">[SuitAlias(&quot;Sn2&quot;)]
+        public void ShowNumber2(
+            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            int i,
+            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            int[] j
+    )
+        {
+            IO.WriteLine(i.ToString());
+            IO.WriteLine(j.Length &gt;= 1 ? j[0].ToString() : &quot;&quot;);
+        }
+</code></pre>
+<p><strong>Attention!</strong> The parser parsed <em>string</em> to something, <strong>NOT</strong> <em>string[]</em> to something!</p>
+<h2 id="dynamic-parameter">Dynamic Parameter</h2>
+<h3 id="create-a-class-implements-dynamicparameter">Create a class implements DynamicParameter</h3>
+<p>Add a class, called <em><strong>GoodMorningParameter</strong></em>, it implements <em><strong>PlasticMetal.MobileSuit.ObjectModel.IDynamicParameter</strong></em> interface. The class should be <code>public</code>:</p>
+<p>Add some Contents to <em><strong>GoodMorningParameter</strong></em> , fill the <em><strong>Parse(string[]? options)</strong></em>. The method should return true, if parsing is successful, otherwise, it should return false.</p>
+<p>For example:</p>
+<pre><code class="lang-csharp">        public class GoodMorningParameter : IDynamicParameter
+        {
+            public string name = &quot;foo&quot;;
+
+            /**
+             * Parse this Parameter from String[].
+             *
+             * @param options String[] to parse from.
+             * @return Whether the parsing is successful
+             */
+
+            public bool Parse(string[] options)
+            {
+                if (options.Length == 1)
+                {
+                    name = options[0];
+                    return true;
+                }
+                else return options.Length == 0;
+
+            }
+        }
+</code></pre>
+<h3 id="create-a-command-with-only-a-dynamicparameter">Create a command with only a DynamicParameter</h3>
+<p>Add a method called <em><strong>GoodMorning</strong></em> to class <em><strong>Client</strong></em> . It has a <em><strong>GoodMorningParameter</strong></em> parameter. You may add a alias 'GM' for this method. The content of method can be anything you like.</p>
+<p>Build and run your application.</p>
+<p>In the console, you may input:</p>
+<p><strong>GoodMorning</strong> with 0, 1, 2 ... arguments, which will be seen as an array, then parsed by <em><strong>GoodMorningParameter::Parse</strong></em>.</p>
+<p>Code:</p>
+<pre><code class="lang-csharp">        [SuitAlias(&quot;GM&quot;)]
+        public void GoodMorning(GoodMorningParameter arg)
+        {
+            IO.WriteLine(&quot;Good morning,&quot; + arg.name);
+        }
+</code></pre>
+<h3 id="create-a-command-with-a-dynamicparameter-and-other-parameters">Create a command with a DynamicParameter and other parameters</h3>
+<p>Add a method called <em><strong>GoodMorning2</strong></em> to class <em><strong>Client</strong></em> . It has a <em><strong>GoodMorningParameter</strong></em> parameter, and a <em><strong>String</strong></em> parameter. The parameter with <em><strong>GoodMorningParameter</strong></em> type <strong>MUST BE</strong> the last parameter of the method.  You may add a alias 'GE2' for this method. The content of method can be anything you like.</p>
+<p>Build and run your application.</p>
+<p>In the console, you may input:</p>
+<p><strong>GoodMorning2</strong> with 1, 2 ... arguments, first will be mapped to the <em><strong>String</strong></em> parameter, else will be seen as an array and parsed to the <em><strong>GoodMorningParameter</strong></em> one.</p>
+<p>The most important thing when you're using this type of command is that The parameter with <em><strong>? extends DynamicParameter</strong></em> type <strong>MUST BE</strong> the last parameter of the method. If not, JMobileSuit will not parse you command correctly.</p>
+<pre><code class="lang-csharp">        [SuitAlias(&quot;GM2&quot;)]
+        public void GoodMorning2(string arg, GoodMorningParameter arg1)
+        {
+            IO.WriteLine(&quot;Good morning, &quot; + arg + &quot; and &quot; + arg1.name);
+        }
+</code></pre>
+<h3 id="auto-dynamicparameter-class">Auto DynamicParameter Class</h3>
+<p>Normally, you do not need to write a IDynamicParameter.Parse yourself.</p>
+<p>You just need to make the class extend <em><strong>AutoDynamicParameter</strong></em>, add some properties and add Annotation for the properties.</p>
+<p>There are 5 Attributess can be added to properties:</p>
+<ol>
+<li><em><strong>Option</strong></em> means this is a option, that will be parsed by &quot;-xxx value&quot;. If you want to parse &quot;-xxx value_part1 value_part2&quot;, specific the Length of option like: <code>[Option(&quot;xxx&quot;,2)]</code>; The input of parser will be &quot;value_part1 value_part2&quot;</li>
+<li><em><strong>Switch</strong></em> means this is a switch, This property must be <em><strong>boolean</strong></em>,that will be parsed by &quot;-sw&quot;. If &quot;-sw&quot; exists, this property is true; if not, The property's value <strong>WILL NOT BE CHANGED</strong>, but not be parsed as false. A property can only be one of <em><strong>Switch</strong></em> and <em><strong>Option</strong></em>.</li>
+<li><em><strong>WithDefault</strong></em> means this property has a default value, so it don't have to be filled. Each time this property's called, the member will be added to the Collection. This property needs initialize. <em><strong>Switch</strong></em> property don't need this annotation.</li>
+<li><em><strong>AsCollection</strong></em> means this property is a collection, . <em><strong>Switch</strong></em> property don't need this annotation.</li>
+<li><em><strong>SuitParser</strong></em> if a <em><strong>Option</strong></em> property's type is not String, use this annotation to specific the parser.</li>
+</ol>
+<p>If a property has none of <em><strong>Switch</strong></em> or <em><strong>Option</strong></em>, it will not be parsed.</p>
+<p>If some <em><strong>Option</strong></em> properties without <em><strong>WithDefault</strong></em> is not parsed, the parsing is failed.</p>
+<p>For Example:</p>
+<pre><code class="lang-csharp">        public class SleepArgument : AutoDynamicParameter
+        {
+            [Option(&quot;n&quot;)]
+            [AsCollection]
+            [WithDefault]
+            public List&lt;string&gt; Name { get; set; } = new List&lt;string&gt;();
+
+            [Option(&quot;t&quot;)]
+            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            [WithDefault]
+            public int SleepTime { get; set; } = 0;
+            [Switch(&quot;s&quot;)]
+            public bool isSleeping { get; set; }
+        }
+    }
+        [SuitAlias(&quot;Sl&quot;)]
+        [SuitInfo(&quot;Sleep {-n name (, -t hours, -s)}&quot;)]
+        public void Sleep(SleepArgument argument)
+        {
+            var nameChain = &quot;&quot;;
+            foreach (var item in argument.Name)
+            {
+                nameChain += item;
+            }
+            if (nameChain == &quot;&quot;) nameChain = &quot;No one&quot;;
+
+            if (argument.isSleeping)
+            {
+                IO.WriteLine(nameChain + &quot; has been sleeping for &quot; + argument.SleepTime + &quot; hour(s).&quot;);
+            }
+            else
+            {
+                IO.WriteLine(nameChain + &quot; is not sleeping.&quot;);
+            }
+        }
+</code></pre>
+<h2 id="dynamic-parameters-for-commandline-application-arg">Dynamic Parameters for CommandLine Application arg</h2>
+<p>We have learned to use string[] as CommandLine Application args in <a href="./CreateCommandLineApplication.html">Create CommandLine Application</a>, but how if I want to use a Dynamic Parameter as the arg?</p>
+<p>Just make your client class extend CommandLineApplication&lt;TArgument&gt;, where TArgument is the Dynamic Parameter.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/gh-pages/docs/articles/UseSpecialParameters.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Quick Start </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Quick Start ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="quick-start">Quick Start</h1>
+
+<p>PlasticMetal.MobileSuit is a powerful tool to quickly build a .NET Core ConsoleApp.</p>
+<p>In this article, I'll introduce to build a basic MobileSuit App.</p>
+<h2 id="create-your-project">Create your project</h2>
+<p>So firstly, you need to create a new Application in your IDE.</p>
+<p>Then, add <a href="https://www.nuget.org/packages/PlasticMetal.MobileSuit/">PlasticMetal.MobileSuit</a> to your project through nuget.</p>
+<h2 id="write-the-mobilesuit-client-class">Write the MobileSuit Client class</h2>
+<h3 id="create-the-class">Create the class</h3>
+<p>Add a Class to your project, named <em><strong>QuickStartClient</strong></em> . It inherits class <em><strong>PlasticMetal.MobileSuit.ObjectModel.SuitClient</strong></em> .</p>
+<h3 id="add-custom-attributes-to-the-class">Add custom attributes to the class</h3>
+<p><em>PlasticMetal.MobileSuit.SuitInfoAttribute</em> with argument &quot;Demo&quot;</p>
+<h3 id="add-the-first-command">Add the first command</h3>
+<p>Add a method called <em><strong>Hello</strong></em> to class <em><strong>Client</strong></em> . It has no parameters and return value.</p>
+<p>The content of method can be anything you like. You can use <em>IO.WriteLine</em> and <em>IO.ReadLine</em> instead of <em>Console.WriteLine</em> and <em>Console.ReadLine</em>.</p>
+<h3 id="add-information-and-alias-for-the-first-command">Add information and Alias for the first command</h3>
+<p>Add custom attributes to the method:</p>
+<ol>
+<li><em>PlasticMetal.MobileSuit.SuitInfoAttribute</em> with argument &quot;hello command.&quot;</li>
+<li><em>PlasticMetal.MobileSuit.SuitAliasAttribute</em> with argument &quot;H&quot;</li>
+</ol>
+<h3 id="add-another-command">Add another command</h3>
+<p>Add a method called <em><strong>Bye</strong></em> to class <em><strong>Client</strong></em>. It has a string parameter, named <em>name</em>. It returns a <em>string</em>.</p>
+<p>The content of method can be anything you like. You can use <em>IO.WriteLine</em> and <em>IO.ReadLine</em> instead of <em>Console.WriteLine</em> and <em>Console.ReadLine</em>.</p>
+<h3 id="additionally">Additionally</h3>
+<p>If you don't want some public methods to appear in mobile suit, Add <em><strong>SuitIgnore</strong></em> Attribute to it.</p>
+<h2 id="modify-main-method-of-your-application">Modify main method of your application</h2>
+<p>In the main method</p>
+<pre><code class="lang-csharp">public static void Main(String[] args){
+    ...
+}
+</code></pre>
+<p>add the following code:</p>
+<pre><code class="lang-csharp">Suit.GetBuilder().Build&lt;QuickStartClient&gt;().Run();
+</code></pre>
+<h2 id="check-your-code-for-quickstartclientcs">Check your code for QuickStartClient.cs</h2>
+<p>It may looks like:</p>
+<pre><code class="lang-csharp">using PlasticMetal.MobileSuit;
+using PlasticMetal.MobileSuit.ObjectModel;
+
+namespace PlasticMetal.MobileSuitDemo
+{
+    [SuitInfo(&quot;Demo&quot;)]
+    public class QuickStartClient : SuitClient
+    {
+
+        [SuitAlias(&quot;H&quot;)]
+        [SuitInfo(&quot;hello command.&quot;)]
+        public void Hello()
+        {
+            IO.WriteLine(&quot;Hello! MobileSuit!&quot;);
+        }
+
+
+
+        public string Bye(string name)
+        {
+            IO.WriteLine($&quot;Bye! {name}&quot;);
+            return &quot;bye&quot;;
+        }
+    }
+}
+
+
+</code></pre>
+<h2 id="run-and-test-your-application">Run and test your Application</h2>
+<p>Build and run your application.</p>
+<p>In the console, you may input:</p>
+<ol>
+<li><strong>Help</strong> to see help for MobileSuit</li>
+<li><strong>List</strong> or <strong>ls</strong> to see all available commands for current client.</li>
+<li><strong>Hello</strong> or <strong>h</strong> to run <em>QuickStartClient.Hello()</em></li>
+<li><strong>Bye</strong> <em><strong>name</strong></em> to run <em>QuickStartClient.Bye(</em> <em><strong>name</strong></em> <em>)</em></li>
+<li><strong>Exit</strong> to exit the progress</li>
+</ol>
+<p>Commands in mobile suit can be input in multiline, when the last character in the line is <em>%</em></p>
+<p>For Example:</p>
+<pre><code class="lang-MobileSuitScript">he%
+llo
+</code></pre>
+<p>equals</p>
+<pre><code class="lang-MobileSuitScript">hello
+</code></pre>
+<p>The process of build such a app is so easy that you just need one class to write.</p>
+<p>To let your application accept string[] args, See <a href="./CreateCommandLineApplication.html">Create CommandLine Application</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/gh-pages/docs/articles/GetStarted.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
