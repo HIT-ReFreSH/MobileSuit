@@ -18,21 +18,23 @@ jobs:
         run: "& choco install docfx -y"
       # Run a build
       - name: Build docs
-        run: docfx "$env:GITHUB_WORKSPACE/docs_source/docfx.json"
-        working-directory: ./docs_source
+        run: "& docfx ./docfx.json"
+        working-directory: ./docs
       # Check out gh-pages branch to the 'docs' subdirectory
       - name: Checkout docs
         uses: actions/checkout@v2
         with:
           ref: gh-pages
           path: docs
-      # Sync the site
-      - name: Clear docs repo
-        run: Get-ChildItem -Force -Exclude .git | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
-        working-directory: ./docs
       - name: Sync new content
-        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/docs_source/_site/*" "$env:GITHUB_WORKSPACE/docs"
-        working-directory: ./docs
+        run: |
+          mkdir "$env:GITHUB_WORKSPACE/docs_source"
+          Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/docs/*" "$env:GITHUB_WORKSPACE/docs_source"
+          cd docs
+          Get-ChildItem -Force -Exclude .git | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
+          cd ..
+          Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/docs_source/_site/*" "$env:GITHUB_WORKSPACE/docs"
+        working-directory: .
         # update docs
       - name: Commit to gh-pages and push
         run: |
