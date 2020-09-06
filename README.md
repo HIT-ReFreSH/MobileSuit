@@ -28,6 +28,5 @@ with PowerLine theme & I18N support
 
 ![MsRtExample-2](images/MsRtExample-2.png)
 
-[View English Documentation](https://plastic-metal.github.io/en-US/MobileSuit/index.html)
+[View Documentation](https://plastic-metal.github.io/MobileSuit/)
 
-[查看中文文档](https://plastic-metal.github.io/zh-CN/MobileSuit/index.html)
