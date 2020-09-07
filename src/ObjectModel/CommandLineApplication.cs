@@ -34,9 +34,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             if (args?.Length > 0 && typeof(TArgument).Assembly
                         .CreateInstance(typeof(TArgument).FullName
-                                        ?? typeof(TArgument).Name) is IDynamicParameter arg && arg.Parse(args))
+                                        ?? typeof(TArgument).Name) is TArgument arg && arg.Parse(args))
             {
-                return SuitStartUp(args);
+                return SuitStartUp(arg);
             }
             else
             {

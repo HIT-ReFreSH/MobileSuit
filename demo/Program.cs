@@ -13,7 +13,9 @@ namespace PlasticMetal.MobileSuitDemo
                 .UseLog(ILogger.OfDirectory(@"D:\\"))
                 .UsePrompt<PowerLineThemedPromptServer>()
                 .UseBuildInCommand<DiagnosticBuildInCommandServer>()
-                .Build<Client>().Run(args);
+                .Build<Client>()
+                //.Build<AutoArgumentCliClient>()
+                .Run(args);
 
         }
     }

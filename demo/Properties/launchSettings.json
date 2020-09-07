@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MobileSuitDemo": {
+      "commandName": "Project",
+      "commandLineArgs": "-i D:\\2020f.xls -o 2020f.ics"
+    }
+  }
+}
