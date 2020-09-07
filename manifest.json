@@ -1,0 +1,1134 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/MobileSuit/MobileSuit/master",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "8rkbAVme7Uy4MMCXFR9HUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.AlreadyAssignedException-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.AlreadyAssignedException-1.html",
+          "hash": "GrCA3dpjMIJxkEJ6iFQFBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.AssignOnce-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.AssignOnce-1.html",
+          "hash": "sQFlmcUyu03c+eopyNZCnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.BuildInCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.BuildInCommand.html",
+          "hash": "ndiNNLmG0Xozt1c9olC40w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.ContainerMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.ContainerMember.html",
+          "hash": "mRWOnKsYogmHWpYqlBI3pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IAssignOnce-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IAssignOnce-1.html",
+          "hash": "c/M128P3NN34z1tFu6bsOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IBuildInCommandServer.html",
+          "hash": "LPh4GV09VMG28TRQPCGx/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IColorSetting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IColorSetting.html",
+          "hash": "H1UFp/fBUTTD96kid8q/8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IExecutable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IExecutable.html",
+          "hash": "fWe9pcVlbrUx/5x6nci7YQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IIOServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IIOServer.html",
+          "hash": "kifLoxIvL4//Fzk3nxKfjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.ILogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.ILogger.html",
+          "hash": "4vidbMD/Wi9zfNZEVXx4mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IPromptServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IPromptServer.html",
+          "hash": "m6Uz4Z49EWYHJMcQXvXhuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.LogEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.LogEntry.html",
+          "hash": "+RnxsEwM7gtG9oSBPl9L1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logger.html",
+          "hash": "N7DX0j9HFPirCRuvqWMe3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Member.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Member.html",
+          "hash": "TXvQ8OrWfnpZu6al5Ltc+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.MemberAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.MemberAccess.html",
+          "hash": "Ey+3eZPWIegrw2/Bz/zQIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.MemberType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.MemberType.html",
+          "hash": "9iVI6vYOEtOSIBmsaerwTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Members.ExecutableMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.ExecutableMember.html",
+          "hash": "NXdldB6osVYwDqPOjCuPwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Members.TailParameterType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.TailParameterType.html",
+          "hash": "4eH4kKJDtXLbt1dcXjbokw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Members.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.html",
+          "hash": "2bBH+j009N2GQvCbCsSK1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.SuitObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.SuitObject.html",
+          "hash": "dA7i0TMzAIug3RPPgOZAcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.html",
+          "hash": "jn030PMgw5s2N7M6pcLCDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.HostSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.HostSettings.html",
+          "hash": "lPjUL88EZMmr+jJtJVI7hA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.IMobileSuitHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.IMobileSuitHost.html",
+          "hash": "Xqb5T8S/HPCPNvKN9NTOXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceHost.html",
+          "hash": "xeE3bIW1qqtWBumd8H3Duw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html",
+          "hash": "Ga/IGU2NHUkAH7rEPxVSFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html",
+          "hash": "/l77P/Ys85zerlCegNc9pQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer.html",
+          "hash": "gdiCNaKV0J57KF/HNZWUoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ColorSetting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ColorSetting.html",
+          "hash": "zPbhxwxqtYMd6ay4N3x5Ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandHandler.html",
+          "hash": "G1FH6nMfGCyjF6HZFX8ZIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication-1.html",
+          "hash": "ffNqluL2jU+VTrUMY6Jq8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication.html",
+          "hash": "hxRA/WO5FIaz1mfd97glAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html",
+          "hash": "FD60BLHymNO8vjhMlnzz3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.html",
+          "hash": "2tYtwqvsIDm0OXgpKKgT7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceHost.html",
+          "hash": "5V8SJpppvoJHZOhM7fhg/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer.html",
+          "hash": "7pfa4EThfRaEVcko6S6V3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger.html",
+          "hash": "nZHxYeMrxUQxGkwIeFKJoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication-1.html",
+          "hash": "i+/c6fGI9JWFxtOLy3l/7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication.html",
+          "hash": "pNdQyl9HG/+NbBn4IdWrnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IDynamicParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IDynamicParameter.html",
+          "hash": "G6wX4QSyMLRTUxca/SoPew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IHostInteractive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IHostInteractive.html",
+          "hash": "GoGZ8V5GwJ+lp7SNchHRMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IIOInteractive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IIOInteractive.html",
+          "hash": "o2o/RzKSpdU7ogTIRBPmPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IInfoProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IInfoProvider.html",
+          "hash": "0ijSVqOTgtUvNDyANbRHdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ILogInteractive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ILogInteractive.html",
+          "hash": "4JkeZiVvJgybE80OI1Tfvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IOServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html",
+          "hash": "/90sVrccsgYiB9W6ZQrkmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html",
+          "hash": "db5UilC3u+afv7jYaplR+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogFilter.html",
+          "hash": "3i6OJFTrtYlhP6lFRn0Qtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html",
+          "hash": "havnHXc30/2nlFKjpkCXTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient.html",
+          "hash": "pw4xLSb8fn1xb7ox2rqBdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IAdvancedBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IAdvancedBuildInCommandServer.html",
+          "hash": "o63Fi1dIr/1OfykWGSNDMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDiagnosticBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDiagnosticBuildInCommandServer.html",
+          "hash": "b/O7XN9+SalHdlNMO2glKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDynamicBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDynamicBuildInCommandServer.html",
+          "hash": "gk2AThPmQKR+wrn6HUQa3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.PremiumBuildInCommandServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.PremiumBuildInCommandServer.html",
+          "hash": "11t4QOJrTmFOS+p+bYtfTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.html",
+          "hash": "EDuScW5veu/xHGN0JIY7PQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.html",
+          "hash": "sKuO65H6xGBJ5aC2WceLnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.SuitClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.SuitClient.html",
+          "hash": "U4jUZaSwypN+JMJ3j11WrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.html",
+          "hash": "zHzdrC83Mi0JT+4daFu5Tg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.OutputType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.OutputType.html",
+          "hash": "hir+31mWr0hYWpwP9I57KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.AsCollectionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.AsCollectionAttribute.html",
+          "hash": "m0lTZFA3CYMoYWfbX26HsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.AutoDynamicParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.AutoDynamicParameter.html",
+          "hash": "+Xaxd94RZS1VZolrkb8eZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.OptionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.OptionAttribute.html",
+          "hash": "ppmHRP+AEQ4EXQKjwiN6VA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.ParsingMemberAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.ParsingMemberAttribute.html",
+          "hash": "PHZhsK9wjM2bFp/fkTNKwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.SuitParserAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.SuitParserAttribute.html",
+          "hash": "mXYq+GObzG4QCaHIPDqDkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.SwitchAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.SwitchAttribute.html",
+          "hash": "3sN7A4SISfiQfKYEcyvv6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.WithDefaultAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.WithDefaultAttribute.html",
+          "hash": "O9eUC3gpQjYsUprWjbBgqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Parsing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Parsing.html",
+          "hash": "WqiPVbmy8RXy4cjb/7iZxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Suit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Suit.html",
+          "hash": "/jqN3gYQoJ+HGgBj8GFwCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitAliasAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitAliasAttribute.html",
+          "hash": "2RY0MFFqwBrK6jFja+GWTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitHost.html",
+          "hash": "CTE3YucHh6kB3ymdt3TpsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilder.html",
+          "hash": "z2j9kycad5ocSh2/OYFj9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html",
+          "hash": "aLO87+OJFdK3AHplINjOQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitIgnoreAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitIgnoreAttribute.html",
+          "hash": "j3gmcyjHNCZcdNju4QdHiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.SuitInfoAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.SuitInfoAttribute.html",
+          "hash": "43ZlnU2iUw5A6Bvxb3fvJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.TraceBack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.TraceBack.html",
+          "hash": "cMiNwEctzhKMXgaN5wj9IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.html",
+          "hash": "8AGTuQt3/zJU54G+r9zdEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "A3rprIXtvk6AfCVzJPOubg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "99mhFq0iEi0F2IJJk7Ks5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/CreateCommandLineApplication.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/CreateCommandLineApplication.html",
+          "hash": "DEwuC4ad/3a4yGrGe9kLaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Customization.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Customization.html",
+          "hash": "DczR5j0opkwGOYX7/NTv4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/GetStarted.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/GetStarted.html",
+          "hash": "3RLLnAgCepFyCqwebN9DvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/UseSpecialParameters.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/UseSpecialParameters.html",
+          "hash": "xqROB8M3kONJIXZ9rlKVHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "9AHiCduWFUYBbBlrCvu4/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "X3GW+ap62PKJHTFdAYuEiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MsRtExample-1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MsRtExample-1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MsRtExample-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MsRtExample-2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Plastic-Metal.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Plastic-Metal.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "9mR+TflsTNs+QkPXi+0ULQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 8,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 74,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
