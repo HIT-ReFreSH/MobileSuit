@@ -35,7 +35,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\Plastic-Metal.png" Pack="true" PackagePath="\" />
+    <None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="\" />
 
   </ItemGroup>
 
