@@ -7,18 +7,44 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout master
         uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           persist-credentials: false
+          ref: master
+          path: master
 
       - name: Install docfx 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: choco install docfx -y
       - name: docfx build
         run: docfx docfx.json
-      - name: Deploy 
-        uses: JamesIves/github-pages-deploy-action@3.5.9
+        working-directory: master
+      - name: Checkout docs
+        uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_DOC }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          persist-credentials: false
+          ref: gh-pages
+          path: gh-pages
+      - name: Clear docs repo
+        run: Get-ChildItem -Force -Exclude .git | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
+        working-directory: gh-pages
+      - name: Sync new content
+        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/master/docs/*" "$env:GITHUB_WORKSPACE/gh-pages"
+        working-directory: gh-pages
+        # update docs
+      - name: Commit to gh-pages and push
+        run: |
+          $ErrorActionPreference = "Continue"
+          git add -A
+          git diff HEAD --exit-code
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "No changes to commit!"
+          } else {
+            git config --global user.name "github-actions-docfx[bot]"
+            git config --global user.email "ferdinandsukhoi@outlook.com"
+            git commit -m "Updated docs from commit $env:GITHUB_SHA on $env:GITHUB_REF"
+            git remote set-url origin https://x-access-token:${{ secrets.DEPLOY_DOC }}@github.com/${{ github.repository }}
+            git push origin gh-pages
+          }
+        working-directory: gh-pages
+          
