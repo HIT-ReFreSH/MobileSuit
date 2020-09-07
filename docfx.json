@@ -3,11 +3,9 @@
     {
       "src": [
         {
-          "files": "src/**.csproj",
-          "exclude": [
-            "**/obj/**","**/bin/**"
-          ],
-          "src": "../" 
+          "files": [
+            "src/**.csproj"
+          ]
         }
       ],
       "dest": "api",
@@ -46,11 +44,11 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "docs/**"
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

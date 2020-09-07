@@ -1,5 +1,5 @@
 <div  align=center>
-    <img src="Plastic-Metal.png" width = 30% height = 30%  />
+    <img src="images/Plastic-Metal.png" width = 30% height = 30%  />
 </div>
 
 # PlasticMetal.MobileSuit
@@ -29,4 +29,3 @@ with PowerLine theme & I18N support
 ![MsRtExample-2](images/MsRtExample-2.png)
 
 [View Documentation](https://plastic-metal.github.io/MobileSuit/)
-
