@@ -56,7 +56,7 @@ namespace PlasticMetal.MobileSuitDemo
             public List<string> Name { get; set; } = new List<string>();
 
             [Option("t")]
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
             [WithDefault]
             public int SleepTime { get; set; } = 0;
             [Switch("s")]
@@ -67,15 +67,15 @@ namespace PlasticMetal.MobileSuitDemo
 
         public static object NumberConvert(string arg) => int.Parse(arg);
         [SuitAlias("Sn")]
-        public void ShowNumber([SuitParser(typeof(Client), nameof(NumberConvert))] int i)
+        public void ShowNumber([SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))] int i)
         {
             IO.WriteLine(i.ToString());
         }
         [SuitAlias("Sn2")]
         public void ShowNumber2(
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
             int i,
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
+            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
             int[] j
     )
         {
