@@ -26,7 +26,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
       - name: Clear docs repo
-        run: Get-ChildItem -Force -Exclude .git | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
+        run: Get-ChildItem -Force -Exclude .git | Get-ChildItem -Force -Exclude CNAME | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
         working-directory: gh-pages
       - name: Sync new content
         run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/master/docs/*" "$env:GITHUB_WORKSPACE/gh-pages"
