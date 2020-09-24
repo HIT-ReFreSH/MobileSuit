@@ -1,0 +1,3 @@
+[submodule "themes/mathew"]
+	path = themes/mathew
+	url = https://github.com/MathewSachin/docfx-tmpl.git

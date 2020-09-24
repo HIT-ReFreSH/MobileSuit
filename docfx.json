@@ -51,9 +51,7 @@
     "dest": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template": [
-      "default"
-    ],
+    "template":["default","themes/mathew/src"],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
