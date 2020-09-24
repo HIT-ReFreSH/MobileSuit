@@ -5175,6 +5175,19 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Suit.CreateContentArray
   nameWithType: Suit.CreateContentArray
+- uid: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
+  name: GeneralDefaultLogger
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralDefaultLogger
+  commentId: P:PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
+  fullName: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
+  nameWithType: Suit.GeneralDefaultLogger
+- uid: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger*
+  name: GeneralDefaultLogger
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralDefaultLogger_
+  commentId: Overload:PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
+  nameWithType: Suit.GeneralDefaultLogger
 - uid: PlasticMetal.MobileSuit.Suit.GeneralIO
   name: GeneralIO
   href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralIO
