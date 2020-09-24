@@ -51,7 +51,7 @@
     "dest": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template":["default","themes/src"],
+    "template":["default","docfx-tmpl/src"],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
