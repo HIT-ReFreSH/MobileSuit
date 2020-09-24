@@ -361,7 +361,9 @@ namespace PlasticMetal.MobileSuit
                 return TraceBack.AllOk;
             }
 
-            if (IsNullOrEmpty(cmd)) return TraceBack.AllOk;
+            if (IsNullOrEmpty(cmd)||
+                new System.Text.RegularExpressions.Regex(@"^\s*#").IsMatch(cmd))
+                return TraceBack.AllOk;
             Logger.LogCommand(cmd);
             TraceBack traceBack;
             var args = IMobileSuitHost.SplitCommandLine(cmd);

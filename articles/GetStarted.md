@@ -26,7 +26,6 @@ Add a method called ***Hello*** to class ***Client*** . It has no parameters and
 
  The content of method can be anything you like. You can use *IO.WriteLine* and *IO.ReadLine* instead of *Console.WriteLine* and *Console.ReadLine*.
 
-
 ### Add information and Alias for the first command
 
 Add custom attributes to the method:
@@ -94,7 +93,6 @@ namespace PlasticMetal.MobileSuitDemo
 
 ```
 
-
 ## Run and test your Application
 
 Build and run your application.
@@ -108,10 +106,12 @@ In the console, you may input:
 5. **Exit** to exit the progress
 
 Commands in mobile suit can be input in multiline, when the last character in the line is *%*
+Comments can be added in lines format "^\s*#"
 
 For Example:
 
 ``` MobileSuitScript
+ #comment
 he%
 llo
 ```

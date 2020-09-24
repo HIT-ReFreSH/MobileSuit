@@ -128,8 +128,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         [SuitInfo(typeof(BuildInCommandInformations), "RunScript")]
         public virtual TraceBack RunScript(string[] args)
         {
-            if (args == null || args.Length <= 1 || !File.Exists(args[1])) return TraceBack.InvalidCommand;
-            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[1]), true, Path.GetFileNameWithoutExtension(args[1]));
+            if (args == null || args.Length < 1 || !File.Exists(args[0])) return TraceBack.InvalidCommand;
+            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[0]), 
+                true, Path.GetFileNameWithoutExtension(args[0]));
             t.Wait();
             return t.Result;
         }

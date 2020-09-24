@@ -12,6 +12,12 @@ namespace PlasticMetal.MobileSuit
     public static class Suit
     {
         /// <summary>
+        /// 全局默认log
+        /// </summary>
+        public static Logger GeneralDefaultLogger { get; set; } =
+            ILogger.OfTemp();
+            //ILogger.OfFile("D:\\Debug.log");
+        /// <summary>
         /// Get a builder to create host
         /// </summary>
         /// <returns>The builder</returns>

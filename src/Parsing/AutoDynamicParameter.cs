@@ -22,7 +22,7 @@ namespace PlasticMetal.MobileSuit.Parsing
         /// </summary>
         protected AutoDynamicParameter()
         {
-            var myType = this.GetType();
+            var myType = GetType();
             foreach (var property in myType.GetProperties(SuitObject.Flags))
             {
                 var memberAttr = property.GetCustomAttribute<ParsingMemberAttribute>(true);
@@ -78,7 +78,7 @@ namespace PlasticMetal.MobileSuit.Parsing
             }
         }
 
-        private static Regex ParseMemberRegex { get; } = new Regex("^-\\w+$");
+        private static Regex ParseMemberRegex { get; } = new Regex(@"^-");
 
         /// <inheritdoc />
         public bool Parse(string[]? options = null)
@@ -87,13 +87,23 @@ namespace PlasticMetal.MobileSuit.Parsing
             {
                 for (var i = 0; i < options.Length;)
                 {
-                    if (!ParseMemberRegex.IsMatch(options[i])) return false;
+                    if (!ParseMemberRegex.IsMatch(options[i])) {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not match regex");
+                        return false; }
                     var name = options[i][1..];
-                    if (!Members.ContainsKey(name)) return false;
+                    if (!Members.ContainsKey(name)) {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not in dictionary:");
+                        foreach (var item in Members.Keys)
+                        {
+                            Suit.GeneralDefaultLogger.LogDebug(item);
+                        }
+                        return false; }
                     var parseMember = Members[name];
                     i++;
                     var j = i + parseMember.ParseLength;
-                    if (j > options.Length) return false;
+                    if (j > options.Length) {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} length not match");
+                        return false; }
                     parseMember.Set(this,
                         ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
                     i = j;
