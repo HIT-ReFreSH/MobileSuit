@@ -69,89 +69,98 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1">
-  
-  
-  <h1 id="PlasticMetal_MobileSuit_Core_IAssignOnce_1" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1" class="text-break">Interface IAssignOnce&lt;T&gt;
+  <h1 id="PlasticMetal_MobileSuit_Core_IAssignOnce_1" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1">Interface IAssignOnce&lt;T&gt;
   </h1>
   <div class="markdown level0 summary"><p>A read-only container which contains a T object. Once T is put in, it will never change.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  
+  
+  
+  
   <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.Core.html">PlasticMetal.MobileSuit.Core</a></h6>
   <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
+  
   <h5 id="PlasticMetal_MobileSuit_Core_IAssignOnce_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IAssignOnce&lt;in T&gt;
     where T : class</code></pre>
   </div>
+  
+  
+  
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The type of object contained by AssignOnce. Must be a reference type.</p>
-</td>
-      </tr>
-    </tbody>
+  <table>
+    <tr>
+      <td>
+        <span class="parametername">T</span>
+        <p><p>The type of object contained by AssignOnce. Must be a reference type.</p>
+</p>
+      </td>
+    </tr>
   </table>
+  
+  
   <h3 id="methods">Methods
   </h3>
+  
   <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IAssignOnce%601.Assign(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IAssignOnce%601.Assign(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/AssignOnce.cs/#L21">View Source</a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/AssignOnce.cs/#L21" title="View Source"><i class="fa fa-code"></i></a>
   </span>
+  
   <a id="PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign_" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1.Assign*"></a>
-  <h4 id="PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1.Assign(`0)">Assign(T)</h4>
+  
+  <h4 id="PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_" data-uid="PlasticMetal.MobileSuit.Core.IAssignOnce`1.Assign(`0)"><a href="#collapsible-PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_" class="expander" data-toggle="collapse">Assign(T)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_" class="collapse in">
   <div class="markdown level1 summary"><p>Assign to the AssignOnce. Throws AlreadyAssignedException if assigned.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void Assign(T t)</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">t</span></td>
-        <td><p>The value to assign.</p>
-</td>
-      </tr>
-    </tbody>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">T</span></span>
+        <span class="parametername">t</span>
+        <p><p>The value to assign.</p>
+</p>
+      </td>
+    </tr>
   </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
 </article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IAssignOnce_1.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IAssignOnce%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/AssignOnce.cs/#L13" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IAssignOnce_1.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IAssignOnce%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/AssignOnce.cs/#L13" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
               </nav>
             </div>
           </div>
