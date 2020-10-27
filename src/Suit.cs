@@ -53,7 +53,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="assemblyName">Name of the Assembly</param>
         /// <param name="assemblyVersion">Version of the Assembly</param>
         /// <param name="showMobileSuitPowered">Show "Powered by MobileSuit or not"</param>
-        /// <param name="owner">Optional. Owner of the Assembly</param>
+        /// <param name="owner">Optional. Owner of the Assembly, You may add 'All right reserved' manually.</param>
         /// <param name="site">Optional. Site of the Assembly</param>
         /// <param name="showLsHelp">Optional. Show Ls usage help or not</param>
         public static void PrintAssemblyInformation(this IIOServer io,
@@ -86,8 +86,8 @@ namespace PlasticMetal.MobileSuit
             io.WriteLine();
             if (owner!=null) io.WriteLine(CreateContentArray(
                 (Lang.CopyrightC, null),
-                (owner, io.ColorSetting.ListTitleColor),
-                (Lang.AllRightsReserved, null)
+                (owner, io.ColorSetting.ListTitleColor)
+                //, (Lang.AllRightsReserved, null)
                 
             ));
             io.WriteLine();
@@ -124,8 +124,9 @@ namespace PlasticMetal.MobileSuit
             ));
             io.WriteLine(CreateContentArray(
                 (Lang.CopyrightC, null),
-                ("Plastic-Metal", io.ColorSetting.ListTitleColor),
-                (Lang.AllRightsReserved, null)));
+                ("Plastic-Metal", io.ColorSetting.ListTitleColor)
+                //, (Lang.AllRightsReserved, null)
+                ));
             io.WriteLine();
             io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.CustomInformationColor);
             io.WriteLine(CreateContentArray(
