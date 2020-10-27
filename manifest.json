@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IIOServer.html",
-          "hash": "vl+qhQfviZRaonm5Hd5Hpw=="
+          "hash": "kaiuKlnb/nS4a/6DUDcJWw=="
         }
       },
       "is_incremental": false,
@@ -142,6 +142,18 @@
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IPromptServer.html",
           "hash": "q7Z86tvgRu8qS+TWUgEBHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IStartingInteractive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html",
+          "hash": "2Kn2GiTv41dHOTIbIQVkJQ=="
         }
       },
       "is_incremental": false,
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.html",
-          "hash": "2/iQQatArl1Ef1FU8Aq6VA=="
+          "hash": "yXxlkJATxEjIzE95J82Frw=="
         }
       },
       "is_incremental": false,
@@ -309,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html",
-          "hash": "n9Ks2QLMVeE6wPYvnMrw1Q=="
+          "hash": "eLyUYyrBqSX1Z8Nnjce4yA=="
         }
       },
       "is_incremental": false,
@@ -429,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer.html",
-          "hash": "2UOeKdSqLCT3R7AOzUPjpw=="
+          "hash": "xcNLoBmYWFG4ncfr77WiSQ=="
         }
       },
       "is_incremental": false,
@@ -537,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html",
-          "hash": "lTKIG5yMXZj+gtV695W0Jw=="
+          "hash": "aaha+ZN5zT106afyh+W75A=="
         }
       },
       "is_incremental": false,
@@ -813,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Suit.html",
-          "hash": "eY81XAnGi8v4XLv9ayqWFA=="
+          "hash": "eB7xs+6cAGMc6fV/7KFc6A=="
         }
       },
       "is_incremental": false,
@@ -837,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitHost.html",
-          "hash": "nHVmNFUZyEZX8J6vwVbQmA=="
+          "hash": "WYnQi9JlrTyOo214xzfYhw=="
         }
       },
       "is_incremental": false,
@@ -936,7 +948,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "UQ39o19g90dGRRvfxzx0/w=="
+          "hash": "dz0tfEeJDvmjotdEhScSOw=="
         }
       },
       "is_incremental": false,
@@ -1107,7 +1119,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 75,
+          "total_file_count": 76,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

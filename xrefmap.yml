@@ -1329,6 +1329,25 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IPromptServer.Update
   nameWithType: IPromptServer.Update
+- uid: PlasticMetal.MobileSuit.Core.IStartingInteractive
+  name: IStartingInteractive
+  href: api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html
+  commentId: T:PlasticMetal.MobileSuit.Core.IStartingInteractive
+  fullName: PlasticMetal.MobileSuit.Core.IStartingInteractive
+  nameWithType: IStartingInteractive
+- uid: PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized
+  name: OnInitialized()
+  href: api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html#PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized
+  commentId: M:PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized
+  fullName: PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized()
+  nameWithType: IStartingInteractive.OnInitialized()
+- uid: PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized*
+  name: OnInitialized
+  href: api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html#PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized
+  nameWithType: IStartingInteractive.OnInitialized
 - uid: PlasticMetal.MobileSuit.Core.LogEntry
   name: LogEntry
   href: api/PlasticMetal.MobileSuit.Core.LogEntry.html
@@ -5214,6 +5233,32 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Suit.GetBuilder
   nameWithType: Suit.GetBuilder
+- uid: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOServer,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
+  name: PrintAssemblyInformation(IIOServer, String, Version, Boolean, String, String, Boolean)
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_PlasticMetal_MobileSuit_Core_IIOServer_System_String_System_Version_System_Boolean_System_String_System_String_System_Boolean_
+  commentId: M:PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOServer,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
+  fullName: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOServer, System.String, System.Version, System.Boolean, System.String, System.String, System.Boolean)
+  nameWithType: Suit.PrintAssemblyInformation(IIOServer, String, Version, Boolean, String, String, Boolean)
+- uid: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation*
+  name: PrintAssemblyInformation
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_
+  commentId: Overload:PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation
+  nameWithType: Suit.PrintAssemblyInformation
+- uid: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOServer)
+  name: PrintMobileSuitInformation(IIOServer)
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintMobileSuitInformation_PlasticMetal_MobileSuit_Core_IIOServer_
+  commentId: M:PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOServer)
+  fullName: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOServer)
+  nameWithType: Suit.PrintMobileSuitInformation(IIOServer)
+- uid: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation*
+  name: PrintMobileSuitInformation
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintMobileSuitInformation_
+  commentId: Overload:PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation
+  nameWithType: Suit.PrintMobileSuitInformation
 - uid: PlasticMetal.MobileSuit.SuitAliasAttribute
   name: SuitAliasAttribute
   href: api/PlasticMetal.MobileSuit.SuitAliasAttribute.html
