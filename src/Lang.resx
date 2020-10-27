@@ -120,6 +120,9 @@
   <data name="AllOK" xml:space="preserve">
     <value>All OK</value>
   </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>. All rights reserved.</value>
+  </data>
   <data name="ApplicationError" xml:space="preserve">
     <value>Exception in application</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="BicExp2" xml:space="preserve">
     <value>' as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary.</value>
+  </data>
+  <data name="CopyrightC" xml:space="preserve">
+    <value>Copyright (c) </value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
@@ -144,14 +150,26 @@
   <data name="InvalidCommand" xml:space="preserve">
     <value>Invalid Command</value>
   </data>
+  <data name="LsHelp1" xml:space="preserve">
+    <value>Type '</value>
+  </data>
+  <data name="LsHelp2" xml:space="preserve">
+    <value>' to get all available command.</value>
+  </data>
   <data name="MemberNotFound" xml:space="preserve">
     <value>Member Not Found</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members:</value>
   </data>
+  <data name="MsHelp2" xml:space="preserve">
+    <value>' to get MobileSuit Build in commands.</value>
+  </data>
   <data name="ObjectNotFound" xml:space="preserve">
     <value>Object Not Found</value>
+  </data>
+  <data name="PoweredBy" xml:space="preserve">
+    <value> Powered By </value>
   </data>
   <data name="ReturnValue" xml:space="preserve">
     <value>Return Value</value>

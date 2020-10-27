@@ -70,6 +70,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 . All rights reserved. 的本地化字符串。
+        /// </summary>
+        internal static string AllRightsReserved {
+            get {
+                return ResourceManager.GetString("AllRightsReserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Exception in application 的本地化字符串。
         /// </summary>
         internal static string ApplicationError {
@@ -102,6 +111,15 @@ namespace PlasticMetal.MobileSuit {
         internal static string BicExp2 {
             get {
                 return ResourceManager.GetString("BicExp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Copyright (c)  的本地化字符串。
+        /// </summary>
+        internal static string CopyrightC {
+            get {
+                return ResourceManager.GetString("CopyrightC", resourceCulture);
             }
         }
         
@@ -142,6 +160,24 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Type &apos; 的本地化字符串。
+        /// </summary>
+        internal static string LsHelp1 {
+            get {
+                return ResourceManager.GetString("LsHelp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &apos; to get all available command. 的本地化字符串。
+        /// </summary>
+        internal static string LsHelp2 {
+            get {
+                return ResourceManager.GetString("LsHelp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Member Not Found 的本地化字符串。
         /// </summary>
         internal static string MemberNotFound {
@@ -160,11 +196,29 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 &apos; to get MobileSuit Build in commands. 的本地化字符串。
+        /// </summary>
+        internal static string MsHelp2 {
+            get {
+                return ResourceManager.GetString("MsHelp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Object Not Found 的本地化字符串。
         /// </summary>
         internal static string ObjectNotFound {
             get {
                 return ResourceManager.GetString("ObjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  Powered By  的本地化字符串。
+        /// </summary>
+        internal static string PoweredBy {
+            get {
+                return ResourceManager.GetString("PoweredBy", resourceCulture);
             }
         }
         

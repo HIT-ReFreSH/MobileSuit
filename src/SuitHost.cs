@@ -169,6 +169,7 @@ namespace PlasticMetal.MobileSuit
             (WorkInstance as IIOInteractive)?.IO.Assign(IO);
             (WorkInstance as IHostInteractive)?.Host.Assign(this);
             (WorkInstance as ILogInteractive)?.Log.Assign(Logger);
+            (WorkInstance as IStartingInteractive)?.OnInitialized();
         }
 
         private void NotifyAllOk()

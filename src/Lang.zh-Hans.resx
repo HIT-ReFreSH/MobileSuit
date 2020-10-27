@@ -120,6 +120,9 @@
   <data name="AllOK" xml:space="preserve">
     <value>一切正常</value>
   </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>。保留所有权利。</value>
+  </data>
   <data name="ApplicationError" xml:space="preserve">
     <value>应用内部错误</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="BicExp2" xml:space="preserve">
     <value>”而被调用; 然而, 如果当前的对象含有与内置指令有命名冲突的成员，调用内置指令时使用前缀是必要的。</value>
+  </data>
+  <data name="CopyrightC" xml:space="preserve">
+    <value>版权所有</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>默认</value>
@@ -144,14 +150,26 @@
   <data name="InvalidCommand" xml:space="preserve">
     <value>非法的命令</value>
   </data>
+  <data name="LsHelp1" xml:space="preserve">
+    <value>输入'</value>
+  </data>
+  <data name="LsHelp2" xml:space="preserve">
+    <value>'来获取所有可用命令。</value>
+  </data>
   <data name="MemberNotFound" xml:space="preserve">
     <value>没有找到这种成员</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>成员：</value>
   </data>
+  <data name="MsHelp2" xml:space="preserve">
+    <value>’来获取所有内置指令。</value>
+  </data>
   <data name="ObjectNotFound" xml:space="preserve">
     <value>找不到对象</value>
+  </data>
+  <data name="PoweredBy" xml:space="preserve">
+    <value> 基于 </value>
   </data>
   <data name="ReturnValue" xml:space="preserve">
     <value>返回值</value>
