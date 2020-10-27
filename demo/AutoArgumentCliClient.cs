@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuitDemo
     {
         public override void SuitShowUsage()
         {
-            IO.WriteLine("");
+            IO.WriteLine("Show Usage");
         }
 
         public override int SuitStartUp(IOSet arg)
@@ -30,7 +30,7 @@ namespace PlasticMetal.MobileSuitDemo
 
         public void OnInitialized()
         {
-            IO.PrintAssemblyInformation("Demo", new Version("1.0.0"),true, "Ferdinand Sukhoi", "https://ms.ifers.xyz", true);
+            IO.PrintAssemblyInformation("Demo", new Version("1.0.0"),true, "Ferdinand Sukhoi", "https://ms.ifers.xyz", false);
             //IO.PrintMobileSuitInformation();
         }
     }

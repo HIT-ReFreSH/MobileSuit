@@ -38,11 +38,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             {
                 return SuitStartUp(arg);
             }
-            else
-            {
-                SuitShowUsage();
-                return -1;
-            }
+            
+            SuitShowUsage();
+            return -1;
 
         }
     }
