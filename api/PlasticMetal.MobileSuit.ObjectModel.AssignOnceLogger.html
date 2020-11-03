@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AssignOnceLogger
    ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,19 +78,12 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="PlasticMetal.MobileSuit.Core.AssignOnce-1.html">AssignOnce</a>&lt;<a class="xref" href="PlasticMetal.MobileSuit.Core.ILogger.html">ILogger</a>&gt;</div>
-    <div class="level2"><span class="xref">AssignOnceLogger</span></div>
+    <div class="level1"><span class="xref">AssignOnceLogger</span></div>
   </div>
   
   
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.Core.AssignOnce-1.html#PlasticMetal_MobileSuit_Core_AssignOnce_1_Element">AssignOnce&lt;ILogger&gt;.Element</a>
-    </div>
-    <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.Core.AssignOnce-1.html#PlasticMetal_MobileSuit_Core_AssignOnce_1_Assign__0_">AssignOnce&lt;ILogger&gt;.Assign(ILogger)</a>
-    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
@@ -119,7 +112,7 @@
   
   <h5 id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AssignOnceLogger : AssignOnce&lt;ILogger&gt;, IAssignOnceLogger, ILogger, IAssignOnce&lt;ILogger&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class AssignOnceLogger : IAssignOnceLogger, ILogger, IAssignOnce&lt;ILogger&gt;, IDisposable</code></pre>
   </div>
   
   
@@ -131,10 +124,54 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L62" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element"><a href="#collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element" class="expander" data-toggle="collapse">Element</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element" class="collapse in">
+  <div class="markdown level1 summary"><p>The real logger used</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ILogger Element { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <a class="xref" href="PlasticMetal.MobileSuit.Core.ILogger.html">ILogger</a>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_FilePath.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L52" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L54" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_FilePath_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath*"></a>
@@ -179,10 +216,93 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L64" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)"><a href="#collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_" class="expander" data-toggle="collapse">Assign(ILogger)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_" class="collapse in">
+  <div class="markdown level1 summary"><p>Assign to the AssignOnce. Throws AlreadyAssignedException if assigned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Assign(ILogger t)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Core.ILogger.html">ILogger</a></span>
+        <span class="parametername">t</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="PlasticMetal.MobileSuit.Core.IAssignOnce-1.html#PlasticMetal_MobileSuit_Core_IAssignOnce_1_Assign__0_">IAssignOnce&lt;T&gt;.Assign(T)</a></div>
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L56" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose"><a href="#collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose" class="expander" data-toggle="collapse">Dispose()</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose" class="collapse in">
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IDisposable.Dispose()</span></div>
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommand_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L24" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L26" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommand_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand*"></a>
@@ -230,7 +350,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommandAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L39" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L41" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommandAsync_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync*"></a>
@@ -287,7 +407,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebug_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L21" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L23" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebug_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug*"></a>
@@ -335,7 +455,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebugAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L36" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L38" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebugAsync_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync*"></a>
@@ -392,7 +512,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_System_Exception_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L33" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L35" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException*"></a>
@@ -440,7 +560,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L30" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L32" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException*"></a>
@@ -488,7 +608,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_System_Exception_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L48" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L50" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync*"></a>
@@ -545,7 +665,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L45" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L47" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync*"></a>
@@ -602,7 +722,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBack_PlasticMetal_MobileSuit_TraceBack_System_Object_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L27" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L29" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBack_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack*"></a>
@@ -658,7 +778,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBackAsync_PlasticMetal_MobileSuit_TraceBack_System_Object_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L42" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L44" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBackAsync_" data-uid="PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync*"></a>
@@ -723,7 +843,7 @@
           </div>
           <div class="contribution-panel mobile-hide">
               <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L18" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/ObjectModel/AssignOnceLogger.cs/#L19" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">

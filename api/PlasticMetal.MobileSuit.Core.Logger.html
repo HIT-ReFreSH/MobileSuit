@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Logger
    ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -112,7 +112,7 @@
   
   <h5 id="PlasticMetal_MobileSuit_Core_Logger_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Logger : ILogger</code></pre>
+    <pre><code class="lang-csharp hljs">public class Logger : ILogger, IDisposable</code></pre>
   </div>
   
   
@@ -127,7 +127,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger__ctor_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L166" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L162" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger__ctor_" data-uid="PlasticMetal.MobileSuit.Core.Logger.#ctor*"></a>
@@ -218,7 +218,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_FilePath.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.FilePath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L155" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L151" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_FilePath_" data-uid="PlasticMetal.MobileSuit.Core.Logger.FilePath*"></a>
@@ -308,7 +308,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_Writer.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.Writer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L160" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L156" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_Writer_" data-uid="PlasticMetal.MobileSuit.Core.Logger.Writer*"></a>
@@ -351,6 +351,87 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_Dispose.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L186" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Core_Logger_Dispose_" data-uid="PlasticMetal.MobileSuit.Core.Logger.Dispose*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Core_Logger_Dispose" data-uid="PlasticMetal.MobileSuit.Core.Logger.Dispose"><a href="#collapsible-PlasticMetal_MobileSuit_Core_Logger_Dispose" class="expander" data-toggle="collapse">Dispose()</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Core_Logger_Dispose" class="collapse in">
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IDisposable.Dispose()</span></div>
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L178" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Core_Logger_Dispose_" data-uid="PlasticMetal.MobileSuit.Core.Logger.Dispose*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_" data-uid="PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)"><a href="#collapsible-PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_" class="expander" data-toggle="collapse">Dispose(Boolean)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_" class="collapse in">
+  <div class="markdown level1 summary"><p>Release resources used</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.Boolean</span></span>
+        <span class="parametername">disposing</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_Finalize.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -389,7 +470,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogCommand_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogCommand(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L86" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L82" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogCommand_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogCommand*"></a>
@@ -437,7 +518,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogCommandAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L126" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L122" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogCommandAsync_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync*"></a>
@@ -494,7 +575,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogDebug_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogDebug(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L80" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L76" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogDebug_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogDebug*"></a>
@@ -542,7 +623,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogDebugAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L121" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L117" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogDebugAsync_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync*"></a>
@@ -599,7 +680,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogException_System_Exception_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogException(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L109" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L105" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogException_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogException*"></a>
@@ -647,7 +728,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogException_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogException(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L103" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L99" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogException_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogException*"></a>
@@ -695,7 +776,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_System_Exception_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L144" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L140" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync*"></a>
@@ -752,7 +833,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L140" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L136" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync*"></a>
@@ -809,7 +890,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogTraceBack_PlasticMetal_MobileSuit_TraceBack_System_Object_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L93" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L89" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogTraceBack_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogTraceBack*"></a>
@@ -865,7 +946,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_Logger_LogTraceBackAsync_PlasticMetal_MobileSuit_TraceBack_System_Object_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L132" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/Logger.cs/#L128" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_Core_Logger_LogTraceBackAsync_" data-uid="PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync*"></a>

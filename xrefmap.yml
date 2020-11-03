@@ -1425,6 +1425,25 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.Logger.Logger
   nameWithType: Logger.Logger
+- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose
+  name: Dispose()
+  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose
+  commentId: M:PlasticMetal.MobileSuit.Core.Logger.Dispose
+  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose()
+  nameWithType: Logger.Dispose()
+- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
+  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
+  nameWithType: Logger.Dispose(Boolean)
+- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose*
+  name: Dispose
+  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.Dispose
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose
+  nameWithType: Logger.Dispose
 - uid: PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
   name: EnableLogQuery
   href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_EnableLogQuery
@@ -2852,6 +2871,45 @@ references:
   commentId: T:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger
   fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger
   nameWithType: AssignOnceLogger
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
+  name: Assign(ILogger)
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_
+  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
+  nameWithType: AssignOnceLogger.Assign(ILogger)
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign*
+  name: Assign
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_
+  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign
+  nameWithType: AssignOnceLogger.Assign
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
+  name: Dispose()
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose
+  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose()
+  nameWithType: AssignOnceLogger.Dispose()
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose*
+  name: Dispose
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose_
+  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
+  nameWithType: AssignOnceLogger.Dispose
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
+  name: Element
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element
+  commentId: P:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
+  nameWithType: AssignOnceLogger.Element
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element*
+  name: Element
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element_
+  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
+  nameWithType: AssignOnceLogger.Element
 - uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
   name: FilePath
   href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_FilePath
