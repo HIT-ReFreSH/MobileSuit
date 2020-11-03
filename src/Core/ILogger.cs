@@ -10,7 +10,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// <summary>
     /// Logger for MobileSuit
     /// </summary>
-    public interface ILogger
+    public interface ILogger:IDisposable
     {
 
         /// <summary>

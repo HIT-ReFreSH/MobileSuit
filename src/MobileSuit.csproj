@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>2.2.0.2</Version>
+    <Version>2.2.0.3</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
@@ -35,6 +35,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="\" />
 
   </ItemGroup>

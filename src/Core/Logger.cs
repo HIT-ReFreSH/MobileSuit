@@ -12,7 +12,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// <summary>
     /// Logger for MobileSuit
     /// </summary>
-    public class Logger:ILogger
+    public class Logger : ILogger, IDisposable
     {
         /// <summary>
         /// Record of memorized logs.
@@ -31,13 +31,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// </summary>
         ~Logger()
         {
-            try
-            {
-                Writer.Close();
-            }
-            catch (IOException)
-            {
-            }
+            Dispose(false);
         }
 
         private void WriteLog(string info, string content)
@@ -52,6 +46,7 @@ namespace PlasticMetal.MobileSuit.Core
             {
                 Writer.Write(output);
                 Writer.Flush();
+
             }
             catch (IOException)
             {
@@ -70,6 +65,7 @@ namespace PlasticMetal.MobileSuit.Core
             {
                 await Writer.WriteAsync(output).ConfigureAwait(false);
                 await Writer.FlushAsync().ConfigureAwait(false);
+
             }
             catch (IOException)
             {
@@ -152,7 +148,7 @@ namespace PlasticMetal.MobileSuit.Core
             return WriteLogAsync(content.GetType().Name, stringBuilder.ToString());
         }
         /// <inheritdoc />
-        public string FilePath { get;  }
+        public string FilePath { get; }
 
         /// <summary>
         /// Writer of current log file
@@ -166,9 +162,31 @@ namespace PlasticMetal.MobileSuit.Core
         protected internal Logger(string path)
         {
             FilePath = path;
-            Writer = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read));
+            Writer =
+                new StreamWriter(
+                new BufferedStream(
+                    new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read)));
 
 
+        }
+
+
+        /// <summary>
+        /// Release resources used
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Writer.Dispose();
+            }
+        }
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 

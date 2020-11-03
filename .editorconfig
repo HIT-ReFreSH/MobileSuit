@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CA1816: Dispose 方法应调用 SuppressFinalize
+dotnet_diagnostic.CA1816.severity = silent
+
+# CA1063: 正确实现 IDisposable
+dotnet_diagnostic.CA1063.severity = silent

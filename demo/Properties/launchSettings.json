@@ -1,8 +1,7 @@
 {
   "profiles": {
     "MobileSuitDemo": {
-      "commandName": "Project",
-      "commandLineArgs": "-h"
+      "commandName": "Project"
     }
   }
 }

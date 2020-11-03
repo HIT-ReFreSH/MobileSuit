@@ -38,7 +38,7 @@ namespace PlasticMetal.MobileSuitDemo
             }
             if (nameChain == "") nameChain = "No one";
 
-            if (argument.isSleeping)
+            if (argument.IsSleeping)
             {
                 IO.WriteLine(nameChain + " has been sleeping for " + argument.SleepTime + " hour(s).");
             }
@@ -60,7 +60,7 @@ namespace PlasticMetal.MobileSuitDemo
             [WithDefault]
             public int SleepTime { get; set; } = 0;
             [Switch("s")]
-            public bool isSleeping { get; set; }
+            public bool IsSleeping { get; set; }
         }
 
 
