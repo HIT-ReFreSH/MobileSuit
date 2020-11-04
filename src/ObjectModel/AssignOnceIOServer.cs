@@ -19,6 +19,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// </summary>
     public class AssignOnceIOServer : AssignOnce<IIOServer>, IAssignOnceIOServer
     {
+        /// <inheritdoc/>
+        public bool DisableTimeMark { 
+            get=> (Element ?? IIOServer.GeneralIO).DisableTimeMark;
+            set=> (Element ?? IIOServer.GeneralIO).DisableTimeMark=value; }
+
         /// <inheritdoc />
         public bool IsErrorRedirected => (Element ?? IIOServer.GeneralIO).IsErrorRedirected;
         /// <inheritdoc />

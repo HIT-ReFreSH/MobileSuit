@@ -12,6 +12,10 @@ namespace PlasticMetal.MobileSuit.Core
     public interface IIOServer
     {
         /// <summary>
+        /// Disable Time marks which shows in Output-Redirected Environment.
+        /// </summary>
+        public bool DisableTimeMark { get; set; }
+        /// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>
         public static IOServer GeneralIO => Suit.GeneralIO;
