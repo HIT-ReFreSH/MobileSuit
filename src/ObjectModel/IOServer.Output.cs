@@ -12,6 +12,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     public partial class IOServer
     {
         /// <summary>
+        /// Disable Time marks which shows in Output-Redirected Environment.
+        /// </summary>
+        public bool DisableTimeMark { get; set; }
+        /// <summary>
         /// Check if this IOServer's error stream is redirected (NOT stderr)
         /// </summary>
         public bool IsErrorRedirected => !Console.Error.Equals(ErrorStream);
@@ -148,7 +152,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             else
             {
 
-                 await Output.WriteAsync(content).ConfigureAwait(false);
+                await Output.WriteAsync(content).ConfigureAwait(false);
             }
         }
 
@@ -265,7 +269,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public void WriteLine(IEnumerable<(string, ConsoleColor?,ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        public void WriteLine(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
         {
             if (contentArray == null) return;
             if (!IsOutputRedirected)
@@ -277,7 +281,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
                 Console.ForegroundColor = defaultColor;
                 Console.Write(Prefix);
-                foreach (var (content, inputForeColor,inputBackColor) in contentArray)
+                foreach (var (content, inputForeColor, inputBackColor) in contentArray)
                 {
                     Console.ForegroundColor = inputForeColor ?? defaultColor;
                     Console.BackgroundColor = inputBackColor ?? oldBackColor;
@@ -295,7 +299,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 sb.Append("]");
                 sb.Append(IIOServer.GetLabel(type));
 
-                foreach (var (content, _,_) in contentArray) sb.Append(content);
+                foreach (var (content, _, _) in contentArray) sb.Append(content);
 
                 Output?.WriteLine(sb.ToString());
             }
@@ -330,11 +334,19 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-                var sb = new StringBuilder("[");
-                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
-                sb.Append(IIOServer.GetLabel(type));
-                sb.Append(Prefix);
+
+                var sb = new StringBuilder();
+                if (!DisableTimeMark)
+                {
+                    sb.Append("[");
+                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                    sb.Append("]");
+                    sb.Append(IIOServer.GetLabel(type));
+                }
+                else
+                {
+                    sb.Append(Prefix);
+                }
                 sb.Append(content);
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
@@ -366,11 +378,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-                var sb = new StringBuilder("[");
-                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
-                sb.Append(IIOServer.GetLabel(type));
-
+                var sb = new StringBuilder();
+                if (!DisableTimeMark)
+                {
+                    sb.Append("[");
+                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                    sb.Append("]");
+                    sb.Append(IIOServer.GetLabel(type));
+                }
+                else
+                {
+                    sb.Append(Prefix);
+                }
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -404,10 +423,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-                var sb = new StringBuilder("[");
-                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
-                sb.Append(IIOServer.GetLabel(type));
+                var sb = new StringBuilder();
+                if (!DisableTimeMark)
+                {
+                    sb.Append("[");
+                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                    sb.Append("]");
+                    sb.Append(IIOServer.GetLabel(type));
+                }
+                else
+                {
+                    sb.Append(Prefix);
+                }
 
                 await foreach (var (content, _) in contentArray) sb.Append(content);
 
@@ -449,11 +476,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-                var sb = new StringBuilder("[");
-                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
-                sb.Append(IIOServer.GetLabel(type));
-
+                var sb = new StringBuilder();
+                if (!DisableTimeMark)
+                {
+                    sb.Append("[");
+                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                    sb.Append("]");
+                    sb.Append(IIOServer.GetLabel(type));
+                }
+                else
+                {
+                    sb.Append(Prefix);
+                }
                 foreach (var (content, _, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -494,11 +528,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-                var sb = new StringBuilder("[");
-                sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
-                sb.Append(IIOServer.GetLabel(type));
-
+                var sb = new StringBuilder();
+                if (!DisableTimeMark)
+                {
+                    sb.Append("[");
+                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                    sb.Append("]");
+                    sb.Append(IIOServer.GetLabel(type));
+                }
+                else
+                {
+                    sb.Append(Prefix);
+                }
                 await foreach (var (content, _, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
