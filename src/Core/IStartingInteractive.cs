@@ -5,7 +5,7 @@ using System.Text;
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
-    /// After initialized, Call OnInitialized() of the object which inherits this interface.
+    /// After initialized, Call OnInitialized() of the object which implements this interface.
     /// </summary>
     public interface IStartingInteractive
     {

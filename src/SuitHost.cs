@@ -259,6 +259,7 @@ namespace PlasticMetal.MobileSuit
                 switch (traceBack)
                 {
                     case TraceBack.OnExit:
+                        (WorkInstance as IExitInteractive)?.OnExit();
                         return 0;
                     case TraceBack.AllOk:
                         NotifyAllOk();
