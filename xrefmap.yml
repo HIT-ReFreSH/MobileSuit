@@ -3814,6 +3814,19 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.ObjectModel.IOServer.ColorSetting
   nameWithType: IOServer.ColorSetting
+- uid: PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html#PlasticMetal_MobileSuit_ObjectModel_IOServer_DisableTimeMark
+  commentId: P:PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark
+  fullName: PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark
+  nameWithType: IOServer.DisableTimeMark
+- uid: PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark*
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html#PlasticMetal_MobileSuit_ObjectModel_IOServer_DisableTimeMark_
+  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.ObjectModel.IOServer.DisableTimeMark
+  nameWithType: IOServer.DisableTimeMark
 - uid: PlasticMetal.MobileSuit.ObjectModel.IOServer.ErrorStream
   name: ErrorStream
   href: api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html#PlasticMetal_MobileSuit_ObjectModel_IOServer_ErrorStream
