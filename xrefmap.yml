@@ -618,6 +618,19 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IIOServer.CreateContentArray
   nameWithType: IIOServer.CreateContentArray
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_DisableTimeMark
+  commentId: P:PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark
+  nameWithType: IIOServer.DisableTimeMark
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark*
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_DisableTimeMark_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.DisableTimeMark
+  nameWithType: IIOServer.DisableTimeMark
 - uid: PlasticMetal.MobileSuit.Core.IIOServer.ErrorStream
   name: ErrorStream
   href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_ErrorStream
@@ -2418,6 +2431,19 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.ColorSetting
   nameWithType: AssignOnceIOServer.ColorSetting
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceIOServer_DisableTimeMark
+  commentId: P:PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark
+  nameWithType: AssignOnceIOServer.DisableTimeMark
+- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark*
+  name: DisableTimeMark
+  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceIOServer_DisableTimeMark_
+  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.DisableTimeMark
+  nameWithType: AssignOnceIOServer.DisableTimeMark
 - uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.ErrorStream
   name: ErrorStream
   href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceIOServer_ErrorStream
