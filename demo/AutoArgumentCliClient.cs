@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit;
+using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuitDemo
 {
@@ -17,6 +18,10 @@ namespace PlasticMetal.MobileSuitDemo
     }
     class AutoArgumentCliClient : CommandLineApplication<IOSet>, IStartingInteractive
     {
+        public async Task At()
+        {
+            await IO.WriteLineAsync("Async Test");
+        }
         public override void SuitShowUsage()
         {
             IO.WriteLine("Show Usage");

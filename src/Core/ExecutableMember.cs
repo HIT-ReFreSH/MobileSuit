@@ -129,6 +129,9 @@ namespace PlasticMetal.MobileSuit.Core.Members
                     task.Wait();
                     var result = task.GetType().GetProperty("Result");
                     returnValue = result?.GetValue(task);
+                    if (returnValue?.GetType().FullName == "System.Threading.Tasks.VoidTaskResult")
+                        returnValue = null;
+
                 }
 
                 return returnValue as TraceBack? ?? TraceBack.AllOk;
