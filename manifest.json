@@ -113,6 +113,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IExitInteractive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.IExitInteractive.html",
+          "hash": "El3k+Tl3QzdDfNBI7rJojA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlasticMetal.MobileSuit.Core.IIOServer.yml",
       "output": {
         ".html": {
@@ -153,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html",
-          "hash": "jwNmsLheYGhBCdv0JyXnCA=="
+          "hash": "LjA96iWtKtIbq6bEC8WpIg=="
         }
       },
       "is_incremental": false,
@@ -273,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.html",
-          "hash": "8Un4tJyzta9l2kP84nYXNA=="
+          "hash": "oARCePvlz0abBRn3d4i2tw=="
         }
       },
       "is_incremental": false,
@@ -849,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitHost.html",
-          "hash": "N+6JT/tHzXSQtWdjSPTvpA=="
+          "hash": "zR8mogbpGORslMzk9OhOGA=="
         }
       },
       "is_incremental": false,
@@ -948,7 +960,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "dz0tfEeJDvmjotdEhScSOw=="
+          "hash": "oYxzSId4E76/k0GojkT0Wg=="
         }
       },
       "is_incremental": false,
@@ -1119,7 +1131,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 76,
+          "total_file_count": 77,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

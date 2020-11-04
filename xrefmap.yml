@@ -542,6 +542,25 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IExecutable.Execute
   nameWithType: IExecutable.Execute
+- uid: PlasticMetal.MobileSuit.Core.IExitInteractive
+  name: IExitInteractive
+  href: api/PlasticMetal.MobileSuit.Core.IExitInteractive.html
+  commentId: T:PlasticMetal.MobileSuit.Core.IExitInteractive
+  fullName: PlasticMetal.MobileSuit.Core.IExitInteractive
+  nameWithType: IExitInteractive
+- uid: PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit
+  name: OnExit()
+  href: api/PlasticMetal.MobileSuit.Core.IExitInteractive.html#PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit
+  commentId: M:PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit
+  fullName: PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit()
+  nameWithType: IExitInteractive.OnExit()
+- uid: PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit*
+  name: OnExit
+  href: api/PlasticMetal.MobileSuit.Core.IExitInteractive.html#PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit
+  nameWithType: IExitInteractive.OnExit
 - uid: PlasticMetal.MobileSuit.Core.IIOServer
   name: IIOServer
   href: api/PlasticMetal.MobileSuit.Core.IIOServer.html

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IStartingInteractive
+    <title>Interface IExitInteractive
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IStartingInteractive
+    <meta name="title" content="Interface IExitInteractive
    ">
     <meta name="generator" content="docfx 2.56.4.0">
     
@@ -68,10 +68,10 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive">
-  <h1 id="PlasticMetal_MobileSuit_Core_IStartingInteractive" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive">Interface IStartingInteractive
+            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Core.IExitInteractive">
+  <h1 id="PlasticMetal_MobileSuit_Core_IExitInteractive" data-uid="PlasticMetal.MobileSuit.Core.IExitInteractive">Interface IExitInteractive
   </h1>
-  <div class="markdown level0 summary"><p>After initialized, Call OnInitialized() of the object which implements this interface.</p>
+  <div class="markdown level0 summary"><p>When exiting, Call OnExit() of the object which implements this interface.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -81,9 +81,9 @@
   <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.Core.html">PlasticMetal.MobileSuit.Core</a></h6>
   <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
   
-  <h5 id="PlasticMetal_MobileSuit_Core_IStartingInteractive_syntax">Syntax</h5>
+  <h5 id="PlasticMetal_MobileSuit_Core_IExitInteractive_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IStartingInteractive</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IExitInteractive</code></pre>
   </div>
   
   
@@ -95,24 +95,24 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/IStartingInteractive.cs/#L15" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/IExitInteractive.cs/#L15" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
-  <a id="PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized_" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized*"></a>
+  <a id="PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit_" data-uid="PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit*"></a>
   
-  <h4 id="PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized"><a href="#collapsible-PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" class="expander" data-toggle="collapse">OnInitialized()</a></h4>
+  <h4 id="PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit" data-uid="PlasticMetal.MobileSuit.Core.IExitInteractive.OnExit"><a href="#collapsible-PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit" class="expander" data-toggle="collapse">OnExit()</a></h4>
   
-  <div id="collapsible-PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" class="collapse in">
-  <div class="markdown level1 summary"><p>The Method to run.</p>
+  <div id="collapsible-PlasticMetal_MobileSuit_Core_IExitInteractive_OnExit" class="collapse in">
+  <div class="markdown level1 summary"><p>The Method to run. When leaving SuitHost.Run().</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void OnInitialized()</code></pre>
+    <pre><code class="lang-csharp hljs">void OnExit()</code></pre>
   </div>
   
   
@@ -132,8 +132,8 @@
 </article>
           </div>
           <div class="contribution-panel mobile-hide">
-              <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IStartingInteractive.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IStartingInteractive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/IStartingInteractive.cs/#L10" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/new/master/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IExitInteractive.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IExitInteractive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/master/src/Core/IExitInteractive.cs/#L10" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
