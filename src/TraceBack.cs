@@ -34,6 +34,7 @@
         ///     Cannot find the member in the object referring to.
         /// </summary>
         MemberNotFound = -3,
+
         /// <summary>
         ///     Error in the application
         /// </summary>

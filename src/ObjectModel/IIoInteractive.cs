@@ -1,6 +1,4 @@
-﻿using PlasticMetal.MobileSuit.Core;
-
-namespace PlasticMetal.MobileSuit.ObjectModel
+﻿namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Represents that an object is interactive to SuitHost's IOServer

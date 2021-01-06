@@ -1,9 +1,10 @@
 ﻿using PlasticMetal.MobileSuit;
+using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
-    public class CliClient : MobileSuit.ObjectModel.CommandLineApplication
+    public class CliClient : CommandLineApplication
     {
         [SuitAlias("H")]
         [SuitInfo("hello command.")]
@@ -13,12 +14,12 @@ namespace PlasticMetal.MobileSuitDemo
         }
 
 
-
         public string Bye(string name)
         {
             IO.WriteLine($"Bye! {name}");
             return "bye";
         }
+
         public override int SuitStartUp(string[] args)
         {
             IO.WriteLine(args[0]);

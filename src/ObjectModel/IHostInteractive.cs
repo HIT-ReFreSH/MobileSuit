@@ -1,6 +1,4 @@
-﻿using PlasticMetal.MobileSuit.Core;
-
-#nullable enable
+﻿#nullable enable
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {

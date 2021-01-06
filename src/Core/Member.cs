@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core
 {

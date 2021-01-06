@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,19 +12,19 @@ namespace PlasticMetal.MobileSuit.Core
     /// </summary>
     public class SuitObject : IExecutable, IEnumerable<(string, Member)>
     {
-
-        private static readonly SortedSet<string> BlockList = new SortedSet<string>{"ToString","Equals","GetHashCode","GetType" };
-
         /// <summary>
-        /// The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
+        ///     The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
         /// </summary>
         public const BindingFlags Flags = BindingFlags.IgnoreCase
-                                           //| BindingFlags.DeclaredOnly
-                                           | BindingFlags.Public
-                                           | BindingFlags.Instance
-                                           
-                                           //| BindingFlags.Static
+                                          //| BindingFlags.DeclaredOnly
+                                          | BindingFlags.Public
+                                          | BindingFlags.Instance
+
+            //| BindingFlags.Static
             ;
+
+        private static readonly SortedSet<string> BlockList = new SortedSet<string>
+            {"ToString", "Equals", "GetHashCode", "GetType"};
 
         /// <summary>
         ///     Initialize a SuitObject with an instance.

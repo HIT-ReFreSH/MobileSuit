@@ -3,7 +3,6 @@ using System;
 using System.Reflection;
 using System.Text;
 using PlasticMetal.MobileSuit.Core.Members;
-using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuit.Core

@@ -1,25 +1,38 @@
-﻿using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
-    /// A host of Mobile Suit, which may run commands.
+    ///     A host of Mobile Suit, which may run commands.
     /// </summary>
     public interface IMobileSuitHost
     {
         /// <summary>
-        /// Split a commandline string to args[] array.
+        ///     Basic Settings of this MobileSuitHost
+        /// </summary>
+        HostSettings Settings { get; set; }
+
+        /// <summary>
+        ///     Logger for current host
+        /// </summary>
+        public ILogger Logger { get; }
+
+        /// <summary>
+        ///     IOServer for current host
+        /// </summary>
+        public IIOServer IO { get; }
+
+        /// <summary>
+        ///     Split a commandline string to args[] array.
         /// </summary>
         /// <param name="commandLine">commandline string</param>
         /// <returns>args[] array</returns>
         protected static string[]? SplitCommandLine(string commandLine)
         {
-            if (String.IsNullOrEmpty(commandLine)) return null;
+            if (string.IsNullOrEmpty(commandLine)) return null;
             string submit;
             var l = new List<string>();
             var separating = false;
@@ -62,7 +75,7 @@ namespace PlasticMetal.MobileSuit
                         break;
                     case ' ':
                         submit = commandLine[left..right];
-                        if (!String.IsNullOrEmpty(submit))
+                        if (!string.IsNullOrEmpty(submit))
                             l.Add(submit);
                         left = right + 1;
                         separationPrefix = false;
@@ -73,14 +86,10 @@ namespace PlasticMetal.MobileSuit
                 }
 
             submit = commandLine[left..right];
-            if (!String.IsNullOrEmpty(submit))
+            if (!string.IsNullOrEmpty(submit))
                 l.Add(submit);
             return l.ToArray();
         }
-        /// <summary>
-        /// Basic Settings of this MobileSuitHost
-        /// </summary>
-        HostSettings Settings { get; set; }
 
         /// <summary>
         ///     Run a Mobile Suit with Prompt.
@@ -94,11 +103,13 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <returns>0, is All ok.</returns>
         public int Run();
+
         /// <summary>
         ///     Run a Mobile Suit with default Prompt.
         /// </summary>
         /// <returns>0, is All ok.</returns>
         public int Run(string[] args);
+
         /// <summary>
         ///     Asynchronously run some SuitCommands in current environment, until one of them returns a non-AllOK TraceBack.
         /// </summary>
@@ -119,24 +130,16 @@ namespace PlasticMetal.MobileSuit
         TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null);
 
         /// <summary>
-        /// Run a command in current host with given prompt
+        ///     Run a command in current host with given prompt
         /// </summary>
         /// <param name="command">the command to run</param>
         /// <param name="prompt">the prompt</param>
         /// <returns>result of the command</returns>
         public TraceBack RunCommand(string? command, string prompt = "");
-        /// <summary>
-        /// Logger for current host
-        /// </summary>
-        public Logger Logger { get; }
-        /// <summary>
-        /// IOServer for current host
-        /// </summary>
-        public IIOServer IO { get; }
     }
 
     /// <summary>
-    /// Basic Settings of a MobileSuitHost
+    ///     Basic Settings of a MobileSuitHost
     /// </summary>
     public struct HostSettings : IEquatable<HostSettings>
     {
@@ -144,6 +147,7 @@ namespace PlasticMetal.MobileSuit
         ///     If the prompt contains the reference (For example, System.Console.Title) of current instance.
         /// </summary>
         public bool HideReference { get; set; }
+
         /// <summary>
         ///     Throw Exceptions, instead of using TraceBack.
         /// </summary>
@@ -165,7 +169,7 @@ namespace PlasticMetal.MobileSuit
         public bool HideReturnValue { get; set; }
 
         /// <summary>
-        /// Compares two HostSettings 
+        ///     Compares two HostSettings
         /// </summary>
         /// <param name="other">Another HostSettings</param>
         /// <returns></returns>
@@ -175,12 +179,11 @@ namespace PlasticMetal.MobileSuit
                    && ShowDone == other.ShowDone
                    && NoExit == other.NoExit
                    && HideReturnValue == other.HideReturnValue
-                && HideReference == other.HideReference;
-
+                   && HideReference == other.HideReference;
         }
 
         /// <summary>
-        /// Compares a HostSettings to another object
+        ///     Compares a HostSettings to another object
         /// </summary>
         /// <param name="obj">Another Object</param>
         /// <returns></returns>
@@ -190,25 +193,27 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <summary>
-        /// Get hash code of HostSettings, combine with the booleans
+        ///     Get hash code of HostSettings, combine with the booleans
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue,HideReference);
+            return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue, HideReference);
         }
 
         /// <summary>
-        /// Compares two HostSettings 
+        ///     Compares two HostSettings
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
         public static bool operator ==(HostSettings a, HostSettings b)
-            => a.Equals(b);
+        {
+            return a.Equals(b);
+        }
 
         /// <summary>
-        /// Compares two HostSettings 
+        ///     Compares two HostSettings
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>

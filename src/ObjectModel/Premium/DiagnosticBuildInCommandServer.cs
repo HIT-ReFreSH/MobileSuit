@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlasticMetal.MobileSuit.ObjectModel.Premium
+﻿namespace PlasticMetal.MobileSuit.ObjectModel.Premium
 {
     /// <summary>
-    /// Build in command server for diagnostic
+    ///     Build in command server for diagnostic
     /// </summary>
-    public class DiagnosticBuildInCommandServer: BuildInCommandServer,IDiagnosticBuildInCommandServer
+    public class DiagnosticBuildInCommandServer : BuildInCommandServer, IDiagnosticBuildInCommandServer
     {
         /// <inheritdoc />
         public DiagnosticBuildInCommandServer(SuitHost host) : base(host)
@@ -16,7 +12,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         }
 
         /// <inheritdoc />
-        [SuitInfo(typeof(LogRes),"Server")]
+        [SuitInfo(typeof(LogRes), "Server")]
         public LogDriver Log => new LogDriver(Host.Logger);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Parsing;
@@ -10,19 +8,12 @@ using PlasticMetal.MobileSuit.Parsing;
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
-    /// A filter argument for Log finding
+    ///     A filter argument for Log finding
     /// </summary>
     public class LogFilter : AutoDynamicParameter
     {
         /// <summary>
-        /// Parse DateTime
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static object ParseDateTime(string s) => DateTime.Parse(s,CultureInfo.CurrentCulture);
-
-        /// <summary>
-        /// Start time of logs to find
+        ///     Start time of logs to find
         /// </summary>
         [Option("s", 2)]
         [WithDefault]
@@ -30,7 +21,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public DateTime Start { get; set; } = DateTime.MinValue;
 
         /// <summary>
-        /// End time of logs to find
+        ///     End time of logs to find
         /// </summary>
         [Option("e", 2)]
         [WithDefault]
@@ -38,23 +29,32 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public DateTime End { get; set; } = DateTime.MaxValue;
 
         /// <summary>
-        /// Type regex expression
+        ///     Type regex expression
         /// </summary>
         [Option("t")]
         [WithDefault]
         public string TypeRegex { get; set; } = string.Empty;
 
         /// <summary>
-        /// Message regex expression
+        ///     Message regex expression
         /// </summary>
         [Option("m")]
         [WithDefault]
         public string MessageRegex { get; set; } = string.Empty;
-        
+
+        /// <summary>
+        ///     Parse DateTime
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static object ParseDateTime(string s)
+        {
+            return DateTime.Parse(s, CultureInfo.CurrentCulture);
+        }
     }
 
     /// <summary>
-    /// Log Manager
+    ///     Log Manager
     /// </summary>
     [SuitInfo(typeof(LogRes), "Class")]
     public class LogDriver : SuitClient
@@ -72,9 +72,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
 
-
         /// <summary>
-        /// Enable Run-time query
+        ///     Enable Run-time query
         /// </summary>
         /// <returns></returns>
         [SuitAlias("On")]
@@ -84,8 +83,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             _logger.EnableLogQuery = true;
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Disable Run-time query
+        ///     Disable Run-time query
         /// </summary>
         /// <returns></returns>
         [SuitAlias("Off")]
@@ -95,26 +95,26 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             _logger.EnableLogQuery = false;
             return TraceBack.AllOk;
         }
+
         /// <summary>
-        /// Find log with given filter
+        ///     Find log with given filter
         /// </summary>
         /// <returns></returns>
         [SuitAlias("F")]
         [SuitInfo(typeof(LogRes), "Find")]
         public string Find(LogFilter filter)
         {
-            
             var logsToShow =
                 (from l in _logger.LogMem.AsParallel()
-                 where l.TimeStamp >= filter.Start
-                 where l.TimeStamp <= filter.End
-                 where Regex.IsMatch(l.Type, filter.TypeRegex)
-                 where Regex.IsMatch(l.Message, filter.MessageRegex)
-                 orderby l.TimeStamp
-                 select l).ToList();
+                    where l.TimeStamp >= filter.Start
+                    where l.TimeStamp <= filter.End
+                    where Regex.IsMatch(l.Type, filter.TypeRegex)
+                    where Regex.IsMatch(l.Message, filter.MessageRegex)
+                    orderby l.TimeStamp
+                    select l).ToList();
 
             var i = 1;
-            foreach(var e in logsToShow)
+            foreach (var e in logsToShow)
             {
                 IO.WriteLine("(" + i + ") " + e.Type, OutputType.ListTitle);
 
@@ -122,17 +122,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 IO.WriteLine($"{LogRes.Time}: ");
 
                 IO.AppendWriteLinePrefix();
-                IO.WriteLine(e.TimeStamp.ToString("yyMMdd HH:mm:ss",CultureInfo.InvariantCulture), OutputType.MobileSuitInfo);
+                IO.WriteLine(e.TimeStamp.ToString("yyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                    OutputType.MobileSuitInfo);
                 IO.SubtractWriteLinePrefix();
 
                 IO.WriteLine($"{LogRes.Info}: ");
 
                 IO.AppendWriteLinePrefix();
                 var message = e.Message.Split("\n");
-                foreach(var m in message)
-                {
-                    IO.WriteLine(m, OutputType.CustomInfo);
-                }
+                foreach (var m in message) IO.WriteLine(m, OutputType.CustomInfo);
                 IO.SubtractWriteLinePrefix();
                 IO.SubtractWriteLinePrefix();
                 i++;
@@ -140,8 +138,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
             return $"{logsToShow.Count}/{_logger.LogMem.Count}";
         }
+
         /// <summary>
-        /// Get Status of current log
+        ///     Get Status of current log
         /// </summary>
         /// <returns></returns>
         [SuitAlias("S")]

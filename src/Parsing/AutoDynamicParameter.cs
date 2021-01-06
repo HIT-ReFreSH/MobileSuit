@@ -9,16 +9,12 @@ using PlasticMetal.MobileSuit.ObjectModel;
 namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
-    /// A DynamicParameter which can parse itself automatically
+    ///     A DynamicParameter which can parse itself automatically
     /// </summary>
     public abstract class AutoDynamicParameter : IDynamicParameter
     {
         /// <summary>
-        /// Members of this AutoDynamicParameter
-        /// </summary>
-        private Dictionary<string, ParsingMember> Members { get; } = new Dictionary<string, ParsingMember>();
-        /// <summary>
-        /// Initialize a AutoDynamicParameter
+        ///     Initialize a AutoDynamicParameter
         /// </summary>
         protected AutoDynamicParameter()
         {
@@ -28,18 +24,66 @@ namespace PlasticMetal.MobileSuit.Parsing
                 var memberAttr = property.GetCustomAttribute<ParsingMemberAttribute>(true);
                 if (memberAttr is null) continue;
                 var parseAttr = property.GetCustomAttribute<SuitParserAttribute>(true);
-                Members.Add(memberAttr.Name, new ParsingMember(property.GetCustomAttribute<AsCollectionAttribute>( true) !=null? new Action<object?, object?>((obj, value) =>
-                    {
-                        property.PropertyType.GetMethod("Add", new []{
-                            property.GetType().GetElementType()??typeof(string)
-                        })?.Invoke(property.GetValue(obj),new[]{value});
-                    }
-                    ) : property.SetValue,
+                Members.Add(memberAttr.Name, new ParsingMember(
+                    property.GetCustomAttribute<AsCollectionAttribute>(true) != null
+                        ? new Action<object?, object?>((obj, value) =>
+                            {
+                                property.PropertyType.GetMethod("Add", new[]
+                                {
+                                    property.GetType().GetElementType() ?? typeof(string)
+                                })?.Invoke(property.GetValue(obj), new[] {value});
+                            }
+                        )
+                        : property.SetValue,
                     parseAttr?.Converter ??
                     (a => a),
                     memberAttr.Length,
                     property.GetCustomAttribute<WithDefaultAttribute>(true) != null));
             }
+        }
+
+        /// <summary>
+        ///     Members of this AutoDynamicParameter
+        /// </summary>
+        private Dictionary<string, ParsingMember> Members { get; } = new Dictionary<string, ParsingMember>();
+
+        private static Regex ParseMemberRegex { get; } = new Regex(@"^-");
+
+        /// <inheritdoc />
+        public bool Parse(string[]? options = null)
+        {
+            if (options != null && options.Length > 0)
+                for (var i = 0; i < options.Length;)
+                {
+                    if (!ParseMemberRegex.IsMatch(options[i]))
+                    {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not match regex");
+                        return false;
+                    }
+
+                    var name = options[i][1..];
+                    if (!Members.ContainsKey(name))
+                    {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not in dictionary:");
+                        foreach (var item in Members.Keys) Suit.GeneralDefaultLogger.LogDebug(item);
+                        return false;
+                    }
+
+                    var parseMember = Members[name];
+                    i++;
+                    var j = i + parseMember.ParseLength;
+                    if (j > options.Length)
+                    {
+                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} length not match");
+                        return false;
+                    }
+
+                    parseMember.Set(this,
+                        ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
+                    i = j;
+                }
+
+            return Members.Values.All(member => member.Assigned);
         }
 
         private static string ConnectStringArray(string[] array)
@@ -55,6 +99,16 @@ namespace PlasticMetal.MobileSuit.Parsing
 
         private class ParsingMember
         {
+            public ParsingMember(Action<object?, object?> setter,
+                Converter<string, object> converter, int parseLength, bool withDefault
+            )
+            {
+                Setter = setter;
+                Converter = converter;
+                ParseLength = parseLength;
+                Assigned = withDefault || parseLength == 0;
+            }
+
             private Action<object?, object?> Setter { get; }
             private Converter<string, object> Converter { get; }
 
@@ -66,50 +120,6 @@ namespace PlasticMetal.MobileSuit.Parsing
                 Setter(instance, ParseLength == 0 ? true : Converter(value));
                 Assigned = true;
             }
-
-            public ParsingMember(Action<object?, object?> setter,
-                Converter<string, object> converter, int parseLength, bool withDefault
-                )
-            {
-                Setter = setter;
-                Converter = converter;
-                ParseLength = parseLength;
-                Assigned = withDefault || parseLength == 0;
-            }
-        }
-
-        private static Regex ParseMemberRegex { get; } = new Regex(@"^-");
-
-        /// <inheritdoc />
-        public bool Parse(string[]? options = null)
-        {
-            if (options != null && options.Length > 0)
-            {
-                for (var i = 0; i < options.Length;)
-                {
-                    if (!ParseMemberRegex.IsMatch(options[i])) {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not match regex");
-                        return false; }
-                    var name = options[i][1..];
-                    if (!Members.ContainsKey(name)) {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not in dictionary:");
-                        foreach (var item in Members.Keys)
-                        {
-                            Suit.GeneralDefaultLogger.LogDebug(item);
-                        }
-                        return false; }
-                    var parseMember = Members[name];
-                    i++;
-                    var j = i + parseMember.ParseLength;
-                    if (j > options.Length) {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} length not match");
-                        return false; }
-                    parseMember.Set(this,
-                        ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
-                    i = j;
-                }
-            }
-            return Members.Values.All(member => member.Assigned);
         }
     }
 }

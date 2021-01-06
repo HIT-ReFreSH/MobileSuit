@@ -94,8 +94,8 @@ namespace PlasticMetal.MobileSuit.Core.Members
                         {
                             { } when parameter.ParameterType.IsArray => "[]",
                             { } when !(Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) =>
-                            "{}",
-                            { HasDefaultValue: true } => $"={parameter.DefaultValue}",
+                                "{}",
+                            {HasDefaultValue: true} => $"={parameter.DefaultValue}",
                             _ => ""
                         });
                         infoSb.Append(',');
@@ -131,7 +131,6 @@ namespace PlasticMetal.MobileSuit.Core.Members
                     returnValue = result?.GetValue(task);
                     if (returnValue?.GetType().FullName == "System.Threading.Tasks.VoidTaskResult")
                         returnValue = null;
-
                 }
 
                 return returnValue as TraceBack? ?? TraceBack.AllOk;
@@ -141,8 +140,6 @@ namespace PlasticMetal.MobileSuit.Core.Members
                 returnValue = e.InnerException;
                 return TraceBack.ApplicationError;
             }
-
-
         }
 
         private bool CanFitTo(int argumentCount)
@@ -192,6 +189,7 @@ namespace PlasticMetal.MobileSuit.Core.Members
 
                         return Execute(Instance, pass, out returnValue);
                     }
+
                     returnValue = null;
                     return TraceBack.InvalidCommand;
                 }
@@ -215,13 +213,12 @@ namespace PlasticMetal.MobileSuit.Core.Members
 
                 return Execute(Instance, pass, out returnValue);
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 returnValue = e;
 
                 return TraceBack.InvalidCommand;
             }
-            
         }
     }
 }

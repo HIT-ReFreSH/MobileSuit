@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using IOServer = PlasticMetal.MobileSuit.ObjectModel.IOServer;
+using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core
 {
@@ -12,9 +12,10 @@ namespace PlasticMetal.MobileSuit.Core
     public interface IIOServer
     {
         /// <summary>
-        /// Disable Time marks which shows in Output-Redirected Environment.
+        ///     Disable Time marks which shows in Output-Redirected Environment.
         /// </summary>
         public bool DisableTimeMark { get; set; }
+
         /// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>

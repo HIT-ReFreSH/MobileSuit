@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.ObjectModel;
@@ -20,22 +21,23 @@ namespace PlasticMetal.MobileSuit
         private object? _returnValue;
 
         /// <summary>
-        /// Initialize a SuitHost with instance, logger, io, bic-server and prompt-server
+        ///     Initialize a SuitHost with instance, logger, io, bic-server and prompt-server
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="logger"></param>
         /// <param name="io"></param>
         /// <param name="buildInCommandServer"></param>
         /// <param name="prompt"></param>
-        public SuitHost(object? instance, Logger logger, IIOServer io, Type buildInCommandServer, IPromptServer prompt)
-        //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        public SuitHost(object? instance, ILogger logger, IIOServer io, Type buildInCommandServer, IPromptServer prompt)
+            //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
             Current = new SuitObject(instance);
             Assembly = WorkType?.Assembly;
             Logger = logger;
             IO = io;
             Prompt = prompt;
-            BicServer = new SuitObject(buildInCommandServer?.GetConstructor(new[] { typeof(SuitHost) })?.Invoke(new object?[] { this }));
+            BicServer = new SuitObject(buildInCommandServer?.GetConstructor(new[] {typeof(SuitHost)})
+                ?.Invoke(new object?[] {this}));
             WorkInstanceInit();
         }
 
@@ -115,13 +117,6 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public Stack<List<string>> InstanceNameStringStack { get; } = new Stack<List<string>>();
 
-
-
-        /// <summary>
-        ///     The IOServer for this SuitHost
-        /// </summary>
-        public IIOServer IO { get; }
-
         ///// <summary>
         /////     The configuration used to initialize the mobile suit
         ///// </summary>
@@ -158,101 +153,17 @@ namespace PlasticMetal.MobileSuit
         public Type? WorkType => Current.Instance?.GetType();
 
 
-
-
-
         /// <summary>
-        ///     Initialize the current instance, if it is a SuitClient, or implements IIOInteractive or ICommandInteractive.
+        ///     The IOServer for this SuitHost
         /// </summary>
-        public void WorkInstanceInit()
-        {
-            (WorkInstance as IIOInteractive)?.IO.Assign(IO);
-            (WorkInstance as IHostInteractive)?.Host.Assign(this);
-            (WorkInstance as ILogInteractive)?.Log.Assign(Logger);
-            (WorkInstance as IStartingInteractive)?.OnInitialized();
-        }
-
-        private void NotifyAllOk()
-        {
-            if (!Settings.EnableThrows && Settings.ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
-        }
-
-
-        private void NotifyError(string errorDescription)
-        {
-            if (!Settings.EnableThrows) IO.WriteLine(errorDescription + '!', OutputType.Error);
-            else throw new Exception(errorDescription);
-        }
-
-        private string UpdatePrompt(string prompt)
-        {
-            if (IsNullOrEmpty(prompt) && WorkInstance != null)
-                return WorkType != null
-                    ? (WorkType.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute)?.Text ??
-                      (WorkInstance as IInfoProvider)?.Text ??
-                      new SuitInfoAttribute(WorkInstance.GetType().Name).Text
-                    : prompt;
-
-            if (Settings.HideReference || InstanceNameString.Count <= 0) return prompt;
-            var sb = new StringBuilder();
-            sb.Append(prompt);
-            sb.Append('[');
-            sb.Append(InstanceNameString[0]);
-            if (InstanceNameString.Count > 1)
-                for (var i = 1; i < InstanceNameString.Count; i++)
-                    sb.Append($".{InstanceNameString[i]}");
-            sb.Append(']');
-            return sb.ToString();
-        }
-
-
-        private TraceBack RunBuildInCommand(string[] cmdList)
-        {
-            object? r = null;
-            var t = cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out r);
-            if (t == TraceBack.AllOk && r != null)
-            {
-                _returnValue = r;
-            }
-
-            if (r is Exception e)
-            {
-                Logger.LogException(e);
-            }
-            Logger.LogTraceBack(t, r as Exception);
-            return t;
-        }
-
-        private TraceBack RunObject(string[] args)
-        {
-            var t = Current.Execute(args, out var result);
-            if (t == TraceBack.AllOk && result != null)
-            {
-
-                _returnValue = result;
-                if (!Settings.HideReturnValue)
-                    IO.WriteLine(IIOServer.CreateContentArray
-                        (
-                            (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
-                            (result.ToString()??"", null)
-                        )
-                    );
-            }
-            if (result is Exception e)
-            {
-                Logger.LogException(e);
-            }
-            Logger.LogTraceBack(t, result);
-
-            return t;
-        }
+        public IIOServer IO { get; }
 
 
         /// <inheritdoc />
         public int Run(string prompt)
         {
             Prompt.Update("", UpdatePrompt(prompt), TraceBack.AllOk);
-            for (; ; )
+            for (;;)
             {
                 if (!IO.IsInputRedirected) Prompt.Print();
                 var traceBack = RunCommand(IO.ReadLine(), prompt);
@@ -283,7 +194,7 @@ namespace PlasticMetal.MobileSuit
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
         {
             var i = 1;
@@ -354,6 +265,7 @@ namespace PlasticMetal.MobileSuit
 
             return TraceBack.AllOk;
         }
+
         /// <inheritdoc />
         public TraceBack RunCommand(string? cmd, string prompt = "")
         {
@@ -363,8 +275,8 @@ namespace PlasticMetal.MobileSuit
                 return TraceBack.AllOk;
             }
 
-            if (IsNullOrEmpty(cmd)||
-                new System.Text.RegularExpressions.Regex(@"^\s*#").IsMatch(cmd))
+            if (IsNullOrEmpty(cmd) ||
+                new Regex(@"^\s*#").IsMatch(cmd))
                 return TraceBack.AllOk;
             Logger.LogCommand(cmd);
             TraceBack traceBack;
@@ -395,7 +307,7 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <inheritdoc />
-        public Logger Logger { get; }
+        public ILogger Logger { get; }
 
 
         /// <inheritdoc />
@@ -403,28 +315,103 @@ namespace PlasticMetal.MobileSuit
         {
             return Run("");
         }
+
         /// <inheritdoc />
         public int Run(string[]? args)
         {
-            if (args?.Length ==0) return Run();
+            if (args?.Length == 0) return Run();
 
-            if(WorkInstance is ICommandLineApplication)
-            {
-                if(args==null|| RunObject(args) != TraceBack.AllOk)
-                {
-                    return (WorkInstance as ICommandLineApplication)?.SuitStartUp(args)??0;
-                }
-                return 0;
-            }
-            else
+            if (WorkInstance is ICommandLineApplication)
             {
                 if (args == null || RunObject(args) != TraceBack.AllOk)
-                    return -1;
+                    return (WorkInstance as ICommandLineApplication)?.SuitStartUp(args) ?? 0;
                 return 0;
             }
+
+            if (args == null || RunObject(args) != TraceBack.AllOk)
+                return -1;
+            return 0;
         }
 
         /// <inheritdoc />
-        public HostSettings Settings { get; set; } = new HostSettings();
+        public HostSettings Settings { get; set; }
+
+
+        /// <summary>
+        ///     Initialize the current instance, if it is a SuitClient, or implements IIOInteractive or ICommandInteractive.
+        /// </summary>
+        public void WorkInstanceInit()
+        {
+            (WorkInstance as IIOInteractive)?.IO.Assign(IO);
+            (WorkInstance as IHostInteractive)?.Host.Assign(this);
+            (WorkInstance as ILogInteractive)?.Log.Assign(Logger);
+            (WorkInstance as IStartingInteractive)?.OnInitialized();
+        }
+
+        private void NotifyAllOk()
+        {
+            if (!Settings.EnableThrows && Settings.ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
+        }
+
+
+        private void NotifyError(string errorDescription)
+        {
+            if (!Settings.EnableThrows) IO.WriteLine(errorDescription + '!', OutputType.Error);
+            else throw new Exception(errorDescription);
+        }
+
+        private string UpdatePrompt(string prompt)
+        {
+            if (IsNullOrEmpty(prompt) && WorkInstance != null)
+                return WorkType != null
+                    ? (WorkType.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute)?.Text ??
+                      (WorkInstance as IInfoProvider)?.Text ??
+                      new SuitInfoAttribute(WorkInstance.GetType().Name).Text
+                    : prompt;
+
+            if (Settings.HideReference || InstanceNameString.Count <= 0) return prompt;
+            var sb = new StringBuilder();
+            sb.Append(prompt);
+            sb.Append('[');
+            sb.Append(InstanceNameString[0]);
+            if (InstanceNameString.Count > 1)
+                for (var i = 1; i < InstanceNameString.Count; i++)
+                    sb.Append($".{InstanceNameString[i]}");
+            sb.Append(']');
+            return sb.ToString();
+        }
+
+
+        private TraceBack RunBuildInCommand(string[] cmdList)
+        {
+            object? r = null;
+            var t = cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out r);
+            if (t == TraceBack.AllOk && r != null) _returnValue = r;
+
+            if (r is Exception e) Logger.LogException(e);
+            Logger.LogTraceBack(t, r as Exception);
+            return t;
+        }
+
+        private TraceBack RunObject(string[] args)
+        {
+            var t = Current.Execute(args, out var result);
+            if (t == TraceBack.AllOk && result != null)
+            {
+                _returnValue = result;
+                if (!Settings.HideReturnValue)
+                    IO.WriteLine(IIOServer.CreateContentArray
+                        (
+                            (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
+                            (result.ToString() ?? "", null)
+                        )
+                    );
+            }
+
+            if (result is Exception e) Logger.LogException(e);
+            Logger.LogTraceBack(t, result);
+
+            return t;
+        }
     }
 }

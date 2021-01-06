@@ -1,9 +1,7 @@
 ﻿#nullable enable
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,7 +12,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
     /// <summary>
     ///     Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class PremiumBuildInCommandServer : BuildInCommandServer,IAdvancedBuildInCommandServer,IDynamicBuildInCommandServer
+    public class PremiumBuildInCommandServer : BuildInCommandServer, IAdvancedBuildInCommandServer,
+        IDynamicBuildInCommandServer
     {
         /// <summary>
         ///     Initialize a BicServer with the given SuitHost.
@@ -23,37 +22,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         public PremiumBuildInCommandServer(SuitHost host) : base(host)
         {
         }
-
-        /// <summary>
-        ///     Create and Enter a new SuitObject
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        [SuitInfo(typeof(BuildInCommandInformations), "New")]
-        [SuitAlias("New")]
-        public virtual TraceBack CreateObject(string[] args)
-        {
-            if (Host.Assembly == null || args == null) return TraceBack.InvalidCommand;
-
-            var type =
-                Host.Assembly.GetType(args[0], false, true)
-                ?? Host.Assembly.GetType(Host.WorkType?.FullName + '.' + args[0], false, true)
-                ?? Host.Assembly.GetType(Host.Assembly.GetName().Name + '.' + args[0], false, true);
-            if (type?.FullName == null) return TraceBack.ObjectNotFound;
-
-            Host.InstanceNameStringStack.Push(Host.InstanceNameString);
-            Host.InstanceStack.Push(Host.Current);
-            Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
-            Host.Prompt.Update("",
-                (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
-                 ?? new SuitInfoAttribute(args[0])).Text, TraceBack.AllOk);
-            Host.InstanceNameString.Clear();
-            Host.InstanceNameString.Add($"(new {Host.WorkType?.Name})");
-            Host.WorkInstanceInit();
-            return TraceBack.AllOk;
-        }
-
-        
 
 
         /// <summary>
@@ -67,31 +35,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         {
             return ModifyValue(HostRef, args);
         }
-
-
-        /// <summary>
-        ///     Free the Current SuitObject, and back to the last one.
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        [SuitAlias("Fr")]
-        [SuitInfo(typeof(BuildInCommandInformations), "Free")]
-        public virtual TraceBack Free(string[] args)
-        {
-            if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
-            Host.Prompt.Update("",
-                "", TraceBack.AllOk);
-            Current = Host.InstanceStack.Count != 0
-                ? Host.InstanceStack.Pop()
-                : new SuitObject(null);
-            Host.InstanceNameString.Clear();
-            if (Host.InstanceNameStringStack.Count != 0)
-                Host.InstanceNameString.AddRange(Host.InstanceNameStringStack.Pop());
-
-            return TraceBack.AllOk;
-        }
-
-
 
 
         /// <summary>
@@ -191,5 +134,56 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
             return TraceBack.AllOk;
         }
 
+        /// <summary>
+        ///     Create and Enter a new SuitObject
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
+        [SuitInfo(typeof(BuildInCommandInformations), "New")]
+        [SuitAlias("New")]
+        public virtual TraceBack CreateObject(string[] args)
+        {
+            if (Host.Assembly == null || args == null) return TraceBack.InvalidCommand;
+
+            var type =
+                Host.Assembly.GetType(args[0], false, true)
+                ?? Host.Assembly.GetType(Host.WorkType?.FullName + '.' + args[0], false, true)
+                ?? Host.Assembly.GetType(Host.Assembly.GetName().Name + '.' + args[0], false, true);
+            if (type?.FullName == null) return TraceBack.ObjectNotFound;
+
+            Host.InstanceNameStringStack.Push(Host.InstanceNameString);
+            Host.InstanceStack.Push(Host.Current);
+            Host.Current = new SuitObject(Host.Assembly.CreateInstance(type.FullName));
+            Host.Prompt.Update("",
+                (Host.WorkType?.GetCustomAttribute(typeof(SuitInfoAttribute)) as SuitInfoAttribute
+                 ?? new SuitInfoAttribute(args[0])).Text, TraceBack.AllOk);
+            Host.InstanceNameString.Clear();
+            Host.InstanceNameString.Add($"(new {Host.WorkType?.Name})");
+            Host.WorkInstanceInit();
+            return TraceBack.AllOk;
+        }
+
+
+        /// <summary>
+        ///     Free the Current SuitObject, and back to the last one.
+        /// </summary>
+        /// <param name="args">command args</param>
+        /// <returns>Command status</returns>
+        [SuitAlias("Fr")]
+        [SuitInfo(typeof(BuildInCommandInformations), "Free")]
+        public virtual TraceBack Free(string[] args)
+        {
+            if (Host.Current.Instance is null) return TraceBack.InvalidCommand;
+            Host.Prompt.Update("",
+                "", TraceBack.AllOk);
+            Current = Host.InstanceStack.Count != 0
+                ? Host.InstanceStack.Pop()
+                : new SuitObject(null);
+            Host.InstanceNameString.Clear();
+            if (Host.InstanceNameStringStack.Count != 0)
+                Host.InstanceNameString.AddRange(Host.InstanceNameStringStack.Pop());
+
+            return TraceBack.AllOk;
+        }
     }
 }

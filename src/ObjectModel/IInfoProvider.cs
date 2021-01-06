@@ -1,6 +1,4 @@
-﻿using PlasticMetal.MobileSuit.Core;
-
-namespace PlasticMetal.MobileSuit.ObjectModel
+﻿namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Represents an object which can provide information to Mobile Suit.

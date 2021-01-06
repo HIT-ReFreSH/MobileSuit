@@ -3,17 +3,16 @@
 namespace PlasticMetal.MobileSuit.Parsing
 {
     /// <summary>
-    /// A switch used in a dynamic parameter
+    ///     A switch used in a dynamic parameter
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class SwitchAttribute:ParsingMemberAttribute
+    public sealed class SwitchAttribute : ParsingMemberAttribute
     {
-
         /// <summary>
-        /// Initialize a Option with name
+        ///     Initialize a Option with name
         /// </summary>
         /// <param name="name">The name of option, for '-a' option, it's 'a'</param>
-        public SwitchAttribute(string name):base(name,0)
+        public SwitchAttribute(string name) : base(name, 0)
         {
         }
     }

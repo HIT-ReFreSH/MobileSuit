@@ -27,7 +27,6 @@
         TraceBack Leave(string[] args);
 
 
-
         /// <summary>
         ///     Show Certain Member's Value of the Current SuitObject
         /// </summary>
@@ -58,7 +57,6 @@
         TraceBack List(string[] args);
 
 
-
         /// <summary>
         ///     Exit MobileSuit
         /// </summary>
@@ -72,8 +70,6 @@
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack This(string[] args);
-
-
 
 
         /// <summary>

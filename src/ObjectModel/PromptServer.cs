@@ -8,21 +8,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     public class PromptServer : IPromptServer
     {
         /// <summary>
-        ///     Initialize a prompt with GeneralIO
-        /// </summary>
-        public PromptServer() 
-        {
-        }
-
-
-
-
-
-
-        /// <summary>
         ///     Color setting of this prompt server
         /// </summary>
         protected IColorSetting ColorSetting => IO.ColorSetting;
+
         /// <summary>
         ///     return value from last update
         /// </summary>

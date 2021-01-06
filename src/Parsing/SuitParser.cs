@@ -17,9 +17,9 @@ namespace PlasticMetal.MobileSuit.Parsing
         public SuitParserAttribute(Type parserClass, string methodName)
         {
             if (parserClass == null || methodName == null) return;
-            Converter= parserClass.GetMethod(methodName,
-                BindingFlags.Public | BindingFlags.Static|BindingFlags.IgnoreCase)
-                ?.CreateDelegate(typeof( Converter<string, object>)) as Converter<string, object>;
+            Converter = parserClass.GetMethod(methodName,
+                    BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase)
+                ?.CreateDelegate(typeof(Converter<string, object>)) as Converter<string, object>;
         }
 
         /// <summary>

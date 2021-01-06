@@ -28,13 +28,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Future
         /// </summary>
         protected const char Cross = '⨯';
 
-        /// <inheritdoc />
-        public PowerLineThemedPromptServer()
-        {
-        }
-
-
-
 
         /// <inheritdoc />
         public override void Print()

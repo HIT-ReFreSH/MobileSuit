@@ -1,9 +1,10 @@
-﻿using PlasticMetal.MobileSuit.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using PlasticMetal.MobileSuit.Core;
+
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
@@ -61,12 +62,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             else
             {
                 r = Current.TryGetField(args[0], out nextObject);
-                if (r != TraceBack.AllOk || nextObject is null)
-                {
-                    r = Host.BicServer.TryGetField(args[0], out nextObject);
-                }
+                if (r != TraceBack.AllOk || nextObject is null) r = Host.BicServer.TryGetField(args[0], out nextObject);
             }
-            if (r != TraceBack.AllOk || nextObject is null) {return r;}
+
+            if (r != TraceBack.AllOk || nextObject is null) return r;
 
             Host.InstanceStack.Push(Host.Current);
             var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
@@ -129,12 +128,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public virtual TraceBack RunScript(string[] args)
         {
             if (args == null || args.Length < 1 || !File.Exists(args[0])) return TraceBack.InvalidCommand;
-            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[0]), 
+            var t = Host.RunScriptsAsync(ReadTextFileAsync(args[0]),
                 true, Path.GetFileNameWithoutExtension(args[0]));
             t.Wait();
             return t.Result;
         }
-
 
 
         /// <summary>
@@ -170,7 +168,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             ), OutputType.AllOk);
             return TraceBack.AllOk;
         }
-
 
 
         /// <summary>
@@ -262,7 +259,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists) throw new FileNotFoundException(fileName);
             var reader = fileInfo.OpenText();
-            for (; ; )
+            for (;;)
             {
                 var r = await reader.ReadLineAsync().ConfigureAwait(false);
                 yield return r;
@@ -285,7 +282,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             if (args.Length == 1)
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool)target.Value;
+                var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 currentBool = !currentBool;
                 newVal = currentBool.ToString(CultureInfo.CurrentCulture);
@@ -294,7 +291,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             else if (target.ValueType == typeof(bool))
             {
                 if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
-                var currentBool = (bool)target.Value;
+                var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 var setV = args[1].ToLower(CultureInfo.CurrentCulture);
                 currentBool = setV switch
@@ -324,5 +321,4 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             return TraceBack.AllOk;
         }
     }
-
 }

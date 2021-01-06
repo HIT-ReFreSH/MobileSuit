@@ -8,31 +8,38 @@ using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
-
     public partial class IOServer
     {
+        private StringBuilder PrefixBuilder { get; } = new StringBuilder();
+        private Stack<int> PrefixLengthStack { get; } = new Stack<int>();
+
         /// <summary>
-        /// Disable Time marks which shows in Output-Redirected Environment.
+        ///     Disable Time marks which shows in Output-Redirected Environment.
         /// </summary>
         public bool DisableTimeMark { get; set; }
+
         /// <summary>
-        /// Check if this IOServer's error stream is redirected (NOT stderr)
+        ///     Check if this IOServer's error stream is redirected (NOT stderr)
         /// </summary>
         public bool IsErrorRedirected => !Console.Error.Equals(ErrorStream);
+
         /// <summary>
-        /// Check if this IOServer's output stream is redirected (NOT stdout)
+        ///     Check if this IOServer's output stream is redirected (NOT stdout)
         /// </summary>
         public bool IsOutputRedirected => !Console.Out.Equals(Output);
+
         /// <summary>
-        /// Error stream (default stderr)
+        ///     Error stream (default stderr)
         /// </summary>
         public TextWriter ErrorStream { get; set; }
+
         /// <summary>
-        /// Output stream (default stdout)
+        ///     Output stream (default stdout)
         /// </summary>
         public TextWriter Output { get; set; }
+
         /// <summary>
-        /// The prefix of WriteLine() output, usually used to make indentation.
+        ///     The prefix of WriteLine() output, usually used to make indentation.
         /// </summary>
         public string Prefix
         {
@@ -45,33 +52,24 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
         }
 
-        private StringBuilder PrefixBuilder { get; } = new StringBuilder();
-        private Stack<int> PrefixLengthStack { get; } = new Stack<int>();
-
-        private ConsoleColor SelectColor(OutputType type = OutputType.Default, ConsoleColor? customColor = null)
-            => IColorSetting.SelectColor(ColorSetting, type, customColor);
         /// <summary>
-        /// Reset this IOServer's error stream to stderr
+        ///     Reset this IOServer's error stream to stderr
         /// </summary>
         public void ResetError()
         {
             ErrorStream = Console.Error;
         }
+
         /// <summary>
-        /// Reset this IOServer's output stream to stdout
+        ///     Reset this IOServer's output stream to stdout
         /// </summary>
         public void ResetOutput()
         {
             Output = Console.Out;
         }
 
-        private void ResetWriteLinePrefix()
-        {
-            PrefixBuilder.Clear();
-            PrefixLengthStack.Clear();
-        }
         /// <summary>
-        /// Append a str to Prefix, usually used to increase indentation
+        ///     Append a str to Prefix, usually used to increase indentation
         /// </summary>
         /// <param name="str">the str to append</param>
         public void AppendWriteLinePrefix(string str = "\t")
@@ -79,8 +77,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             PrefixBuilder.Append(str);
             PrefixLengthStack.Push(str?.Length ?? 0);
         }
+
         /// <summary>
-        /// Subtract a str from Prefix, usually used to decrease indentation
+        ///     Subtract a str from Prefix, usually used to decrease indentation
         /// </summary>
         public void SubtractWriteLinePrefix()
         {
@@ -88,13 +87,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             var l = PrefixLengthStack.Pop();
             PrefixBuilder.Remove(PrefixBuilder.Length - l, l);
         }
+
         /// <summary>
-        /// Writes some content to output stream. With certain color in console.
+        ///     Writes some content to output stream. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
-        public void Write(string content, ConsoleColor? customColor) => Write(content, OutputType.Default, customColor);
-        /// <inheritdoc/>
+        public void Write(string content, ConsoleColor? customColor)
+        {
+            Write(content, OutputType.Default, customColor);
+        }
+
+        /// <inheritdoc />
         public void Write(string content, ConsoleColor frontColor, ConsoleColor backColor)
         {
             if (!IsOutputRedirected)
@@ -109,13 +113,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-
                 Output?.Write(content);
             }
         }
 
         /// <summary>
-        /// Writes some content to output stream. With certain color in console.
+        ///     Writes some content to output stream. With certain color in console.
         /// </summary>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
@@ -136,7 +139,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     Output?.Write(content);
             }
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public async Task WriteAsync(string content, ConsoleColor frontColor, ConsoleColor backColor)
         {
             if (!IsOutputRedirected)
@@ -151,19 +155,22 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-
                 await Output.WriteAsync(content).ConfigureAwait(false);
             }
         }
 
         /// <summary>
-        /// Asynchronously writes some content to output stream. With certain color in console.
+        ///     Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
-        public async Task WriteAsync(string content, ConsoleColor? customColor) => await WriteAsync(content, default, customColor).ConfigureAwait(false);
+        public async Task WriteAsync(string content, ConsoleColor? customColor)
+        {
+            await WriteAsync(content, default, customColor).ConfigureAwait(false);
+        }
+
         /// <summary>
-        /// Asynchronously writes some content to output stream. With certain color in console.
+        ///     Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
@@ -186,18 +193,27 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     await Output.WriteAsync(content).ConfigureAwait(false);
             }
         }
+
         /// <summary>
-        /// Write a blank line to output stream.
+        ///     Write a blank line to output stream.
         /// </summary>
-        public void WriteLine() => WriteLine("");
+        public void WriteLine()
+        {
+            WriteLine("");
+        }
+
         /// <summary>
-        /// Writes some content to output stream, with line break. With certain color in console.
+        ///     Writes some content to output stream, with line break. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console.</param>
-        public void WriteLine(string content, ConsoleColor customColor) => WriteLine(content, default, customColor);
+        public void WriteLine(string content, ConsoleColor customColor)
+        {
+            WriteLine(content, default, customColor);
+        }
+
         /// <summary>
-        /// Writes some content to output stream, with line break. With certain color in console.
+        ///     Writes some content to output stream, with line break. With certain color in console.
         /// </summary>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
@@ -216,16 +232,20 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             {
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
+                sb.Append(']');
                 sb.Append(IIOServer.GetLabel(type));
                 sb.Append(content);
                 Output?.WriteLine(sb.ToString());
             }
         }
+
         /// <summary>
-        /// Writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+        /// <param name="contentArray">
+        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
+        ///     output (in console)
+        /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public void WriteLine(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
         {
@@ -251,7 +271,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             {
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
+                sb.Append(']');
                 sb.Append(IIOServer.GetLabel(type));
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
@@ -261,15 +281,17 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <summary>
-        /// Writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray.
-        /// FOR EACH Tuple, first is a part of content;
-        /// second is optional, the foreground color of output (in console),
-        /// third is optional, the background color of output.
+        /// <param name="contentArray">
+        ///     TupleArray.
+        ///     FOR EACH Tuple, first is a part of content;
+        ///     second is optional, the foreground color of output (in console),
+        ///     third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public void WriteLine(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        public void WriteLine(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
+            OutputType type = OutputType.Default)
         {
             if (contentArray == null) return;
             if (!IsOutputRedirected)
@@ -296,7 +318,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             {
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                sb.Append("]");
+                sb.Append(']');
                 sb.Append(IIOServer.GetLabel(type));
 
                 foreach (var (content, _, _) in contentArray) sb.Append(content);
@@ -304,19 +326,27 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 Output?.WriteLine(sb.ToString());
             }
         }
+
         /// <summary>
-        /// Asynchronously writes a blank line to output stream.
+        ///     Asynchronously writes a blank line to output stream.
         /// </summary>
-        public async Task WriteLineAsync() => await WriteLineAsync("").ConfigureAwait(false);
+        public async Task WriteLineAsync()
+        {
+            await WriteLineAsync("").ConfigureAwait(false);
+        }
+
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console.</param>
         public async Task WriteLineAsync(string content, ConsoleColor customColor)
-            => await WriteLineAsync(content, default, customColor).ConfigureAwait(false);
+        {
+            await WriteLineAsync(content, default, customColor).ConfigureAwait(false);
+        }
+
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
@@ -334,27 +364,32 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else
             {
-
                 var sb = new StringBuilder();
                 if (!DisableTimeMark)
                 {
-                    sb.Append("[");
+                    sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append("]");
+                    sb.Append(']');
                     sb.Append(IIOServer.GetLabel(type));
                 }
                 else
                 {
                     sb.Append(Prefix);
                 }
+
                 sb.Append(content);
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
+
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
+        ///     in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+        /// <param name="contentArray">
+        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
+        ///     output (in console)
+        /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
@@ -381,15 +416,16 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder();
                 if (!DisableTimeMark)
                 {
-                    sb.Append("[");
+                    sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append("]");
+                    sb.Append(']');
                     sb.Append(IIOServer.GetLabel(type));
                 }
                 else
                 {
                     sb.Append(Prefix);
                 }
+
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -397,9 +433,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
+        ///     in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of output (in console)</param>
+        /// <param name="contentArray">
+        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
+        ///     output (in console)
+        /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
@@ -426,9 +466,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder();
                 if (!DisableTimeMark)
                 {
-                    sb.Append("[");
+                    sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append("]");
+                    sb.Append(']');
                     sb.Append(IIOServer.GetLabel(type));
                 }
                 else
@@ -443,15 +483,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
+        ///     in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray.
-        /// FOR EACH Tuple, first is a part of content;
-        /// second is optional, the foreground color of output (in console),
-        /// third is optional, the background color of output.
+        /// <param name="contentArray">
+        ///     TupleArray.
+        ///     FOR EACH Tuple, first is a part of content;
+        ///     second is optional, the foreground color of output (in console),
+        ///     third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
+            OutputType type = OutputType.Default)
         {
             if (contentArray == null) return;
             if (!IsOutputRedirected)
@@ -478,16 +521,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             {
                 var sb = new StringBuilder();
                 if (!DisableTimeMark)
-                {
-                    sb.Append("[");
-                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append("]");
-                    sb.Append(IIOServer.GetLabel(type));
-                }
+                    sb
+                        .Append('[')
+                        .Append(DateTime.Now.ToString(CultureInfo.InvariantCulture))
+                        .Append(']')
+                        .Append(IIOServer.GetLabel(type));
                 else
-                {
                     sb.Append(Prefix);
-                }
                 foreach (var (content, _, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -495,15 +535,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <summary>
-        /// Asynchronously writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
+        ///     in console.
         /// </summary>
-        /// <param name="contentArray">TupleArray.
-        /// FOR EACH Tuple, first is a part of content;
-        /// second is optional, the foreground color of output (in console),
-        /// third is optional, the background color of output.
+        /// <param name="contentArray">
+        ///     TupleArray.
+        ///     FOR EACH Tuple, first is a part of content;
+        ///     second is optional, the foreground color of output (in console),
+        ///     third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
+            OutputType type = OutputType.Default)
         {
             if (contentArray == null) return;
             if (!IsOutputRedirected)
@@ -531,20 +574,29 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder();
                 if (!DisableTimeMark)
                 {
-                    sb.Append("[");
-                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append("]");
+                    sb.Append('[').Append(DateTime.Now.ToString(CultureInfo.InvariantCulture)).Append(']');
                     sb.Append(IIOServer.GetLabel(type));
                 }
                 else
                 {
                     sb.Append(Prefix);
                 }
+
                 await foreach (var (content, _, _) in contentArray) sb.Append(content);
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
 
+        private ConsoleColor SelectColor(OutputType type = OutputType.Default, ConsoleColor? customColor = null)
+        {
+            return IColorSetting.SelectColor(ColorSetting, type, customColor);
+        }
+
+        private void ResetWriteLinePrefix()
+        {
+            PrefixBuilder.Clear();
+            PrefixLengthStack.Clear();
+        }
     }
 }

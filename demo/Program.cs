@@ -16,7 +16,6 @@ namespace PlasticMetal.MobileSuitDemo
                 //.Build<Client>()
                 .Build<AutoArgumentCliClient>()
                 .Run(args);
-
         }
     }
 }

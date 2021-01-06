@@ -3,13 +3,10 @@
 namespace PlasticMetal.MobileSuit.ObjectModel.Premium
 {
     /// <summary>
-    /// A BuildInCommandServer providing shell and host interfaces
+    ///     A BuildInCommandServer providing shell and host interfaces
     /// </summary>
-    public interface IAdvancedBuildInCommandServer:IBuildInCommandServer
+    public interface IAdvancedBuildInCommandServer : IBuildInCommandServer
     {
-
-
-
         /// <summary>
         ///     Switch Options for MobileSuit
         /// </summary>
@@ -17,7 +14,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// <returns>Command status</returns>
         TraceBack SwitchOption(string[] args);
 
- 
 
         /// <summary>
         ///     Output something in default way
@@ -39,6 +35,5 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         TraceBack Shell(string[] args);
-
     }
 }

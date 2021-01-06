@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlasticMetal.MobileSuit.ObjectModel
+﻿namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
-    /// has access to host's logger
+    ///     has access to host's logger
     /// </summary>
     public interface ILogInteractive
     {
