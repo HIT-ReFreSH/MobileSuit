@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "D:/a/MobileSuit/MobileSuit/master",
+  "source_base_path": "D:/a/MobileSuit/MobileSuit/main",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "PfKYlt2MHHVg3ECFCi3o/A=="
+          "hash": "y1Gp8+AGLcwCsbiAP/Z8DQ=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.AlreadyAssignedException-1.html",
-          "hash": "kRkFwkpGBDRSguNIPiQ4lg=="
+          "hash": "/AdcTZxgZZzxkL57cVzNEw=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.AssignOnce-1.html",
-          "hash": "qSLMwNjWeosE9jiTH++2hQ=="
+          "hash": "S2yARxfUKSA1lIHHNq+BlA=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.BuildInCommand.html",
-          "hash": "Rvy8jnXee+9sxNSRYu4rdw=="
+          "hash": "MqgQ/1Vvx1H4Uga5aURqmg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.ContainerMember.html",
-          "hash": "3bpQA18OT41xw6oNwOmxWQ=="
+          "hash": "Vj1xo5DpUYPa8oOKSvUR8w=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IAssignOnce-1.html",
-          "hash": "zUFHqgfcQnBbe4JQQAAliQ=="
+          "hash": "+JimleP8hl7K9e0Df32uGQ=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IBuildInCommandServer.html",
-          "hash": "4dQ8LjPb/kyNa3Qttsz/vg=="
+          "hash": "+y0SbPA7TbrhPg3/S97LoA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IColorSetting.html",
-          "hash": "AyvSeZVXXNfwbVLYOJXIwA=="
+          "hash": "zJmfY93PCaty5AZ6ZeI5DA=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IExecutable.html",
-          "hash": "44EVN7aB1fuW8guSv32lEw=="
+          "hash": "kLDFRn/DdkxszCo1hPD3Zg=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IExitInteractive.html",
-          "hash": "HAV6ffFtWRGQ1wPwgAUopw=="
+          "hash": "HoGEd7SaqKQ9r7I/IXeqig=="
         }
       },
       "is_incremental": false,
@@ -129,19 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IIOServer.html",
-          "hash": "K8bQgwvIk/wBYmVzfDP49A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.ILogger.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.Core.ILogger.html",
-          "hash": "P8C7NkvJjT2c10xPHIZ7Rw=="
+          "hash": "ihi5c/e7YP/Ow7xCSfNkWA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IPromptServer.html",
-          "hash": "qLsVww7L0XMhD+/zQpbIIw=="
+          "hash": "eCxcbWMk1LctrLpNa8syZg=="
         }
       },
       "is_incremental": false,
@@ -165,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.IStartingInteractive.html",
-          "hash": "l5lMBlF4ueupYgGKsHjiQQ=="
+          "hash": "0ToxIk2UdWR8jAPB1fY/IA=="
         }
       },
       "is_incremental": false,
@@ -173,11 +161,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.LogEntry.yml",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.yml",
       "output": {
         ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.Core.LogEntry.html",
-          "hash": "v3BKOUz/6LLKRHSAYehHSw=="
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html",
+          "hash": "/VPXWde98TjmS2z4xuhRDA=="
         }
       },
       "is_incremental": false,
@@ -185,11 +173,95 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logger.yml",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.yml",
       "output": {
         ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logger.html",
-          "hash": "Izt+/AajiQz+14Gv+Tu8Rg=="
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html",
+          "hash": "lIQ3scSC8/mnQDLTkA1C/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html",
+          "hash": "glVt7KjMYzlamRr5O7qKWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger.html",
+          "hash": "iEA9aXTUrRG8JIOMYp6uPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html",
+          "hash": "n+m8wAiY+qCziH5dVfuEJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html",
+          "hash": "tlpclJp8U9hozT9Q/qZAjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline.html",
+          "hash": "aavlLwAR8t66e1YYCHUU4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html",
+          "hash": "h9joAbXPxUUFxiOcmgRdhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.Core.Logging.html",
+          "hash": "aaqNH5rE2Xq+G/6o/9RvMg=="
         }
       },
       "is_incremental": false,
@@ -201,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.Member.html",
-          "hash": "UIoMHIPLTzMx6PBmFBA9Yw=="
+          "hash": "pNDiM7VCZPpBiBGvy04ovQ=="
         }
       },
       "is_incremental": false,
@@ -213,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.MemberAccess.html",
-          "hash": "P+AkhNuEJcQL9eGJ2dMMYg=="
+          "hash": "W1sguNt/PP0XpcTI3oxS1Q=="
         }
       },
       "is_incremental": false,
@@ -225,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.MemberType.html",
-          "hash": "G+oM3eTZpwKo8GpMHmTWoQ=="
+          "hash": "MH74bhjMWE7v8WflrfI8OA=="
         }
       },
       "is_incremental": false,
@@ -237,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.ExecutableMember.html",
-          "hash": "/hJ15BidiLiNCJmjQfhhlA=="
+          "hash": "jNpzNXxyn/SIEVfu2S1U1Q=="
         }
       },
       "is_incremental": false,
@@ -249,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.TailParameterType.html",
-          "hash": "BBQhqZ0RHDzDvPslq2RfyQ=="
+          "hash": "OJswFm01XmFSU0hQz3liZQ=="
         }
       },
       "is_incremental": false,
@@ -261,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.Members.html",
-          "hash": "2bvWf2oAB2I6nQBao6hUyw=="
+          "hash": "9C8wuLMH3uNa+eIelKkXyA=="
         }
       },
       "is_incremental": false,
@@ -273,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.SuitObject.html",
-          "hash": "rURRSESKx/OK515Y0m2aew=="
+          "hash": "FmPgD1Y+MJrYLBNdUd1yiA=="
         }
       },
       "is_incremental": false,
@@ -285,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Core.html",
-          "hash": "lkKVx41hiwdlFTeagMNBPA=="
+          "hash": "wtNgXIC7uQ5y4MlerWGFhw=="
         }
       },
       "is_incremental": false,
@@ -297,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.HostSettings.html",
-          "hash": "hgLjs5AfCFGBFhhQ1BIOiQ=="
+          "hash": "ZCJBkZw2pTlWcS4iOvt/Pg=="
         }
       },
       "is_incremental": false,
@@ -309,7 +381,19 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.IMobileSuitHost.html",
-          "hash": "iwIrMkDHIG2Sg8xGRMZoBQ=="
+          "hash": "pHTOUGwlr6gKTSbFjCc60Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlasticMetal.MobileSuit.LoggerExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlasticMetal.MobileSuit.LoggerExtensions.html",
+          "hash": "bf3adn8dSRRbqtoMbjY10A=="
         }
       },
       "is_incremental": false,
@@ -321,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceHost.html",
-          "hash": "6q8vLeljlPOHQnnGHytwoA=="
+          "hash": "aD0uKBkROlg3fq4mDa+Jcw=="
         }
       },
       "is_incremental": false,
@@ -333,19 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html",
-          "hash": "cgmH86X0N/OGMYtMW6V/MA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html",
-          "hash": "Om3Oof5oUHlPw+LeBR5XCA=="
+          "hash": "Xvf1u3ue4DhuQqRQKKY6bg=="
         }
       },
       "is_incremental": false,
@@ -357,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer.html",
-          "hash": "g9BWN68O/RfdpbUvV1YFVw=="
+          "hash": "IcmvdQdVs2QYXUmKc3wxLA=="
         }
       },
       "is_incremental": false,
@@ -369,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ColorSetting.html",
-          "hash": "1NlT1ECeIAlOKHca1KDM3Q=="
+          "hash": "scp85racyS+/1K5JEIZxAQ=="
         }
       },
       "is_incremental": false,
@@ -381,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandHandler.html",
-          "hash": "QM2JbsBkLys0YPrh2qmMtQ=="
+          "hash": "uXoOSAAUYKc6cQzE23+7AA=="
         }
       },
       "is_incremental": false,
@@ -393,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication-1.html",
-          "hash": "S6OxmPYTllLYlmckdHzKGg=="
+          "hash": "GDBVSbKdDE8iE4gJ0byyoQ=="
         }
       },
       "is_incremental": false,
@@ -405,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication.html",
-          "hash": "RnrBVAsFfEKDyb20ehccZw=="
+          "hash": "HI99OdJgB3KmLR0xjALgYg=="
         }
       },
       "is_incremental": false,
@@ -417,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html",
-          "hash": "yE9zTJoCfbFfaT0Kj2i1bg=="
+          "hash": "LElAWsyh7WnRcrb5RDGp9Q=="
         }
       },
       "is_incremental": false,
@@ -429,7 +501,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Future.html",
-          "hash": "ao/lyL1u8IzrhSDUIaXwTA=="
+          "hash": "yz20NbHcXhv173GG3kNqPA=="
         }
       },
       "is_incremental": false,
@@ -441,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceHost.html",
-          "hash": "oCpt38o1a+s5hF3ZEwYe2A=="
+          "hash": "ExewVryqBsjj19TLYJ3bGg=="
         }
       },
       "is_incremental": false,
@@ -453,19 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer.html",
-          "hash": "QwE79bmRr3h8aLozqmzcVA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger.html",
-          "hash": "Aow20kjbbs2ILjxO5hi8hg=="
+          "hash": "mvfih6/T614937bWezgzeA=="
         }
       },
       "is_incremental": false,
@@ -477,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication-1.html",
-          "hash": "JmuZSz760/RhiPXrP+UV7Q=="
+          "hash": "RJFT5qcZEVPJRAimOpLoGA=="
         }
       },
       "is_incremental": false,
@@ -489,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication.html",
-          "hash": "U/ECqqLE8bLrgrZdU5Tm8g=="
+          "hash": "RoQk7prPR4KL8rzVvEIpAw=="
         }
       },
       "is_incremental": false,
@@ -501,7 +561,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IDynamicParameter.html",
-          "hash": "Zjw+fxTdLRcmbZU5RYWTQQ=="
+          "hash": "dRFh8REqQgHAODAeOnBL7A=="
         }
       },
       "is_incremental": false,
@@ -513,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IHostInteractive.html",
-          "hash": "+w6kY2YNlxLi8XI71xQMiA=="
+          "hash": "Z51ArgjRI/hDecY22wcneA=="
         }
       },
       "is_incremental": false,
@@ -525,7 +585,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IIOInteractive.html",
-          "hash": "axzXKZFbJXQbwysevGTBOQ=="
+          "hash": "sQnA43FJryLtxblySQiEjA=="
         }
       },
       "is_incremental": false,
@@ -537,7 +597,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IInfoProvider.html",
-          "hash": "JuxKEG0gFcSPFucMyzLC/g=="
+          "hash": "c+05YbmqFkYH9mSlaOKN1Q=="
         }
       },
       "is_incremental": false,
@@ -549,7 +609,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.ILogInteractive.html",
-          "hash": "YEXTazHN4mKbB7liCoXBPw=="
+          "hash": "MkDwprsSXqxzuRjIS/Y2HA=="
         }
       },
       "is_incremental": false,
@@ -561,7 +621,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.IOServer.html",
-          "hash": "Uh8izxM/LsdW2CxAlLPDjQ=="
+          "hash": "7SEKbYiYsmj5dMZhIhB15A=="
         }
       },
       "is_incremental": false,
@@ -573,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html",
-          "hash": "xcwEbDJsYHCq0B7r1vcHug=="
+          "hash": "+NYBc0vujow22pBpCKsveQ=="
         }
       },
       "is_incremental": false,
@@ -585,19 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.LogFilter.html",
-          "hash": "MUyE2CJGVzcjMrxrZJvw2Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html",
-          "hash": "hYnaZ+X/dmEqCqaUyiwcPA=="
+          "hash": "iDOOZsDwfz5yzORSBG9urA=="
         }
       },
       "is_incremental": false,
@@ -609,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient.html",
-          "hash": "iGgrJDllyXHHKVhkMysO8Q=="
+          "hash": "dO+PT4D1isPjZPtCMsBi5A=="
         }
       },
       "is_incremental": false,
@@ -621,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IAdvancedBuildInCommandServer.html",
-          "hash": "BYdRiK7jo+Ix7CPyPizUyw=="
+          "hash": "QasiVgAiVLm/WMw3gDlcuw=="
         }
       },
       "is_incremental": false,
@@ -633,7 +681,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDiagnosticBuildInCommandServer.html",
-          "hash": "Wv7EfAnhlwfsAIzNcnVXxg=="
+          "hash": "a/F0Gcl3qVuMyTUcViixmQ=="
         }
       },
       "is_incremental": false,
@@ -645,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.IDynamicBuildInCommandServer.html",
-          "hash": "05GdzkXvVhY6YN5qr0XFSw=="
+          "hash": "iKrPoHf2PVzd7XVAzRBf1g=="
         }
       },
       "is_incremental": false,
@@ -657,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.PremiumBuildInCommandServer.html",
-          "hash": "hDsa+CtA6TiNx6OgYPlowA=="
+          "hash": "eURRTWR/1OF1I7/glH37tw=="
         }
       },
       "is_incremental": false,
@@ -669,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.Premium.html",
-          "hash": "C0QmDi8d84uK/1fWS5039g=="
+          "hash": "tQWVUV/X0/6Jf+uV98cgBQ=="
         }
       },
       "is_incremental": false,
@@ -681,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.html",
-          "hash": "w6P1PGJJA6m5AqoylP318A=="
+          "hash": "0UhX9CkYi8HHXJznMPU0UQ=="
         }
       },
       "is_incremental": false,
@@ -693,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.SuitClient.html",
-          "hash": "M3KbhQSfjcSbn8wWTepDZA=="
+          "hash": "Qc6pXMEVBCsLNdAzl73YMA=="
         }
       },
       "is_incremental": false,
@@ -705,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.ObjectModel.html",
-          "hash": "Q9jDfMVUv+AdcLoKbS1YnQ=="
+          "hash": "UccwtAhrunZTU+YCEW1wZw=="
         }
       },
       "is_incremental": false,
@@ -717,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.OutputType.html",
-          "hash": "c+7p8y71dp8tg+C77lHEJw=="
+          "hash": "BC3Z0u0dcArks5NrFOGcWA=="
         }
       },
       "is_incremental": false,
@@ -729,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.AsCollectionAttribute.html",
-          "hash": "HJnHqHoZK9+MpAUey05Neg=="
+          "hash": "gUM6sbn4Ir4z0fGdcBXWRQ=="
         }
       },
       "is_incremental": false,
@@ -741,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.AutoDynamicParameter.html",
-          "hash": "EGmJkM3MaLCy0u7aeDVSkw=="
+          "hash": "kiQ6LRMTIG/VH+y8FuzYWQ=="
         }
       },
       "is_incremental": false,
@@ -753,7 +801,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.OptionAttribute.html",
-          "hash": "KKaGAZf8HaynANNJhbhoxg=="
+          "hash": "Blj4y+FRyimqxT3S+Zx57Q=="
         }
       },
       "is_incremental": false,
@@ -765,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.Parsers.html",
-          "hash": "a7FHIEkVDp7L40yz5RTYoQ=="
+          "hash": "hL6tIFByO0Uq9ldCtkQjvw=="
         }
       },
       "is_incremental": false,
@@ -777,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.ParsingMemberAttribute.html",
-          "hash": "Hb24hC+bfw151bvroRFJMw=="
+          "hash": "AwJE4G3ux9gTvDA5JskDSw=="
         }
       },
       "is_incremental": false,
@@ -789,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.SuitParserAttribute.html",
-          "hash": "WZezhvE57vqsu+5Awriw1A=="
+          "hash": "duzZ4OyVhUqQILyT4wUz7Q=="
         }
       },
       "is_incremental": false,
@@ -801,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.SwitchAttribute.html",
-          "hash": "xuAtkBJ9IiEWPAjUrxzCyw=="
+          "hash": "BlORPZFjOtRrBjjyg8RQxA=="
         }
       },
       "is_incremental": false,
@@ -813,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.WithDefaultAttribute.html",
-          "hash": "dORZCxOJJd7ntS2G01jR5Q=="
+          "hash": "2vEfvhNlEFNCRgO9xjWTAg=="
         }
       },
       "is_incremental": false,
@@ -825,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Parsing.html",
-          "hash": "lX1UcnC/x848hM5ZIeVOwg=="
+          "hash": "GSS4SLVfHC+cszNBdfguBQ=="
         }
       },
       "is_incremental": false,
@@ -837,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.Suit.html",
-          "hash": "jSzz9qRZaLNKfpyguQDBtg=="
+          "hash": "WEc1DrQLDQKhWFDVhuLJLQ=="
         }
       },
       "is_incremental": false,
@@ -849,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitAliasAttribute.html",
-          "hash": "ZNK4TViiKWBbGPJfTJcCcw=="
+          "hash": "Vvro86YaDjdeXX8BL4O6cA=="
         }
       },
       "is_incremental": false,
@@ -861,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitHost.html",
-          "hash": "xr4jj1ybihpBs+FiNimYvg=="
+          "hash": "NBMY+rqgcfNBDMj16KLO7A=="
         }
       },
       "is_incremental": false,
@@ -873,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilder.html",
-          "hash": "Te5lsN/Y1aBH5SbPrv4y7g=="
+          "hash": "Nt/MN7xPmqaUV14S+YJFpg=="
         }
       },
       "is_incremental": false,
@@ -885,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html",
-          "hash": "rSMmpUOQlUuEiuHEo7HMzA=="
+          "hash": "pTLnyA1js99nov24uWOl4A=="
         }
       },
       "is_incremental": false,
@@ -897,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitIgnoreAttribute.html",
-          "hash": "nrrCrC5WlrGTqXnTxDjaNg=="
+          "hash": "9orrGMAYozLXwj9DueoyNA=="
         }
       },
       "is_incremental": false,
@@ -909,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.SuitInfoAttribute.html",
-          "hash": "aIGPdxLxUvOvPwzQY+YbxA=="
+          "hash": "IFhZ9f7RU7uwsCBcGw8hPg=="
         }
       },
       "is_incremental": false,
@@ -921,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.TraceBack.html",
-          "hash": "GT0q8BwCWaSy6jk8LtbSyg=="
+          "hash": "xathzCDszpiXQRt/rh5psw=="
         }
       },
       "is_incremental": false,
@@ -933,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlasticMetal.MobileSuit.html",
-          "hash": "6tdg9ocP0dBWuZVhtX2sYw=="
+          "hash": "IO4MshdE4guRUpjzORmqng=="
         }
       },
       "is_incremental": false,
@@ -948,7 +996,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "TP5/pXLNYsnvEYu8l1rTdg=="
+          "hash": "0DotRuOSGXCGU0vyDbEhaA=="
         }
       },
       "is_incremental": false,
@@ -960,7 +1008,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oYxzSId4E76/k0GojkT0Wg=="
+          "hash": "hhpx/rGmIkQCQHwvMqTRRQ=="
         }
       },
       "is_incremental": false,
@@ -975,7 +1023,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/CreateCommandLineApplication.html",
-          "hash": "+QWpgO7rmYzpHNX1REn6/Q=="
+          "hash": "P8TeKoMgSK6CT3w62x+xOQ=="
         }
       },
       "is_incremental": false,
@@ -987,7 +1035,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Customization.html",
-          "hash": "h5IwwWeDgd5pvfVUIno0xA=="
+          "hash": "jbcIx8b3k9QTRdvttfMoJA=="
         }
       },
       "is_incremental": false,
@@ -1002,7 +1050,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/GetStarted.html",
-          "hash": "xCtcIy1Ss4Lg3hCZ1pYmQQ=="
+          "hash": "RqXk36KS80GDcFa7Q/3bdg=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/UseSpecialParameters.html",
-          "hash": "1EIsxgB/cpFov5ecJCzjKA=="
+          "hash": "3zf2kOaEEyVCcJQIQpYubg=="
         }
       },
       "is_incremental": false,
@@ -1032,7 +1080,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "wvpwG4Tuw8jR/FFBK77utg=="
+          "hash": "6zuIh9bZ1/h5odIqXOJi1w=="
         }
       },
       "is_incremental": false,
@@ -1092,7 +1140,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "L2V5ZEHZh7gMTaxmLAIMwg=="
+          "hash": "OTQtR7brrkTUZYBZWqymDw=="
         }
       },
       "is_incremental": false,
@@ -1131,7 +1179,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 77,
+          "total_file_count": 81,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

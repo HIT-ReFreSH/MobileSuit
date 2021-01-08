@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IStartingInteractive
+    <title>Namespace PlasticMetal.MobileSuit.Core.Logging
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IStartingInteractive
+    <meta name="title" content="Namespace PlasticMetal.MobileSuit.Core.Logging
    ">
     <meta name="generator" content="docfx 2.56.6.0">
     
@@ -68,72 +68,87 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive">
-  <h1 id="PlasticMetal_MobileSuit_Core_IStartingInteractive" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive">Interface IStartingInteractive
+            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Core.Logging">
+  <h1 id="PlasticMetal_MobileSuit_Core_Logging" data-uid="PlasticMetal.MobileSuit.Core.Logging">Namespace PlasticMetal.MobileSuit.Core.Logging
   </h1>
-  <div class="markdown level0 summary"><p>After initialized, Call OnInitialized() of the object which implements this interface.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  
-  
-  
-  
-  <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.Core.html">PlasticMetal.MobileSuit.Core</a></h6>
-  <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
-  
-  <h5 id="PlasticMetal_MobileSuit_Core_IStartingInteractive_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IStartingInteractive</code></pre>
-  </div>
-  
-  
-  
-  
-  
-  <h3 id="methods">Methods
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
   </h3>
-  
-  <span class="small pull-right mobile-hide">
-    <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Core/IStartingInteractive.cs/#L11" title="View Source"><i class="fa fa-code"></i></a>
-  </span>
-  
-  <a id="PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized_" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized*"></a>
-  
-  <h4 id="PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" data-uid="PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized"><a href="#collapsible-PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" class="expander" data-toggle="collapse">OnInitialized()</a></h4>
-  
-  <div id="collapsible-PlasticMetal_MobileSuit_Core_IStartingInteractive_OnInitialized" class="collapse in">
-  <div class="markdown level1 summary"><p>The Method to run.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void OnInitialized()</code></pre>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </div>
-  
-  
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html">AssignOnceLogger</a></p>
+          <p><p>A Logger can be assigned once</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html">CachedLogger</a></p>
+          <p><p>A memory-cached Logger.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html">EmptyLogger</a></p>
+          <p><p>Empty Logger for MobileSuit, do nothing when called.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html">LoggerDecorator</a></p>
+          <p><p>Decorator Pattern for <code>ISuitLogger</code>.</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="structs">Structs
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.LogEntry.html">LogEntry</a></p>
+          <p><p>An entry in a log file</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="interfaces">Interfaces
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger.html">IAssignOnceLogger</a></p>
+          <p><p>A Logger can be assigned once</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html">ISuitLogger</a></p>
+          <p><p>Logger for MobileSuit</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="delegates">Delegates
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline.html">LogEntryPipeline</a></p>
+          <p><p>A pipeline for LogEntry.</p>
+</p>
+        </td>
+      </tr>
+    </table>
 </article>
           </div>
           <div class="contribution-panel mobile-hide">
-              <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Core_IStartingInteractive.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Core.IStartingInteractive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Core/IStartingInteractive.cs/#L6" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">

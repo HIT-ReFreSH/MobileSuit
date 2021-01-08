@@ -722,6 +722,32 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IIOServer.IsOutputRedirected
   nameWithType: IIOServer.IsOutputRedirected
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.op_Decrement(PlasticMetal.MobileSuit.Core.IIOServer)
+  name: Decrement(IIOServer)
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_op_Decrement_PlasticMetal_MobileSuit_Core_IIOServer_
+  commentId: M:PlasticMetal.MobileSuit.Core.IIOServer.op_Decrement(PlasticMetal.MobileSuit.Core.IIOServer)
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.Decrement(PlasticMetal.MobileSuit.Core.IIOServer)
+  nameWithType: IIOServer.Decrement(IIOServer)
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.op_Decrement*
+  name: Decrement
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_op_Decrement_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOServer.op_Decrement
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.Decrement
+  nameWithType: IIOServer.Decrement
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.op_Increment(PlasticMetal.MobileSuit.Core.IIOServer)
+  name: Increment(IIOServer)
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_op_Increment_PlasticMetal_MobileSuit_Core_IIOServer_
+  commentId: M:PlasticMetal.MobileSuit.Core.IIOServer.op_Increment(PlasticMetal.MobileSuit.Core.IIOServer)
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.Increment(PlasticMetal.MobileSuit.Core.IIOServer)
+  nameWithType: IIOServer.Increment(IIOServer)
+- uid: PlasticMetal.MobileSuit.Core.IIOServer.op_Increment*
+  name: Increment
+  href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_op_Increment_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOServer.op_Increment
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.IIOServer.Increment
+  nameWithType: IIOServer.Increment
 - uid: PlasticMetal.MobileSuit.Core.IIOServer.Output
   name: Output
   href: api/PlasticMetal.MobileSuit.Core.IIOServer.html#PlasticMetal_MobileSuit_Core_IIOServer_Output
@@ -1123,193 +1149,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IIOServer.WriteLineAsync
   nameWithType: IIOServer.WriteLineAsync
-- uid: PlasticMetal.MobileSuit.Core.ILogger
-  name: ILogger
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html
-  commentId: T:PlasticMetal.MobileSuit.Core.ILogger
-  fullName: PlasticMetal.MobileSuit.Core.ILogger
-  nameWithType: ILogger
-- uid: PlasticMetal.MobileSuit.Core.ILogger.FilePath
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_FilePath
-  commentId: P:PlasticMetal.MobileSuit.Core.ILogger.FilePath
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.FilePath
-  nameWithType: ILogger.FilePath
-- uid: PlasticMetal.MobileSuit.Core.ILogger.FilePath*
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_FilePath_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.FilePath
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.FilePath
-  nameWithType: ILogger.FilePath
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogCommand(System.String)
-  name: LogCommand(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogCommand_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogCommand(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogCommand(System.String)
-  nameWithType: ILogger.LogCommand(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogCommand*
-  name: LogCommand
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogCommand_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogCommand
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogCommand
-  nameWithType: ILogger.LogCommand
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync(System.String)
-  name: LogCommandAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogCommandAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync(System.String)
-  nameWithType: ILogger.LogCommandAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync*
-  name: LogCommandAsync
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogCommandAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogCommandAsync
-  nameWithType: ILogger.LogCommandAsync
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogDebug(System.String)
-  name: LogDebug(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogDebug_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogDebug(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogDebug(System.String)
-  nameWithType: ILogger.LogDebug(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogDebug*
-  name: LogDebug
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogDebug_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogDebug
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogDebug
-  nameWithType: ILogger.LogDebug
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync(System.String)
-  name: LogDebugAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogDebugAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync(System.String)
-  nameWithType: ILogger.LogDebugAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync*
-  name: LogDebugAsync
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogDebugAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogDebugAsync
-  nameWithType: ILogger.LogDebugAsync
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogException(System.Exception)
-  name: LogException(Exception)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogException_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogException(System.Exception)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogException(System.Exception)
-  nameWithType: ILogger.LogException(Exception)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogException(System.String)
-  name: LogException(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogException_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogException(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogException(System.String)
-  nameWithType: ILogger.LogException(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogException*
-  name: LogException
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogException_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogException
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogException
-  nameWithType: ILogger.LogException
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.Exception)
-  name: LogExceptionAsync(Exception)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogExceptionAsync_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.Exception)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.Exception)
-  nameWithType: ILogger.LogExceptionAsync(Exception)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.String)
-  name: LogExceptionAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogExceptionAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync(System.String)
-  nameWithType: ILogger.LogExceptionAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync*
-  name: LogExceptionAsync
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogExceptionAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogExceptionAsync
-  nameWithType: ILogger.LogExceptionAsync
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBack(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogTraceBack_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: ILogger.LogTraceBack(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack*
-  name: LogTraceBack
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogTraceBack_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBack
-  nameWithType: ILogger.LogTraceBack
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBackAsync(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogTraceBackAsync_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: ILogger.LogTraceBackAsync(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync*
-  name: LogTraceBackAsync
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_LogTraceBackAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.LogTraceBackAsync
-  nameWithType: ILogger.LogTraceBackAsync
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfDirectory(System.String)
-  name: OfDirectory(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfDirectory_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.OfDirectory(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfDirectory(System.String)
-  nameWithType: ILogger.OfDirectory(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfDirectory*
-  name: OfDirectory
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfDirectory_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.OfDirectory
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfDirectory
-  nameWithType: ILogger.OfDirectory
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfFile(System.String)
-  name: OfFile(String)
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfFile_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.OfFile(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfFile(System.String)
-  nameWithType: ILogger.OfFile(String)
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfFile*
-  name: OfFile
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfFile_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.OfFile
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfFile
-  nameWithType: ILogger.OfFile
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfLocal
-  name: OfLocal()
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfLocal
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.OfLocal
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfLocal()
-  nameWithType: ILogger.OfLocal()
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfLocal*
-  name: OfLocal
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfLocal_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.OfLocal
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfLocal
-  nameWithType: ILogger.OfLocal
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfTemp
-  name: OfTemp()
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfTemp
-  commentId: M:PlasticMetal.MobileSuit.Core.ILogger.OfTemp
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfTemp()
-  nameWithType: ILogger.OfTemp()
-- uid: PlasticMetal.MobileSuit.Core.ILogger.OfTemp*
-  name: OfTemp
-  href: api/PlasticMetal.MobileSuit.Core.ILogger.html#PlasticMetal_MobileSuit_Core_ILogger_OfTemp_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.ILogger.OfTemp
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.ILogger.OfTemp
-  nameWithType: ILogger.OfTemp
 - uid: PlasticMetal.MobileSuit.Core.IPromptServer
   name: IPromptServer
   href: api/PlasticMetal.MobileSuit.Core.IPromptServer.html
@@ -1380,283 +1219,459 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IStartingInteractive.OnInitialized
   nameWithType: IStartingInteractive.OnInitialized
-- uid: PlasticMetal.MobileSuit.Core.LogEntry
-  name: LogEntry
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html
-  commentId: T:PlasticMetal.MobileSuit.Core.LogEntry
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry
-  nameWithType: LogEntry
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.#ctor(System.DateTime,System.String,System.String)
-  name: LogEntry(DateTime, String, String)
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry__ctor_System_DateTime_System_String_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.LogEntry.#ctor(System.DateTime,System.String,System.String)
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.LogEntry(System.DateTime, System.String, System.String)
-  nameWithType: LogEntry.LogEntry(DateTime, String, String)
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.#ctor*
-  name: LogEntry
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry__ctor_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.LogEntry.#ctor
+- uid: PlasticMetal.MobileSuit.Core.Logging
+  name: PlasticMetal.MobileSuit.Core.Logging
+  href: api/PlasticMetal.MobileSuit.Core.Logging.html
+  commentId: N:PlasticMetal.MobileSuit.Core.Logging
+  fullName: PlasticMetal.MobileSuit.Core.Logging
+  nameWithType: PlasticMetal.MobileSuit.Core.Logging
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger
+  name: AssignOnceLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger
+  nameWithType: AssignOnceLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Address
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address
+  nameWithType: AssignOnceLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address*
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Address_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.LogEntry
-  nameWithType: LogEntry.LogEntry
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.Message
-  name: Message
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_Message
-  commentId: P:PlasticMetal.MobileSuit.Core.LogEntry.Message
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.Message
-  nameWithType: LogEntry.Message
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.Message*
-  name: Message
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_Message_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.LogEntry.Message
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Address
+  nameWithType: AssignOnceLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Append(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Append_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Append(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: AssignOnceLogger.Append(LogEntry)
+  nameWithType.vb: AssignOnceLogger.Append(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append*
+  name: Append
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Append_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.Message
-  nameWithType: LogEntry.Message
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp
-  name: TimeStamp
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_TimeStamp
-  commentId: P:PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp
-  nameWithType: LogEntry.TimeStamp
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp*
-  name: TimeStamp
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_TimeStamp_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Append
+  nameWithType: AssignOnceLogger.Append
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  name: Assign(ISuitLogger)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  nameWithType: AssignOnceLogger.Assign(ISuitLogger)
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign*
+  name: Assign
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Assign_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.TimeStamp
-  nameWithType: LogEntry.TimeStamp
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.Type
-  name: Type
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_Type
-  commentId: P:PlasticMetal.MobileSuit.Core.LogEntry.Type
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.Type
-  nameWithType: LogEntry.Type
-- uid: PlasticMetal.MobileSuit.Core.LogEntry.Type*
-  name: Type
-  href: api/PlasticMetal.MobileSuit.Core.LogEntry.html#PlasticMetal_MobileSuit_Core_LogEntry_Type_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.LogEntry.Type
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.LogEntry.Type
-  nameWithType: LogEntry.Type
-- uid: PlasticMetal.MobileSuit.Core.Logger
-  name: Logger
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html
-  commentId: T:PlasticMetal.MobileSuit.Core.Logger
-  fullName: PlasticMetal.MobileSuit.Core.Logger
-  nameWithType: Logger
-- uid: PlasticMetal.MobileSuit.Core.Logger.#ctor(System.String)
-  name: Logger(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger__ctor_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.#ctor(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Logger(System.String)
-  nameWithType: Logger.Logger(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.#ctor*
-  name: Logger
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger__ctor_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.#ctor
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Logger
-  nameWithType: Logger.Logger
-- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Assign
+  nameWithType: AssignOnceLogger.Assign
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose
   name: Dispose()
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.Dispose
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose()
-  nameWithType: Logger.Dispose()
-- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
-  name: Dispose(Boolean)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose_System_Boolean_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose(System.Boolean)
-  nameWithType: Logger.Dispose(Boolean)
-- uid: PlasticMetal.MobileSuit.Core.Logger.Dispose*
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Dispose
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose()
+  nameWithType: AssignOnceLogger.Dispose()
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose*
   name: Dispose
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Dispose_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.Dispose
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Dispose_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Dispose
-  nameWithType: Logger.Dispose
-- uid: PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
-  name: EnableLogQuery
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_EnableLogQuery
-  commentId: P:PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
-  fullName: PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
-  nameWithType: Logger.EnableLogQuery
-- uid: PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery*
-  name: EnableLogQuery
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_EnableLogQuery_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Dispose
+  nameWithType: AssignOnceLogger.Dispose
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element
+  name: Element
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Element
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element
+  nameWithType: AssignOnceLogger.Element
+- uid: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element*
+  name: Element
+  href: api/PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html#PlasticMetal_MobileSuit_Core_Logging_AssignOnceLogger_Element_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.EnableLogQuery
-  nameWithType: Logger.EnableLogQuery
-- uid: PlasticMetal.MobileSuit.Core.Logger.FilePath
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_FilePath
-  commentId: P:PlasticMetal.MobileSuit.Core.Logger.FilePath
-  fullName: PlasticMetal.MobileSuit.Core.Logger.FilePath
-  nameWithType: Logger.FilePath
-- uid: PlasticMetal.MobileSuit.Core.Logger.FilePath*
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_FilePath_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.FilePath
+  fullName: PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.Element
+  nameWithType: AssignOnceLogger.Element
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger
+  name: CachedLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.CachedLogger
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger
+  nameWithType: CachedLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.#ctor(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  name: CachedLogger(ISuitLogger)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger__ctor_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.#ctor(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.CachedLogger(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  nameWithType: CachedLogger.CachedLogger(ISuitLogger)
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.#ctor*
+  name: CachedLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger__ctor_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.#ctor
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.FilePath
-  nameWithType: Logger.FilePath
-- uid: PlasticMetal.MobileSuit.Core.Logger.Finalize
-  name: Finalize()
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Finalize
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.Finalize
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Finalize()
-  nameWithType: Logger.Finalize()
-- uid: PlasticMetal.MobileSuit.Core.Logger.Finalize*
-  name: Finalize
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Finalize_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.Finalize
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.CachedLogger
+  nameWithType: CachedLogger.CachedLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear
+  name: Clear()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Clear
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear()
+  nameWithType: CachedLogger.Clear()
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear*
+  name: Clear
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Clear_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Finalize
-  nameWithType: Logger.Finalize
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogCommand(System.String)
-  name: LogCommand(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogCommand_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogCommand(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogCommand(System.String)
-  nameWithType: Logger.LogCommand(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogCommand*
-  name: LogCommand
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogCommand_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogCommand
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Clear
+  nameWithType: CachedLogger.Clear
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count
+  name: Count
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Count
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count
+  nameWithType: CachedLogger.Count
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count*
+  name: Count
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Count_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogCommand
-  nameWithType: Logger.LogCommand
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync(System.String)
-  name: LogCommandAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogCommandAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync(System.String)
-  nameWithType: Logger.LogCommandAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync*
-  name: LogCommandAsync
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogCommandAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Count
+  nameWithType: CachedLogger.Count
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Decorate(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Decorate_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Decorate(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: CachedLogger.Decorate(LogEntry)
+  nameWithType.vb: CachedLogger.Decorate(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate*
+  name: Decorate
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_Decorate_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogCommandAsync
-  nameWithType: Logger.LogCommandAsync
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogDebug(System.String)
-  name: LogDebug(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogDebug_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogDebug(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogDebug(System.String)
-  nameWithType: Logger.LogDebug(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogDebug*
-  name: LogDebug
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogDebug_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogDebug
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.Decorate
+  nameWithType: CachedLogger.Decorate
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator
+  name: GetEnumerator()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_GetEnumerator
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator()
+  nameWithType: CachedLogger.GetEnumerator()
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator*
+  name: GetEnumerator
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_GetEnumerator_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogDebug
-  nameWithType: Logger.LogDebug
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync(System.String)
-  name: LogDebugAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogDebugAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync(System.String)
-  nameWithType: Logger.LogDebugAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync*
-  name: LogDebugAsync
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogDebugAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.GetEnumerator
+  nameWithType: CachedLogger.GetEnumerator
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: CachedLogger.IEnumerable.GetEnumerator()
+  nameWithType.vb: CachedLogger.System.Collections.IEnumerable.GetEnumerator()
+- uid: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html#PlasticMetal_MobileSuit_Core_Logging_CachedLogger_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System#Collections#IEnumerable#GetEnumerator
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogDebugAsync
-  nameWithType: Logger.LogDebugAsync
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogException(System.Exception)
-  name: LogException(Exception)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogException_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogException(System.Exception)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogException(System.Exception)
-  nameWithType: Logger.LogException(Exception)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogException(System.String)
-  name: LogException(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogException_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogException(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogException(System.String)
-  nameWithType: Logger.LogException(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogException*
-  name: LogException
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogException_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogException
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: PlasticMetal.MobileSuit.Core.Logging.CachedLogger.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: CachedLogger.IEnumerable.GetEnumerator
+  nameWithType.vb: CachedLogger.System.Collections.IEnumerable.GetEnumerator
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger
+  name: EmptyLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger
+  nameWithType: EmptyLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Address
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address
+  nameWithType: EmptyLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address*
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Address_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogException
-  nameWithType: Logger.LogException
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.Exception)
-  name: LogExceptionAsync(Exception)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.Exception)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.Exception)
-  nameWithType: Logger.LogExceptionAsync(Exception)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.String)
-  name: LogExceptionAsync(String)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync(System.String)
-  nameWithType: Logger.LogExceptionAsync(String)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync*
-  name: LogExceptionAsync
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogExceptionAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Address
+  nameWithType: EmptyLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Append(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Append_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Append(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: EmptyLogger.Append(LogEntry)
+  nameWithType.vb: EmptyLogger.Append(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append*
+  name: Append
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Append_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogExceptionAsync
-  nameWithType: Logger.LogExceptionAsync
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogMem
-  name: LogMem
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogMem
-  commentId: P:PlasticMetal.MobileSuit.Core.Logger.LogMem
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogMem
-  nameWithType: Logger.LogMem
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogMem*
-  name: LogMem
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogMem_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogMem
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Append
+  nameWithType: EmptyLogger.Append
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose
+  name: Dispose()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Dispose
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose()
+  nameWithType: EmptyLogger.Dispose()
+- uid: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose*
+  name: Dispose
+  href: api/PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html#PlasticMetal_MobileSuit_Core_Logging_EmptyLogger_Dispose_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogMem
-  nameWithType: Logger.LogMem
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBack(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogTraceBack_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: Logger.LogTraceBack(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogTraceBack*
-  name: LogTraceBack
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogTraceBack_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogTraceBack
+  fullName: PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.Dispose
+  nameWithType: EmptyLogger.Dispose
+- uid: PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger
+  name: IAssignOnceLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger
+  fullName: PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger
+  nameWithType: IAssignOnceLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger
+  name: ISuitLogger
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger
+  nameWithType: ISuitLogger
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_Address
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address
+  nameWithType: ISuitLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address*
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_Address_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogTraceBack
-  nameWithType: Logger.LogTraceBack
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBackAsync(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogTraceBackAsync_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: Logger.LogTraceBackAsync(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync*
-  name: LogTraceBackAsync
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_LogTraceBackAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Address
+  nameWithType: ISuitLogger.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Append(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_Append_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Append(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: ISuitLogger.Append(LogEntry)
+  nameWithType.vb: ISuitLogger.Append(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append*
+  name: Append
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_Append_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.LogTraceBackAsync
-  nameWithType: Logger.LogTraceBackAsync
-- uid: PlasticMetal.MobileSuit.Core.Logger.Writer
-  name: Writer
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Writer
-  commentId: P:PlasticMetal.MobileSuit.Core.Logger.Writer
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Writer
-  nameWithType: Logger.Writer
-- uid: PlasticMetal.MobileSuit.Core.Logger.Writer*
-  name: Writer
-  href: api/PlasticMetal.MobileSuit.Core.Logger.html#PlasticMetal_MobileSuit_Core_Logger_Writer_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.Logger.Writer
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.Append
+  nameWithType: ISuitLogger.Append
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty
+  name: CreateEmpty()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateEmpty
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty()
+  nameWithType: ISuitLogger.CreateEmpty()
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty*
+  name: CreateEmpty
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateEmpty_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty
   isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.Logger.Writer
-  nameWithType: Logger.Writer
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateEmpty
+  nameWithType: ISuitLogger.CreateEmpty
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile
+  name: CreateFile()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFile
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile()
+  nameWithType: ISuitLogger.CreateFile()
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile*
+  name: CreateFile
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFile_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFile
+  nameWithType: ISuitLogger.CreateFile
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory(System.String)
+  name: CreateFileByDirectory(String)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFileByDirectory_System_String_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory(System.String)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory(System.String)
+  nameWithType: ISuitLogger.CreateFileByDirectory(String)
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory*
+  name: CreateFileByDirectory
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFileByDirectory_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByDirectory
+  nameWithType: ISuitLogger.CreateFileByDirectory
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath(System.String)
+  name: CreateFileByPath(String)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFileByPath_System_String_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath(System.String)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath(System.String)
+  nameWithType: ISuitLogger.CreateFileByPath(String)
+- uid: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath*
+  name: CreateFileByPath
+  href: api/PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_CreateFileByPath_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.CreateFileByPath
+  nameWithType: ISuitLogger.CreateFileByPath
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry
+  name: LogEntry
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.LogEntry
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry
+  nameWithType: LogEntry
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.#ctor(System.DateTime,System.String,System.String)
+  name: LogEntry(DateTime, String, String)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry__ctor_System_DateTime_System_String_System_String_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.LogEntry.#ctor(System.DateTime,System.String,System.String)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.LogEntry(System.DateTime, System.String, System.String)
+  nameWithType: LogEntry.LogEntry(DateTime, String, String)
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.#ctor*
+  name: LogEntry
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry__ctor_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LogEntry.#ctor
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.LogEntry
+  nameWithType: LogEntry.LogEntry
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message
+  name: Message
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_Message
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message
+  nameWithType: LogEntry.Message
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message*
+  name: Message
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_Message_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Message
+  nameWithType: LogEntry.Message
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp
+  name: TimeStamp
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_TimeStamp
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp
+  nameWithType: LogEntry.TimeStamp
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp*
+  name: TimeStamp
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_TimeStamp_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.TimeStamp
+  nameWithType: LogEntry.TimeStamp
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type
+  name: Type
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_Type
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type
+  nameWithType: LogEntry.Type
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type*
+  name: Type
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntry.html#PlasticMetal_MobileSuit_Core_Logging_LogEntry_Type_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntry.Type
+  nameWithType: LogEntry.Type
+- uid: PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline
+  name: LogEntryPipeline
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline
+  nameWithType: LogEntryPipeline
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator
+  name: LoggerDecorator
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html
+  commentId: T:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator
+  nameWithType: LoggerDecorator
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.#ctor(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  name: LoggerDecorator(ISuitLogger)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator__ctor_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.#ctor(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.LoggerDecorator(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  nameWithType: LoggerDecorator.LoggerDecorator(ISuitLogger)
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.#ctor*
+  name: LoggerDecorator
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator__ctor_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.#ctor
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.LoggerDecorator
+  nameWithType: LoggerDecorator.LoggerDecorator
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Address
+  commentId: P:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address
+  nameWithType: LoggerDecorator.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address*
+  name: Address
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Address_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Address
+  nameWithType: LoggerDecorator.Address
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Append(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Append_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Append(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: LoggerDecorator.Append(LogEntry)
+  nameWithType.vb: LoggerDecorator.Append(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append*
+  name: Append
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Append_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Append
+  nameWithType: LoggerDecorator.Append
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name: Decorate(LogEntry)
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Decorate_PlasticMetal_MobileSuit_Core_Logging_LogEntry__
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry@)
+  name.vb: Decorate(ByRef LogEntry)
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate(PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  fullName.vb: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate(ByRef PlasticMetal.MobileSuit.Core.Logging.LogEntry)
+  nameWithType: LoggerDecorator.Decorate(LogEntry)
+  nameWithType.vb: LoggerDecorator.Decorate(ByRef LogEntry)
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate*
+  name: Decorate
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Decorate_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Decorate
+  nameWithType: LoggerDecorator.Decorate
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose
+  name: Dispose()
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Dispose
+  commentId: M:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose()
+  nameWithType: LoggerDecorator.Dispose()
+- uid: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose*
+  name: Dispose
+  href: api/PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html#PlasticMetal_MobileSuit_Core_Logging_LoggerDecorator_Dispose_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.Dispose
+  nameWithType: LoggerDecorator.Dispose
 - uid: PlasticMetal.MobileSuit.Core.Member
   name: Member
   href: api/PlasticMetal.MobileSuit.Core.Member.html
@@ -2275,6 +2290,109 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IMobileSuitHost.SplitCommandLine
   nameWithType: IMobileSuitHost.SplitCommandLine
+- uid: PlasticMetal.MobileSuit.LoggerExtensions
+  name: LoggerExtensions
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html
+  commentId: T:PlasticMetal.MobileSuit.LoggerExtensions
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions
+  nameWithType: LoggerExtensions
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.AsCached(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  name: AsCached(ISuitLogger)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_AsCached_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.AsCached(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.AsCached(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  nameWithType: LoggerExtensions.AsCached(ISuitLogger)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.AsCached*
+  name: AsCached
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_AsCached_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.AsCached
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.AsCached
+  nameWithType: LoggerExtensions.AsCached
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline)
+  name: DecorateWith(ISuitLogger, LogEntryPipeline)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_DecorateWith_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_Logging_LogEntryPipeline_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline)
+  nameWithType: LoggerExtensions.DecorateWith(ISuitLogger, LogEntryPipeline)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith*
+  name: DecorateWith
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_DecorateWith_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.DecorateWith
+  nameWithType: LoggerExtensions.DecorateWith
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogCommand(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  name: LogCommand(ISuitLogger, String)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogCommand_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_System_String_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogCommand(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogCommand(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, System.String)
+  nameWithType: LoggerExtensions.LogCommand(ISuitLogger, String)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogCommand*
+  name: LogCommand
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogCommand_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.LogCommand
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogCommand
+  nameWithType: LoggerExtensions.LogCommand
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogDebug(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String,System.String)
+  name: LogDebug(ISuitLogger, String, String)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogDebug_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_System_String_System_String_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogDebug(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String,System.String)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogDebug(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, System.String, System.String)
+  nameWithType: LoggerExtensions.LogDebug(ISuitLogger, String, String)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogDebug*
+  name: LogDebug
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogDebug_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.LogDebug
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogDebug
+  nameWithType: LoggerExtensions.LogDebug
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.Exception)
+  name: LogException(ISuitLogger, Exception)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogException_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_System_Exception_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.Exception)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, System.Exception)
+  nameWithType: LoggerExtensions.LogException(ISuitLogger, Exception)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  name: LogException(ISuitLogger, String)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogException_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_System_String_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogException(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, System.String)
+  nameWithType: LoggerExtensions.LogException(ISuitLogger, String)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogException*
+  name: LogException
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogException_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.LogException
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogException
+  nameWithType: LoggerExtensions.LogException
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogInformation(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  name: LogInformation(ISuitLogger, String)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogInformation_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_System_String_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogInformation(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,System.String)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogInformation(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, System.String)
+  nameWithType: LoggerExtensions.LogInformation(ISuitLogger, String)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogInformation*
+  name: LogInformation
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogInformation_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.LogInformation
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogInformation
+  nameWithType: LoggerExtensions.LogInformation
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.TraceBack,System.Object)
+  name: LogTraceBack(ISuitLogger, TraceBack, Object)
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogTraceBack_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_TraceBack_System_Object_
+  commentId: M:PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.TraceBack,System.Object)
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, PlasticMetal.MobileSuit.TraceBack, System.Object)
+  nameWithType: LoggerExtensions.LogTraceBack(ISuitLogger, TraceBack, Object)
+- uid: PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack*
+  name: LogTraceBack
+  href: api/PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogTraceBack_
+  commentId: Overload:PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.LoggerExtensions.LogTraceBack
+  nameWithType: LoggerExtensions.LogTraceBack
 - uid: PlasticMetal.MobileSuit.ObjectModel
   name: PlasticMetal.MobileSuit.ObjectModel
   href: api/PlasticMetal.MobileSuit.ObjectModel.html
@@ -2910,180 +3028,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.WriteLineAsync
   nameWithType: AssignOnceIOServer.WriteLineAsync
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger
-  name: AssignOnceLogger
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html
-  commentId: T:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger
-  nameWithType: AssignOnceLogger
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
-  name: Assign(ILogger)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_PlasticMetal_MobileSuit_Core_ILogger_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign(PlasticMetal.MobileSuit.Core.ILogger)
-  nameWithType: AssignOnceLogger.Assign(ILogger)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign*
-  name: Assign
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Assign_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Assign
-  nameWithType: AssignOnceLogger.Assign
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
-  name: Dispose()
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose()
-  nameWithType: AssignOnceLogger.Dispose()
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose*
-  name: Dispose
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Dispose_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Dispose
-  nameWithType: AssignOnceLogger.Dispose
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
-  name: Element
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element
-  commentId: P:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
-  nameWithType: AssignOnceLogger.Element
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element*
-  name: Element
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_Element_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.Element
-  nameWithType: AssignOnceLogger.Element
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_FilePath
-  commentId: P:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
-  nameWithType: AssignOnceLogger.FilePath
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath*
-  name: FilePath
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_FilePath_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.FilePath
-  nameWithType: AssignOnceLogger.FilePath
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand(System.String)
-  name: LogCommand(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommand_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand(System.String)
-  nameWithType: AssignOnceLogger.LogCommand(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand*
-  name: LogCommand
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommand_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommand
-  nameWithType: AssignOnceLogger.LogCommand
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync(System.String)
-  name: LogCommandAsync(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommandAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync(System.String)
-  nameWithType: AssignOnceLogger.LogCommandAsync(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync*
-  name: LogCommandAsync
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogCommandAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogCommandAsync
-  nameWithType: AssignOnceLogger.LogCommandAsync
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug(System.String)
-  name: LogDebug(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebug_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug(System.String)
-  nameWithType: AssignOnceLogger.LogDebug(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug*
-  name: LogDebug
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebug_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebug
-  nameWithType: AssignOnceLogger.LogDebug
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync(System.String)
-  name: LogDebugAsync(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebugAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync(System.String)
-  nameWithType: AssignOnceLogger.LogDebugAsync(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync*
-  name: LogDebugAsync
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogDebugAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogDebugAsync
-  nameWithType: AssignOnceLogger.LogDebugAsync
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.Exception)
-  name: LogException(Exception)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.Exception)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.Exception)
-  nameWithType: AssignOnceLogger.LogException(Exception)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.String)
-  name: LogException(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException(System.String)
-  nameWithType: AssignOnceLogger.LogException(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException*
-  name: LogException
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogException_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogException
-  nameWithType: AssignOnceLogger.LogException
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.Exception)
-  name: LogExceptionAsync(Exception)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_System_Exception_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.Exception)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.Exception)
-  nameWithType: AssignOnceLogger.LogExceptionAsync(Exception)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.String)
-  name: LogExceptionAsync(String)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_System_String_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.String)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync(System.String)
-  nameWithType: AssignOnceLogger.LogExceptionAsync(String)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync*
-  name: LogExceptionAsync
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogExceptionAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogExceptionAsync
-  nameWithType: AssignOnceLogger.LogExceptionAsync
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBack(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBack_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: AssignOnceLogger.LogTraceBack(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack*
-  name: LogTraceBack
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBack_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBack
-  nameWithType: AssignOnceLogger.LogTraceBack
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  name: LogTraceBackAsync(TraceBack, Object)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBackAsync_PlasticMetal_MobileSuit_TraceBack_System_Object_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack,System.Object)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync(PlasticMetal.MobileSuit.TraceBack, System.Object)
-  nameWithType: AssignOnceLogger.LogTraceBackAsync(TraceBack, Object)
-- uid: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync*
-  name: LogTraceBackAsync
-  href: api/PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.html#PlasticMetal_MobileSuit_ObjectModel_AssignOnceLogger_LogTraceBackAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.AssignOnceLogger.LogTraceBackAsync
-  nameWithType: AssignOnceLogger.LogTraceBackAsync
 - uid: PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer
   name: BuildInCommandServer
   href: api/PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer.html
@@ -3581,19 +3525,6 @@ references:
   commentId: T:PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer
   fullName: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer
   nameWithType: PowerLineThemedPromptServer
-- uid: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.#ctor
-  name: PowerLineThemedPromptServer()
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html#PlasticMetal_MobileSuit_ObjectModel_Future_PowerLineThemedPromptServer__ctor
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.#ctor
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.PowerLineThemedPromptServer()
-  nameWithType: PowerLineThemedPromptServer.PowerLineThemedPromptServer()
-- uid: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.#ctor*
-  name: PowerLineThemedPromptServer
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html#PlasticMetal_MobileSuit_ObjectModel_Future_PowerLineThemedPromptServer__ctor_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.#ctor
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.PowerLineThemedPromptServer
-  nameWithType: PowerLineThemedPromptServer.PowerLineThemedPromptServer
 - uid: PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.Cross
   name: Cross
   href: api/PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html#PlasticMetal_MobileSuit_ObjectModel_Future_PowerLineThemedPromptServer_Cross
@@ -3643,12 +3574,6 @@ references:
   commentId: T:PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer
   fullName: PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer
   nameWithType: IAssignOnceIOServer
-- uid: PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger
-  name: IAssignOnceLogger
-  href: api/PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger.html
-  commentId: T:PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger
-  fullName: PlasticMetal.MobileSuit.ObjectModel.IAssignOnceLogger
-  nameWithType: IAssignOnceLogger
 - uid: PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication
   name: ICommandLineApplication
   href: api/PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication.html
@@ -4325,12 +4250,12 @@ references:
   commentId: T:PlasticMetal.MobileSuit.ObjectModel.LogDriver
   fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver
   nameWithType: LogDriver
-- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.#ctor(PlasticMetal.MobileSuit.Core.Logger)
-  name: LogDriver(Logger)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver__ctor_PlasticMetal_MobileSuit_Core_Logger_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.LogDriver.#ctor(PlasticMetal.MobileSuit.Core.Logger)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.LogDriver(PlasticMetal.MobileSuit.Core.Logger)
-  nameWithType: LogDriver.LogDriver(Logger)
+- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.#ctor(PlasticMetal.MobileSuit.Core.Logging.CachedLogger)
+  name: LogDriver(CachedLogger)
+  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver__ctor_PlasticMetal_MobileSuit_Core_Logging_CachedLogger_
+  commentId: M:PlasticMetal.MobileSuit.ObjectModel.LogDriver.#ctor(PlasticMetal.MobileSuit.Core.Logging.CachedLogger)
+  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.LogDriver(PlasticMetal.MobileSuit.Core.Logging.CachedLogger)
+  nameWithType: LogDriver.LogDriver(CachedLogger)
 - uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.#ctor*
   name: LogDriver
   href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver__ctor_
@@ -4338,32 +4263,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.LogDriver
   nameWithType: LogDriver.LogDriver
-- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable
-  name: Disable()
-  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver_Disable
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable
-  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable()
-  nameWithType: LogDriver.Disable()
-- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable*
-  name: Disable
-  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver_Disable_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Disable
-  nameWithType: LogDriver.Disable
-- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable
-  name: Enable()
-  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver_Enable
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable
-  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable()
-  nameWithType: LogDriver.Enable()
-- uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable*
-  name: Enable
-  href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver_Enable_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Enable
-  nameWithType: LogDriver.Enable
 - uid: PlasticMetal.MobileSuit.ObjectModel.LogDriver.Find(PlasticMetal.MobileSuit.ObjectModel.LogFilter)
   name: Find(LogFilter)
   href: api/PlasticMetal.MobileSuit.ObjectModel.LogDriver.html#PlasticMetal_MobileSuit_ObjectModel_LogDriver_Find_PlasticMetal_MobileSuit_ObjectModel_LogFilter_
@@ -4467,38 +4366,6 @@ references:
   commentId: N:PlasticMetal.MobileSuit.ObjectModel.Premium
   fullName: PlasticMetal.MobileSuit.ObjectModel.Premium
   nameWithType: PlasticMetal.MobileSuit.ObjectModel.Premium
-- uid: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer
-  name: DiagnosticBuildInCommandServer
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html
-  commentId: T:PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer
-  nameWithType: DiagnosticBuildInCommandServer
-- uid: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.#ctor(PlasticMetal.MobileSuit.SuitHost)
-  name: DiagnosticBuildInCommandServer(SuitHost)
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html#PlasticMetal_MobileSuit_ObjectModel_Premium_DiagnosticBuildInCommandServer__ctor_PlasticMetal_MobileSuit_SuitHost_
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.#ctor(PlasticMetal.MobileSuit.SuitHost)
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.DiagnosticBuildInCommandServer(PlasticMetal.MobileSuit.SuitHost)
-  nameWithType: DiagnosticBuildInCommandServer.DiagnosticBuildInCommandServer(SuitHost)
-- uid: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.#ctor*
-  name: DiagnosticBuildInCommandServer
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html#PlasticMetal_MobileSuit_ObjectModel_Premium_DiagnosticBuildInCommandServer__ctor_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.#ctor
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.DiagnosticBuildInCommandServer
-  nameWithType: DiagnosticBuildInCommandServer.DiagnosticBuildInCommandServer
-- uid: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log
-  name: Log
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html#PlasticMetal_MobileSuit_ObjectModel_Premium_DiagnosticBuildInCommandServer_Log
-  commentId: P:PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log
-  nameWithType: DiagnosticBuildInCommandServer.Log
-- uid: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log*
-  name: Log
-  href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html#PlasticMetal_MobileSuit_ObjectModel_Premium_DiagnosticBuildInCommandServer_Log_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.Log
-  nameWithType: DiagnosticBuildInCommandServer.Log
 - uid: PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient
   name: HostInteractiveClient
   href: api/PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient.html
@@ -4766,19 +4633,6 @@ references:
   commentId: T:PlasticMetal.MobileSuit.ObjectModel.PromptServer
   fullName: PlasticMetal.MobileSuit.ObjectModel.PromptServer
   nameWithType: PromptServer
-- uid: PlasticMetal.MobileSuit.ObjectModel.PromptServer.#ctor
-  name: PromptServer()
-  href: api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.html#PlasticMetal_MobileSuit_ObjectModel_PromptServer__ctor
-  commentId: M:PlasticMetal.MobileSuit.ObjectModel.PromptServer.#ctor
-  fullName: PlasticMetal.MobileSuit.ObjectModel.PromptServer.PromptServer()
-  nameWithType: PromptServer.PromptServer()
-- uid: PlasticMetal.MobileSuit.ObjectModel.PromptServer.#ctor*
-  name: PromptServer
-  href: api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.html#PlasticMetal_MobileSuit_ObjectModel_PromptServer__ctor_
-  commentId: Overload:PlasticMetal.MobileSuit.ObjectModel.PromptServer.#ctor
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.ObjectModel.PromptServer.PromptServer
-  nameWithType: PromptServer.PromptServer
 - uid: PlasticMetal.MobileSuit.ObjectModel.PromptServer.ColorSetting
   name: ColorSetting
   href: api/PlasticMetal.MobileSuit.ObjectModel.PromptServer.html#PlasticMetal_MobileSuit_ObjectModel_PromptServer_ColorSetting
@@ -5310,19 +5164,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Suit.CreateContentArray
   nameWithType: Suit.CreateContentArray
-- uid: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
-  name: GeneralDefaultLogger
-  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralDefaultLogger
-  commentId: P:PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
-  fullName: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
-  nameWithType: Suit.GeneralDefaultLogger
-- uid: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger*
-  name: GeneralDefaultLogger
-  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralDefaultLogger_
-  commentId: Overload:PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Suit.GeneralDefaultLogger
-  nameWithType: Suit.GeneralDefaultLogger
 - uid: PlasticMetal.MobileSuit.Suit.GeneralIO
   name: GeneralIO
   href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_GeneralIO
@@ -5413,12 +5254,12 @@ references:
   commentId: T:PlasticMetal.MobileSuit.SuitHost
   fullName: PlasticMetal.MobileSuit.SuitHost
   nameWithType: SuitHost
-- uid: PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Core.Logger,PlasticMetal.MobileSuit.Core.IIOServer,System.Type,PlasticMetal.MobileSuit.Core.IPromptServer)
-  name: SuitHost(Object, Logger, IIOServer, Type, IPromptServer)
-  href: api/PlasticMetal.MobileSuit.SuitHost.html#PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_
-  commentId: M:PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Core.Logger,PlasticMetal.MobileSuit.Core.IIOServer,System.Type,PlasticMetal.MobileSuit.Core.IPromptServer)
-  fullName: PlasticMetal.MobileSuit.SuitHost.SuitHost(System.Object, PlasticMetal.MobileSuit.Core.Logger, PlasticMetal.MobileSuit.Core.IIOServer, System.Type, PlasticMetal.MobileSuit.Core.IPromptServer)
-  nameWithType: SuitHost.SuitHost(Object, Logger, IIOServer, Type, IPromptServer)
+- uid: PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.IIOServer,System.Type,PlasticMetal.MobileSuit.Core.IPromptServer)
+  name: SuitHost(Object, ISuitLogger, IIOServer, Type, IPromptServer)
+  href: api/PlasticMetal.MobileSuit.SuitHost.html#PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_
+  commentId: M:PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.IIOServer,System.Type,PlasticMetal.MobileSuit.Core.IPromptServer)
+  fullName: PlasticMetal.MobileSuit.SuitHost.SuitHost(System.Object, PlasticMetal.MobileSuit.Core.Logging.ISuitLogger, PlasticMetal.MobileSuit.Core.IIOServer, System.Type, PlasticMetal.MobileSuit.Core.IPromptServer)
+  nameWithType: SuitHost.SuitHost(Object, ISuitLogger, IIOServer, Type, IPromptServer)
 - uid: PlasticMetal.MobileSuit.SuitHost.#ctor*
   name: SuitHost
   href: api/PlasticMetal.MobileSuit.SuitHost.html#PlasticMetal_MobileSuit_SuitHost__ctor_
@@ -5869,12 +5710,12 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.SuitHostBuilder.Settings
   nameWithType: SuitHostBuilder.Settings
-- uid: PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logger)
-  name: UseLog(Logger)
-  href: api/PlasticMetal.MobileSuit.SuitHostBuilder.html#PlasticMetal_MobileSuit_SuitHostBuilder_UseLog_PlasticMetal_MobileSuit_Core_Logger_
-  commentId: M:PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logger)
-  fullName: PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logger)
-  nameWithType: SuitHostBuilder.UseLog(Logger)
+- uid: PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  name: UseLog(ISuitLogger)
+  href: api/PlasticMetal.MobileSuit.SuitHostBuilder.html#PlasticMetal_MobileSuit_SuitHostBuilder_UseLog_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_
+  commentId: M:PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  fullName: PlasticMetal.MobileSuit.SuitHostBuilder.UseLog(PlasticMetal.MobileSuit.Core.Logging.ISuitLogger)
+  nameWithType: SuitHostBuilder.UseLog(ISuitLogger)
 - uid: PlasticMetal.MobileSuit.SuitHostBuilder.UseLog*
   name: UseLog
   href: api/PlasticMetal.MobileSuit.SuitHostBuilder.html#PlasticMetal_MobileSuit_SuitHostBuilder_UseLog_
