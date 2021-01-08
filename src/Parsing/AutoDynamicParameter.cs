@@ -52,36 +52,32 @@ namespace PlasticMetal.MobileSuit.Parsing
         /// <inheritdoc />
         public bool Parse(string[]? options = null)
         {
-            if (options != null && options.Length > 0)
-                for (var i = 0; i < options.Length;)
-                {
-                    if (!ParseMemberRegex.IsMatch(options[i]))
-                    {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not match regex");
-                        return false;
-                    }
+            if (options == null || options.Length <= 0)
+                return Members.Values.All(member => member.Assigned);
+            for (var i = 0; i < options.Length;)
+            {
+                if (!ParseMemberRegex.IsMatch(options[i]))
+                    throw new ArgumentException(
+                        $@"{options[i]}{Lang.AutoDynamicParameter_Parse__0__not_match_format______}: '^-'",
+                        nameof(options));
 
-                    var name = options[i][1..];
-                    if (!Members.ContainsKey(name))
-                    {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} not in dictionary:");
-                        foreach (var item in Members.Keys) Suit.GeneralDefaultLogger.LogDebug(item);
-                        return false;
-                    }
+                var name = options[i][1..];
+                if (!Members.ContainsKey(name))
+                    throw new ArgumentException(
+                        $@"{options[i]}{Lang.AutoDynamicParameter_Parse__0__not_in_dictionary___1__}:{{{string.Join(',', Members.Keys)}}}",
+                        nameof(options));
 
-                    var parseMember = Members[name];
-                    i++;
-                    var j = i + parseMember.ParseLength;
-                    if (j > options.Length)
-                    {
-                        Suit.GeneralDefaultLogger.LogDebug($"{options[i]} length not match");
-                        return false;
-                    }
+                var parseMember = Members[name];
+                i++;
+                var j = i + parseMember.ParseLength;
+                if (j > options.Length)
+                    throw new ArgumentException($@"{options[i]}{Lang.AutoDynamicParameter_Parse__0__length_not_match}",
+                        nameof(options));
 
-                    parseMember.Set(this,
-                        ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
-                    i = j;
-                }
+                parseMember.Set(this,
+                    ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
+                i = j;
+            }
 
             return Members.Values.All(member => member.Assigned);
         }

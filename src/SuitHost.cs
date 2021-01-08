@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
 using static System.String;
 
@@ -28,7 +29,8 @@ namespace PlasticMetal.MobileSuit
         /// <param name="io"></param>
         /// <param name="buildInCommandServer"></param>
         /// <param name="prompt"></param>
-        public SuitHost(object? instance, ILogger logger, IIOServer io, Type buildInCommandServer, IPromptServer prompt)
+        public SuitHost(object? instance, ISuitLogger logger, IIOServer io, Type buildInCommandServer,
+                IPromptServer prompt)
             //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
             Current = new SuitObject(instance);
@@ -307,7 +309,7 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <inheritdoc />
-        public ILogger Logger { get; }
+        public ISuitLogger Logger { get; }
 
 
         /// <inheritdoc />

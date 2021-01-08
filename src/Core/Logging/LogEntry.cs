@@ -1,11 +1,17 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.Core
+namespace PlasticMetal.MobileSuit.Core.Logging
 {
+    /// <summary>
+    ///     A pipeline for LogEntry.
+    /// </summary>
+    /// <param name="content">Input side LogEntry.</param>
+    public delegate LogEntry LogEntryPipeline(in LogEntry content);
+
     /// <summary>
     ///     An entry in a log file
     /// </summary>
-    public class LogEntry
+    public struct LogEntry
     {
         /// <summary>
         ///     Initialize a LogEntry with timestamp, type and message

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit
@@ -42,7 +43,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Logger of host
         /// </summary>
-        protected internal ILogger? Logger { get; set; }
+        protected internal ISuitLogger? Logger { get; set; }
 
         /// <summary>
         ///     BuildInCommandServer of host
@@ -119,7 +120,7 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="logger">given logger</param>
         /// <returns>this</returns>
-        public SuitHostBuilder UseLog(ILogger logger)
+        public SuitHostBuilder UseLog(ISuitLogger logger)
         {
             Logger = logger;
             return this;
@@ -140,7 +141,7 @@ namespace PlasticMetal.MobileSuit
             if (Output != null) io.Output = Output;
             if (ColorSetting != null) io.ColorSetting = ColorSetting;
             if (Error != null) io.ErrorStream = Error;
-            Logger ??= ILogger.OfEmpty();
+            Logger ??= ISuitLogger.CreateEmpty();
             var prompt =
                 PromptServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IPromptServer
                 ?? IPromptServer.DefaultPromptServer;
@@ -208,7 +209,8 @@ namespace PlasticMetal.MobileSuit
             where T : new()
         {
             return builder?.Build(typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null) ?? new object())
-                   ?? new SuitHost(new object(), ILogger.OfEmpty(), Suit.GeneralIO, typeof(BuildInCommandServer),
+                   ?? new SuitHost(new object(), ISuitLogger.CreateEmpty(), Suit.GeneralIO,
+                       typeof(BuildInCommandServer),
                        IPromptServer.DefaultPromptServer);
         }
     }

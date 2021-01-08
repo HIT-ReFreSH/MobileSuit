@@ -1,7 +1,6 @@
 ﻿using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 using PlasticMetal.MobileSuit.ObjectModel.Future;
-using PlasticMetal.MobileSuit.ObjectModel.Premium;
 
 namespace PlasticMetal.MobileSuitDemo
 {
@@ -10,11 +9,12 @@ namespace PlasticMetal.MobileSuitDemo
         private static int Main(string[] args)
         {
             return Suit.GetBuilder()
-                .UseLog(ILogger.OfDirectory(@"D:\\"))
+                .UseLog(ISuitLogger.CreateFileByDirectory(@"D:\\"))
                 .UsePrompt<PowerLineThemedPromptServer>()
-                .UseBuildInCommand<DiagnosticBuildInCommandServer>()
-                //.Build<Client>()
-                .Build<AutoArgumentCliClient>()
+                /*.UseBuildInCommand<DiagnosticBuildInCommandServer>()*/
+                .Build<Client>()
+                //.Build<AutoArgumentCliClient>()
+                /*.Build<LoggerTest>()*/
                 .Run(args);
         }
     }

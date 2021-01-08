@@ -1,4 +1,6 @@
-﻿namespace PlasticMetal.MobileSuit.ObjectModel
+﻿using PlasticMetal.MobileSuit.Core.Logging;
+
+namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     has access to host's logger

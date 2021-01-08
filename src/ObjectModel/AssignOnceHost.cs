@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -66,7 +67,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
 
         /// <inheritdoc />
-        public ILogger Logger => Element?.Logger ?? ILogger.OfEmpty();
+        public ISuitLogger Logger => Element?.Logger ?? ISuitLogger.CreateEmpty();
 
         /// <inheritdoc />
         public IIOServer IO => Element?.IO ?? IIOServer.GeneralIO;

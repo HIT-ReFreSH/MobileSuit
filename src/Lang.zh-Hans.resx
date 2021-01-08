@@ -183,4 +183,13 @@
   <data name="WorkInstance" xml:space="preserve">
     <value>当前对象：</value>
   </data>
+  <data name="AutoDynamicParameter_Parse__0__not_match_format______" xml:space="preserve">
+    <value>不匹配模式</value>
+  </data>
+  <data name="AutoDynamicParameter_Parse__0__not_in_dictionary___1__" xml:space="preserve">
+    <value>不位于字典</value>
+  </data>
+  <data name="AutoDynamicParameter_Parse__0__length_not_match" xml:space="preserve">
+    <value>长度不匹配</value>
+  </data>
 </root>

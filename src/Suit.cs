@@ -12,13 +12,6 @@ namespace PlasticMetal.MobileSuit
     public static class Suit
     {
         /// <summary>
-        ///     全局默认log
-        /// </summary>
-        public static ILogger GeneralDefaultLogger { get; set; } =
-            //ILogger.OfTemp();
-            ILogger.OfFile("D:\\Debug.log");
-
-        /// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>
         public static IOServer GeneralIO { get; set; } = new IOServer();

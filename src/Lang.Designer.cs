@@ -47,8 +47,8 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -84,6 +84,33 @@ namespace PlasticMetal.MobileSuit {
         internal static string ApplicationError {
             get {
                 return ResourceManager.GetString("ApplicationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  length not match 的本地化字符串。
+        /// </summary>
+        internal static string AutoDynamicParameter_Parse__0__length_not_match {
+            get {
+                return ResourceManager.GetString("AutoDynamicParameter_Parse__0__length_not_match", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  not in dictionary 的本地化字符串。
+        /// </summary>
+        internal static string AutoDynamicParameter_Parse__0__not_in_dictionary___1__ {
+            get {
+                return ResourceManager.GetString("AutoDynamicParameter_Parse__0__not_in_dictionary___1__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  not match format 的本地化字符串。
+        /// </summary>
+        internal static string AutoDynamicParameter_Parse__0__not_match_format______ {
+            get {
+                return ResourceManager.GetString("AutoDynamicParameter_Parse__0__not_match_format______", resourceCulture);
             }
         }
         

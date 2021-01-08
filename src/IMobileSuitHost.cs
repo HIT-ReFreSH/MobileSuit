@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -18,7 +19,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Logger for current host
         /// </summary>
-        public ILogger Logger { get; }
+        public ISuitLogger Logger { get; }
 
         /// <summary>
         ///     IOServer for current host

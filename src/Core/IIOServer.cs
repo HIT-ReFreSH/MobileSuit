@@ -67,6 +67,28 @@ namespace PlasticMetal.MobileSuit.Core
         bool IsInputRedirected { get; }
 
         /// <summary>
+        ///     Call <a>AppendWriteLinePrefix</a> method with default argument('\t') of an <c>IIOServer</c>.
+        /// </summary>
+        /// <param name="server"><c>IIOServer</c> to <a>AppendWriteLinePrefix</a>.</param>
+        /// <returns><c>IIOServer</c> to <a>AppendWriteLinePrefix</a>.</returns>
+        public static IIOServer operator ++(IIOServer server)
+        {
+            server.AppendWriteLinePrefix();
+            return server;
+        }
+
+        /// <summary>
+        ///     Call <a>SubtractWriteLinePrefix</a> method of an <c>IIOServer</c>.
+        /// </summary>
+        /// <param name="server"><c>IIOServer</c> to <a>SubtractWriteLinePrefix</a>.</param>
+        /// <returns><c>IIOServer</c> to <a>SubtractWriteLinePrefix</a>.</returns>
+        public static IIOServer operator --(IIOServer server)
+        {
+            server.SubtractWriteLinePrefix();
+            return server;
+        }
+
+        /// <summary>
         ///     get label of given output type
         /// </summary>
         /// <param name="type">output type</param>

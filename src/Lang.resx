@@ -183,4 +183,13 @@
   <data name="WorkInstance" xml:space="preserve">
     <value>Work Instance:</value>
   </data>
+  <data name="AutoDynamicParameter_Parse__0__length_not_match" xml:space="preserve">
+    <value> length not match</value>
+  </data>
+  <data name="AutoDynamicParameter_Parse__0__not_in_dictionary___1__" xml:space="preserve">
+    <value> not in dictionary</value>
+  </data>
+  <data name="AutoDynamicParameter_Parse__0__not_match_format______" xml:space="preserve">
+    <value> not match format</value>
+  </data>
 </root>

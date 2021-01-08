@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Logging;
 using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
@@ -59,42 +59,18 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     [SuitInfo(typeof(LogRes), "Class")]
     public class LogDriver : SuitClient
     {
-        private readonly Logger _logger;
+        private readonly CachedLogger _logger;
 
         /**
          * Initialize a log driver with the logger
          *
          * [param logger the logger to operate
          */
-        public LogDriver(Logger logger)
+        public LogDriver(CachedLogger logger)
         {
             _logger = logger;
         }
 
-
-        /// <summary>
-        ///     Enable Run-time query
-        /// </summary>
-        /// <returns></returns>
-        [SuitAlias("On")]
-        [SuitInfo(typeof(LogRes), "Enable")]
-        public TraceBack Enable()
-        {
-            _logger.EnableLogQuery = true;
-            return TraceBack.AllOk;
-        }
-
-        /// <summary>
-        ///     Disable Run-time query
-        /// </summary>
-        /// <returns></returns>
-        [SuitAlias("Off")]
-        [SuitInfo(typeof(LogRes), "Disable")]
-        public TraceBack Disable()
-        {
-            _logger.EnableLogQuery = false;
-            return TraceBack.AllOk;
-        }
 
         /// <summary>
         ///     Find log with given filter
@@ -105,7 +81,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public string Find(LogFilter filter)
         {
             var logsToShow =
-                (from l in _logger.LogMem.AsParallel()
+                (from l in _logger.AsParallel()
                     where l.TimeStamp >= filter.Start
                     where l.TimeStamp <= filter.End
                     where Regex.IsMatch(l.Type, filter.TypeRegex)
@@ -136,7 +112,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 i++;
             }
 
-            return $"{logsToShow.Count}/{_logger.LogMem.Count}";
+            return $"{logsToShow.Count}/{_logger.Count}";
         }
 
         /// <summary>
@@ -145,20 +121,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns></returns>
         [SuitAlias("S")]
         [SuitInfo(typeof(LogRes), "Status")]
-        public string Status()
+        public void Status()
         {
             IO.WriteLine($"{LogRes.LogFileAt}: ");
             IO.AppendWriteLinePrefix();
-            IO.WriteLine(_logger.FilePath, OutputType.MobileSuitInfo);
+            IO.WriteLine(_logger.Address, OutputType.MobileSuitInfo);
             IO.SubtractWriteLinePrefix();
-            IO.WriteLine($"{LogRes.Dynamic}: ");
-            IO.AppendWriteLinePrefix();
-            IO.WriteLine(
-                _logger.EnableLogQuery
-                    ? LogRes.On
-                    : LogRes.Off, OutputType.MobileSuitInfo);
-            IO.SubtractWriteLinePrefix();
-            return _logger.FilePath;
         }
     }
 }
