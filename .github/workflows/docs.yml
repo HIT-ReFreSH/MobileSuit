@@ -7,19 +7,19 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           submodules: true
           persist-credentials: false
-          ref: master
-          path: master
+          ref: main
+          path: main
 
       - name: Install docfx 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: choco install docfx -y
       - name: docfx build
         run: docfx docfx.json -t default,docfx-tmpl/src
-        working-directory: master
+        working-directory: main
       - name: Checkout docs
         uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
@@ -30,7 +30,7 @@ jobs:
         run: Get-ChildItem -Force -Exclude .git | Get-ChildItem -Force -Exclude CNAME | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
         working-directory: gh-pages
       - name: Sync new content
-        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/master/docs/*" "$env:GITHUB_WORKSPACE/gh-pages"
+        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/main/docs/*" "$env:GITHUB_WORKSPACE/gh-pages"
         working-directory: gh-pages
         # update docs
       - name: Commit to gh-pages and push
