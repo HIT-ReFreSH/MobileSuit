@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.Logging;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -24,7 +24,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     IOServer for current host
         /// </summary>
-        public IIOServer IO { get; }
+        public IIOHub IO { get; }
 
         /// <summary>
         ///     Split a commandline string to args[] array.

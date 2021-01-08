@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.Core.Logging
+﻿namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     Decorator Pattern for <c>ISuitLogger</c>.

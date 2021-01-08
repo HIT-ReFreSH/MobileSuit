@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.UI
 {
-    public partial class IOServer
+    public partial class IOHub
     {
         private StringBuilder PrefixBuilder { get; } = new StringBuilder();
         private Stack<int> PrefixLengthStack { get; } = new Stack<int>();
@@ -233,7 +233,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append(']');
-                sb.Append(IIOServer.GetLabel(type));
+                sb.Append(IIOHub.GetLabel(type));
                 sb.Append(content);
                 Output?.WriteLine(sb.ToString());
             }
@@ -272,7 +272,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append(']');
-                sb.Append(IIOServer.GetLabel(type));
+                sb.Append(IIOHub.GetLabel(type));
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
@@ -319,7 +319,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 var sb = new StringBuilder("[");
                 sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                 sb.Append(']');
-                sb.Append(IIOServer.GetLabel(type));
+                sb.Append(IIOHub.GetLabel(type));
 
                 foreach (var (content, _, _) in contentArray) sb.Append(content);
 
@@ -370,7 +370,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                     sb.Append(']');
-                    sb.Append(IIOServer.GetLabel(type));
+                    sb.Append(IIOHub.GetLabel(type));
                 }
                 else
                 {
@@ -419,7 +419,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                     sb.Append(']');
-                    sb.Append(IIOServer.GetLabel(type));
+                    sb.Append(IIOHub.GetLabel(type));
                 }
                 else
                 {
@@ -469,7 +469,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                     sb.Append('[');
                     sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
                     sb.Append(']');
-                    sb.Append(IIOServer.GetLabel(type));
+                    sb.Append(IIOHub.GetLabel(type));
                 }
                 else
                 {
@@ -525,7 +525,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                         .Append('[')
                         .Append(DateTime.Now.ToString(CultureInfo.InvariantCulture))
                         .Append(']')
-                        .Append(IIOServer.GetLabel(type));
+                        .Append(IIOHub.GetLabel(type));
                 else
                     sb.Append(Prefix);
                 foreach (var (content, _, _) in contentArray) sb.Append(content);
@@ -575,7 +575,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 if (!DisableTimeMark)
                 {
                     sb.Append('[').Append(DateTime.Now.ToString(CultureInfo.InvariantCulture)).Append(']');
-                    sb.Append(IIOServer.GetLabel(type));
+                    sb.Append(IIOHub.GetLabel(type));
                 }
                 else
                 {

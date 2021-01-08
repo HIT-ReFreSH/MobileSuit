@@ -1,5 +1,5 @@
 ﻿using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel.Future;
 
 namespace PlasticMetal.MobileSuitDemo

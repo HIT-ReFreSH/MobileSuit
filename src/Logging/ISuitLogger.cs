@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace PlasticMetal.MobileSuit.Core.Logging
+namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     Logger for MobileSuit

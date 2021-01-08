@@ -9,6 +9,6 @@
         ///     Provides Interface for SuitHost to set ioServer
         /// </summary>
         [SuitIgnore]
-        IAssignOnceIOServer IO { get; }
+        IAssignOnceIOHub IO { get; }
     }
 }

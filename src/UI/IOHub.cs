@@ -2,20 +2,20 @@
 using System;
 using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.UI
 {
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
-    public partial class IOServer : IIOServer
+    public partial class IOHub : IIOHub
     {
-        private IPromptServer? _prompt;
+        private PromptGenerator? _prompt;
 
 
         /// <summary>
         ///     Initialize a IOServer.
         /// </summary>
-        public IOServer()
+        public IOHub()
         {
             ColorSetting = IColorSetting.DefaultColorSetting;
             Input = Console.In;
@@ -43,9 +43,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        public IPromptServer Prompt
+        public PromptGenerator Prompt
         {
-            get => _prompt ??= IPromptServer.DefaultPromptServer;
+            get => _prompt ??= PromptGenerator.DefaultPromptServer;
             set => _prompt = value;
         }
     }

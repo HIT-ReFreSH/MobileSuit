@@ -192,4 +192,7 @@
   <data name="AutoDynamicParameter_Parse__0__length_not_match" xml:space="preserve">
     <value>长度不匹配</value>
   </data>
+  <data name="PromptGeneratorBuilder_NoRoute" xml:space="preserve">
+    <value>无法找到给定提示符提供者的依赖注入路径。</value>
+  </data>
 </root>

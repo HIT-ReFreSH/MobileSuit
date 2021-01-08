@@ -1,11 +1,12 @@
 ﻿using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.UI;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     a prompt server for mobile suit
     /// </summary>
-    public class PromptServer : IPromptServer
+    public class PromptServer : PromptGenerator
     {
         /// <summary>
         ///     Color setting of this prompt server
@@ -57,6 +58,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <inheritdoc />
-        public IAssignOnceIOServer IO { get; } = new AssignOnceIOServer();
+        public IAssignOnceIOHub IO { get; } = new AssignOnceIOHub();
     }
 }

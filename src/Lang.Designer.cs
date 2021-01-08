@@ -250,6 +250,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Can&apos;t find available DI route for given providers. 的本地化字符串。
+        /// </summary>
+        internal static string PromptGeneratorBuilder_NoRoute {
+            get {
+                return ResourceManager.GetString("PromptGeneratorBuilder_NoRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Return Value 的本地化字符串。
         /// </summary>
         internal static string ReturnValue {

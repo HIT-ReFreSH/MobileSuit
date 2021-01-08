@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.UI
 {
-    partial class IOServer
+    partial class IOHub
     {
         /// <summary>
         ///     Input stream (default stdin)

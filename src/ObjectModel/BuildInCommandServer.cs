@@ -160,7 +160,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IIOServer.CreateContentArray
+            Host.IO.WriteLine(IIOHub.CreateContentArray
             (
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
@@ -208,7 +208,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IIOServer.CreateContentArray
+            Host.IO.WriteLine(IIOHub.CreateContentArray
             (
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
@@ -238,7 +238,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in member.Aliases) aliasesExpression.Append($"/{alias}");
-                Host.IO.WriteLine(IIOServer.CreateContentArray
+                Host.IO.WriteLine(IIOHub.CreateContentArray
                 (
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),

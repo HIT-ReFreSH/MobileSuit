@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.UI;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -53,12 +54,12 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     IOServer of host
         /// </summary>
-        protected internal Type IOServer { get; set; } = typeof(IOServer);
+        protected internal Type IOServer { get; set; } = typeof(IOHub);
 
         /// <summary>
         ///     PromptServer of host
         /// </summary>
-        protected internal Type PromptServer { get; set; } = typeof(PromptServer);
+        protected internal PromptGeneratorBuilder PromptBuilder { get; } = new();
 
         /// <summary>
         ///     Use given color setting for host
@@ -134,7 +135,7 @@ namespace PlasticMetal.MobileSuit
         public IMobileSuitHost Build(object instance)
         {
             var io =
-                IOServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IIOServer
+                IOServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IIOHub
                 ?? Suit.GeneralIO;
             if (Input != null) io.Input = Input;
 
@@ -142,12 +143,12 @@ namespace PlasticMetal.MobileSuit
             if (ColorSetting != null) io.ColorSetting = ColorSetting;
             if (Error != null) io.ErrorStream = Error;
             Logger ??= ISuitLogger.CreateEmpty();
-            var prompt =
-                PromptServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IPromptServer
-                ?? IPromptServer.DefaultPromptServer;
+
+            var host = new SuitHost(instance, Logger, io, BuildInCommandServer);
+            var prompt = PromptBuilder.Build(host, io, instance);
             prompt.IO.Assign(io);
-            io.Prompt = prompt;
-            return new SuitHost(instance, Logger, io, BuildInCommandServer, prompt);
+            host.Prompt.Assign(prompt);
+            return host;
         }
     }
 
@@ -163,13 +164,25 @@ namespace PlasticMetal.MobileSuit
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
         public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder)
-            where T : IPromptServer
+            where T : IPromptGenerator
         {
             builder ??= new SuitHostBuilder();
-            builder.PromptServer = typeof(T);
+            builder.PromptBuilder.GeneratorType = typeof(T);
             return builder;
         }
-
+        /// <summary>
+        ///     Add given PromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <typeparam name="T">PromptProvider</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder AddPromptProvider<T>(this SuitHostBuilder builder)
+            where T : IPromptProvider
+        {
+            builder ??= new SuitHostBuilder();
+            builder.PromptBuilder.AddProvider(typeof(T));
+            return builder;
+        }
         /// <summary>
         ///     Use given IOServer for the Host
         /// </summary>
@@ -177,7 +190,7 @@ namespace PlasticMetal.MobileSuit
         /// <typeparam name="T">IOServer</typeparam>
         /// <returns>Builder for the host</returns>
         public static SuitHostBuilder UseIO<T>(this SuitHostBuilder builder)
-            where T : IIOServer
+            where T : IIOHub
         {
             builder ??= new SuitHostBuilder();
             builder.IOServer = typeof(T);
@@ -210,8 +223,7 @@ namespace PlasticMetal.MobileSuit
         {
             return builder?.Build(typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null) ?? new object())
                    ?? new SuitHost(new object(), ISuitLogger.CreateEmpty(), Suit.GeneralIO,
-                       typeof(BuildInCommandServer),
-                       IPromptServer.DefaultPromptServer);
+                       typeof(BuildInCommandServer));
         }
     }
 }

@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     A filter argument for Log finding
