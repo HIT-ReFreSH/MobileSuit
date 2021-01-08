@@ -2,7 +2,7 @@ name: publish_to_nuget
 on:
   push:
     branches:
-      - master # Default release branch
+      - main # Default release branch
 jobs:
   publish:
     name: list on nuget

@@ -2,7 +2,7 @@ name: deploy_documentation
 on:
   push:
     branches:
-      - master # Default release branch
+      - main # Default release branch
 jobs:
   build-and-deploy:
     runs-on: windows-latest
