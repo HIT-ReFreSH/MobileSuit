@@ -7,10 +7,29 @@ using PlasticMetal.MobileSuit.Logging;
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
+    /// Providing status of current host.
+    /// </summary>
+    public interface IHostStatus
+    {
+        /// <summary>
+        /// TraceBack of last Command.
+        /// </summary>
+        public TraceBack TraceBack{ get; }
+        /// <summary>
+        /// Return value of last Command.
+        /// </summary>
+        public object? ReturnValue { get; }
+    }
+    /// <summary>
     ///     A host of Mobile Suit, which may run commands.
     /// </summary>
     public interface IMobileSuitHost
     {
+        /// <summary>
+        /// Providing status of current host.
+        /// </summary>
+        public IHostStatus HostStatus { get; }
+
         /// <summary>
         ///     Basic Settings of this MobileSuitHost
         /// </summary>
@@ -92,12 +111,6 @@ namespace PlasticMetal.MobileSuit
             return l.ToArray();
         }
 
-        /// <summary>
-        ///     Run a Mobile Suit with Prompt.
-        /// </summary>
-        /// <param name="prompt">The prompt.</param>
-        /// <returns>0, is All ok.</returns>
-        int Run(string prompt);
 
         /// <summary>
         ///     Run a Mobile Suit with default Prompt.
@@ -131,12 +144,11 @@ namespace PlasticMetal.MobileSuit
         TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null);
 
         /// <summary>
-        ///     Run a command in current host with given prompt
+        ///     Run a command in current host.
         /// </summary>
         /// <param name="command">the command to run</param>
-        /// <param name="prompt">the prompt</param>
         /// <returns>result of the command</returns>
-        public TraceBack RunCommand(string? command, string prompt = "");
+        public TraceBack RunCommand(string? command);
     }
 
     /// <summary>

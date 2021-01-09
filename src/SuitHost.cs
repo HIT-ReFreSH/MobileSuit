@@ -20,6 +20,13 @@ namespace PlasticMetal.MobileSuit
     /// </summary>
     public class SuitHost : IMobileSuitHost
     {
+        private class SuitHostStatus : IHostStatus
+        {
+            /// <inheritdoc></inheritdoc>
+            public TraceBack TraceBack { get; set; } = TraceBack.AllOk;
+            /// <inheritdoc></inheritdoc>
+            public object? ReturnValue { get; set; }
+        }
         private object? _returnValue;
 
         /// <summary>
@@ -29,7 +36,6 @@ namespace PlasticMetal.MobileSuit
         /// <param name="logger"></param>
         /// <param name="io"></param>
         /// <param name="buildInCommandServer"></param>
-        /// <param name="prompt"></param>
         public SuitHost(object? instance, ISuitLogger logger, IIOHub io, Type buildInCommandServer)
             //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
@@ -43,66 +49,6 @@ namespace PlasticMetal.MobileSuit
             WorkInstanceInit();
         }
 
-        ///// <summary>
-        /////     Initialize a SuitHost with given configuration, Calling Assembly.
-        ///// </summary>
-        ///// <param name="configuration">given configuration</param>
-        //public SuitHost(ISuitConfiguration configuration)
-        //{
-        //    _returnValue = "";
-        //    Configuration = configuration ?? ISuitConfiguration.GetDefaultConfiguration();
-        //    Assembly = Assembly.GetCallingAssembly();
-        //    Current = new SuitObject(null);
-        //    Configuration.InitializeBuildInCommandServer(this);
-        //    BicServer = new SuitObject(Configuration.BuildInCommandServer);
-        //    IO.ColorSetting = Configuration.ColorSetting;
-        //    IO.Prompt = Prompt;
-        //}
-
-        ///// <summary>
-        /////     Initialize a SuitHost with given/default configuration,  an instance, and its type's Assembly.
-        ///// </summary>
-        ///// <param name="instance">The instance for Mobile Suit to drive.</param>
-        ///// <param name="configuration">given configuration</param>
-        //public SuitHost(object? instance, ISuitConfiguration? configuration = null)
-        //    //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
-        //{
-        //    Current = new SuitObject(instance);
-        //    Assembly = WorkType?.Assembly;
-
-        //    WorkInstanceInit();
-        //}
-
-        ///// <summary>
-        /////     Initialize a SuitHost with given/default configuration, given Assembly.
-        ///// </summary>
-        ///// <param name="assembly">The given Assembly.</param>
-        ///// <param name="configuration">given configuration, default if null</param>
-        //public SuitHost(Assembly assembly, ISuitConfiguration? configuration) : this(
-        //    configuration ?? ISuitConfiguration.GetDefaultConfiguration())
-        //{
-        //    Assembly = assembly;
-        //    Current = new SuitObject(null);
-        //}
-
-        ///// <summary>
-        /////     Initialize a SuitHost with given configuration,  a given type, and its  Assembly.
-        ///// </summary>
-        ///// <param name="type">The given Type</param>
-        ///// <param name="configuration">given configuration, default if null</param>
-        //public SuitHost(Type type, ISuitConfiguration? configuration) : this(
-        //    configuration ?? ISuitConfiguration.GetDefaultConfiguration())
-        //{
-        //    if (type?.FullName == null)
-        //    {
-        //        Current = new SuitObject(null);
-        //        return;
-        //    }
-
-        //    Assembly = type.Assembly;
-        //    Current = new SuitObject(Assembly.CreateInstance(type.FullName));
-        //    WorkInstanceInit();
-        //}
 
         /// <summary>
         ///     Stack of Instance, created in this Mobile Suit.
@@ -269,7 +215,7 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <inheritdoc />
-        public TraceBack RunCommand(string? cmd, string prompt = "")
+        public TraceBack RunCommand(string? cmd)
         {
             if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && Settings.NoExit)
             {
@@ -304,7 +250,9 @@ namespace PlasticMetal.MobileSuit
                 traceBack = TraceBack.InvalidCommand;
             }
 
-            Prompt.Update(_returnValue?.ToString() ?? "", UpdatePrompt(prompt), traceBack);
+            _hostStatus.ReturnValue = _returnValue;
+            _hostStatus.TraceBack = traceBack;
+
             return traceBack;
         }
 
@@ -334,6 +282,9 @@ namespace PlasticMetal.MobileSuit
                 return -1;
             return 0;
         }
+        private readonly SuitHostStatus _hostStatus = new();
+        /// <inheritdoc/>
+        public IHostStatus HostStatus => _hostStatus;
 
         /// <inheritdoc />
         public HostSettings Settings { get; set; }

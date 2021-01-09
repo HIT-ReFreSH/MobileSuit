@@ -5,6 +5,21 @@ using PlasticMetal.MobileSuit.ObjectModel;
 namespace PlasticMetal.MobileSuit.UI
 {
     /// <summary>
+    ///     represents a generator provides prompt output.
+    /// </summary>
+    public interface IPromptGenerator
+    {
+        /// <summary>
+        ///     Generate output tuple-array for the prompt.
+        /// </summary>
+        IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
+        /// <summary>
+        ///     Generate output tuple-array for the prompt, with given selector.
+        /// </summary>
+        /// <param name="selector">Selector to select the providers to output.</param>
+        IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector);
+    }
+    /// <summary>
     ///     represents a server provides prompt output.
     /// </summary>
     public abstract class PromptGenerator : IPromptGenerator
@@ -21,28 +36,18 @@ namespace PlasticMetal.MobileSuit.UI
         /// <summary>
         ///     get the default prompt server of Mobile Suit
         /// </summary>
-        public static PromptGenerator DefaultPromptServer { get; } = new PromptServer();
+        public static PromptGenerator DefaultPromptServer { get; } = new BasicPromptGenerator(Array.Empty<IPromptProvider>());
 
         /// <summary>
         /// Objects providing prompt.
         /// </summary>
         protected IEnumerable<IPromptProvider> Providers { get; }
 
-
-
-        /// <summary>
-        ///     Output a prompt to IO.Output
-        /// </summary>
-        public void Print()
-        {
-            IO.Write(GeneratePrompt());
-        }
-        /// <summary>
-        /// Build Prompt with current Prompt providers.
-        /// </summary>
-        /// <returns></returns>
-        protected abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
         /// <inheritdoc/>
-        public IAssignOnceIOHub IO { get; } = new AssignOnceIOHub();
+        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
+
+        /// <inheritdoc/>
+        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider,bool> selector);
+
     }
 }

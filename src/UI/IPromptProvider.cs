@@ -23,9 +23,9 @@ namespace PlasticMetal.MobileSuit.UI
         /// </summary>
         public bool AsLabel { get; }
         /// <summary>
-        /// Whether this part of prompt is exclusive.
+        /// Attribute information for the PromptProvider.
         /// </summary>
-        public bool Exclusive { get; }
+        public object? Tag { get; }
         /// <summary>
         /// Content to show in the prompt.
         /// </summary>

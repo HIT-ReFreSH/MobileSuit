@@ -6,7 +6,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     ///     a prompt server for mobile suit
     /// </summary>
-    public class PromptServer : PromptGenerator
+    public class PromptServer 
     {
         /// <summary>
         ///     Color setting of this prompt server

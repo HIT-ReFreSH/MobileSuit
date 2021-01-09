@@ -16,10 +16,15 @@ namespace PlasticMetal.MobileSuit.UI
         {
         }
         /// <inheritdoc></inheritdoc>
-        protected override IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt()
+        public override IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt()
+        {
+            return GeneratePrompt(_ => true);
+        }
+        /// <inheritdoc></inheritdoc>
+        public override IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector)
         {
             List<(string, ConsoleColor?, ConsoleColor?)> l = new();
-            var exclusive = Providers.FirstOrDefault(p => p.Enabled && p.Exclusive);
+            var exclusive = Providers.FirstOrDefault(p => p.Enabled && selector(p));
             if (exclusive != null)
             {
                 l.Add((exclusive.AsLabel ? $" [{exclusive.Content}]" : exclusive.Content,

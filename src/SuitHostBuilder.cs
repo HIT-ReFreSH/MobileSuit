@@ -59,7 +59,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     PromptServer of host
         /// </summary>
-        protected internal PromptGeneratorBuilder PromptBuilder { get; } = new();
+        protected internal PromptGeneratorBuilder PromptBuilder { get; set; } = new();
 
         /// <summary>
         ///     Use given color setting for host
@@ -146,7 +146,6 @@ namespace PlasticMetal.MobileSuit
 
             var host = new SuitHost(instance, Logger, io, BuildInCommandServer);
             var prompt = PromptBuilder.Build(host, io, instance);
-            prompt.IO.Assign(io);
             host.Prompt.Assign(prompt);
             return host;
         }
@@ -161,34 +160,23 @@ namespace PlasticMetal.MobileSuit
         ///     Use given PromptServer for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
+        /// <param name="options">Options for the generator.</param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder)
+        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder,
+            Action<PromptGeneratorBuilder>? options = null)
             where T : IPromptGenerator
         {
-            builder ??= new SuitHostBuilder();
-            builder.PromptBuilder.GeneratorType = typeof(T);
+            builder.PromptBuilder = new PromptGeneratorBuilder { GeneratorType = typeof(T) };
+            options?.Invoke(builder.PromptBuilder);
             return builder;
         }
         /// <summary>
-        ///     Add given PromptProvider for the Host
+        /// Use given IOHub for the Host.
         /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">PromptProvider</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder AddPromptProvider<T>(this SuitHostBuilder builder)
-            where T : IPromptProvider
-        {
-            builder ??= new SuitHostBuilder();
-            builder.PromptBuilder.AddProvider(typeof(T));
-            return builder;
-        }
-        /// <summary>
-        ///     Use given IOServer for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">IOServer</typeparam>
-        /// <returns>Builder for the host</returns>
+        /// <param name="builder">Builder of the Host</param>
+        /// <typeparam name="T">Type of IOHub</typeparam>
+        /// <returns>Builder of the Host</returns>
         public static SuitHostBuilder UseIO<T>(this SuitHostBuilder builder)
             where T : IIOHub
         {
@@ -225,5 +213,40 @@ namespace PlasticMetal.MobileSuit
                    ?? new SuitHost(new object(), ISuitLogger.CreateEmpty(), Suit.GeneralIO,
                        typeof(BuildInCommandServer));
         }
+    }
+    /// <summary>
+    ///     Extensions for PromptGeneratorBuilder
+    /// </summary>
+    public static class PromptGeneratorBuilderExtensions
+    {
+        /// <summary>
+        ///     Add given PromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <typeparam name="T">PromptProvider</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder AddProvider<T>(this PromptGeneratorBuilder builder)
+            where T : IPromptProvider
+        {
+            builder.AddProvider(typeof(T));
+            return builder;
+        }
+
+        /// <summary>
+        ///     Add given PromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="selector">Select the provider from source.</param>
+        /// <typeparam name="TProvider">PromptProvider</typeparam>
+        /// <typeparam name="TSource">Source for the provider.</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder AddProvider<TProvider,TSource>(this PromptGeneratorBuilder builder,
+            Func<TSource,TProvider> selector)
+            where TProvider : IPromptProvider
+        {
+            builder.AddProvider(typeof(TProvider),selector);
+            return builder;
+        }
+        
     }
 }
