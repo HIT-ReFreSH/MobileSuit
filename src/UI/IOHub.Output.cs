@@ -199,7 +199,7 @@ namespace PlasticMetal.MobileSuit.UI
         /// </summary>
         public void WriteLine()
         {
-            WriteLine("");
+            Write("\n");
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace PlasticMetal.MobileSuit.UI
         /// </summary>
         public async Task WriteLineAsync()
         {
-            await WriteLineAsync("").ConfigureAwait(false);
+            await WriteAsync("\n").ConfigureAwait(false);
         }
 
         /// <summary>
@@ -386,17 +386,7 @@ namespace PlasticMetal.MobileSuit.UI
             else
             {
                 var sb = new StringBuilder();
-                if (!DisableTimeMark)
-                {
-                    sb.Append('[');
-                    sb.Append(DateTime.Now.ToString(CultureInfo.InvariantCulture));
-                    sb.Append(']');
-                    sb.Append(IIOHub.GetLabel(type));
-                }
-                else
-                {
-                    sb.Append(Prefix);
-                }
+                await WriteAsync(GetLinePrefix(type));
 
                 sb.Append(content);
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
@@ -455,7 +445,15 @@ namespace PlasticMetal.MobileSuit.UI
         public async Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
         {
-            if (contentArray == null) return;
+            await WriteAsync(IsOutputRedirected ? GetLinePrefix(type) : Prefix);
+
+            await WriteAsync(contentArray, type);
+
+            await WriteLineAsync();
+        }
+        /// <inheritdoc />
+        public async Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
             if (!IsOutputRedirected)
             {
                 if (type == OutputType.Error) Console.Beep();
@@ -464,38 +462,24 @@ namespace PlasticMetal.MobileSuit.UI
                 var defaultColor = SelectColor(type);
 
                 Console.ForegroundColor = defaultColor;
-                await Output.WriteAsync(Prefix).ConfigureAwait(false);
-                foreach (var (content, inputForeColor, inputBackColor) in contentArray)
+                await foreach (var (content, inputForeColor, inputBackColor) in contentArray)
                 {
                     Console.ForegroundColor = inputForeColor ?? defaultColor;
                     Console.BackgroundColor = inputBackColor ?? oldBackColor;
                     await Output.WriteAsync(content).ConfigureAwait(false);
                 }
 
-                await Output.WriteLineAsync().ConfigureAwait(false);
                 Console.ForegroundColor = oldForeColor;
                 Console.BackgroundColor = oldBackColor;
             }
             else
             {
                 var sb = new StringBuilder();
-                if (!DisableTimeMark)
-                    sb
-                        .Append('[')
-                        .Append(DateTime.Now.ToString(CultureInfo.InvariantCulture))
-                        .Append(']')
-                        .Append(IIOHub.GetLabel(type));
-                else
-                    sb.Append(Prefix);
-                foreach (var (content, _, _) in contentArray) sb.Append(content);
 
-                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
+                await foreach (var (content, _, _) in contentArray) sb.Append(content);
+
+                await Output.WriteAsync(sb.ToString()).ConfigureAwait(false);
             }
-        }
-        /// <inheritdoc />
-        public async Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
-        {
-            throw new NotImplementedException();
         }
         /// <inheritdoc />
         public async Task WriteAsync(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
@@ -521,7 +505,7 @@ namespace PlasticMetal.MobileSuit.UI
 
                 foreach (var (content, _) in contentArray) sb.Append(content);
 
-                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
+                await WriteAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
         /// <inheritdoc />
@@ -548,13 +532,38 @@ namespace PlasticMetal.MobileSuit.UI
 
                 await foreach (var (content, _) in contentArray) sb.Append(content);
 
-                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
+                await WriteAsync(sb.ToString()).ConfigureAwait(false);
             }
         }
         /// <inheritdoc />
         public async Task WriteAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
         {
-            throw new NotImplementedException();
+            if (!IsOutputRedirected)
+            {
+                if (type == OutputType.Error) Console.Beep();
+                var oldForeColor = Console.ForegroundColor;
+                var oldBackColor = Console.BackgroundColor;
+                var defaultColor = SelectColor(type);
+
+                Console.ForegroundColor = defaultColor;
+                foreach (var (content, inputForeColor, inputBackColor) in contentArray)
+                {
+                    Console.ForegroundColor = inputForeColor ?? defaultColor;
+                    Console.BackgroundColor = inputBackColor ?? oldBackColor;
+                    await Output.WriteAsync(content).ConfigureAwait(false);
+                }
+
+                Console.ForegroundColor = oldForeColor;
+                Console.BackgroundColor = oldBackColor;
+            }
+            else
+            {
+                var sb = new StringBuilder();
+
+                foreach (var (content, _, _) in contentArray) sb.Append(content);
+
+                await Output.WriteAsync(sb.ToString()).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
@@ -571,44 +580,11 @@ namespace PlasticMetal.MobileSuit.UI
         public async Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
             OutputType type = OutputType.Default)
         {
-            if (contentArray == null) return;
-            if (!IsOutputRedirected)
-            {
-                if (type == OutputType.Error) Console.Beep();
-                var oldForeColor = Console.ForegroundColor;
-                var oldBackColor = Console.BackgroundColor;
-                var defaultColor = SelectColor(type);
+            await WriteAsync(IsOutputRedirected ? GetLinePrefix(type) : Prefix);
 
-                Console.ForegroundColor = defaultColor;
-                await Output.WriteAsync(Prefix).ConfigureAwait(false);
-                await foreach (var (content, inputForeColor, inputBackColor) in contentArray)
-                {
-                    Console.ForegroundColor = inputForeColor ?? defaultColor;
-                    Console.BackgroundColor = inputBackColor ?? oldBackColor;
-                    await Output.WriteAsync(content).ConfigureAwait(false);
-                }
+            await WriteAsync(contentArray, type);
 
-                await Output.WriteLineAsync().ConfigureAwait(false);
-                Console.ForegroundColor = oldForeColor;
-                Console.BackgroundColor = oldBackColor;
-            }
-            else
-            {
-                var sb = new StringBuilder();
-                if (!DisableTimeMark)
-                {
-                    sb.Append('[').Append(DateTime.Now.ToString(CultureInfo.InvariantCulture)).Append(']');
-                    sb.Append(IIOHub.GetLabel(type));
-                }
-                else
-                {
-                    sb.Append(Prefix);
-                }
-
-                await foreach (var (content, _, _) in contentArray) sb.Append(content);
-
-                await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
-            }
+            await WriteLineAsync();
         }
 
         private ConsoleColor SelectColor(OutputType type = OutputType.Default, ConsoleColor? customColor = null)
