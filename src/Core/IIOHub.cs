@@ -8,10 +8,28 @@ using PlasticMetal.MobileSuit.UI;
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
+    /// A input helper.
+    /// </summary>
+    public interface IInputHelper
+    {
+        /// <summary>
+        /// Expression for the input
+        /// </summary>
+        string? Expression { get; }
+        /// <summary>
+        /// Default value for the input.
+        /// </summary>
+        string? DefaultInput { get; }
+    }
+    /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
     public interface IIOHub
     {
+        /// <summary>
+        /// A input helper for current IOHub. Provides information to the prompt.
+        /// </summary>
+        public IInputHelper InputHelper { get; }
         /// <summary>
         ///     Disable Time marks which shows in Output-Redirected Environment.
         /// </summary>

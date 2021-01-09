@@ -5,6 +5,9 @@ using PlasticMetal.MobileSuit.UI;
 
 namespace PlasticMetal.MobileSuit.UI.PowerLine
 {
+    /// <summary>
+    /// PromptProvider for TraceBack information.
+    /// </summary>
     public class TraceBackPromptProvider:IPromptProvider
     {
         private IColorSetting Color { get; }

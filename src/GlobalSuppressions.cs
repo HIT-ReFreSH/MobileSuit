@@ -5,6 +5,3 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly:
-    SuppressMessage("Naming", "CA1710:标识符应具有正确的后缀", Justification = "<挂起>", Scope = "type",
-        Target = "~T:PlasticMetal.MobileSuit.ObjectModel.SuitObject")]

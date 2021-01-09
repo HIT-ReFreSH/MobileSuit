@@ -238,6 +238,16 @@ namespace PlasticMetal.MobileSuit.UI
                 Output?.WriteLine(sb.ToString());
             }
         }
+        /// <inheritdoc />
+        public void Write(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+        /// <inheritdoc />
+        public void Write(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
@@ -532,6 +542,26 @@ namespace PlasticMetal.MobileSuit.UI
 
                 await Output.WriteLineAsync(sb.ToString()).ConfigureAwait(false);
             }
+        }
+        /// <inheritdoc />
+        public Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+        /// <inheritdoc />
+        public Task WriteAsync(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+        /// <inheritdoc />
+        public Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+        /// <inheritdoc />
+        public Task WriteAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

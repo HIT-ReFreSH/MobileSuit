@@ -108,13 +108,14 @@ namespace PlasticMetal.MobileSuit
 
 
         /// <inheritdoc />
-        public int Run(string prompt)
+        public int Run()
         {
-            Prompt.Update("", UpdatePrompt(prompt), TraceBack.AllOk);
+            _hostStatus.TraceBack = TraceBack.AllOk;
+            _hostStatus.ReturnValue = null;
             for (;;)
             {
                 if (!IO.IsInputRedirected) Prompt.Print();
-                var traceBack = RunCommand(IO.ReadLine(), prompt);
+                var traceBack = RunCommand(IO.ReadLine());
                 switch (traceBack)
                 {
                     case TraceBack.OnExit:
@@ -260,11 +261,6 @@ namespace PlasticMetal.MobileSuit
         public ISuitLogger Logger { get; }
 
 
-        /// <inheritdoc />
-        public int Run()
-        {
-            return Run("");
-        }
 
         /// <inheritdoc />
         public int Run(string[]? args)

@@ -18,6 +18,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     public class AssignOnceHost : AssignOnce<IMobileSuitHost>, IAssignOnceHost
     {
         /// <inheritdoc />
+        public IHostStatus HostStatus => Element?.HostStatus ??
+                                         (IHostStatus)new {Retur =new object(), TraceBack = TraceBack.AllOk};
+
+        /// <inheritdoc />
         public HostSettings Settings
         {
             get => Element?.Settings ?? new HostSettings();
@@ -27,11 +31,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
         }
 
-        /// <inheritdoc />
-        public int Run(string prompt)
-        {
-            return Element?.Run(prompt) ?? -1;
-        }
 
         /// <inheritdoc />
         public int Run()
@@ -54,9 +53,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <inheritdoc />
-        public TraceBack RunCommand(string? command, string prompt = "")
+        public TraceBack RunCommand(string? command)
         {
-            return Element?.RunCommand(command, prompt) ?? TraceBack.ObjectNotFound;
+            return Element?.RunCommand(command) ?? TraceBack.ObjectNotFound;
         }
 
         /// <inheritdoc />

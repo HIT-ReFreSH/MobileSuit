@@ -13,6 +13,7 @@ namespace PlasticMetal.MobileSuit.UI
         ///     Generate output tuple-array for the prompt.
         /// </summary>
         IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
+
         /// <summary>
         ///     Generate output tuple-array for the prompt, with given selector.
         /// </summary>
@@ -47,7 +48,7 @@ namespace PlasticMetal.MobileSuit.UI
         public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
 
         /// <inheritdoc/>
-        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider,bool> selector);
+        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector);
 
     }
 }

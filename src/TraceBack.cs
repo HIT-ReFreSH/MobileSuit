@@ -6,11 +6,6 @@
     public enum TraceBack
     {
         /// <summary>
-        ///     Needs more input
-        /// </summary>
-        Prompt = 2,
-
-        /// <summary>
         ///     The Progress is Exiting
         /// </summary>
         OnExit = 1,
