@@ -87,7 +87,7 @@ namespace PlasticMetal.MobileSuit.UI
             _inputHelper.Expression = prompt;
             _inputHelper.DefaultInput = defaultValue;
             Write(Prompt.GeneratePrompt(
-                p => ReferenceEquals(p.Tag, this)));
+                p => ReferenceEquals(p.Tag, this)), OutputType.Prompt);
 
             _inputHelper.Expression= _inputHelper.DefaultInput=null;
 
@@ -158,7 +158,7 @@ namespace PlasticMetal.MobileSuit.UI
             _inputHelper.Expression = prompt;
             _inputHelper.DefaultInput = defaultValue;
             await WriteAsync(Prompt.GeneratePrompt(
-                p => ReferenceEquals(p.Tag, this)));
+                p => ReferenceEquals(p.Tag, this)),OutputType.Prompt);
 
             _inputHelper.Expression = _inputHelper.DefaultInput = null;
 

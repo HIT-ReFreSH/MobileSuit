@@ -187,6 +187,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Current Log has no Cache! Make it Cached! 的本地化字符串。
+        /// </summary>
+        internal static string LogNotCached {
+            get {
+                return ResourceManager.GetString("LogNotCached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Type &apos; 的本地化字符串。
         /// </summary>
         internal static string LsHelp1 {

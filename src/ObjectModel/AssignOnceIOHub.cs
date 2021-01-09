@@ -19,6 +19,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// </summary>
     public class AssignOnceIOHub : AssignOnce<IIOHub>, IAssignOnceIOHub
     {
+        public IInputHelper InputHelper { get; }
+
         /// <inheritdoc />
         public bool DisableTimeMark
         {
@@ -155,6 +157,16 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             (Element ?? IIOHub.GeneralIO).WriteLine(content, type, customColor);
         }
 
+        public void Write(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Write(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <inheritdoc />
         public void WriteLine(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
         {
@@ -207,6 +219,20 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             return (Element ?? IIOHub.GeneralIO).WriteLineAsync(contentArray, type);
         }
+        /// <inheritdoc />
+        public Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+            => Element?.WriteAsync(contentArray, type) ?? Task.CompletedTask;
+        /// <inheritdoc />
+        public Task WriteAsync(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+            => Element?.WriteAsync(contentArray, type) ?? Task.CompletedTask;
+        /// <inheritdoc />
+        public Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default)
+            => Element?.WriteAsync(contentArray, type) ?? Task.CompletedTask;
+
+        /// <inheritdoc />
+        public Task WriteAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
+            OutputType type = OutputType.Default)
+            => Element?.WriteAsync(contentArray, type) ?? Task.CompletedTask;
 
         /// <inheritdoc />
         public Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,

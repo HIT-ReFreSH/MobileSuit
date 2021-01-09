@@ -114,7 +114,8 @@ namespace PlasticMetal.MobileSuit
             _hostStatus.ReturnValue = null;
             for (;;)
             {
-                if (!IO.IsInputRedirected) Prompt.Print();
+                if (!IO.IsInputRedirected)
+                    IO.Write(Prompt.GeneratePrompt());
                 var traceBack = RunCommand(IO.ReadLine());
                 switch (traceBack)
                 {

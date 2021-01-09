@@ -21,10 +21,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     public class AssignOncePromptGenerator : AssignOnce<IPromptGenerator>, IAssignOncePromptGenerator
     {
         /// <inheritdoc/>
-        public IAssignOnceIOHub IO => Element?.IO ?? new AssignOnceIOHub();
-
+        public IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt()
+            => Element?.GeneratePrompt() ?? Array.Empty<(string, ConsoleColor?, ConsoleColor?)>();
         /// <inheritdoc/>
-        public void Print()
-            => Element?.Print();
+        public IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector)
+        => Element?.GeneratePrompt(selector) ?? Array.Empty<(string, ConsoleColor?, ConsoleColor?)>();
     }
 }
