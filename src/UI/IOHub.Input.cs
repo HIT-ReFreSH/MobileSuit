@@ -83,13 +83,16 @@ namespace PlasticMetal.MobileSuit.UI
         public string? ReadLine(string? prompt = null, string? defaultValue = null,
             bool newLine = false, ConsoleColor? customPromptColor = null)
         {
+            if (prompt != null)
+            {
+                _inputHelper.Expression = prompt;
+                _inputHelper.DefaultInput = defaultValue;
+                Write(Prompt.GeneratePrompt(
+                    p => ReferenceEquals(p.Tag, this)), OutputType.Prompt);
 
-            _inputHelper.Expression = prompt;
-            _inputHelper.DefaultInput = defaultValue;
-            Write(Prompt.GeneratePrompt(
-                p => ReferenceEquals(p.Tag, this)), OutputType.Prompt);
+                _inputHelper.Expression = _inputHelper.DefaultInput = null;
+            }
 
-            _inputHelper.Expression= _inputHelper.DefaultInput=null;
 
             if (newLine)
                 WriteLine();

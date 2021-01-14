@@ -154,7 +154,7 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     ///     Basic Settings of a MobileSuitHost
     /// </summary>
-    public struct HostSettings : IEquatable<HostSettings>
+    public record HostSettings
     {
         /// <summary>
         ///     If the prompt contains the reference (For example, System.Console.Title) of current instance.
@@ -176,64 +176,9 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         public bool NoExit { get; set; }
 
-        /// <summary>
-        ///     whether mobile Suit shows command return value or not.
-        /// </summary>
-        public bool HideReturnValue { get; set; }
 
-        /// <summary>
-        ///     Compares two HostSettings
-        /// </summary>
-        /// <param name="other">Another HostSettings</param>
-        /// <returns></returns>
-        public bool Equals(HostSettings other)
-        {
-            return EnableThrows == other.EnableThrows
-                   && ShowDone == other.ShowDone
-                   && NoExit == other.NoExit
-                   && HideReturnValue == other.HideReturnValue
-                   && HideReference == other.HideReference;
-        }
 
-        /// <summary>
-        ///     Compares a HostSettings to another object
-        /// </summary>
-        /// <param name="obj">Another Object</param>
-        /// <returns></returns>
-        public override bool Equals(object? obj)
-        {
-            return obj is HostSettings other && Equals(other);
-        }
 
-        /// <summary>
-        ///     Get hash code of HostSettings, combine with the booleans
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(EnableThrows, ShowDone, NoExit, HideReturnValue, HideReference);
-        }
 
-        /// <summary>
-        ///     Compares two HostSettings
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator ==(HostSettings a, HostSettings b)
-        {
-            return a.Equals(b);
-        }
-
-        /// <summary>
-        ///     Compares two HostSettings
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator !=(HostSettings a, HostSettings b)
-        {
-            return !(a == b);
-        }
     }
 }

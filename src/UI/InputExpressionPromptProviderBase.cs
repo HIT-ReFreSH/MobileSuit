@@ -8,34 +8,40 @@ using PlasticMetal.MobileSuit.Core;
 namespace PlasticMetal.MobileSuit.UI
 {
     /// <summary>
-    /// PromptProvider for input DefaultValue.
+    /// PromptProvider for input Expression.
     /// </summary>
-    public class InputDefaultValuePromptProvider:IPromptProvider
+    public abstract class InputExpressionPromptProviderBase:IPromptProvider
     {
-        private IColorSetting Color { get; }
-        private IInputHelper InputHelper { get; }
+        /// <summary>
+        /// ColorSetting
+        /// </summary>
+        protected IColorSetting Color { get; }
+        /// <summary>
+        /// Information for input.
+        /// </summary>
+        protected IInputHelper InputHelper { get; }
         /// <summary>
         /// Initialize a TraceBackPromptProvider with colors.
         /// </summary>
         /// <param name="iOHub">IOHub this providing info for.</param>
-        public InputDefaultValuePromptProvider(IIOHub iOHub)
+        protected InputExpressionPromptProviderBase(IIOHub iOHub)
         {
             InputHelper = iOHub.InputHelper;
             Color = iOHub.ColorSetting;
             Tag = iOHub;
         }
         /// <inheritdoc/>
-        public bool Enabled => InputHelper.DefaultInput != null;
+        public bool Enabled => InputHelper.Expression != null;
 
         /// <inheritdoc/>
-        public bool AsLabel => false;
+        public abstract bool AsLabel { get; }
         /// <inheritdoc/>
         public object? Tag { get; }
 
         /// <inheritdoc/>
-        public string Content => InputHelper.DefaultInput ?? "";
+        public abstract string Content { get; }
         /// <inheritdoc/>
-        public ConsoleColor? ForegroundColor => Color.CustomInformationColor;
+        public ConsoleColor? ForegroundColor => Color.ListTitleColor;
 
         /// <inheritdoc/>
         public ConsoleColor? BackgroundColor => null;

@@ -73,7 +73,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        PromptGenerator Prompt { get; set; }
+        IAssignOncePromptGenerator Prompt { get;}
 
         /// <summary>
         ///     Input stream (default stdin)
@@ -177,8 +177,6 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="customColor">Customized color in console</param>
         void Write(string content, ConsoleColor? customColor);
 
-        /// <inheritdoc />
-        void Write(string content, ConsoleColor frontColor, ConsoleColor backColor);
 
         /// <summary>
         ///     Writes some content to output stream. With certain color in console.
@@ -188,8 +186,6 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="customColor">Optional. Customized color in console</param>
         void Write(string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
 
-        /// <inheritdoc />
-        Task WriteAsync(string content, ConsoleColor frontColor, ConsoleColor backColor);
 
         /// <summary>
         ///     Asynchronously writes some content to output stream. With certain color in console.

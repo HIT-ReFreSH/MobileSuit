@@ -62,11 +62,11 @@ namespace PlasticMetal.MobileSuit.UI
                         (Type type,var @delegate)=p;
                         if (@delegate != null)
                             return @delegate.GetMethodInfo().Invoke(@delegate.Target,
-                                MapPara(@delegate.Method) ?? throw exception);
+                                MapPara(@delegate.Method) ?? throw exception)as IPromptProvider??throw exception;
                         var cons =
-                            type.GetConstructors(BindingFlags.Public).FirstOrDefault() ?? throw exception;
+                            type.GetConstructors().FirstOrDefault() ?? throw exception;
 
-                        return cons.Invoke(MapPara(cons));
+                        return cons.Invoke(MapPara(cons)) as IPromptProvider??throw exception;
                     }).ToArray()
                 }) as IPromptGenerator??throw exception;
         }

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.UI
 {
@@ -9,7 +10,6 @@ namespace PlasticMetal.MobileSuit.UI
     /// </summary>
     public partial class IOHub : IIOHub
     {
-        private PromptGenerator? _prompt;
 
 
         /// <summary>
@@ -40,13 +40,10 @@ namespace PlasticMetal.MobileSuit.UI
         /// </summary>
         public IColorSetting ColorSetting { get; set; }
 
+
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        public PromptGenerator Prompt
-        {
-            get => _prompt ??= PromptGenerator.DefaultPromptServer;
-            set => _prompt = value;
-        }
+        public IAssignOncePromptGenerator Prompt{ get; } = new AssignOncePromptGenerator();
     }
 }

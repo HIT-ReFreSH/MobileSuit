@@ -98,25 +98,6 @@ namespace PlasticMetal.MobileSuit.UI
             Write(content, OutputType.Default, customColor);
         }
 
-        /// <inheritdoc />
-        public void Write(string content, ConsoleColor frontColor, ConsoleColor backColor)
-        {
-            if (!IsOutputRedirected)
-            {
-                var dColor = Console.ForegroundColor;
-                var bColor = Console.BackgroundColor;
-                Console.ForegroundColor = frontColor;
-                Console.BackgroundColor = backColor;
-                Console.Write(content);
-                Console.ForegroundColor = dColor;
-                Console.BackgroundColor = bColor;
-            }
-            else
-            {
-                Output?.Write(content);
-            }
-        }
-
         /// <summary>
         ///     Writes some content to output stream. With certain color in console.
         /// </summary>
@@ -136,7 +117,7 @@ namespace PlasticMetal.MobileSuit.UI
             else
             {
                 if (type != OutputType.Prompt)
-                    Output?.Write(content);
+                    Output.Write(content);
             }
         }
 
@@ -251,7 +232,7 @@ namespace PlasticMetal.MobileSuit.UI
                 foreach (var (content, color) in contentArray)
                 {
                     Console.ForegroundColor = color ?? defaultColor;
-                    Console.Write(content);
+                    Write(content,type,color);
                 }
 
                 Console.ForegroundColor = dColor;
@@ -282,7 +263,7 @@ namespace PlasticMetal.MobileSuit.UI
                     Console.Write(content);
                 }
 
-                Console.WriteLine();
+                
                 Console.ForegroundColor = oldForeColor;
                 Console.BackgroundColor = oldBackColor;
             }
@@ -464,9 +445,8 @@ namespace PlasticMetal.MobileSuit.UI
                 Console.ForegroundColor = defaultColor;
                 await foreach (var (content, inputForeColor, inputBackColor) in contentArray)
                 {
-                    Console.ForegroundColor = inputForeColor ?? defaultColor;
                     Console.BackgroundColor = inputBackColor ?? oldBackColor;
-                    await Output.WriteAsync(content).ConfigureAwait(false);
+                    await WriteAsync(content, type, inputForeColor ?? defaultColor).ConfigureAwait(false);
                 }
 
                 Console.ForegroundColor = oldForeColor;
@@ -492,8 +472,7 @@ namespace PlasticMetal.MobileSuit.UI
                 Console.ForegroundColor = defaultColor;
                 foreach (var (content, color) in contentArray)
                 {
-                    Console.ForegroundColor = color ?? defaultColor;
-                    await Output.WriteAsync(content).ConfigureAwait(false);
+                    await WriteAsync(content, type, color ?? defaultColor).ConfigureAwait(false);
                 }
 
 
@@ -519,8 +498,7 @@ namespace PlasticMetal.MobileSuit.UI
                 Console.ForegroundColor = defaultColor;
                 await foreach (var (content, color) in contentArray)
                 {
-                    Console.ForegroundColor = color ?? defaultColor;
-                    await Output.WriteAsync(content).ConfigureAwait(false);
+                    await WriteAsync(content, type, color ?? defaultColor).ConfigureAwait(false);
                 }
 
                 
@@ -548,9 +526,8 @@ namespace PlasticMetal.MobileSuit.UI
                 Console.ForegroundColor = defaultColor;
                 foreach (var (content, inputForeColor, inputBackColor) in contentArray)
                 {
-                    Console.ForegroundColor = inputForeColor ?? defaultColor;
                     Console.BackgroundColor = inputBackColor ?? oldBackColor;
-                    await Output.WriteAsync(content).ConfigureAwait(false);
+                    await WriteAsync(content, type, inputForeColor ?? defaultColor).ConfigureAwait(false);
                 }
 
                 Console.ForegroundColor = oldForeColor;

@@ -45,7 +45,8 @@ namespace PlasticMetal.MobileSuit.UI
         protected IEnumerable<IPromptProvider> Providers { get; }
 
         /// <inheritdoc/>
-        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
+        public IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt()
+            => GeneratePrompt(_ => true);
 
         /// <inheritdoc/>
         public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector);

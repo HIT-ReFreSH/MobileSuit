@@ -32,8 +32,8 @@ namespace PlasticMetal.MobileSuit.UI.PowerLine
         public object? Tag => null;
 
         /// <inheritdoc/>
-        public string Content => " ⨯";
-
+        public string Content => "x";
+            
         /// <inheritdoc/>
         public ConsoleColor? ForegroundColor => null;
 

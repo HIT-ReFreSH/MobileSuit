@@ -114,8 +114,9 @@ namespace PlasticMetal.MobileSuit
             _hostStatus.ReturnValue = null;
             for (;;)
             {
+                var p = Prompt.GeneratePrompt();
                 if (!IO.IsInputRedirected)
-                    IO.Write(Prompt.GeneratePrompt());
+                    IO.Write(p,OutputType.Prompt);
                 var traceBack = RunCommand(IO.ReadLine());
                 switch (traceBack)
                 {
@@ -284,7 +285,7 @@ namespace PlasticMetal.MobileSuit
         public IHostStatus HostStatus => _hostStatus;
 
         /// <inheritdoc />
-        public HostSettings Settings { get; set; }
+        public HostSettings Settings { get; set; } = new();
 
 
         /// <summary>
@@ -334,9 +335,8 @@ namespace PlasticMetal.MobileSuit
 
         private TraceBack RunBuildInCommand(string[] cmdList)
         {
-            object? r = null;
-            var t = cmdList is null ? TraceBack.InvalidCommand : BicServer.Execute(cmdList, out r);
-            if (t == TraceBack.AllOk && r != null) _returnValue = r;
+            var t = BicServer.Execute(cmdList, out var r);
+            /*if (t == TraceBack.AllOk && r != null) _returnValue = r;*/
 
             if (r is Exception e) Logger.LogException(e);
             Logger.LogTraceBack(t, r as Exception);
@@ -349,13 +349,6 @@ namespace PlasticMetal.MobileSuit
             if (t == TraceBack.AllOk && result != null)
             {
                 _returnValue = result;
-                if (!Settings.HideReturnValue)
-                    IO.WriteLine(IIOHub.CreateContentArray
-                        (
-                            (Lang.ReturnValue + ' ' + '>' + ' ', IO.ColorSetting.PromptColor),
-                            (result.ToString() ?? "", null)
-                        )
-                    );
             }
 
             if (result is Exception e) Logger.LogException(e);

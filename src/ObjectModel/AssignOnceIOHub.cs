@@ -63,10 +63,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <inheritdoc />
-        public PromptGenerator Prompt
+        public IAssignOncePromptGenerator Prompt
         {
             get => (Element ?? IIOHub.GeneralIO).Prompt;
-            set => (Element ?? IIOHub.GeneralIO).Prompt = value;
         }
 
         /// <inheritdoc />
@@ -109,22 +108,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             (Element ?? IIOHub.GeneralIO).Write(content, customColor);
         }
 
-        /// <inheritdoc />
-        public void Write(string content, ConsoleColor frontColor, ConsoleColor backColor)
-        {
-            (Element ?? IIOHub.GeneralIO).Write(content, frontColor, backColor);
-        }
 
         /// <inheritdoc />
         public void Write(string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null)
         {
             (Element ?? IIOHub.GeneralIO).Write(content, type, customColor);
-        }
-
-        /// <inheritdoc />
-        public Task WriteAsync(string content, ConsoleColor frontColor, ConsoleColor backColor)
-        {
-            return (Element ?? IIOHub.GeneralIO).WriteAsync(content, frontColor, backColor);
         }
 
         /// <inheritdoc />
