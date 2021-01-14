@@ -1,21 +1,21 @@
 ﻿#nullable enable
 using System;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.UI
 {
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
-    public partial class IOServer : IIOServer
+    public partial class IOHub : IIOHub
     {
-        private IPromptServer? _prompt;
 
 
         /// <summary>
         ///     Initialize a IOServer.
         /// </summary>
-        public IOServer()
+        public IOHub()
         {
             ColorSetting = IColorSetting.DefaultColorSetting;
             Input = Console.In;
@@ -40,13 +40,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// </summary>
         public IColorSetting ColorSetting { get; set; }
 
+
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        public IPromptServer Prompt
-        {
-            get => _prompt ??= IPromptServer.DefaultPromptServer;
-            set => _prompt = value;
-        }
+        public IAssignOncePromptGenerator Prompt{ get; } = new AssignOncePromptGenerator();
     }
 }

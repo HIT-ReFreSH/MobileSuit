@@ -192,4 +192,10 @@
   <data name="AutoDynamicParameter_Parse__0__not_match_format______" xml:space="preserve">
     <value> not match format</value>
   </data>
+  <data name="PromptGeneratorBuilder_NoRoute" xml:space="preserve">
+    <value>Can't find available DI route for given providers.</value>
+  </data>
+  <data name="LogNotCached" xml:space="preserve">
+    <value>Current Log has no Cache! Make it Cached!</value>
+  </data>
 </root>

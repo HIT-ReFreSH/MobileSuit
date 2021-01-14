@@ -1,4 +1,4 @@
-﻿using PlasticMetal.MobileSuit.Core.Logging;
+﻿using PlasticMetal.MobileSuit.Logging;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {

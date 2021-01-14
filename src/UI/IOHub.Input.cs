@@ -3,11 +3,21 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.ObjectModel
+namespace PlasticMetal.MobileSuit.UI
 {
-    partial class IOServer
+    partial class IOHub
     {
+        private class IOHubInputHelper : IInputHelper
+        {
+            public string? Expression { get; set; }
+            public string? DefaultInput { get; set; }
+        }
+        private readonly IOHubInputHelper _inputHelper = new();
+        /// <inheritdoc/>
+        public IInputHelper InputHelper => _inputHelper;
+
         /// <summary>
         ///     Input stream (default stdin)
         /// </summary>
@@ -73,18 +83,19 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public string? ReadLine(string? prompt = null, string? defaultValue = null,
             bool newLine = false, ConsoleColor? customPromptColor = null)
         {
-            if (!string.IsNullOrEmpty(prompt))
+            if (prompt != null)
             {
-                if (string.IsNullOrEmpty(defaultValue))
-                    Prompt.Update("", prompt, TraceBack.Prompt);
-                else
-                    Prompt.Update("", prompt, TraceBack.Prompt,
-                        $"{Lang.Default}: {defaultValue}");
-                Prompt.Print();
+                _inputHelper.Expression = prompt;
+                _inputHelper.DefaultInput = defaultValue;
+                Write(Prompt.GeneratePrompt(
+                    p => ReferenceEquals(p.Tag, this)), OutputType.Prompt);
 
-                if (newLine)
-                    WriteLine();
+                _inputHelper.Expression = _inputHelper.DefaultInput = null;
             }
+
+
+            if (newLine)
+                WriteLine();
 
             var r = Input.ReadLine();
             if (r == null) return null;
@@ -147,18 +158,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public async Task<string?> ReadLineAsync(string? prompt = null, string? defaultValue = null,
             bool newLine = false, ConsoleColor? customPromptColor = null)
         {
-            if (!string.IsNullOrEmpty(prompt))
-            {
-                if (string.IsNullOrEmpty(defaultValue))
-                    Prompt.Update("", prompt, TraceBack.Prompt);
-                else
-                    Prompt.Update("", prompt, TraceBack.Prompt,
-                        $"{Lang.Default}: {defaultValue}");
-                Prompt.Print();
+            _inputHelper.Expression = prompt;
+            _inputHelper.DefaultInput = defaultValue;
+            await WriteAsync(Prompt.GeneratePrompt(
+                p => ReferenceEquals(p.Tag, this)),OutputType.Prompt);
 
-                if (newLine)
-                    await WriteLineAsync().ConfigureAwait(false);
-            }
+            _inputHelper.Expression = _inputHelper.DefaultInput = null;
+
+            if (newLine)
+                await WriteLineAsync();
 
             var r = await Input.ReadLineAsync().ConfigureAwait(false);
             if (r == null) return null;

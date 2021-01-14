@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace PlasticMetal.MobileSuit.Core.Logging
+namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     A memory-cached Logger.

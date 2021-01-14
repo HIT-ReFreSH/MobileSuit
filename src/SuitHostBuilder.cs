@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.UI;
+using PlasticMetal.MobileSuit.UI.PowerLine;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -13,6 +15,7 @@ namespace PlasticMetal.MobileSuit
     {
         internal SuitHostBuilder()
         {
+            this.UseBasicPrompt();
         }
 
         /// <summary>
@@ -53,12 +56,12 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     IOServer of host
         /// </summary>
-        protected internal Type IOServer { get; set; } = typeof(IOServer);
+        protected internal Type IOServer { get; set; } = typeof(IOHub);
 
         /// <summary>
         ///     PromptServer of host
         /// </summary>
-        protected internal Type PromptServer { get; set; } = typeof(PromptServer);
+        protected internal PromptGeneratorBuilder PromptBuilder { get; set; } = new();
 
         /// <summary>
         ///     Use given color setting for host
@@ -134,7 +137,7 @@ namespace PlasticMetal.MobileSuit
         public IMobileSuitHost Build(object instance)
         {
             var io =
-                IOServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IIOServer
+                IOServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IIOHub
                 ?? Suit.GeneralIO;
             if (Input != null) io.Input = Input;
 
@@ -142,12 +145,12 @@ namespace PlasticMetal.MobileSuit
             if (ColorSetting != null) io.ColorSetting = ColorSetting;
             if (Error != null) io.ErrorStream = Error;
             Logger ??= ISuitLogger.CreateEmpty();
-            var prompt =
-                PromptServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IPromptServer
-                ?? IPromptServer.DefaultPromptServer;
-            prompt.IO.Assign(io);
-            io.Prompt = prompt;
-            return new SuitHost(instance, Logger, io, BuildInCommandServer, prompt);
+
+            var host = new SuitHost(instance, Logger, io, BuildInCommandServer);
+            var prompt = PromptBuilder.Build(host, io, instance);
+            host.Prompt.Assign(prompt);
+            io.Prompt.Assign(prompt);
+            return host;
         }
     }
 
@@ -157,27 +160,68 @@ namespace PlasticMetal.MobileSuit
     public static class SuitHostBuilderExtensions
     {
         /// <summary>
-        ///     Use given PromptServer for the Host
+        ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
+        /// <param name="options">Options for the generator.</param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder)
-            where T : IPromptServer
+        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder,
+            Action<PromptGeneratorBuilder>? options = null)
+            where T : IPromptGenerator
         {
-            builder ??= new SuitHostBuilder();
-            builder.PromptServer = typeof(T);
+            builder.PromptBuilder = new PromptGeneratorBuilder { GeneratorType = typeof(T) };
+            options?.Invoke(builder.PromptBuilder);
+            return builder;
+        }
+        /// <summary>
+        ///     Use BasicPromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="options">Options for the generator.</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder UseBasicPrompt(this SuitHostBuilder builder,
+            Action<PromptGeneratorBuilder>? options = null)
+        {
+            builder.PromptBuilder.GeneratorType = typeof(BasicPromptGenerator);
+            builder.PromptBuilder.UseInformation();
+            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputExpressionPromptProvider>();
+            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputDefaultValuePromptProvider>();
+            options?.Invoke(builder.PromptBuilder);
+            builder.PromptBuilder.UseTraceBack();
+            builder.PromptBuilder.UseReturnValue();
             return builder;
         }
 
         /// <summary>
-        ///     Use given IOServer for the Host
+        ///     Use PowerLinePromptGenerator for the Host. 
         /// </summary>
         /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">IOServer</typeparam>
+        /// <param name="prefixCross">Use prefix cross or suffix label for TraceBack.</param>
+        /// <param name="options">Options for the generator.</param>
         /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder, bool prefixCross=true,
+            Action<PromptGeneratorBuilder>? options = null)
+        {
+            builder.PromptBuilder = new();
+            builder.PromptBuilder.GeneratorType = typeof(PowerLineGenerator);
+            if(prefixCross) builder.PromptBuilder.UseCross();
+            builder.PromptBuilder.UseInformation();
+            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputExpressionPromptProvider>();
+            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputDefaultValuePromptProvider>();
+            options?.Invoke(builder.PromptBuilder);
+            if (!prefixCross) builder.PromptBuilder.UseTraceBack();
+            builder.PromptBuilder.UseReturnValue();
+            return builder;
+        }
+        /// <summary>
+        /// Use given IOHub for the Host.
+        /// </summary>
+        /// <param name="builder">Builder of the Host</param>
+        /// <typeparam name="T">Type of IOHub</typeparam>
+        /// <returns>Builder of the Host</returns>
         public static SuitHostBuilder UseIO<T>(this SuitHostBuilder builder)
-            where T : IIOServer
+            where T : IIOHub
         {
             builder ??= new SuitHostBuilder();
             builder.IOServer = typeof(T);
@@ -210,8 +254,81 @@ namespace PlasticMetal.MobileSuit
         {
             return builder?.Build(typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null) ?? new object())
                    ?? new SuitHost(new object(), ISuitLogger.CreateEmpty(), Suit.GeneralIO,
-                       typeof(BuildInCommandServer),
-                       IPromptServer.DefaultPromptServer);
+                       typeof(BuildInCommandServer));
         }
+    }
+    /// <summary>
+    ///     Extensions for PromptGeneratorBuilder
+    /// </summary>
+    public static class PromptGeneratorBuilderExtensions
+    {
+        /// <summary>
+        ///     Add given PromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <typeparam name="T">PromptProvider</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder AddProvider<T>(this PromptGeneratorBuilder builder)
+            where T : IPromptProvider
+        {
+            builder.AddProvider(typeof(T));
+            return builder;
+        }
+        /// <summary>
+        ///     Add TraceBackPromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder UseTraceBack(this PromptGeneratorBuilder builder)
+        {
+            builder.AddProvider<TraceBackPromptProvider>();
+            return builder;
+        }
+        /// <summary>
+        ///     Add CrossTraceBackProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder UseCross(this PromptGeneratorBuilder builder)
+        {
+            builder.AddProvider<CrossTraceBackPromptProvider>();
+            return builder;
+        }
+        /// <summary>
+        ///     Add InformationPromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder UseInformation(this PromptGeneratorBuilder builder)
+        {
+            builder.AddProvider<InformationPromptProvider>();
+            return builder;
+        }
+        /// <summary>
+        ///     Add ReturnValuePromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder UseReturnValue(this PromptGeneratorBuilder builder)
+        {
+            builder.AddProvider<ReturnValuePromptProvider>();
+            return builder;
+        }
+        /// <summary>
+        ///     Add given PromptProvider for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="selector">Select the provider from source.</param>
+        /// <typeparam name="TProvider">PromptProvider</typeparam>
+        /// <typeparam name="TSource">Source for the provider.</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static PromptGeneratorBuilder AddProvider<TProvider,TSource>(this PromptGeneratorBuilder builder,
+            Func<TSource,TProvider> selector)
+            where TProvider : IPromptProvider
+        {
+            builder.AddProvider(typeof(TProvider),selector);
+            return builder;
+        }
+        
     }
 }

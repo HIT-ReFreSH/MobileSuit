@@ -1,4 +1,4 @@
-﻿using PlasticMetal.MobileSuit.Core.Logging;
+﻿using PlasticMetal.MobileSuit.Logging;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -16,7 +16,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
 
         /// <inheritdoc />
         [SuitIgnore]
-        public IAssignOnceIOServer IO { get; } = new AssignOnceIOServer();
+        public IAssignOnceIOHub IO { get; } = new AssignOnceIOHub();
 
         /// <inheritdoc />
         [SuitIgnore]

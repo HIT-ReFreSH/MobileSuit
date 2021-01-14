@@ -16,10 +16,10 @@
     <PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>2.4</Version>
+    <Version>2.5</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
@@ -57,7 +57,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>BuildInCommandInformations.resx</DependentUpon>
     </Compile>
-    <Compile Update="ObjectModel\LogRes.Designer.cs">
+    <Compile Update="Logging\LogRes.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>LogRes.resx</DependentUpon>
@@ -85,7 +85,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="ObjectModel\LogRes.resx">
+    <EmbeddedResource Update="Logging\LogRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>

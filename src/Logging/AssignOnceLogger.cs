@@ -1,4 +1,6 @@
-﻿namespace PlasticMetal.MobileSuit.Core.Logging
+﻿using PlasticMetal.MobileSuit.Core;
+
+namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     A Logger can be assigned once

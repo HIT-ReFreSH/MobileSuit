@@ -187,6 +187,15 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
+        ///   查找类似 Current Log has no Cache! Make it Cached! 的本地化字符串。
+        /// </summary>
+        internal static string LogNotCached {
+            get {
+                return ResourceManager.GetString("LogNotCached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Type &apos; 的本地化字符串。
         /// </summary>
         internal static string LsHelp1 {
@@ -246,6 +255,15 @@ namespace PlasticMetal.MobileSuit {
         internal static string PoweredBy {
             get {
                 return ResourceManager.GetString("PoweredBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Can&apos;t find available DI route for given providers. 的本地化字符串。
+        /// </summary>
+        internal static string PromptGeneratorBuilder_NoRoute {
+            get {
+                return ResourceManager.GetString("PromptGeneratorBuilder_NoRoute", resourceCulture);
             }
         }
         

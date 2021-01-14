@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Logging;
+using PlasticMetal.MobileSuit.Logging;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -17,6 +17,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// </summary>
     public class AssignOnceHost : AssignOnce<IMobileSuitHost>, IAssignOnceHost
     {
+        private class DefaultHostStatus : IHostStatus
+        {
+            public TraceBack TraceBack => TraceBack.AllOk;
+            public object? ReturnValue => null;
+        }
+        /// <inheritdoc />
+        public IHostStatus HostStatus => Element?.HostStatus ?? new DefaultHostStatus();
+
         /// <inheritdoc />
         public HostSettings Settings
         {
@@ -27,11 +35,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
         }
 
-        /// <inheritdoc />
-        public int Run(string prompt)
-        {
-            return Element?.Run(prompt) ?? -1;
-        }
 
         /// <inheritdoc />
         public int Run()
@@ -44,7 +47,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             string? scriptName = null)
         {
             return Element?.RunScriptsAsync(scripts, withPrompt, scriptName) ??
-                   Task.Run(() => { return TraceBack.ObjectNotFound; });
+                   Task.Run(() => TraceBack.ObjectNotFound);
         }
 
         /// <inheritdoc />
@@ -54,9 +57,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <inheritdoc />
-        public TraceBack RunCommand(string? command, string prompt = "")
+        public TraceBack RunCommand(string? command)
         {
-            return Element?.RunCommand(command, prompt) ?? TraceBack.ObjectNotFound;
+            return Element?.RunCommand(command) ?? TraceBack.ObjectNotFound;
         }
 
         /// <inheritdoc />
@@ -70,6 +73,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public ISuitLogger Logger => Element?.Logger ?? ISuitLogger.CreateEmpty();
 
         /// <inheritdoc />
-        public IIOServer IO => Element?.IO ?? IIOServer.GeneralIO;
+        public IIOHub IO => Element?.IO ?? IIOHub.GeneralIO;
     }
 }

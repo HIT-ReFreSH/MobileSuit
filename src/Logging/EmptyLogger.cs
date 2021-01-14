@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.Core.Logging
+﻿namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     Empty Logger for MobileSuit, do nothing when called.

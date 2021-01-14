@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlasticMetal.MobileSuit.ObjectModel {
+namespace PlasticMetal.MobileSuit.Logging {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PlasticMetal.MobileSuit.ObjectModel.LogRes", typeof(LogRes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PlasticMetal.MobileSuit.Logging.LogRes", typeof(LogRes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

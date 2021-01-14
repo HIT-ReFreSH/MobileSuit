@@ -192,4 +192,10 @@
   <data name="AutoDynamicParameter_Parse__0__length_not_match" xml:space="preserve">
     <value>长度不匹配</value>
   </data>
+  <data name="PromptGeneratorBuilder_NoRoute" xml:space="preserve">
+    <value>无法找到给定提示符提供者的依赖注入路径。</value>
+  </data>
+  <data name="LogNotCached" xml:space="preserve">
+    <value>当前的日志没有缓存。请使用缓存日志。</value>
+  </data>
 </root>

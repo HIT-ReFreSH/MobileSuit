@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.UI;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -14,7 +15,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>
-        public static IOServer GeneralIO { get; set; } = new IOServer();
+        public static IOHub GeneralIO { get; set; } = new IOHub();
 
         /// <summary>
         ///     Get a builder to create host
@@ -32,7 +33,7 @@ namespace PlasticMetal.MobileSuit
         /// <returns>packaged ContentArray</returns>
         public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents)
         {
-            return IIOServer.CreateContentArray(contents);
+            return IIOHub.CreateContentArray(contents);
         }
 
 
@@ -44,7 +45,7 @@ namespace PlasticMetal.MobileSuit
         public static IEnumerable<(string, ConsoleColor?, ConsoleColor?)> CreateContentArray(
             params (string, ConsoleColor?, ConsoleColor?)[] contents)
         {
-            return IIOServer.CreateContentArray(contents);
+            return IIOHub.CreateContentArray(contents);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="owner">Optional. Owner of the Assembly, You may add 'All right reserved' manually.</param>
         /// <param name="site">Optional. Site of the Assembly</param>
         /// <param name="showLsHelp">Optional. Show Ls usage help or not</param>
-        public static void PrintAssemblyInformation(this IIOServer io,
+        public static void PrintAssemblyInformation(this IIOHub io,
             string assemblyName, Version? assemblyVersion,
             bool showMobileSuitPowered = false,
             string? owner = null,
@@ -115,7 +116,7 @@ namespace PlasticMetal.MobileSuit
         ///     Print powered by MobileSuit Information.
         /// </summary>
         /// <param name="io">IOServer to print at.</param>
-        public static void PrintMobileSuitInformation(this IIOServer io)
+        public static void PrintMobileSuitInformation(this IIOHub io)
         {
             if (io == null) return;
             io.WriteLine(CreateContentArray(

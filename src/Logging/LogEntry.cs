@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.Core.Logging
+namespace PlasticMetal.MobileSuit.Logging
 {
     /// <summary>
     ///     A pipeline for LogEntry.
