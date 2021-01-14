@@ -124,24 +124,24 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.%23ctor(System.Object%2CPlasticMetal.MobileSuit.Core.Logging.ISuitLogger%2CPlasticMetal.MobileSuit.Core.IIOServer%2CSystem.Type%2CPlasticMetal.MobileSuit.Core.IPromptServer)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOHub_System_Type_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.%23ctor(System.Object%2CPlasticMetal.MobileSuit.Logging.ISuitLogger%2CPlasticMetal.MobileSuit.Core.IIOHub%2CSystem.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L32" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L39" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost__ctor_" data-uid="PlasticMetal.MobileSuit.SuitHost.#ctor*"></a>
   
-  <h4 id="PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_" data-uid="PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Core.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.IIOServer,System.Type,PlasticMetal.MobileSuit.Core.IPromptServer)"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_" class="expander" data-toggle="collapse">SuitHost(Object, ISuitLogger, IIOServer, Type, IPromptServer)</a></h4>
+  <h4 id="PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOHub_System_Type_" data-uid="PlasticMetal.MobileSuit.SuitHost.#ctor(System.Object,PlasticMetal.MobileSuit.Logging.ISuitLogger,PlasticMetal.MobileSuit.Core.IIOHub,System.Type)"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOHub_System_Type_" class="expander" data-toggle="collapse">SuitHost(Object, ISuitLogger, IIOHub, Type)</a></h4>
   
-  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Core_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOServer_System_Type_PlasticMetal_MobileSuit_Core_IPromptServer_" class="collapse in">
+  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost__ctor_System_Object_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_Core_IIOHub_System_Type_" class="collapse in">
   <div class="markdown level1 summary"><p>Initialize a SuitHost with instance, logger, io, bic-server and prompt-server</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SuitHost(object instance, ISuitLogger logger, IIOServer io, Type buildInCommandServer, IPromptServer prompt)</code></pre>
+    <pre><code class="lang-csharp hljs">public SuitHost(object instance, ISuitLogger logger, IIOHub io, Type buildInCommandServer)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -155,14 +155,14 @@
     </tr>
     <tr>
       <td>
-        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html">ISuitLogger</a></span>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html">ISuitLogger</a></span>
         <span class="parametername">logger</span>
         <p>
       </td>
     </tr>
     <tr>
       <td>
-        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Core.IIOServer.html">IIOServer</a></span>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Core.IIOHub.html">IIOHub</a></span>
         <span class="parametername">io</span>
         <p>
       </td>
@@ -171,13 +171,6 @@
       <td>
         <span class="pull-right"><span class="xref">System.Type</span></span>
         <span class="parametername">buildInCommandServer</span>
-        <p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Core.IPromptServer.html">IPromptServer</a></span>
-        <span class="parametername">prompt</span>
         <p>
       </td>
     </tr>
@@ -202,7 +195,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Assembly.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Assembly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L130" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L76" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Assembly_" data-uid="PlasticMetal.MobileSuit.SuitHost.Assembly*"></a>
@@ -246,7 +239,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_BicServer.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.BicServer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L145" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L91" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_BicServer_" data-uid="PlasticMetal.MobileSuit.SuitHost.BicServer*"></a>
@@ -290,7 +283,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Current.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Current%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L140" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L86" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Current_" data-uid="PlasticMetal.MobileSuit.SuitHost.Current*"></a>
@@ -331,10 +324,56 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_HostStatus.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.HostStatus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L285" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_SuitHost_HostStatus_" data-uid="PlasticMetal.MobileSuit.SuitHost.HostStatus*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_SuitHost_HostStatus" data-uid="PlasticMetal.MobileSuit.SuitHost.HostStatus"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost_HostStatus" class="expander" data-toggle="collapse">HostStatus</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost_HostStatus" class="collapse in">
+  <div class="markdown level1 summary"><p>Providing status of current host.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IHostStatus HostStatus { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <a class="xref" href="PlasticMetal.MobileSuit.IHostStatus.html">IHostStatus</a>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_HostStatus">IMobileSuitHost.HostStatus</a></div>
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_InstanceNameString.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.InstanceNameString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L115" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L61" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_InstanceNameString_" data-uid="PlasticMetal.MobileSuit.SuitHost.InstanceNameString*"></a>
@@ -378,7 +417,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_InstanceNameStringStack.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.InstanceNameStringStack%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L120" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L66" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_InstanceNameStringStack_" data-uid="PlasticMetal.MobileSuit.SuitHost.InstanceNameStringStack*"></a>
@@ -422,7 +461,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_InstanceStack.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.InstanceStack%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L110" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L56" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_InstanceStack_" data-uid="PlasticMetal.MobileSuit.SuitHost.InstanceStack*"></a>
@@ -466,7 +505,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_IO.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.IO%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L161" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L107" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_IO_" data-uid="PlasticMetal.MobileSuit.SuitHost.IO*"></a>
@@ -480,7 +519,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IIOServer IO { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IIOHub IO { get; }</code></pre>
   </div>
   
   
@@ -491,7 +530,7 @@
   <table>
     <tr>
       <td>
-        <a class="xref" href="PlasticMetal.MobileSuit.Core.IIOServer.html">IIOServer</a>
+        <a class="xref" href="PlasticMetal.MobileSuit.Core.IIOHub.html">IIOHub</a>
         <p>
       </td>
     </tr>
@@ -512,7 +551,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Logger.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Logger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L312" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L263" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Logger_" data-uid="PlasticMetal.MobileSuit.SuitHost.Logger*"></a>
@@ -537,7 +576,7 @@
   <table>
     <tr>
       <td>
-        <a class="xref" href="PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html">ISuitLogger</a>
+        <a class="xref" href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html">ISuitLogger</a>
         <p>
       </td>
     </tr>
@@ -558,7 +597,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Prompt.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Prompt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L135" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L81" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Prompt_" data-uid="PlasticMetal.MobileSuit.SuitHost.Prompt*"></a>
@@ -572,7 +611,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IPromptServer Prompt { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public AssignOncePromptGenerator Prompt { get; }</code></pre>
   </div>
   
   
@@ -583,7 +622,7 @@
   <table>
     <tr>
       <td>
-        <a class="xref" href="PlasticMetal.MobileSuit.Core.IPromptServer.html">IPromptServer</a>
+        <a class="xref" href="PlasticMetal.MobileSuit.ObjectModel.AssignOncePromptGenerator.html">AssignOncePromptGenerator</a>
         <p>
       </td>
     </tr>
@@ -602,7 +641,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Settings.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Settings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L339" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L288" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Settings_" data-uid="PlasticMetal.MobileSuit.SuitHost.Settings*"></a>
@@ -627,7 +666,7 @@
   <table>
     <tr>
       <td>
-        <a class="xref" href="PlasticMetal.MobileSuit.HostSettings.html">HostSettings</a>
+        <span class="xref">HostSettings</span>
         <p>
       </td>
     </tr>
@@ -648,7 +687,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_WorkInstance.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.WorkInstance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L150" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L96" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_WorkInstance_" data-uid="PlasticMetal.MobileSuit.SuitHost.WorkInstance*"></a>
@@ -692,7 +731,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_WorkType.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.WorkType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L155" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L101" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_WorkType_" data-uid="PlasticMetal.MobileSuit.SuitHost.WorkType*"></a>
@@ -738,7 +777,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Run.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Run%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L316" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L111" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Run_" data-uid="PlasticMetal.MobileSuit.SuitHost.Run*"></a>
@@ -782,68 +821,10 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Run_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Run(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L165" title="View Source"><i class="fa fa-code"></i></a>
-  </span>
-  
-  <a id="PlasticMetal_MobileSuit_SuitHost_Run_" data-uid="PlasticMetal.MobileSuit.SuitHost.Run*"></a>
-  
-  <h4 id="PlasticMetal_MobileSuit_SuitHost_Run_System_String_" data-uid="PlasticMetal.MobileSuit.SuitHost.Run(System.String)"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost_Run_System_String_" class="expander" data-toggle="collapse">Run(String)</a></h4>
-  
-  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost_Run_System_String_" class="collapse in">
-  <div class="markdown level1 summary"><p>Run a Mobile Suit with Prompt.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Run(string prompt)</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="pull-right"><span class="xref">System.String</span></span>
-        <span class="parametername">prompt</span>
-        <p><p>The prompt.</p>
-</p>
-      </td>
-    </tr>
-  </table>
-  
-  <h5 class="returns">Returns</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="xref">System.Int32</span>
-        <p><p>0, is All ok.</p>
-</p>
-      </td>
-    </tr>
-  </table>
-  
-  
-  
-  
-  
-  
-  <h5 class="implements">Implements</h5>
-      <div><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_Run_System_String_">IMobileSuitHost.Run(String)</a></div>
-  
-  
-  
-  
-  </div>
-  
-  <span class="small pull-right mobile-hide">
-    <span class="divider"> </span>
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_Run_System_String___.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.Run(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L322" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L268" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_Run_" data-uid="PlasticMetal.MobileSuit.SuitHost.Run*"></a>
@@ -897,24 +878,24 @@
   
   <span class="small pull-right mobile-hide">
     <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.RunCommand(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.RunCommand(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L272" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L221" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_RunCommand_" data-uid="PlasticMetal.MobileSuit.SuitHost.RunCommand*"></a>
   
-  <h4 id="PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_System_String_" data-uid="PlasticMetal.MobileSuit.SuitHost.RunCommand(System.String,System.String)"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_System_String_" class="expander" data-toggle="collapse">RunCommand(String, String)</a></h4>
+  <h4 id="PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_" data-uid="PlasticMetal.MobileSuit.SuitHost.RunCommand(System.String)"><a href="#collapsible-PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_" class="expander" data-toggle="collapse">RunCommand(String)</a></h4>
   
-  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_System_String_" class="collapse in">
-  <div class="markdown level1 summary"><p>Run a command in current host with given prompt</p>
+  <div id="collapsible-PlasticMetal_MobileSuit_SuitHost_RunCommand_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Run a command in current host.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TraceBack RunCommand(string cmd, string prompt = &quot;&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public TraceBack RunCommand(string cmd)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -924,14 +905,6 @@
         <span class="pull-right"><span class="xref">System.String</span></span>
         <span class="parametername">cmd</span>
         <p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="pull-right"><span class="xref">System.String</span></span>
-        <span class="parametername">prompt</span>
-        <p><p>the prompt</p>
-</p>
       </td>
     </tr>
   </table>
@@ -953,7 +926,7 @@
   
   
   <h5 class="implements">Implements</h5>
-      <div><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_RunCommand_System_String_System_String_">IMobileSuitHost.RunCommand(String, String)</a></div>
+      <div><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_RunCommand_System_String_">IMobileSuitHost.RunCommand(String)</a></div>
   
   
   
@@ -965,7 +938,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_RunScripts_System_Collections_Generic_IEnumerable_System_String__System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.RunScripts(System.Collections.Generic.IEnumerable%7BSystem.String%7D%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L200" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L149" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_RunScripts_" data-uid="PlasticMetal.MobileSuit.SuitHost.RunScripts*"></a>
@@ -1039,7 +1012,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_RunScriptsAsync_System_Collections_Generic_IAsyncEnumerable_System_String__System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.RunScriptsAsync(System.Collections.Generic.IAsyncEnumerable%7BSystem.String%7D%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L235" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L184" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_RunScriptsAsync_" data-uid="PlasticMetal.MobileSuit.SuitHost.RunScriptsAsync*"></a>
@@ -1113,7 +1086,7 @@
     <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost_WorkInstanceInit.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost.WorkInstanceInit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L345" title="View Source"><i class="fa fa-code"></i></a>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L294" title="View Source"><i class="fa fa-code"></i></a>
   </span>
   
   <a id="PlasticMetal_MobileSuit_SuitHost_WorkInstanceInit_" data-uid="PlasticMetal.MobileSuit.SuitHost.WorkInstanceInit*"></a>
@@ -1148,7 +1121,7 @@
           </div>
           <div class="contribution-panel mobile-hide">
               <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_SuitHost.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.SuitHost%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L20" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/SuitHost.cs/#L21" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">

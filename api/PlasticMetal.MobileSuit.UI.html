@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PlasticMetal.MobileSuit.ObjectModel.Future
+    <title>Namespace PlasticMetal.MobileSuit.UI
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PlasticMetal.MobileSuit.ObjectModel.Future
+    <meta name="title" content="Namespace PlasticMetal.MobileSuit.UI
    ">
     <meta name="generator" content="docfx 2.56.6.0">
     
@@ -68,8 +68,8 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.ObjectModel.Future">
-  <h1 id="PlasticMetal_MobileSuit_ObjectModel_Future" data-uid="PlasticMetal.MobileSuit.ObjectModel.Future">Namespace PlasticMetal.MobileSuit.ObjectModel.Future
+            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.UI">
+  <h1 id="PlasticMetal_MobileSuit_UI" data-uid="PlasticMetal.MobileSuit.UI">Namespace PlasticMetal.MobileSuit.UI
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
@@ -79,8 +79,92 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html">PowerLineThemedPromptServer</a></p>
-          <p><p>a power line themed prompt server for mobile suit</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.html">BasicPromptGenerator</a></p>
+          <p><p>A basic prompt builder for Mobile Suit.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.InputDefaultValuePromptProvider.html">BasicPromptGenerator.InputDefaultValuePromptProvider</a></p>
+          <p><p>PromptProvider for input DefaultValue.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.InputExpressionPromptProvider.html">BasicPromptGenerator.InputExpressionPromptProvider</a></p>
+          <p><p>PromptProvider for input Expression.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.InformationPromptProvider.html">InformationPromptProvider</a></p>
+          <p><p>PromptProvider for Instance information.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.InputDefaultValuePromptProviderBase.html">InputDefaultValuePromptProviderBase</a></p>
+          <p><p>PromptProvider for input DefaultValue.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.InputExpressionPromptProviderBase.html">InputExpressionPromptProviderBase</a></p>
+          <p><p>PromptProvider for input Expression.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.IOHub.html">IOHub</a></p>
+          <p><p>A entity, which serves the input/output of a mobile suit.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.PromptGenerator.html">PromptGenerator</a></p>
+          <p><p>represents a server provides prompt output.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.PromptGeneratorBuilder.html">PromptGeneratorBuilder</a></p>
+          <p><p>A builder to build prompt generator.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.ReturnValuePromptProvider.html">ReturnValuePromptProvider</a></p>
+          <p><p>Providing Return value information to prompt.</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="interfaces">Interfaces
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.IPromptGenerator.html">IPromptGenerator</a></p>
+          <p><p>represents a generator provides prompt output.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.UI.IPromptProvider.html">IPromptProvider</a></p>
+          <p><p>Objects that provides information to display prompt.
+The objects will be initialized with Dependency Injection.
+The following types can be Injected: IIOHub, IMobileSuitHost and target <a>SuitObject</a>s.
+They must have exactly one public Constructor.</p>
 </p>
         </td>
       </tr>

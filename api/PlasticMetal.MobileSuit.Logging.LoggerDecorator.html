@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class LoggerDecorator
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class LoggerDecorator
+   ">
+    <meta name="generator" content="docfx 2.56.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator">
+  <h1 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator">Class LoggerDecorator
+  </h1>
+  <div class="markdown level0 summary"><p>Decorator Pattern for <code>ISuitLogger</code>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">LoggerDecorator</span></div>
+  </div>
+  
+      <div class="level2"><a class="xref" href="PlasticMetal.MobileSuit.Logging.CachedLogger.html">CachedLogger</a></div>
+  
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  
+  <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.Logging.html">PlasticMetal.MobileSuit.Logging</a></h6>
+  <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
+  
+  <h5 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class LoggerDecorator : ISuitLogger, IDisposable</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator__ctor_PlasticMetal_MobileSuit_Logging_ISuitLogger_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator.%23ctor(PlasticMetal.MobileSuit.Logging.ISuitLogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L12" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Logging_LoggerDecorator__ctor_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.#ctor*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator__ctor_PlasticMetal_MobileSuit_Logging_ISuitLogger_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.#ctor(PlasticMetal.MobileSuit.Logging.ISuitLogger)"><a href="#collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator__ctor_PlasticMetal_MobileSuit_Logging_ISuitLogger_" class="expander" data-toggle="collapse">LoggerDecorator(ISuitLogger)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator__ctor_PlasticMetal_MobileSuit_Logging_ISuitLogger_" class="collapse in">
+  <div class="markdown level1 summary"><p>Initialize a logger decorator with decorated Logger.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected LoggerDecorator(ISuitLogger logger)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html">ISuitLogger</a></span>
+        <span class="parametername">logger</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator_Address.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator.Address%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L32" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Address_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Address*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Address" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Address"><a href="#collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Address" class="expander" data-toggle="collapse">Address</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Address" class="collapse in">
+  <div class="markdown level1 summary"><p>Where the logs are at.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Address { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Logging_ISuitLogger_Address">ISuitLogger.Address</a></div>
+  
+  
+  
+  
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator_Append_PlasticMetal_MobileSuit_Logging_LogEntry__.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator.Append(PlasticMetal.MobileSuit.Logging.LogEntry%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L26" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Append_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Append*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Append_PlasticMetal_MobileSuit_Logging_LogEntry__" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Append(PlasticMetal.MobileSuit.Logging.LogEntry@)"><a href="#collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Append_PlasticMetal_MobileSuit_Logging_LogEntry__" class="expander" data-toggle="collapse">Append(LogEntry)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Append_PlasticMetal_MobileSuit_Logging_LogEntry__" class="collapse in">
+  <div class="markdown level1 summary"><p>Write log content described by the LogEntry to Logger.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(in LogEntry content)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Logging.LogEntry.html">LogEntry</a></span>
+        <span class="parametername">content</span>
+        <p><p>content debug info</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html#PlasticMetal_MobileSuit_Logging_ISuitLogger_Append_PlasticMetal_MobileSuit_Logging_LogEntry__">ISuitLogger.Append(LogEntry)</a></div>
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator_Decorate_PlasticMetal_MobileSuit_Logging_LogEntry__.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator.Decorate(PlasticMetal.MobileSuit.Logging.LogEntry%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L39" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Decorate_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Decorate*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Decorate_PlasticMetal_MobileSuit_Logging_LogEntry__" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Decorate(PlasticMetal.MobileSuit.Logging.LogEntry@)"><a href="#collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Decorate_PlasticMetal_MobileSuit_Logging_LogEntry__" class="expander" data-toggle="collapse">Decorate(LogEntry)</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Decorate_PlasticMetal_MobileSuit_Logging_LogEntry__" class="collapse in">
+  <div class="markdown level1 summary"><p>The decorator method, performs on each LogEntry passed to <code>Append</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract LogEntry Decorate(in LogEntry entry)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="PlasticMetal.MobileSuit.Logging.LogEntry.html">LogEntry</a></span>
+        <span class="parametername">entry</span>
+        <p><p>Input LogEntry passed to <code>Append</code>.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <a class="xref" href="PlasticMetal.MobileSuit.Logging.LogEntry.html">LogEntry</a>
+        <p><p>Output LogEntry passing to <code>Append</code> of decorated Logger.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator_Dispose.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L20" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Dispose_" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Dispose*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_Logging_LoggerDecorator_Dispose" data-uid="PlasticMetal.MobileSuit.Logging.LoggerDecorator.Dispose"><a href="#collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Dispose" class="expander" data-toggle="collapse">Dispose()</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_Logging_LoggerDecorator_Dispose" class="collapse in">
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h5 class="implements">Implements</h5>
+      <div><span class="xref">System.IDisposable.Dispose()</span></div>
+  
+  
+  
+  
+  </div>
+  
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_AsCached_PlasticMetal_MobileSuit_Logging_ISuitLogger_">LoggerExtensions.AsCached(ISuitLogger)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_DecorateWith_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_Logging_LogEntryPipeline_">LoggerExtensions.DecorateWith(ISuitLogger, LogEntryPipeline)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogDebug_PlasticMetal_MobileSuit_Logging_ISuitLogger_System_String_System_String_">LoggerExtensions.LogDebug(ISuitLogger, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogInformation_PlasticMetal_MobileSuit_Logging_ISuitLogger_System_String_">LoggerExtensions.LogInformation(ISuitLogger, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogCommand_PlasticMetal_MobileSuit_Logging_ISuitLogger_System_String_">LoggerExtensions.LogCommand(ISuitLogger, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogTraceBack_PlasticMetal_MobileSuit_Logging_ISuitLogger_PlasticMetal_MobileSuit_TraceBack_System_Object_">LoggerExtensions.LogTraceBack(ISuitLogger, TraceBack, Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogException_PlasticMetal_MobileSuit_Logging_ISuitLogger_System_String_">LoggerExtensions.LogException(ISuitLogger, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html#PlasticMetal_MobileSuit_LoggerExtensions_LogException_PlasticMetal_MobileSuit_Logging_ISuitLogger_System_Exception_">LoggerExtensions.LogException(ISuitLogger, Exception)</a>
+  </div>
+  
+</article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_Logging_LoggerDecorator.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.Logging.LoggerDecorator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/Logging/LoggerDecorator.cs/#L6" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

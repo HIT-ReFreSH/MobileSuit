@@ -18,7 +18,7 @@
                     
                     <ul class="nav level2">
                           <li>
-                              <a href="PlasticMetal.MobileSuit.HostSettings.html" name="" title="HostSettings">HostSettings</a>
+                              <a href="PlasticMetal.MobileSuit.IHostStatus.html" name="" title="IHostStatus">IHostStatus</a>
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.IMobileSuitHost.html" name="" title="IMobileSuitHost">IMobileSuitHost</a>
@@ -28,6 +28,9 @@
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.OutputType.html" name="" title="OutputType">OutputType</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.PromptGeneratorBuilderExtensions.html" name="" title="PromptGeneratorBuilderExtensions">PromptGeneratorBuilderExtensions</a>
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.Suit.html" name="" title="Suit">Suit</a>
@@ -88,10 +91,10 @@
                               <a href="PlasticMetal.MobileSuit.Core.IExitInteractive.html" name="" title="IExitInteractive">IExitInteractive</a>
                           </li>
                           <li>
-                              <a href="PlasticMetal.MobileSuit.Core.IIOServer.html" name="" title="IIOServer">IIOServer</a>
+                              <a href="PlasticMetal.MobileSuit.Core.IInputHelper.html" name="" title="IInputHelper">IInputHelper</a>
                           </li>
                           <li>
-                              <a href="PlasticMetal.MobileSuit.Core.IPromptServer.html" name="" title="IPromptServer">IPromptServer</a>
+                              <a href="PlasticMetal.MobileSuit.Core.IIOHub.html" name="" title="IIOHub">IIOHub</a>
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.Core.IStartingInteractive.html" name="" title="IStartingInteractive">IStartingInteractive</a>
@@ -112,37 +115,6 @@
                 </li>
                 <li>
                     <span class="expand-stub"></span>
-                    <a href="PlasticMetal.MobileSuit.Core.Logging.html" name="" title="PlasticMetal.MobileSuit.Core.Logging">PlasticMetal.MobileSuit.Core.Logging</a>
-                    
-                    <ul class="nav level2">
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.AssignOnceLogger.html" name="" title="AssignOnceLogger">AssignOnceLogger</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.CachedLogger.html" name="" title="CachedLogger">CachedLogger</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.EmptyLogger.html" name="" title="EmptyLogger">EmptyLogger</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.IAssignOnceLogger.html" name="" title="IAssignOnceLogger">IAssignOnceLogger</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.ISuitLogger.html" name="" title="ISuitLogger">ISuitLogger</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.LogEntry.html" name="" title="LogEntry">LogEntry</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.LogEntryPipeline.html" name="" title="LogEntryPipeline">LogEntryPipeline</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.Core.Logging.LoggerDecorator.html" name="" title="LoggerDecorator">LoggerDecorator</a>
-                          </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="expand-stub"></span>
                     <a href="PlasticMetal.MobileSuit.Core.Members.html" name="" title="PlasticMetal.MobileSuit.Core.Members">PlasticMetal.MobileSuit.Core.Members</a>
                     
                     <ul class="nav level2">
@@ -156,6 +128,43 @@
                 </li>
                 <li>
                     <span class="expand-stub"></span>
+                    <a href="PlasticMetal.MobileSuit.Logging.html" name="" title="PlasticMetal.MobileSuit.Logging">PlasticMetal.MobileSuit.Logging</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.AssignOnceLogger.html" name="" title="AssignOnceLogger">AssignOnceLogger</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.CachedLogger.html" name="" title="CachedLogger">CachedLogger</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.EmptyLogger.html" name="" title="EmptyLogger">EmptyLogger</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.IAssignOnceLogger.html" name="" title="IAssignOnceLogger">IAssignOnceLogger</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.ISuitLogger.html" name="" title="ISuitLogger">ISuitLogger</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.LogDriver.html" name="" title="LogDriver">LogDriver</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.LogEntry.html" name="" title="LogEntry">LogEntry</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.LogEntryPipeline.html" name="" title="LogEntryPipeline">LogEntryPipeline</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.LogFilter.html" name="" title="LogFilter">LogFilter</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.Logging.LoggerDecorator.html" name="" title="LoggerDecorator">LoggerDecorator</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
                     <a href="PlasticMetal.MobileSuit.ObjectModel.html" name="" title="PlasticMetal.MobileSuit.ObjectModel">PlasticMetal.MobileSuit.ObjectModel</a>
                     
                     <ul class="nav level2">
@@ -163,7 +172,10 @@
                               <a href="PlasticMetal.MobileSuit.ObjectModel.AssignOnceHost.html" name="" title="AssignOnceHost">AssignOnceHost</a>
                           </li>
                           <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOServer.html" name="" title="AssignOnceIOServer">AssignOnceIOServer</a>
+                              <a href="PlasticMetal.MobileSuit.ObjectModel.AssignOnceIOHub.html" name="" title="AssignOnceIOHub">AssignOnceIOHub</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.ObjectModel.AssignOncePromptGenerator.html" name="" title="AssignOncePromptGenerator">AssignOncePromptGenerator</a>
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.ObjectModel.BuildInCommandServer.html" name="" title="BuildInCommandServer">BuildInCommandServer</a>
@@ -184,7 +196,10 @@
                               <a href="PlasticMetal.MobileSuit.ObjectModel.IAssignOnceHost.html" name="" title="IAssignOnceHost">IAssignOnceHost</a>
                           </li>
                           <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOServer.html" name="" title="IAssignOnceIOServer">IAssignOnceIOServer</a>
+                              <a href="PlasticMetal.MobileSuit.ObjectModel.IAssignOnceIOHub.html" name="" title="IAssignOnceIOHub">IAssignOnceIOHub</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.ObjectModel.IAssignOncePromptGenerator.html" name="" title="IAssignOncePromptGenerator">IAssignOncePromptGenerator</a>
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.ObjectModel.ICommandLineApplication.html" name="" title="ICommandLineApplication">ICommandLineApplication</a>
@@ -208,29 +223,7 @@
                               <a href="PlasticMetal.MobileSuit.ObjectModel.ILogInteractive.html" name="" title="ILogInteractive">ILogInteractive</a>
                           </li>
                           <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.IOServer.html" name="" title="IOServer">IOServer</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.LogDriver.html" name="" title="LogDriver">LogDriver</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.LogFilter.html" name="" title="LogFilter">LogFilter</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.PromptServer.html" name="" title="PromptServer">PromptServer</a>
-                          </li>
-                          <li>
                               <a href="PlasticMetal.MobileSuit.ObjectModel.SuitClient.html" name="" title="SuitClient">SuitClient</a>
-                          </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="expand-stub"></span>
-                    <a href="PlasticMetal.MobileSuit.ObjectModel.Future.html" name="" title="PlasticMetal.MobileSuit.ObjectModel.Future">PlasticMetal.MobileSuit.ObjectModel.Future</a>
-                    
-                    <ul class="nav level2">
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.Future.PowerLineThemedPromptServer.html" name="" title="PowerLineThemedPromptServer">PowerLineThemedPromptServer</a>
                           </li>
                     </ul>
                 </li>
@@ -239,6 +232,9 @@
                     <a href="PlasticMetal.MobileSuit.ObjectModel.Premium.html" name="" title="PlasticMetal.MobileSuit.ObjectModel.Premium">PlasticMetal.MobileSuit.ObjectModel.Premium</a>
                     
                     <ul class="nav level2">
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.ObjectModel.Premium.DiagnosticBuildInCommandServer.html" name="" title="DiagnosticBuildInCommandServer">DiagnosticBuildInCommandServer</a>
+                          </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.ObjectModel.Premium.HostInteractiveClient.html" name="" title="HostInteractiveClient">HostInteractiveClient</a>
                           </li>
@@ -250,9 +246,6 @@
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.ObjectModel.Premium.IDynamicBuildInCommandServer.html" name="" title="IDynamicBuildInCommandServer">IDynamicBuildInCommandServer</a>
-                          </li>
-                          <li>
-                              <a href="PlasticMetal.MobileSuit.ObjectModel.Premium.PremiumBuildInCommandServer.html" name="" title="PremiumBuildInCommandServer">PremiumBuildInCommandServer</a>
                           </li>
                     </ul>
                 </li>
@@ -284,6 +277,71 @@
                           </li>
                           <li>
                               <a href="PlasticMetal.MobileSuit.Parsing.WithDefaultAttribute.html" name="" title="WithDefaultAttribute">WithDefaultAttribute</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="PlasticMetal.MobileSuit.UI.html" name="" title="PlasticMetal.MobileSuit.UI">PlasticMetal.MobileSuit.UI</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.html" name="" title="BasicPromptGenerator">BasicPromptGenerator</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.InputDefaultValuePromptProvider.html" name="" title="BasicPromptGenerator.InputDefaultValuePromptProvider">BasicPromptGenerator.InputDefaultValuePromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.BasicPromptGenerator.InputExpressionPromptProvider.html" name="" title="BasicPromptGenerator.InputExpressionPromptProvider">BasicPromptGenerator.InputExpressionPromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.InformationPromptProvider.html" name="" title="InformationPromptProvider">InformationPromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.InputDefaultValuePromptProviderBase.html" name="" title="InputDefaultValuePromptProviderBase">InputDefaultValuePromptProviderBase</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.InputExpressionPromptProviderBase.html" name="" title="InputExpressionPromptProviderBase">InputExpressionPromptProviderBase</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.IOHub.html" name="" title="IOHub">IOHub</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.IPromptGenerator.html" name="" title="IPromptGenerator">IPromptGenerator</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.IPromptProvider.html" name="" title="IPromptProvider">IPromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PromptGenerator.html" name="" title="PromptGenerator">PromptGenerator</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PromptGeneratorBuilder.html" name="" title="PromptGeneratorBuilder">PromptGeneratorBuilder</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.ReturnValuePromptProvider.html" name="" title="ReturnValuePromptProvider">ReturnValuePromptProvider</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="PlasticMetal.MobileSuit.UI.PowerLine.html" name="" title="PlasticMetal.MobileSuit.UI.PowerLine">PlasticMetal.MobileSuit.UI.PowerLine</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PowerLine.CrossTraceBackPromptProvider.html" name="" title="CrossTraceBackPromptProvider">CrossTraceBackPromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PowerLine.PowerLineGenerator.html" name="" title="PowerLineGenerator">PowerLineGenerator</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PowerLine.PowerLineGenerator.InputDefaultValuePromptProvider.html" name="" title="PowerLineGenerator.InputDefaultValuePromptProvider">PowerLineGenerator.InputDefaultValuePromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PowerLine.PowerLineGenerator.InputExpressionPromptProvider.html" name="" title="PowerLineGenerator.InputExpressionPromptProvider">PowerLineGenerator.InputExpressionPromptProvider</a>
+                          </li>
+                          <li>
+                              <a href="PlasticMetal.MobileSuit.UI.PowerLine.TraceBackPromptProvider.html" name="" title="TraceBackPromptProvider">TraceBackPromptProvider</a>
                           </li>
                     </ul>
                 </li>

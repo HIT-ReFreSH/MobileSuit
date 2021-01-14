@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IPromptProvider
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IPromptProvider
+   ">
+    <meta name="generator" content="docfx 2.56.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider">
+  <h1 id="PlasticMetal_MobileSuit_UI_IPromptProvider" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider">Interface IPromptProvider
+  </h1>
+  <div class="markdown level0 summary"><p>Objects that provides information to display prompt.
+The objects will be initialized with Dependency Injection.
+The following types can be Injected: IIOHub, IMobileSuitHost and target <a>SuitObject</a>s.
+They must have exactly one public Constructor.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  
+  
+  
+  <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.UI.html">PlasticMetal.MobileSuit.UI</a></h6>
+  <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
+  
+  <h5 id="PlasticMetal_MobileSuit_UI_IPromptProvider_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPromptProvider</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h3 id="properties">Properties
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_AsLabel.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.AsLabel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L24" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_AsLabel_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.AsLabel*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_AsLabel" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.AsLabel"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_AsLabel" class="expander" data-toggle="collapse">AsLabel</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_AsLabel" class="collapse in">
+  <div class="markdown level1 summary"><p>Show this part of prompt as a label(<code>$&quot;[{Content}]&quot;</code> for <code>BasicPromptBuilder</code>).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AsLabel { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Boolean</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_BackgroundColor.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.BackgroundColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L40" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_BackgroundColor_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.BackgroundColor*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_BackgroundColor" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.BackgroundColor"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_BackgroundColor" class="expander" data-toggle="collapse">BackgroundColor</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_BackgroundColor" class="collapse in">
+  <div class="markdown level1 summary"><p>BackgroundColor for this part of prompt.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ConsoleColor? BackgroundColor { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Nullable</span>&lt;<span class="xref">System.ConsoleColor</span>&gt;
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_Content.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.Content%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L32" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_Content_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Content*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_Content" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Content"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Content" class="expander" data-toggle="collapse">Content</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Content" class="collapse in">
+  <div class="markdown level1 summary"><p>Content to show in the prompt.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Content { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_Enabled.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.Enabled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L20" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_Enabled_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Enabled*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_Enabled" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Enabled"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Enabled" class="expander" data-toggle="collapse">Enabled</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Enabled" class="collapse in">
+  <div class="markdown level1 summary"><p>Show this part of prompt, or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Enabled { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Boolean</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_ForegroundColor.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.ForegroundColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L36" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_ForegroundColor_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.ForegroundColor*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_ForegroundColor" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.ForegroundColor"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_ForegroundColor" class="expander" data-toggle="collapse">ForegroundColor</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_ForegroundColor" class="collapse in">
+  <div class="markdown level1 summary"><p>ForegroundColor for this part of prompt.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ConsoleColor? ForegroundColor { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Nullable</span>&lt;<span class="xref">System.ConsoleColor</span>&gt;
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider_Tag.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider.Tag%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L28" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="PlasticMetal_MobileSuit_UI_IPromptProvider_Tag_" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Tag*"></a>
+  
+  <h4 id="PlasticMetal_MobileSuit_UI_IPromptProvider_Tag" data-uid="PlasticMetal.MobileSuit.UI.IPromptProvider.Tag"><a href="#collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Tag" class="expander" data-toggle="collapse">Tag</a></h4>
+  
+  <div id="collapsible-PlasticMetal_MobileSuit_UI_IPromptProvider_Tag" class="collapse in">
+  <div class="markdown level1 summary"><p>Attribute information for the PromptProvider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object Tag { get; }</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Object</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
+</article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_UI_IPromptProvider.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.UI.IPromptProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/UI/IPromptProvider.cs/#L15" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
