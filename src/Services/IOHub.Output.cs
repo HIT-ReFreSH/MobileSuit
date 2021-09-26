@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.UI
+namespace PlasticMetal.MobileSuit.Services
 {
     public partial class IOHub
     {
@@ -16,7 +16,7 @@ namespace PlasticMetal.MobileSuit.UI
         /// <summary>
         ///     Disable Time marks which shows in Output-Redirected Environment.
         /// </summary>
-        public bool DisableTimeMark { get; set; }
+        public bool DisableTags { get; set; }
 
         /// <summary>
         ///     Check if this IOServer's error stream is redirected (NOT stderr)
@@ -297,7 +297,7 @@ namespace PlasticMetal.MobileSuit.UI
         private string GetLinePrefix(OutputType type)
         {
             var sb = new StringBuilder();
-            if (DisableTimeMark) return "";
+            if (DisableTags) return "";
             AppendTimeStamp(sb);
             AppendTimeStamp(sb);
             sb.Append(IIOHub.GetLabel(type));

@@ -71,7 +71,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="logger">Logger to write into.</param>
         /// <param name="content">return info (TraceBack)</param>
         /// <param name="returnValue">return info (Return Value)</param>
-        public static void LogTraceBack(this ISuitLogger logger, TraceBack content, object? returnValue = null)
+        public static void LogTraceBack(this ISuitLogger logger, RequestStatus content, object? returnValue = null)
         {
             logger.WriteLog("TraceBack", content + returnValue switch
             {

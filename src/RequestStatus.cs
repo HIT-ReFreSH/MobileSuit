@@ -3,8 +3,12 @@
     /// <summary>
     ///     Status of the last Commandline. Return value type for Built-In-Commands and Host Functions.
     /// </summary>
-    public enum TraceBack
+    public enum RequestStatus
     {
+        /// <summary>
+        /// No Request is input by the user.
+        /// </summary>
+        NoRequest=-1,
         /// <summary>
         ///     The Progress is Exiting
         /// </summary>
@@ -33,6 +37,10 @@
         /// <summary>
         ///     Error in the application
         /// </summary>
-        ApplicationError = -4
+        ApplicationError = -4,
+        /// <summary>
+        ///     Failed to parse an argument of a command.
+        /// </summary>
+        CommandParsingFailure = -5
     }
 }

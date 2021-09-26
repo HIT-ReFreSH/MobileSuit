@@ -2,7 +2,8 @@
 using System;
 using System.Reflection;
 using System.Text;
-using PlasticMetal.MobileSuit.Core.Members;
+using System.Threading;
+using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuit.Core
@@ -12,7 +13,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// </summary>
     public class ContainerMember : Member
     {
-        private SuitObject? _msValue;
+        private SuitShell? _msValue;
 
         /// <summary>
         ///     Initialize an Object's Member with its instance and Property's information.
@@ -49,7 +50,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Member's value as a SuitObject
         /// </summary>
-        public SuitObject SuitValue => _msValue ??= new SuitObject(Value);
+        public SuitShell SuitValue => _msValue ??= new SuitShell(Value);
 
         /// <summary>
         ///     Type of Member's value
@@ -74,13 +75,9 @@ namespace PlasticMetal.MobileSuit.Core
         private Action<object?, object?> SetValue { get; }
         private SuitInfoAttribute? InfoA { get; }
 
-        /// <summary>
-        ///     Execute this object.
-        /// </summary>
-        /// <param name="args">The arguments for execution.</param>
-        /// <param name="returnValue"></param>
-        /// <returns>TraceBack result of this object.</returns>
-        public override TraceBack Execute(string[] args, out object? returnValue)
+        
+        /// <inheritdoc/>
+        public override Task<ExecuteResult> Execute(string[] args, CancellationToken token)
         {
             if (InfoA is null)
             {
@@ -114,7 +111,7 @@ namespace PlasticMetal.MobileSuit.Core
             }
 
             return SuitValue
-                .Execute(args, out returnValue);
+                .Execute(args, token);
         }
     }
 }

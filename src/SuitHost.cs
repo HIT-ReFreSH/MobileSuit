@@ -6,24 +6,46 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.UI;
 using static System.String;
+using Microsoft.Extensions.Logging;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     A entity, which serves the shell functions of a mobile-suit program.
     /// </summary>
-    public class SuitHost : IMobileSuitHost
+    internal class SuitHost : IMobileSuitHost
     {
+        private readonly ISuitAppBuilder _suitApp;
+        private readonly IServiceScope _rootScope;
+        private readonly ISuitExceptionHandler _exceptionHandler;
+        private readonly IHost _delegateHost;
+        private IIOHub IO { get; }
+        private CancellationTokenSource systemInterruption;
+        public SuitHost(IHost delegateHost)
+        {
+            _delegateHost = delegateHost;
+            Services = delegateHost.Services;
+            _suitApp = Services.GetRequiredService<ISuitAppBuilder>();
+            _exceptionHandler = Services.GetService<ISuitExceptionHandler>() ?? ISuitExceptionHandler.Default();
+            _rootScope = Services.CreateScope();
+            IO = _rootScope.ServiceProvider.GetRequiredService<IIOHub>();
+            Logger = Services.GetRequiredService<ILogger<SuitHost>>();
+            systemInterruption = new();
+        }
+
         private class SuitHostStatus : IHostStatus
         {
             /// <inheritdoc></inheritdoc>
-            public TraceBack TraceBack { get; set; } = TraceBack.AllOk;
+            public RequestStatus TraceBack { get; set; } = RequestStatus.AllOk;
             /// <inheritdoc></inheritdoc>
             public object? ReturnValue { get; set; }
         }
@@ -37,15 +59,15 @@ namespace PlasticMetal.MobileSuit
         /// <param name="io"></param>
         /// <param name="buildInCommandServer"></param>
         public SuitHost(object? instance, ISuitLogger logger, IIOHub io, Type buildInCommandServer)
-            //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
+        //: this(configuration ?? ISuitConfiguration.GetDefaultConfiguration())
         {
-            Current = new SuitObject(instance);
+            Current = new SuitShell(instance);
             Assembly = WorkType?.Assembly;
             Logger = logger;
             IO = io;
             Prompt = new();
-            BicServer = new SuitObject(buildInCommandServer?.GetConstructor(new[] {typeof(SuitHost)})
-                ?.Invoke(new object?[] {this}));
+            BicServer = new SuitShell(buildInCommandServer?.GetConstructor(new[] { typeof(SuitHost) })
+                ?.Invoke(new object?[] { this }));
             WorkInstanceInit();
         }
 
@@ -53,7 +75,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Stack of Instance, created in this Mobile Suit.
         /// </summary>
-        public Stack<SuitObject> InstanceStack { get; } = new Stack<SuitObject>();
+        public Stack<SuitShell> InstanceStack { get; } = new Stack<SuitShell>();
 
         /// <summary>
         ///     String of Current Instance's Name.
@@ -83,12 +105,12 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Current Instance's SuitObject Container.
         /// </summary>
-        public SuitObject Current { get; set; }
+        public SuitShell Current { get; set; }
 
         /// <summary>
         ///     Current BicServer's SuitObject Container.
         /// </summary>
-        public SuitObject BicServer { get; set; }
+        public SuitShell BicServer { get; set; }
 
         /// <summary>
         ///     Current Instance
@@ -101,41 +123,37 @@ namespace PlasticMetal.MobileSuit
         public Type? WorkType => Current.Instance?.GetType();
 
 
-        /// <summary>
-        ///     The IOServer for this SuitHost
-        /// </summary>
-        public IIOHub IO { get; }
 
 
         /// <inheritdoc />
         public int Run()
         {
-            _hostStatus.TraceBack = TraceBack.AllOk;
+            _hostStatus.TraceBack = RequestStatus.AllOk;
             _hostStatus.ReturnValue = null;
-            for (;;)
+            for (; ; )
             {
                 var p = Prompt.GeneratePrompt();
                 if (!IO.IsInputRedirected)
-                    IO.Write(p,OutputType.Prompt);
+                    IO.Write(p, OutputType.Prompt);
                 var traceBack = RunCommand(IO.ReadLine());
                 switch (traceBack)
                 {
-                    case TraceBack.OnExit:
+                    case RequestStatus.OnExit:
                         (WorkInstance as IExitInteractive)?.OnExit();
                         return 0;
-                    case TraceBack.AllOk:
+                    case RequestStatus.AllOk:
                         NotifyAllOk();
                         break;
-                    case TraceBack.ObjectNotFound:
+                    case RequestStatus.ObjectNotFound:
                         NotifyError(Lang.ObjectNotFound);
                         break;
-                    case TraceBack.MemberNotFound:
+                    case RequestStatus.MemberNotFound:
                         NotifyError(Lang.MemberNotFound);
                         break;
-                    case TraceBack.InvalidCommand:
+                    case RequestStatus.InvalidCommand:
                         NotifyError(Lang.InvalidCommand);
                         break;
-                    case TraceBack.ApplicationError:
+                    case RequestStatus.ApplicationError:
                         NotifyError(Lang.ApplicationError);
                         break;
                     default:
@@ -146,10 +164,10 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <inheritdoc />
-        public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
+        public RequestStatus RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
         {
             var i = 1;
-            if (scripts == null) return TraceBack.AllOk;
+            if (scripts == null) return RequestStatus.AllOk;
             foreach (var script in scripts)
             {
                 if (script is null) break;
@@ -160,7 +178,7 @@ namespace PlasticMetal.MobileSuit
                         (">", IO.ColorSetting.PromptColor),
                         (script, null)));
                 var traceBack = RunCommand(script);
-                if (traceBack != TraceBack.AllOk)
+                if (traceBack != RequestStatus.AllOk)
                 {
                     if (withPrompt)
                         IO.WriteLine(IIOHub.CreateContentArray(
@@ -176,16 +194,16 @@ namespace PlasticMetal.MobileSuit
                 i++;
             }
 
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
 
         /// <inheritdoc />
-        public async Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
+        public async Task<RequestStatus> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
             string? scriptName = null)
         {
             var i = 1;
-            if (scripts == null) return TraceBack.AllOk;
+            if (scripts == null) return RequestStatus.AllOk;
             await foreach (var script in scripts)
             {
                 if (script is null) break;
@@ -197,7 +215,7 @@ namespace PlasticMetal.MobileSuit
                         (script, null))).ConfigureAwait(false);
 
                 var traceBack = RunCommand(script);
-                if (traceBack != TraceBack.AllOk)
+                if (traceBack != RequestStatus.AllOk)
                 {
                     if (withPrompt)
                         await IO.WriteLineAsync(IIOHub.CreateContentArray(
@@ -214,25 +232,25 @@ namespace PlasticMetal.MobileSuit
                 i++;
             }
 
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
         /// <inheritdoc />
-        public TraceBack RunCommand(string? cmd)
+        public RequestStatus RunCommand(string? cmd)
         {
             if (IsNullOrEmpty(cmd) && IO.IsInputRedirected && Settings.NoExit)
             {
                 IO.ResetInput();
-                return TraceBack.AllOk;
+                return RequestStatus.AllOk;
             }
 
             if (IsNullOrEmpty(cmd) ||
                 new Regex(@"^\s*#").IsMatch(cmd))
-                return TraceBack.AllOk;
+                return RequestStatus.AllOk;
             Logger.LogCommand(cmd);
-            TraceBack traceBack;
+            RequestStatus traceBack;
             var args = IMobileSuitHost.SplitCommandLine(cmd);
-            if (args is null) return TraceBack.InvalidCommand;
+            if (args is null) return RequestStatus.InvalidCommand;
             try
             {
                 if (cmd[0] == '@')
@@ -243,14 +261,14 @@ namespace PlasticMetal.MobileSuit
                 else
                 {
                     traceBack = RunObject(args);
-                    if (traceBack == TraceBack.ObjectNotFound) traceBack = RunBuildInCommand(args);
+                    if (traceBack == RequestStatus.ObjectNotFound) traceBack = RunBuildInCommand(args);
                 }
             }
             catch (Exception e)
             {
                 if (Settings.EnableThrows) throw;
                 IO.ErrorStream.WriteLine(e.ToString());
-                traceBack = TraceBack.InvalidCommand;
+                traceBack = RequestStatus.InvalidCommand;
             }
 
             _hostStatus.ReturnValue = _returnValue;
@@ -260,7 +278,7 @@ namespace PlasticMetal.MobileSuit
         }
 
         /// <inheritdoc />
-        public ISuitLogger Logger { get; }
+        public ILogger Logger { get; }
 
 
 
@@ -271,12 +289,12 @@ namespace PlasticMetal.MobileSuit
 
             if (WorkInstance is ICommandLineApplication)
             {
-                if (args == null || RunObject(args) != TraceBack.AllOk)
+                if (args == null || RunObject(args) != RequestStatus.AllOk)
                     return (WorkInstance as ICommandLineApplication)?.SuitStartUp(args) ?? 0;
                 return 0;
             }
 
-            if (args == null || RunObject(args) != TraceBack.AllOk)
+            if (args == null || RunObject(args) != RequestStatus.AllOk)
                 return -1;
             return 0;
         }
@@ -333,7 +351,7 @@ namespace PlasticMetal.MobileSuit
         }
 
 
-        private TraceBack RunBuildInCommand(string[] cmdList)
+        private RequestStatus RunBuildInCommand(string[] cmdList)
         {
             var t = BicServer.Execute(cmdList, out var r);
             /*if (t == TraceBack.AllOk && r != null) _returnValue = r;*/
@@ -343,10 +361,10 @@ namespace PlasticMetal.MobileSuit
             return t;
         }
 
-        private TraceBack RunObject(string[] args)
+        private RequestStatus RunObject(string[] args)
         {
             var t = Current.Execute(args, out var result);
-            if (t == TraceBack.AllOk && result != null)
+            if (t == RequestStatus.AllOk && result != null)
             {
                 _returnValue = result;
             }
@@ -356,5 +374,60 @@ namespace PlasticMetal.MobileSuit
 
             return t;
         }
+
+        public void Dispose()
+        {
+            _rootScope.Dispose();
+            _delegateHost.Dispose();
+        }
+
+        public async Task StartAsync(CancellationToken cancellationToken = new())
+        {
+            Console.CancelKeyPress += Console_CancelKeyPress;
+            cancellationToken.Register(() =>
+            {
+                systemInterruption.Cancel();
+            });
+            for (; ; )
+            {
+                systemInterruption = new();
+                var requestScope = Services.CreateScope();
+                var context = new SuitContext(requestScope, systemInterruption.Token);
+                foreach (var middleware in _suitApp.Middlewares)
+                {
+                    if (systemInterruption.IsCancellationRequested) break;
+                    try
+                    {
+                        await middleware.InvokeAsync(context);
+                    }
+                    catch (Exception ex)
+                    {
+                        context.Exception = ex;
+                        context.Status = RequestStatus.ApplicationError;
+                        await _exceptionHandler.InvokeAsync(context);
+                        break;
+                    }
+                }
+                if (context.Status == RequestStatus.NoRequest && systemInterruption.IsCancellationRequested)
+                {
+
+                }
+            }
+
+        }
+
+        private void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
+        {
+            e.Cancel = true;
+            systemInterruption.Cancel();
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken = new())
+        {
+            systemInterruption.Cancel();
+            return Task.CompletedTask;
+        }
+
+        public IServiceProvider Services { get; }
     }
 }

@@ -25,7 +25,7 @@ namespace PlasticMetal.MobileSuit.UI.PowerLine
 
         }
         /// <inheritdoc/>
-        public bool Enabled => HostStatus.TraceBack != TraceBack.AllOk;
+        public bool Enabled => HostStatus.TraceBack != RequestStatus.AllOk;
         /// <inheritdoc/>
         public bool AsLabel => false;
         /// <inheritdoc/>

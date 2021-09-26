@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     {
         private class DefaultHostStatus : IHostStatus
         {
-            public TraceBack TraceBack => TraceBack.AllOk;
+            public RequestStatus TraceBack => RequestStatus.AllOk;
             public object? ReturnValue => null;
         }
         /// <inheritdoc />
@@ -43,23 +43,23 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         }
 
         /// <inheritdoc />
-        public Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
+        public Task<RequestStatus> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
             string? scriptName = null)
         {
             return Element?.RunScriptsAsync(scripts, withPrompt, scriptName) ??
-                   Task.Run(() => TraceBack.ObjectNotFound);
+                   Task.Run(() => RequestStatus.ObjectNotFound);
         }
 
         /// <inheritdoc />
-        public TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
+        public RequestStatus RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null)
         {
-            return Element?.RunScripts(scripts, withPrompt, scriptName) ?? TraceBack.ObjectNotFound;
+            return Element?.RunScripts(scripts, withPrompt, scriptName) ?? RequestStatus.ObjectNotFound;
         }
 
         /// <inheritdoc />
-        public TraceBack RunCommand(string? command)
+        public RequestStatus RunCommand(string? command)
         {
-            return Element?.RunCommand(command) ?? TraceBack.ObjectNotFound;
+            return Element?.RunCommand(command) ?? RequestStatus.ObjectNotFound;
         }
 
         /// <inheritdoc />

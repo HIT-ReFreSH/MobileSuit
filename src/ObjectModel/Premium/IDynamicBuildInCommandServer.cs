@@ -12,7 +12,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack CreateObject(string[] args);
+        RequestStatus CreateObject(string[] args);
 
 
         /// <summary>
@@ -20,6 +20,6 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Free(string[] args);
+        RequestStatus Free(string[] args);
     }
 }

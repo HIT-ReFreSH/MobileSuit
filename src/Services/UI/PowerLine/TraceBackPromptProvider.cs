@@ -31,10 +31,10 @@ namespace PlasticMetal.MobileSuit.UI.PowerLine
         /// <inheritdoc/>
         public string Content =>HostStatus.TraceBack switch
         {
-            TraceBack.AllOk => Lang.AllOK,
-            TraceBack.InvalidCommand => Lang.InvalidCommand,
-            TraceBack.ObjectNotFound => Lang.ObjectNotFound,
-            TraceBack.MemberNotFound => Lang.MemberNotFound,
+            RequestStatus.AllOk => Lang.AllOK,
+            RequestStatus.InvalidCommand => Lang.InvalidCommand,
+            RequestStatus.ObjectNotFound => Lang.ObjectNotFound,
+            RequestStatus.MemberNotFound => Lang.MemberNotFound,
             _ => ""
         };
         /// <inheritdoc/>

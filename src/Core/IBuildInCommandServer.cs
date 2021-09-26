@@ -5,7 +5,7 @@
     /// </summary>
     /// <param name="args">Arguments for the command</param>
     /// <returns>Command's TraceBack result.</returns>
-    public delegate TraceBack BuildInCommand(string[] args);
+    public delegate RequestStatus BuildInCommand(string[] args);
 
     /// <summary>
     ///     Built-In-Command Server's Model.
@@ -17,14 +17,14 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Enter(string[] args);
+        RequestStatus Enter(string[] args);
 
         /// <summary>
         ///     Leave the Current SuitObject, Back to its Parent
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Leave(string[] args);
+        RequestStatus Leave(string[] args);
 
 
         /// <summary>
@@ -32,14 +32,14 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack View(string[] args);
+        RequestStatus View(string[] args);
 
         /// <summary>
         ///     Run SuitScript at the given location
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack RunScript(string[] args);
+        RequestStatus RunScript(string[] args);
 
 
         /// <summary>
@@ -47,14 +47,14 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack ModifyMember(string[] args);
+        RequestStatus ModifyMember(string[] args);
 
         /// <summary>
         ///     Show Members of the Current SuitObject
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack List(string[] args);
+        RequestStatus List(string[] args);
 
 
         /// <summary>
@@ -62,14 +62,14 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack ExitSuit(string[] args);
+        RequestStatus ExitSuit(string[] args);
 
         /// <summary>
         ///     Show Current SuitObject Information
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack This(string[] args);
+        RequestStatus This(string[] args);
 
 
         /// <summary>
@@ -77,6 +77,6 @@
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Help(string[] args);
+        RequestStatus Help(string[] args);
     }
 }

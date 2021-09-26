@@ -1,4 +1,7 @@
-﻿namespace PlasticMetal.MobileSuit.Core
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Represents an entity which can be executed.
@@ -9,8 +12,8 @@
         ///     Execute this object.
         /// </summary>
         /// <param name="args">The arguments for execution.</param>
-        /// <param name="returnValue">the return value of execute.</param>
-        /// <returns>TraceBack result of this object.</returns>
-        public TraceBack Execute(string[] args, out object? returnValue);
+        /// <param name="token"></param>
+        /// <returns>Result of executing this object.</returns>
+        public  Task<ExecuteResult> Execute(string[] args, CancellationToken token);
     }
 }

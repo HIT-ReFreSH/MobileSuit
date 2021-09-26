@@ -12,7 +12,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack SwitchOption(string[] args);
+        RequestStatus SwitchOption(string[] args);
 
 
         /// <summary>
@@ -20,20 +20,20 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Print(string[] args);
+        RequestStatus Print(string[] args);
 
         /// <summary>
         ///     A more powerful way to output something, with arg1 as option
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack SuperPrint(string[] args);
+        RequestStatus SuperPrint(string[] args);
 
         /// <summary>
         ///     Execute command with the System Shell
         /// </summary>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        TraceBack Shell(string[] args);
+        RequestStatus Shell(string[] args);
     }
 }

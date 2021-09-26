@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.Core
 {
@@ -109,12 +111,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// </summary>
         public object? Instance { get; set; }
 
-        /// <summary>
-        ///     Execute this object.
-        /// </summary>
-        /// <param name="args">The arguments for execution.</param>
-        /// <param name="returnValue"></param>
-        /// <returns>TraceBack result of this object.</returns>
-        public abstract TraceBack Execute(string[] args, out object? returnValue);
+        /// <inheritdoc/>
+        public abstract Task<ExecuteResult> Execute(string[] args, CancellationToken token);
     }
 }

@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using PlasticMetal.MobileSuit.Core.Members;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Represents an object in Mobile Suit.
     /// </summary>
-    public class SuitObject : IExecutable, IEnumerable<(string, Member)>
+    public class SuitShell : IExecutable, IEnumerable<(string, Member)>
     {
         /// <summary>
         ///     The BindingFlags stands for IgnoreCase, DeclaredOnly, Public and Instance members
@@ -30,7 +31,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Initialize a SuitObject with an instance.
         /// </summary>
         /// <param name="instance">The instance that this SuitObject represents.</param>
-        public SuitObject(object? instance)
+        public SuitShell(object? instance)
         {
             Instance = instance;
             var type = instance?.GetType();
@@ -79,37 +80,6 @@ namespace PlasticMetal.MobileSuit.Core
             return GetEnumerator();
         }
 
-        /// <summary>
-        ///     Execute this object.
-        /// </summary>
-        /// <param name="args">The arguments for execution.</param>
-        /// <param name="returnValue"></param>
-        /// <returns>TraceBack result of this object.</returns>
-        public TraceBack Execute(string[] args, out object? returnValue)
-        {
-            if (args == null || args.Length == 0)
-            {
-                returnValue = null;
-                return TraceBack.ObjectNotFound;
-            }
-
-            args[0] = args[0].ToLower(CultureInfo.CurrentCulture);
-            if (!Members.ContainsKey(args[0]))
-            {
-                returnValue = null;
-                return TraceBack.ObjectNotFound;
-            }
-
-            foreach (var (_, exe) in Members[args[0]])
-            {
-                var r = exe.Execute(args[1..], out returnValue);
-                if (r == TraceBack.ObjectNotFound) continue;
-                return r;
-            }
-
-            returnValue = null;
-            return TraceBack.ObjectNotFound;
-        }
 
         private void TryAddMember(Member? objMember)
         {
@@ -135,27 +105,50 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="name">Name the field/property.</param>
         /// <param name="field">The field/property with the certain name.</param>
         /// <returns>TraceBack of the find operation.</returns>
-        public TraceBack TryGetField(string name, out ContainerMember? field)
+        public RequestStatus TryGetField(string name, out ContainerMember? field)
         {
             if (name == null)
             {
                 field = null;
-                return TraceBack.InvalidCommand;
+                return RequestStatus.InvalidCommand;
             }
 
             if (!Members.ContainsKey(name.ToLower(CultureInfo.CurrentCulture)))
             {
                 field = null;
-                return TraceBack.ObjectNotFound;
+                return RequestStatus.ObjectNotFound;
             }
 
             field = Members[name][0].Item2 as ContainerMember;
-            return field is null ? TraceBack.ObjectNotFound : TraceBack.AllOk;
+            return field is null ? RequestStatus.ObjectNotFound : RequestStatus.AllOk;
+        }
+        /// <inheritdoc/>
+        public async Task<ExecuteResult> Execute(string[] args, CancellationToken token)
+        {
+            if (args == null || args.Length == 0)
+            {
+                return new ExecuteResult {TraceBack = RequestStatus.ObjectNotFound};
+            }
+
+            args[0] = args[0].ToLower(CultureInfo.CurrentCulture);
+            if (!Members.ContainsKey(args[0]))
+            {
+                return new ExecuteResult { TraceBack = RequestStatus.ObjectNotFound };
+            }
+
+            foreach (var (_, exe) in Members[args[0]])
+            {
+                var r = await exe.Execute(args[1..], token);
+                if (r.TraceBack == RequestStatus.ObjectNotFound) continue;
+                return r;
+            }
+
+            return new ExecuteResult { TraceBack = RequestStatus.ObjectNotFound };
         }
 
         private class Enumerator : IEnumerator<(string, Member)>
         {
-            public Enumerator(SuitObject obj)
+            public Enumerator(SuitShell obj)
             {
                 ObjectEnumerator = obj.MembersAbs.GetEnumerator();
             }

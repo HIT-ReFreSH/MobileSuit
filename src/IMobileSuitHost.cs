@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Logging;
 
@@ -14,7 +16,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// TraceBack of last Command.
         /// </summary>
-        public TraceBack TraceBack{ get; }
+        public RequestStatus TraceBack { get; }
         /// <summary>
         /// Return value of last Command.
         /// </summary>
@@ -23,7 +25,7 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     ///     A host of Mobile Suit, which may run commands.
     /// </summary>
-    public interface IMobileSuitHost
+    public interface IMobileSuitHost : IHost
     {
         /// <summary>
         /// Providing status of current host.
@@ -38,7 +40,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Logger for current host
         /// </summary>
-        public ISuitLogger Logger { get; }
+        public ILogger Logger { get; }
 
         /// <summary>
         ///     IOServer for current host
@@ -131,7 +133,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="withPrompt">if this run contains prompt, or silent</param>
         /// <param name="scriptName">name of these scripts</param>
         /// <returns>The TraceBack of the last executed command.</returns>
-        Task<TraceBack> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
+        Task<RequestStatus> RunScriptsAsync(IAsyncEnumerable<string?> scripts, bool withPrompt = false,
             string? scriptName = null);
 
         /// <summary>
@@ -141,14 +143,14 @@ namespace PlasticMetal.MobileSuit
         /// <param name="withPrompt">if this run contains prompt, or silent</param>
         /// <param name="scriptName">name of these scripts</param>
         /// <returns>The TraceBack of the last executed command.</returns>
-        TraceBack RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null);
+        RequestStatus RunScripts(IEnumerable<string> scripts, bool withPrompt = false, string? scriptName = null);
 
         /// <summary>
         ///     Run a command in current host.
         /// </summary>
         /// <param name="command">the command to run</param>
         /// <returns>result of the command</returns>
-        public TraceBack RunCommand(string? command);
+        public RequestStatus RunCommand(string? command);
     }
 
     /// <summary>

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
@@ -11,32 +15,18 @@ namespace PlasticMetal.MobileSuit
     /// <summary>
     ///     Builder to build a MobileSuit host.
     /// </summary>
-    public class SuitHostBuilder
+    public interface ISuitHostBuilder : IHostBuilder { }
+
+    internal class SuitHostBuilder : ISuitHostBuilder
     {
+        private readonly IHostBuilder _baseBuilder;
         internal SuitHostBuilder()
         {
+            _baseBuilder = Host.CreateDefaultBuilder();
             this.UseBasicPrompt();
         }
 
-        /// <summary>
-        ///     ColorSetting of host's IO
-        /// </summary>
-        protected internal ColorSetting? ColorSetting { get; set; }
 
-        /// <summary>
-        ///     Input Stream of host's IO
-        /// </summary>
-        protected internal TextReader? Input { get; set; }
-
-        /// <summary>
-        ///     Output Stream of host's IO
-        /// </summary>
-        protected internal TextWriter? Output { get; set; }
-
-        /// <summary>
-        ///     Error Stream of host's IO
-        /// </summary>
-        protected internal TextWriter? Error { get; set; }
 
         /// <summary>
         ///     Settings of host
@@ -152,6 +142,46 @@ namespace PlasticMetal.MobileSuit
             io.Prompt.Assign(prompt);
             return host;
         }
+
+        public IHostBuilder ConfigureHostConfiguration(Action<IConfigurationBuilder> configureDelegate)
+        {
+            return _baseBuilder.ConfigureHostConfiguration(configureDelegate);
+        }
+
+        public IHostBuilder ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureDelegate)
+        {
+            
+            return _baseBuilder.ConfigureAppConfiguration(configureDelegate);
+        }
+
+        public IHostBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureDelegate)
+        {
+            return _baseBuilder.ConfigureServices(configureDelegate);
+        }
+
+        public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory)
+            where TContainerBuilder : notnull
+        {
+            return _baseBuilder.UseServiceProviderFactory(factory);
+        }
+
+        public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory)
+            where TContainerBuilder : notnull
+        {
+            return _baseBuilder.UseServiceProviderFactory(factory);
+        }
+
+        public IHostBuilder ConfigureContainer<TContainerBuilder>(Action<HostBuilderContext, TContainerBuilder> configureDelegate)
+        {
+            return _baseBuilder.ConfigureContainer(configureDelegate);
+        }
+
+        public IHost Build()
+        {
+            return new SuitHost(_baseBuilder.Build());
+        }
+
+        public IDictionary<object, object> Properties { get; }
     }
 
     /// <summary>
@@ -166,7 +196,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="options">Options for the generator.</param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder,
+        public static ISuitHostBuilder UsePrompt<T>(this ISuitHostBuilder builder,
             Action<PromptGeneratorBuilder>? options = null)
             where T : IPromptGenerator
         {
@@ -200,12 +230,12 @@ namespace PlasticMetal.MobileSuit
         /// <param name="prefixCross">Use prefix cross or suffix label for TraceBack.</param>
         /// <param name="options">Options for the generator.</param>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder, bool prefixCross=true,
+        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder, bool prefixCross = true,
             Action<PromptGeneratorBuilder>? options = null)
         {
             builder.PromptBuilder = new();
             builder.PromptBuilder.GeneratorType = typeof(PowerLineGenerator);
-            if(prefixCross) builder.PromptBuilder.UseCross();
+            if (prefixCross) builder.PromptBuilder.UseCross();
             builder.PromptBuilder.UseInformation();
             builder.PromptBuilder.AddProvider<PowerLineGenerator.InputExpressionPromptProvider>();
             builder.PromptBuilder.AddProvider<PowerLineGenerator.InputDefaultValuePromptProvider>();
@@ -322,13 +352,13 @@ namespace PlasticMetal.MobileSuit
         /// <typeparam name="TProvider">PromptProvider</typeparam>
         /// <typeparam name="TSource">Source for the provider.</typeparam>
         /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder AddProvider<TProvider,TSource>(this PromptGeneratorBuilder builder,
-            Func<TSource,TProvider> selector)
+        public static PromptGeneratorBuilder AddProvider<TProvider, TSource>(this PromptGeneratorBuilder builder,
+            Func<TSource, TProvider> selector)
             where TProvider : IPromptProvider
         {
-            builder.AddProvider(typeof(TProvider),selector);
+            builder.AddProvider(typeof(TProvider), selector);
             return builder;
         }
-        
+
     }
 }

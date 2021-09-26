@@ -22,10 +22,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public IInputHelper InputHelper { get; }
 
         /// <inheritdoc />
-        public bool DisableTimeMark
+        public bool DisableTags
         {
-            get => (Element ?? IIOHub.GeneralIO).DisableTimeMark;
-            set => (Element ?? IIOHub.GeneralIO).DisableTimeMark = value;
+            get => (Element ?? IIOHub.GeneralIO).DisableTags;
+            set => (Element ?? IIOHub.GeneralIO).DisableTags = value;
         }
 
         /// <inheritdoc />

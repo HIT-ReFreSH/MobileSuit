@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public BuildInCommandServer(SuitHost host)
         {
             Host = host;
-            HostRef = new SuitObject(Host?.Settings);
+            HostRef = new SuitShell(Host?.Settings);
         }
 
         /// <summary>
@@ -30,12 +30,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         ///     SuitObject for Host
         /// </summary>
-        protected SuitObject HostRef { get; }
+        protected SuitShell HostRef { get; }
 
         /// <summary>
         ///     Host's current SuitObject.
         /// </summary>
-        protected SuitObject Current
+        protected SuitShell Current
         {
             get => Host.Current;
             set => Host.Current = value;
@@ -48,13 +48,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Et")]
         [SuitInfo(typeof(BuildInCommandInformations), "Enter")]
-        public virtual TraceBack Enter(string[] args)
+        public virtual RequestStatus Enter(string[] args)
         {
             if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
                 Host.WorkInstance == null)
-                return TraceBack.InvalidCommand;
+                return RequestStatus.InvalidCommand;
             ContainerMember? nextObject;
-            TraceBack r;
+            RequestStatus r;
             if (args[0].Length > 1 && args[0][0] == '@')
             {
                 r = Host.BicServer.TryGetField(args[0][1..], out nextObject);
@@ -62,10 +62,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             else
             {
                 r = Current.TryGetField(args[0], out nextObject);
-                if (r != TraceBack.AllOk || nextObject is null) r = Host.BicServer.TryGetField(args[0], out nextObject);
+                if (r != RequestStatus.AllOk || nextObject is null) r = Host.BicServer.TryGetField(args[0], out nextObject);
             }
 
-            if (r != TraceBack.AllOk || nextObject is null) return r;
+            if (r != RequestStatus.AllOk || nextObject is null) return r;
 
             Host.InstanceStack.Push(Host.Current);
             var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
@@ -79,7 +79,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Host.InstanceNameString.Add(a0L);
             Host.Current = nextObject.SuitValue;
             Host.WorkInstanceInit();
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
         /// <summary>
@@ -89,14 +89,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Lv")]
         [SuitInfo(typeof(BuildInCommandInformations), "Leave")]
-        public virtual TraceBack Leave(string[] args)
+        public virtual RequestStatus Leave(string[] args)
         {
             if (Host.InstanceStack.Count == 0 || Current is null)
-                return TraceBack.InvalidCommand;
+                return RequestStatus.InvalidCommand;
             Host.Current = Host.InstanceStack.Pop();
             Host.InstanceNameString.RemoveAt(Host.InstanceNameString.Count - 1); //PopBack
             //Host.WorkInstanceInit();
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
 
@@ -107,15 +107,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Vw")]
         [SuitInfo(typeof(BuildInCommandInformations), "View")]
-        public virtual TraceBack View(string[] args)
+        public virtual RequestStatus View(string[] args)
         {
             if (args == null || args.Length == 0 || Host.Assembly == null || Host.WorkType == null ||
                 Host.WorkInstance == null)
-                return TraceBack.InvalidCommand;
+                return RequestStatus.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
-            if (r != TraceBack.AllOk || obj is null) return r;
+            if (r != RequestStatus.AllOk || obj is null) return r;
             Host.IO.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
         /// <summary>
@@ -125,9 +125,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Rs")]
         [SuitInfo(typeof(BuildInCommandInformations), "RunScript")]
-        public virtual TraceBack RunScript(string[] args)
+        public virtual RequestStatus RunScript(string[] args)
         {
-            if (args == null || args.Length < 1 || !File.Exists(args[0])) return TraceBack.InvalidCommand;
+            if (args == null || args.Length < 1 || !File.Exists(args[0])) return RequestStatus.InvalidCommand;
             var t = Host.RunScriptsAsync(ReadTextFileAsync(args[0]),
                 true, Path.GetFileNameWithoutExtension(args[0]));
             t.Wait();
@@ -142,7 +142,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Md")]
         [SuitInfo(typeof(BuildInCommandInformations), "ModifyMember")]
-        public virtual TraceBack ModifyMember(string[] args)
+        public virtual RequestStatus ModifyMember(string[] args)
         {
             return ModifyValue(Current, args);
         }
@@ -154,9 +154,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Ls")]
         [SuitInfo(typeof(BuildInCommandInformations), "List")]
-        public virtual TraceBack List(string[] args)
+        public virtual RequestStatus List(string[] args)
         {
-            if (Host.Current == null) return TraceBack.InvalidCommand;
+            if (Host.Current == null) return RequestStatus.InvalidCommand;
             Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
             ListMembers(Host.Current);
             Host.IO.WriteLine();
@@ -166,7 +166,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
             ), OutputType.AllOk);
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
 
@@ -177,9 +177,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitInfo(typeof(BuildInCommandInformations), "Exit")]
         [SuitAlias("Exit")]
-        public virtual TraceBack ExitSuit(string[] args)
+        public virtual RequestStatus ExitSuit(string[] args)
         {
-            return TraceBack.OnExit;
+            return RequestStatus.OnExit;
         }
 
         /// <summary>
@@ -189,11 +189,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns>Command status</returns>
         [SuitAlias("Me")]
         [SuitInfo(typeof(BuildInCommandInformations), "This")]
-        public virtual TraceBack This(string[] args)
+        public virtual RequestStatus This(string[] args)
         {
-            if (Host.WorkType == null) return TraceBack.InvalidCommand;
+            if (Host.WorkType == null) return RequestStatus.InvalidCommand;
             Host.IO.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
 
@@ -203,7 +203,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
         [SuitInfo(typeof(BuildInCommandInformations), "Help")]
-        public virtual TraceBack Help(string[] args)
+        public virtual RequestStatus Help(string[] args)
         {
             Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
             ListMembers(Host.BicServer);
@@ -215,14 +215,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 (Lang.BicExp2,
                     null)
             ), OutputType.AllOk);
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
 
         /// <summary>
         ///     List members of a SuitObject
         /// </summary>
         /// <param name="suitObject">The SuitObject, Maybe this BicServer.</param>
-        protected void ListMembers(SuitObject suitObject)
+        protected void ListMembers(SuitShell suitObject)
         {
             if (suitObject == null) return;
             Host.IO.AppendWriteLinePrefix();
@@ -273,15 +273,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <param name="suitObject">the SuitObject, maybe SuitHost.</param>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        protected TraceBack ModifyValue(SuitObject suitObject, string[] args)
+        protected RequestStatus ModifyValue(SuitShell suitObject, string[] args)
         {
-            if (args == null || args.Length == 0 || suitObject == null) return TraceBack.InvalidCommand;
+            if (args == null || args.Length == 0 || suitObject == null) return RequestStatus.InvalidCommand;
             var r = suitObject.TryGetField(args[0], out var target);
-            if (r != TraceBack.AllOk || target?.Value is null) return r;
+            if (r != RequestStatus.AllOk || target?.Value is null) return r;
             string val, newVal;
             if (args.Length == 1)
             {
-                if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
+                if (target.ValueType != typeof(bool)) return RequestStatus.InvalidCommand;
                 var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 currentBool = !currentBool;
@@ -290,7 +290,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             }
             else if (target.ValueType == typeof(bool))
             {
-                if (target.ValueType != typeof(bool)) return TraceBack.InvalidCommand;
+                if (target.ValueType != typeof(bool)) return RequestStatus.InvalidCommand;
                 var currentBool = (bool) target.Value;
                 val = currentBool.ToString(CultureInfo.CurrentCulture);
                 var setV = args[1].ToLower(CultureInfo.CurrentCulture);
@@ -318,7 +318,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 }
 
             Host.IO.WriteLine($"{a0L}:{val}->{newVal}", ConsoleColor.Green);
-            return TraceBack.AllOk;
+            return RequestStatus.AllOk;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit.Parsing
         protected AutoDynamicParameter()
         {
             var myType = GetType();
-            foreach (var property in myType.GetProperties(SuitObject.Flags))
+            foreach (var property in myType.GetProperties(SuitShell.Flags))
             {
                 var memberAttr = property.GetCustomAttribute<ParsingMemberAttribute>(true);
                 if (memberAttr is null) continue;

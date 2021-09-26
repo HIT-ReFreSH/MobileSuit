@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.UI
+namespace PlasticMetal.MobileSuit.Services
 {
     partial class IOHub
     {

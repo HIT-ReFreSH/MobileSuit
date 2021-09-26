@@ -21,7 +21,7 @@ namespace PlasticMetal.MobileSuit
         ///     Get a builder to create host
         /// </summary>
         /// <returns>The builder</returns>
-        public static SuitHostBuilder GetBuilder()
+        public static ISuitHostBuilder GetBuilder()
         {
             return new SuitHostBuilder();
         }

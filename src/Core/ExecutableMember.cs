@@ -2,11 +2,12 @@
 using System;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuit.Core.Members
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     Represents type of the last parameter of a method
@@ -95,7 +96,7 @@ namespace PlasticMetal.MobileSuit.Core.Members
                             { } when parameter.ParameterType.IsArray => "[]",
                             { } when !(Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is null) =>
                                 "{}",
-                            {HasDefaultValue: true} => $"={parameter.DefaultValue}",
+                            { HasDefaultValue: true } => $"={parameter.DefaultValue}",
                             _ => ""
                         });
                         infoSb.Append(',');
@@ -118,27 +119,26 @@ namespace PlasticMetal.MobileSuit.Core.Members
         private int MaxParameterCount { get; }
         private Func<object?, object?[]?, object?> InvokeMember { get; }
 
-        private TraceBack Execute(object? instance, object?[]? args, out object? returnValue)
+        private async Task<ExecuteResult> Execute(object? instance, object?[]? args)
         {
             try
             {
-                returnValue = InvokeMember(instance, args);
+                var returnValue = InvokeMember(instance, args);
                 //Process Task
                 if (returnValue is Task task)
                 {
-                    task.Wait();
+                    await task;
                     var result = task.GetType().GetProperty("Result");
                     returnValue = result?.GetValue(task);
                     if (returnValue?.GetType().FullName == "System.Threading.Tasks.VoidTaskResult")
                         returnValue = null;
                 }
 
-                return returnValue as TraceBack? ?? TraceBack.AllOk;
+                return new() { TraceBack = RequestStatus.AllOk, ReturnValue = returnValue };
             }
             catch (TargetInvocationException e)
             {
-                returnValue = e.InnerException;
-                return TraceBack.ApplicationError;
+                return new() { TraceBack = RequestStatus.ApplicationError, ReturnValue = e };
             }
         }
 
@@ -148,35 +148,30 @@ namespace PlasticMetal.MobileSuit.Core.Members
                    && argumentCount <= MaxParameterCount;
         }
 
-        /// <summary>
-        ///     Execute this object.
-        /// </summary>
-        /// <param name="args">The arguments for execution.</param>
-        /// <param name="returnValue"></param>
-        /// <returns>TraceBack result of this object.</returns>
-        public override TraceBack Execute(string[] args, out object? returnValue)
+        /// <inheritdoc/>
+        public override async Task<ExecuteResult> Execute(string[] args, CancellationToken token)
         {
             if (args == null || !CanFitTo(args.Length))
             {
-                returnValue = null;
-                return TraceBack.ObjectNotFound;
+                return new() { TraceBack = RequestStatus.ObjectNotFound };
             }
 
-            if (TailParameterType == TailParameterType.NoParameter) return Execute(Instance, null, out returnValue);
+            if (TailParameterType == TailParameterType.NoParameter) return await Execute(Instance, null);
 
             var pass = new object?[Parameters.Length];
             var i = 0;
             try
             {
                 for (; i < NonArrayParameterCount; i++)
-                    pass[i] = i < args.Length
+                    pass[i] = Parameters[i].GetType().IsInstanceOfType(token) ? token :
+                        i < args.Length
                         ? (Parameters[i].GetCustomAttribute<SuitParserAttribute>(true)
                                ?.Converter
                            ?? (source => source)) //Converter
                         (args[i])
                         : Parameters[i].DefaultValue;
 
-                if (TailParameterType == TailParameterType.Normal) return Execute(Instance, pass, out returnValue);
+                if (TailParameterType == TailParameterType.Normal) return await Execute(Instance, pass);
 
                 if (TailParameterType == TailParameterType.DynamicParameter)
                 {
@@ -187,11 +182,9 @@ namespace PlasticMetal.MobileSuit.Core.Members
                     {
                         pass[i] = dynamicParameter;
 
-                        return Execute(Instance, pass, out returnValue);
+                        return await Execute(Instance, pass);
                     }
-
-                    returnValue = null;
-                    return TraceBack.InvalidCommand;
+                    return new() {TraceBack = RequestStatus.InvalidCommand};
                 }
 
                 if (i < args.Length)
@@ -211,13 +204,11 @@ namespace PlasticMetal.MobileSuit.Core.Members
                                                    ?? typeof(string), 0);
                 }
 
-                return Execute(Instance, pass, out returnValue);
+                return await Execute(Instance, pass);
             }
             catch (FormatException e)
             {
-                returnValue = e;
-
-                return TraceBack.InvalidCommand;
+                return new() {TraceBack = RequestStatus.CommandParsingFailure, ReturnValue = e};
             }
         }
     }
