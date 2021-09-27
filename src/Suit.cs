@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Extensions;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.UI;
 
@@ -33,7 +34,7 @@ namespace PlasticMetal.MobileSuit
         /// <returns>packaged ContentArray</returns>
         public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents)
         {
-            return IIOHub.CreateContentArray(contents);
+            return SuitTools.CreateContentArray(contents);
         }
 
 
@@ -45,7 +46,7 @@ namespace PlasticMetal.MobileSuit
         public static IEnumerable<(string, ConsoleColor?, ConsoleColor?)> CreateContentArray(
             params (string, ConsoleColor?, ConsoleColor?)[] contents)
         {
-            return IIOHub.CreateContentArray(contents);
+            return SuitTools.CreateContentArray(contents);
         }
 
         /// <summary>
@@ -72,32 +73,32 @@ namespace PlasticMetal.MobileSuit
                 io.WriteLine(CreateContentArray(
                     (assemblyName, null),
                     (" ", null),
-                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.ListTitleColor),
+                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor),
                     (" ", null),
                     (Lang.PoweredBy, null),
                     ("MobileSuit(", io.ColorSetting.ErrorColor),
-                    ("https://ms.ifers.xyz", io.ColorSetting.CustomInformationColor),
+                    ("https://ms.ifers.xyz", io.ColorSetting.InformationColor),
                     (") ", null),
                     (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "",
-                        io.ColorSetting.ListTitleColor)
+                        io.ColorSetting.TitleColor)
                 ));
             else
                 io.WriteLine(CreateContentArray(
                     (assemblyName, null),
                     (" ", null),
-                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.ListTitleColor)
+                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor)
                 ));
             io.WriteLine();
             if (owner != null)
                 io.WriteLine(CreateContentArray(
                     (Lang.CopyrightC, null),
-                    (owner, io.ColorSetting.ListTitleColor)
+                    (owner, io.ColorSetting.TitleColor)
                     //, (Lang.AllRightsReserved, null)
                 ));
             io.WriteLine();
             if (site != null)
             {
-                io.WriteLine(site, io.ColorSetting.CustomInformationColor);
+                io.WriteLine(site, io.ColorSetting.InformationColor);
                 io.WriteLine();
             }
 
@@ -123,15 +124,15 @@ namespace PlasticMetal.MobileSuit
                 (Lang.PoweredBy, null),
                 ("MobileSuit", io.ColorSetting.ErrorColor),
                 (" ", null),
-                (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.ListTitleColor)
+                (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.TitleColor)
             ));
             io.WriteLine(CreateContentArray(
                 (Lang.CopyrightC, null),
-                ("Plastic-Metal", io.ColorSetting.ListTitleColor)
+                ("Plastic-Metal", io.ColorSetting.TitleColor)
                 //, (Lang.AllRightsReserved, null)
             ));
             io.WriteLine();
-            io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.CustomInformationColor);
+            io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.InformationColor);
             io.WriteLine(CreateContentArray(
                 (Lang.LsHelp1, null),
                 ("Help", io.ColorSetting.PromptColor),

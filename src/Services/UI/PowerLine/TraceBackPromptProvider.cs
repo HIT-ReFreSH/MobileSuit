@@ -39,7 +39,7 @@ namespace PlasticMetal.MobileSuit.UI.PowerLine
         };
         /// <inheritdoc/>
         public ConsoleColor? ForegroundColor=> IColorSetting.SelectColor(Color,
-            HostStatus.TraceBack == 0 ? OutputType.AllOk : OutputType.Error);
+            HostStatus.TraceBack == 0 ? OutputType.Ok : OutputType.Error);
         /// <inheritdoc/>
         public ConsoleColor? BackgroundColor => null;
     }

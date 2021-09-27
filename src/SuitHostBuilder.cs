@@ -198,7 +198,7 @@ namespace PlasticMetal.MobileSuit
         /// <returns>Builder for the host</returns>
         public static ISuitHostBuilder UsePrompt<T>(this ISuitHostBuilder builder,
             Action<PromptGeneratorBuilder>? options = null)
-            where T : IPromptGenerator
+            where T : IPromptFormatter
         {
             builder.PromptBuilder = new PromptGeneratorBuilder { GeneratorType = typeof(T) };
             options?.Invoke(builder.PromptBuilder);

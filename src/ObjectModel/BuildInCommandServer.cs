@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Extensions;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
@@ -157,15 +158,15 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         public virtual RequestStatus List(string[] args)
         {
             if (Host.Current == null) return RequestStatus.InvalidCommand;
-            Host.IO.WriteLine(Lang.Members, OutputType.ListTitle);
+            Host.IO.WriteLine(Lang.Members, OutputType.Title);
             ListMembers(Host.Current);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IIOHub.CreateContentArray
+            Host.IO.WriteLine(SuitTools.CreateContentArray
             (
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
-            ), OutputType.AllOk);
+            ), OutputType.Ok);
             return RequestStatus.AllOk;
         }
 
@@ -205,16 +206,16 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         [SuitInfo(typeof(BuildInCommandInformations), "Help")]
         public virtual RequestStatus Help(string[] args)
         {
-            Host.IO.WriteLine(Lang.Bic, OutputType.ListTitle);
+            Host.IO.WriteLine(Lang.Bic, OutputType.Title);
             ListMembers(Host.BicServer);
             Host.IO.WriteLine();
-            Host.IO.WriteLine(IIOHub.CreateContentArray
+            Host.IO.WriteLine(SuitTools.CreateContentArray
             (
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
                 (Lang.BicExp2,
                     null)
-            ), OutputType.AllOk);
+            ), OutputType.Ok);
             return RequestStatus.AllOk;
         }
 
@@ -238,7 +239,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in member.Aliases) aliasesExpression.Append($"/{alias}");
-                Host.IO.WriteLine(IIOHub.CreateContentArray
+                Host.IO.WriteLine(SuitTools.CreateContentArray
                 (
                     (name, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),

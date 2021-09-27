@@ -45,7 +45,7 @@ namespace PlasticMetal.MobileSuit.UI
         /// <param name="iOHub">IO Hub</param>
         /// <param name="instance">Instance to drive.</param>
         /// <returns>the Generator</returns>
-        protected internal IPromptGenerator Build(IMobileSuitHost host, IIOHub iOHub, object instance)
+        protected internal IPromptFormatter Build(IMobileSuitHost host, IIOHub iOHub, object instance)
         {
             var exception = new Exception(Lang.PromptGeneratorBuilder_NoRoute);
             var args = new[] { instance, host, iOHub, iOHub.ColorSetting };
@@ -68,7 +68,7 @@ namespace PlasticMetal.MobileSuit.UI
 
                         return cons.Invoke(MapPara(cons)) as IPromptProvider??throw exception;
                     }).ToArray()
-                }) as IPromptGenerator??throw exception;
+                }) as IPromptFormatter??throw exception;
         }
 }
 }

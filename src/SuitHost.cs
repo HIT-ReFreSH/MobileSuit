@@ -17,6 +17,7 @@ using PlasticMetal.MobileSuit.UI;
 using static System.String;
 using Microsoft.Extensions.Logging;
 
+
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
@@ -100,7 +101,7 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     The prompt in Console.
         /// </summary>
-        public AssignOncePromptGenerator Prompt { get; }
+        public PromptGenerator Prompt { get; }
 
         /// <summary>
         ///     Current Instance's SuitObject Container.
@@ -132,7 +133,7 @@ namespace PlasticMetal.MobileSuit
             _hostStatus.ReturnValue = null;
             for (; ; )
             {
-                var p = Prompt.GeneratePrompt();
+                var p = Prompt.FormatPrompt();
                 if (!IO.IsInputRedirected)
                     IO.Write(p, OutputType.Prompt);
                 var traceBack = RunCommand(IO.ReadLine());
@@ -172,20 +173,20 @@ namespace PlasticMetal.MobileSuit
             {
                 if (script is null) break;
                 if (withPrompt)
-                    IO.WriteLine(IIOHub.CreateContentArray(
+                    IO.WriteLine(SuitTools.CreateContentArray(
                         ("<Script:", IO.ColorSetting.PromptColor),
-                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
+                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.SystemColor),
                         (">", IO.ColorSetting.PromptColor),
                         (script, null)));
                 var traceBack = RunCommand(script);
                 if (traceBack != RequestStatus.AllOk)
                 {
                     if (withPrompt)
-                        IO.WriteLine(IIOHub.CreateContentArray(
+                        IO.WriteLine(SuitTools.CreateContentArray(
                                 ("TraceBack:", null),
-                                (traceBack.ToString(), IO.ColorSetting.InformationColor),
+                                (traceBack.ToString(), IO.ColorSetting.SystemColor),
                                 (" at line ", null),
-                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.InformationColor)
+                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.SystemColor)
                             ),
                             OutputType.Error);
                     return traceBack;
@@ -208,9 +209,9 @@ namespace PlasticMetal.MobileSuit
             {
                 if (script is null) break;
                 if (withPrompt)
-                    await IO.WriteLineAsync(IIOHub.CreateContentArray(
+                    await IO.WriteLineAsync(SuitTools.CreateContentArray(
                         ("<Script:", IO.ColorSetting.PromptColor),
-                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.InformationColor),
+                        (scriptName ?? "(UNKNOWN)", IO.ColorSetting.SystemColor),
                         (">", IO.ColorSetting.PromptColor),
                         (script, null))).ConfigureAwait(false);
 
@@ -218,11 +219,11 @@ namespace PlasticMetal.MobileSuit
                 if (traceBack != RequestStatus.AllOk)
                 {
                     if (withPrompt)
-                        await IO.WriteLineAsync(IIOHub.CreateContentArray(
+                        await IO.WriteLineAsync(SuitTools.CreateContentArray(
                                 ("TraceBack:", null),
-                                (traceBack.ToString(), IO.ColorSetting.InformationColor),
+                                (traceBack.ToString(), IO.ColorSetting.SystemColor),
                                 (" at line ", null),
-                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.InformationColor)
+                                (i.ToString(CultureInfo.CurrentCulture), IO.ColorSetting.SystemColor)
                             ),
                             OutputType.Error).ConfigureAwait(false);
 
@@ -319,7 +320,7 @@ namespace PlasticMetal.MobileSuit
 
         private void NotifyAllOk()
         {
-            if (!Settings.EnableThrows && Settings.ShowDone) IO.WriteLine(Lang.Done, OutputType.AllOk);
+            if (!Settings.EnableThrows && Settings.ShowDone) IO.WriteLine(Lang.Done, OutputType.Ok);
         }
 
 

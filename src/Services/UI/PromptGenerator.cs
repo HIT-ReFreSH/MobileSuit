@@ -7,23 +7,23 @@ namespace PlasticMetal.MobileSuit.UI
     /// <summary>
     ///     represents a generator provides prompt output.
     /// </summary>
-    public interface IPromptGenerator
+    public interface IPromptFormatter
     {
         /// <summary>
         ///     Generate output tuple-array for the prompt.
         /// </summary>
-        IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt();
+        IEnumerable<PrintUnit> FormatPrompt(IEnumerable<PrintUnit> origin);
 
         /// <summary>
         ///     Generate output tuple-array for the prompt, with given selector.
         /// </summary>
         /// <param name="selector">Selector to select the providers to output.</param>
-        IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector);
+        IEnumerable<PrintUnit> GeneratePrompt(Func<IPromptProvider, bool> selector);
     }
     /// <summary>
     ///     represents a server provides prompt output.
     /// </summary>
-    public abstract class PromptGenerator : IPromptGenerator
+    public abstract class PromptGenerator : IPromptFormatter
     {
         /// <summary>
         /// Initialize a PromptBuilder with providers.
@@ -45,11 +45,11 @@ namespace PlasticMetal.MobileSuit.UI
         protected IEnumerable<IPromptProvider> Providers { get; }
 
         /// <inheritdoc/>
-        public IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt()
+        public IEnumerable<PrintUnit> FormatPrompt()
             => GeneratePrompt(_ => true);
 
         /// <inheritdoc/>
-        public abstract IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GeneratePrompt(Func<IPromptProvider, bool> selector);
+        public abstract IEnumerable<PrintUnit> GeneratePrompt(Func<IPromptProvider, bool> selector);
 
     }
 }

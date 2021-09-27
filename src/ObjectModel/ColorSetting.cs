@@ -6,8 +6,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     ///     Color settings of a Mobile Suit.
     /// </summary>
-    public struct ColorSetting : IEquatable<IColorSetting>, IColorSetting, IEquatable<ColorSetting>
+    public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     {
+        /// <inheritdoc/>
+        public ConsoleColor BackgroundColor { get; set; }
+
         /// <summary>
         ///     Default color. For OutputType.Default
         /// </summary>
@@ -26,22 +29,24 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         ///     Prompt Color. For OutputType.AllOK
         /// </summary>
-        public ConsoleColor AllOkColor { get; set; }
+        public ConsoleColor OkColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.ListTitle
         /// </summary>
-        public ConsoleColor ListTitleColor { get; set; }
+        public ConsoleColor TitleColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.CustomInformation
         /// </summary>
-        public ConsoleColor CustomInformationColor { get; set; }
+        public ConsoleColor InformationColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Information
         /// </summary>
-        public ConsoleColor InformationColor { get; set; }
+        public ConsoleColor SystemColor { get; set; }
+        /// <inheritdoc/>
+        public ConsoleColor WarningColor { get; set; }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="other">The object to compare with the current instance.</param>
@@ -50,9 +55,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             return other != null &&
                    DefaultColor == other.DefaultColor && PromptColor == other.PromptColor &&
-                   ErrorColor == other.ErrorColor && AllOkColor == other.AllOkColor &&
-                   ListTitleColor == other.ListTitleColor && CustomInformationColor == other.CustomInformationColor &&
-                   InformationColor == other.InformationColor;
+                   ErrorColor == other.ErrorColor && OkColor == other.OkColor &&
+                   TitleColor == other.TitleColor && InformationColor == other.InformationColor &&
+                   SystemColor == other.SystemColor && WarningColor==other.WarningColor &&
+                   BackgroundColor==other.BackgroundColor;
         }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -69,8 +75,8 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <returns> hash code of all colors</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine((int) DefaultColor, (int) PromptColor, (int) ErrorColor, (int) AllOkColor,
-                (int) ListTitleColor, (int) CustomInformationColor, (int) InformationColor);
+            return HashCode.Combine(HashCode.Combine((int) DefaultColor, (int) PromptColor, (int) ErrorColor, (int) OkColor,
+                (int) TitleColor, (int) InformationColor, (int) SystemColor, (int)WarningColor), (int)BackgroundColor);
         }
 
         /// <summary>

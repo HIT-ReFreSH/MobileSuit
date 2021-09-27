@@ -9,6 +9,10 @@ namespace PlasticMetal.MobileSuit.Core
     public interface IColorSetting : IEquatable<IColorSetting>
     {
         /// <summary>
+        /// BackgroundColor
+        /// </summary>
+        ConsoleColor BackgroundColor{ get; set; }
+        /// <summary>
         ///     Default color. For OutputType.Default
         /// </summary>
         ConsoleColor DefaultColor { get; set; }
@@ -24,37 +28,43 @@ namespace PlasticMetal.MobileSuit.Core
         ConsoleColor ErrorColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.AllOK
+        ///     Prompt Color. For OutputType.OK
         /// </summary>
-        ConsoleColor AllOkColor { get; set; }
+        ConsoleColor OkColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.ListTitle
+        ///     Prompt Color. For OutputType.Title
         /// </summary>
-        ConsoleColor ListTitleColor { get; set; }
+        ConsoleColor TitleColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.CustomInformation
-        /// </summary>
-        ConsoleColor CustomInformationColor { get; set; }
-
-        /// <summary>
-        ///     Prompt Color. For OutputType.Information
+        ///     Prompt Color. For OutputType.Info
         /// </summary>
         ConsoleColor InformationColor { get; set; }
 
         /// <summary>
+        ///     Prompt Color. For OutputType.System
+        /// </summary>
+        ConsoleColor SystemColor { get; set; }
+        /// <summary>
+        ///     Prompt Color. For OutputType.System
+        /// </summary>
+        ConsoleColor WarningColor { get; set; }
+
+        /// <summary>
         ///     Default color settings for IOServer.
         /// </summary>
-        public static ColorSetting DefaultColorSetting => new ColorSetting
+        public static IColorSetting DefaultColorSetting => new ColorSetting
         {
             DefaultColor = ConsoleColor.White,
             ErrorColor = ConsoleColor.Red,
             PromptColor = ConsoleColor.Magenta,
-            AllOkColor = ConsoleColor.Green,
-            ListTitleColor = ConsoleColor.DarkYellow,
-            CustomInformationColor = ConsoleColor.DarkCyan,
-            InformationColor = ConsoleColor.DarkBlue
+            OkColor = ConsoleColor.Green,
+            TitleColor = ConsoleColor.DarkYellow,
+            InformationColor = ConsoleColor.DarkCyan,
+            SystemColor = ConsoleColor.DarkBlue,
+            WarningColor=ConsoleColor.Yellow,
+            BackgroundColor=ConsoleColor.Black
         };
 
 
@@ -73,7 +83,6 @@ namespace PlasticMetal.MobileSuit.Core
         static ConsoleColor SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
             ConsoleColor? customColor = null)
         {
-            if (colorSetting == null) colorSetting = DefaultColorSetting;
             return
                 customColor
                 ?? type switch
@@ -81,11 +90,12 @@ namespace PlasticMetal.MobileSuit.Core
                     OutputType.Default => colorSetting.DefaultColor,
                     OutputType.Prompt => colorSetting.PromptColor,
                     OutputType.Error => colorSetting.ErrorColor,
-                    OutputType.AllOk => colorSetting.AllOkColor,
-                    OutputType.ListTitle => colorSetting.ListTitleColor,
-                    OutputType.CustomInfo => colorSetting.CustomInformationColor,
-                    OutputType.MobileSuitInfo => colorSetting.InformationColor,
-                    _ => colorSetting.DefaultColor
+                    OutputType.Ok => colorSetting.OkColor,
+                    OutputType.Title => colorSetting.TitleColor,
+                    OutputType.Info => colorSetting.InformationColor,
+                    OutputType.System => colorSetting.SystemColor,
+                    OutputType.Warning => colorSetting.WarningColor,
+                    _ => colorSetting.BackgroundColor
                 };
         }
     }

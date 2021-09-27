@@ -25,11 +25,11 @@ namespace PlasticMetal.MobileSuit.UI
         /// <summary>
         /// Attribute information for the PromptProvider.
         /// </summary>
-        public object? Tag { get; }
+        public IDictionary<string,string> Labels { get; }
         /// <summary>
         /// Content to show in the prompt.
         /// </summary>
-        public string Content { get; }
+        public string Content { get; set; }
         /// <summary>
         /// ForegroundColor for this part of prompt.
         /// </summary>

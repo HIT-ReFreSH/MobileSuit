@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.ObjectModel;
 using PlasticMetal.MobileSuit.Services;
@@ -9,19 +10,9 @@ using PlasticMetal.MobileSuit.UI;
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
-    /// A input helper.
+    /// To configure Options of IOHub
     /// </summary>
-    public interface IInputHelper
-    {
-        /// <summary>
-        /// Expression for the input
-        /// </summary>
-        string? Expression { get; }
-        /// <summary>
-        /// Default value for the input.
-        /// </summary>
-        string? DefaultInput { get; }
-    }
+    public delegate void IIOHubConfigurer(IIOHub hub);
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
@@ -72,11 +63,6 @@ namespace PlasticMetal.MobileSuit.Core
         IColorSetting ColorSetting { get; set; }
 
         /// <summary>
-        ///     Prompt server for the io server.
-        /// </summary>
-        IAssignOncePromptGenerator Prompt { get;}
-
-        /// <summary>
         ///     Input stream (default stdin)
         /// </summary>
         TextReader Input { get; set; }
@@ -85,7 +71,10 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Checks if this IOServer's input stream is redirected (NOT stdin)
         /// </summary>
         bool IsInputRedirected { get; }
-
+        /// <summary>
+        ///     Prompt server for the io server.
+        /// </summary>
+        public IPromptFormatter Prompt { get; }
 
 
         /// <summary>
@@ -100,35 +89,15 @@ namespace PlasticMetal.MobileSuit.Core
                 OutputType.Default => "",
                 OutputType.Prompt => "[Prompt]",
                 OutputType.Error => "[Error]",
-                OutputType.AllOk => "[AllOk]",
-                OutputType.ListTitle => "[List]",
-                OutputType.CustomInfo => "[Info]",
-                OutputType.MobileSuitInfo => "[Info]",
+                OutputType.Ok => "[AllOk]",
+                OutputType.Title => "[List]",
+                OutputType.Info => "[Info]",
+                OutputType.System => "[System]",
                 _ => ""
             };
         }
 
-        /// <summary>
-        ///     provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents)
-        {
-            return contents;
-        }
 
-
-        /// <summary>
-        ///     provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?, ConsoleColor?)> CreateContentArray(
-            params (string, ConsoleColor?, ConsoleColor?)[] contents)
-        {
-            return contents;
-        }
 
         /// <summary>
         ///     Reset this IOServer's error stream to stderr
@@ -144,7 +113,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Append a str to Prefix, usually used to increase indentation
         /// </summary>
         /// <param name="prefix">the output tuple to append</param>
-        void AppendWriteLinePrefix((string,ConsoleColor?,ConsoleColor?) prefix);
+        void AppendWriteLinePrefix(PrintUnit prefix);
 
         /// <summary>
         ///     Subtract a str from Prefix, usually used to decrease indentation
@@ -163,7 +132,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     second is optional, the foreground color of output (in console),
         ///     third is optional, the background color of output.
         /// </param>
-        void Write((string, ConsoleColor?, ConsoleColor?) content);
+        void Write(PrintUnit content);
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain Input/Output color.
         /// </summary>
@@ -173,12 +142,12 @@ namespace PlasticMetal.MobileSuit.Core
         ///     second is optional, the foreground color of output (in console),
         ///     third is optional, the background color of output.
         /// </param>
-        Task WriteAsync((string, ConsoleColor?, ConsoleColor?) content);
+        Task WriteAsync(PrintUnit content);
         /// <summary>
         /// Get the prefix before writing line.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<(string, ConsoleColor?, ConsoleColor?)> GetWriteLinePrefix();
+        IEnumerable<PrintUnit> GetWriteLinePrefix();
         /// <summary>
         ///     Reset this IOServer's input stream to stdin
         /// </summary>

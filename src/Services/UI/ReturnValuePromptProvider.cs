@@ -36,7 +36,7 @@ namespace PlasticMetal.MobileSuit.UI
         public string Content => HostStatus.ReturnValue?.ToString() ?? "";
 
         /// <inheritdoc/>
-        public ConsoleColor? ForegroundColor => Color.InformationColor;
+        public ConsoleColor? ForegroundColor => Color.SystemColor;
 
         /// <inheritdoc/>
         public ConsoleColor? BackgroundColor => null;

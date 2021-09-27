@@ -13,18 +13,18 @@ namespace PlasticMetal.MobileSuit.Services
     /// </summary>
     public partial class IOHub : IIOHub
     {
-        private PromptGenerator _promptGenerator;
 
         /// <summary>
         ///     Initialize a IOServer.
         /// </summary>
-        public IOHub(IPromptGenerator promptGenerator, IOHubOptions options)
+        public IOHub(IPromptFormatter promptGenerator, IIOHubConfigurer configurer)
         {
-            ColorSetting = options.ColorSetting;
-            Input=options.Input;
-            Output=options.Output;
-            ErrorStream = options.Error;
+            ColorSetting = IColorSetting.DefaultColorSetting;
+            Input = Console.In;
+            Output=Console.Out;
+            ErrorStream = Console.Error;
             Prompt = promptGenerator;
+            configurer(this);
         }
 
 
@@ -37,6 +37,6 @@ namespace PlasticMetal.MobileSuit.Services
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        public IPromptGenerator Prompt{ get; }
+        public IPromptFormatter Prompt{ get; }
     }
 }

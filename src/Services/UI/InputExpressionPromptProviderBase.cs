@@ -41,7 +41,7 @@ namespace PlasticMetal.MobileSuit.UI
         /// <inheritdoc/>
         public abstract string Content { get; }
         /// <inheritdoc/>
-        public ConsoleColor? ForegroundColor => Color.ListTitleColor;
+        public ConsoleColor? ForegroundColor => Color.TitleColor;
 
         /// <inheritdoc/>
         public ConsoleColor? BackgroundColor => null;

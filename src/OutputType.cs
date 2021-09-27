@@ -23,21 +23,25 @@
         /// <summary>
         ///     All-Ok content.
         /// </summary>
-        AllOk = 3,
+        Ok = 3,
 
         /// <summary>
         ///     Title of a list.
         /// </summary>
-        ListTitle = 4,
+        Title = 4,
 
         /// <summary>
         ///     Normal information.
         /// </summary>
-        CustomInfo = 5,
+        Info = 5,
 
         /// <summary>
         ///     Information provided by MobileSuit.
         /// </summary>
-        MobileSuitInfo = 6
+        System = 6,
+        /// <summary>
+        ///     Error content.
+        /// </summary>
+        Warning = 7,
     }
 }

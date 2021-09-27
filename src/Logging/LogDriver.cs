@@ -92,21 +92,21 @@ namespace PlasticMetal.MobileSuit.Logging
             var i = 1;
             foreach (var e in logsToShow)
             {
-                IO.WriteLine("(" + i + ") " + e.Type, OutputType.ListTitle);
+                IO.WriteLine("(" + i + ") " + e.Type, OutputType.Title);
 
                 IO.AppendWriteLinePrefix();
                 IO.WriteLine($"{LogRes.Time}: ");
 
                 IO.AppendWriteLinePrefix();
                 IO.WriteLine(e.TimeStamp.ToString("yyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
-                    OutputType.MobileSuitInfo);
+                    OutputType.System);
                 IO.SubtractWriteLinePrefix();
 
                 IO.WriteLine($"{LogRes.Info}: ");
 
                 IO.AppendWriteLinePrefix();
                 var message = e.Message.Split("\n");
-                foreach (var m in message) IO.WriteLine(m, OutputType.CustomInfo);
+                foreach (var m in message) IO.WriteLine(m, OutputType.Info);
                 IO.SubtractWriteLinePrefix();
                 IO.SubtractWriteLinePrefix();
                 i++;
@@ -125,7 +125,7 @@ namespace PlasticMetal.MobileSuit.Logging
         {
             IO.WriteLine($"{LogRes.LogFileAt}: ");
             IO.AppendWriteLinePrefix();
-            IO.WriteLine(_logger.Address, OutputType.MobileSuitInfo);
+            IO.WriteLine(_logger.Address, OutputType.System);
             IO.SubtractWriteLinePrefix();
         }
     }
