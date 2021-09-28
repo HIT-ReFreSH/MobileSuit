@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,48 +21,49 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         /// Foreground color of output.
         /// </summary>
-        public ConsoleColor? Foreground { get; set; }
+        public Color? Foreground { get; set; }
         /// <summary>
         /// Background color of output.
         /// </summary>
-        public ConsoleColor? Background { get; set; }
+        public Color? Background { get; set; }
         /// <summary>
         /// Convert from print unit to a tuple
         /// </summary>
         /// <param name="pu">The print unit</param>
-        public static implicit operator (string, ConsoleColor?, ConsoleColor?)(PrintUnit pu)
+        public static implicit operator (string, Color?, Color?)(PrintUnit pu)
         {
             return (pu.Text, pu.Foreground, pu.Background);
 
         }
+
+        private static Color? ConsoleColorCast(ConsoleColor? origin)
+        {
+            return origin switch
+            {
+                { } v => Color.FromName(Enum.GetName(typeof(ConsoleColor), v) ?? "White"),
+                _ => null
+            };
+        }
         /// <summary>
         /// Convert from print unit back to a tuple
         /// </summary>
         /// <param name="tp">The print unit</param>
-        public static implicit operator PrintUnit((string, ConsoleColor?, ConsoleColor?) tp)
+        public static explicit operator PrintUnit((string, ConsoleColor?, ConsoleColor?) tp)
         {
             return new()
             {
                 Text = tp.Item1,
-                Foreground = tp.Item2,
-                Background = tp.Item3
+                Foreground = ConsoleColorCast(tp.Item2),
+                Background = ConsoleColorCast(tp.Item3)
             };
 
         }
-        /// <summary>
-        /// Convert from print unit to a tuple
-        /// </summary>
-        /// <param name="pu">The print unit</param>
-        public static implicit operator (string, ConsoleColor?)(PrintUnit pu)
-        {
-            return (pu.Text, pu.Foreground);
 
-        }
         /// <summary>
         /// Convert from print unit back to a tuple
         /// </summary>
         /// <param name="tp">The print unit</param>
-        public static implicit operator PrintUnit((string, ConsoleColor?) tp)
+        public static implicit operator PrintUnit((string, Color?) tp)
         {
             return new()
             {
@@ -71,14 +73,47 @@ namespace PlasticMetal.MobileSuit
             };
 
         }
+        /// <summary>
+        /// Convert from print unit back to a tuple
+        /// </summary>
+        /// <param name="tp">The print unit</param>
+        public static implicit operator PrintUnit((string, Color?, Color?) tp)
+        {
+            return new()
+            {
+                Text = tp.Item1,
+                Foreground = tp.Item2,
+                Background = tp.Item3
+            };
+
+        }
+
+        /// <summary>
+        /// Convert from print unit back to a tuple
+        /// </summary>
+        /// <param name="tp">The print unit</param>
+        public static explicit operator PrintUnit((string, ConsoleColor?) tp)
+        {
+            return new()
+            {
+                Text = tp.Item1,
+                Foreground = ConsoleColorCast(tp.Item2),
+                Background = null
+            };
+
+        }
     }
+    /// <summary>
+    /// Extension methods for IOHub.
+    /// </summary>
     public static class IOExtensions
     {
         /// <summary>
         ///     Append a str to Prefix, usually used to increase indentation
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="prefix">the output tuple to append</param>
-        public static void AppendWriteLinePrefix(this IIOHub hub, string prefix)
+        public static void AppendWriteLinePrefix(this IIOHub hub, string prefix = "\t")
         {
             hub.AppendWriteLinePrefix((prefix, null, null));
         }
@@ -86,31 +121,48 @@ namespace PlasticMetal.MobileSuit
         /// <summary>
         ///     Writes some content to output stream. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
-        public static void Write(this IIOHub hub, string content, ConsoleColor? customColor);
+        public static void Write(this IIOHub hub, string content, ConsoleColor? customColor)
+        => hub.Write(content, default, customColor);
 
 
         /// <summary>
         ///     Writes some content to output stream. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
         /// <param name="customColor">Optional. Customized color in console</param>
-        public static void Write(this IIOHub hub, string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
+        public static void Write(this IIOHub hub, string content, OutputType type = OutputType.Default,
+            ConsoleColor? customColor = null)
+        {
+            var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
+            if (type == OutputType.Prompt)
+            {
+                if (!hub.IsOutputRedirected) hub.Write(hub.FormatPrompt(CreateContentArray((content, selColor))));
+            }
+            else
+            {
+                hub.Write((content, selColor, null));
+            }
+        }
 
 
         /// <summary>
         ///     Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console</param>
         public static async Task WriteAsync(this IIOHub hub, string content, ConsoleColor? customColor)
-            => await hub.WriteAsync((content, customColor));
+            => await hub.WriteAsync(content, default, customColor);
 
         /// <summary>
         ///     Asynchronously writes some content to output stream. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
         /// <param name="customColor">Optional. Customized color in console</param>
@@ -119,41 +171,56 @@ namespace PlasticMetal.MobileSuit
         {
             var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
             if (type == OutputType.Prompt)
-                await hub.WriteAsync(hub.Prompt.FormatPrompt(CreateContentArray((content, selColor))));
+            {
+                if (!hub.IsOutputRedirected) await hub.WriteAsync(hub.FormatPrompt(CreateContentArray((content, selColor))));
+            }
+            else
+            {
+                await hub.WriteAsync((content, selColor, null));
+            }
+
         }
 
         /// <summary>
         ///     Write a blank line to output stream.
         /// </summary>
-        public static void WriteLine(this IIOHub hub);
+        /// <param name="hub">IOHub to write to</param>
+        public static void WriteLine(this IIOHub hub) => hub.WriteLine(string.Empty);
 
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console.</param>
-        public static void WriteLine(this IIOHub hub, string content, ConsoleColor customColor);
+        public static void WriteLine(this IIOHub hub, string content, ConsoleColor customColor) => hub.WriteLine(content, default, customColor);
 
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         /// <param name="customColor">Optional. Customized color in console.</param>
-        public static void WriteLine(this IIOHub hub, string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
-        /// <summary>
-        ///     Writes some content to output stream. With certain color for each part of content in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static void Write(this IIOHub hub, IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
+        public static void WriteLine(this IIOHub hub, string content, OutputType type = OutputType.Default,
+            ConsoleColor? customColor = null)
+        {
+            var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
+            if (type == OutputType.Prompt)
+            {
+                if (!hub.IsOutputRedirected) hub.WriteLine(hub.FormatPrompt(CreateContentArray((content, selColor))));
+            }
+            else
+            {
+                hub.WriteLine(CreateContentArray((content, selColor, null)));
+            }
+        }
+
 
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="contentArray">
         ///     TupleArray.
         ///     FOR EACH Tuple, first is a part of content;
@@ -162,20 +229,25 @@ namespace PlasticMetal.MobileSuit
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public static void Write(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-            OutputType type = OutputType.Default);
-        /// <summary>
-        ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static void WriteLine(this IIOHub hub, IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
+            OutputType type = OutputType.Default)
+        {
+            if (type == OutputType.Prompt)
+            {
+                if (hub.IsOutputRedirected) return;
+                contentArray = hub.FormatPrompt(contentArray);
+            }
+
+            foreach (var unit in contentArray)
+            {
+                hub.Write(unit);
+            }
+        }
+
 
         /// <summary>
         ///     Writes some content to output stream. With certain color for each part of content in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="contentArray">
         ///     TupleArray.
         ///     FOR EACH Tuple, first is a part of content;
@@ -184,52 +256,46 @@ namespace PlasticMetal.MobileSuit
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         public static void WriteLine(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-            OutputType type = OutputType.Default);
+            OutputType type = OutputType.Default)
+        => Write(hub, hub.GetLinePrefix(type).Concat(contentArray).Append(("\n", null)), type);
 
         /// <summary>
         ///     Asynchronously writes a blank line to output stream.
         /// </summary>
-        public static Task WriteLineAsync(this IIOHub hub);
+        /// <param name="hub">IOHub to write to</param>
+        public static async Task WriteLineAsync(this IIOHub hub)
+            => await hub.WriteLineAsync(string.Empty);
 
         /// <summary>
         ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">content to output.</param>
         /// <param name="customColor">Customized color in console.</param>
-        public static Task WriteLineAsync(this IIOHub hub, string content, ConsoleColor customColor);
+        public static Task WriteLineAsync(this IIOHub hub, string content, ConsoleColor customColor)
+            => hub.WriteLineAsync(content, default, customColor);
 
         /// <summary>
         ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
         /// </summary>
+        /// <param name="hub">IOHub to write to</param>
         /// <param name="content">Content to output.</param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
         /// <param name="customColor">Optional. Customized color in console.</param>
-        public static Task WriteLineAsync(this IIOHub hub, string content, OutputType type = OutputType.Default,
-            ConsoleColor? customColor = null);
+        public static async Task WriteLineAsync(this IIOHub hub, string content, OutputType type = OutputType.Default,
+            ConsoleColor? customColor = null)
+        {
+            var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
+            if (type == OutputType.Prompt)
+            {
+                if (!hub.IsOutputRedirected) await hub.WriteLineAsync(hub.FormatPrompt(CreateContentArray((content, selColor))));
+            }
+            else
+            {
+                await hub.WriteLineAsync(CreateContentArray((content, selColor, null)));
+            }
+        }
 
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static Task WriteLineAsync(this IIOHub hub, IEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static Task WriteLineAsync(this IIOHub hub, IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
 
         /// <summary>
         ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
@@ -243,8 +309,11 @@ namespace PlasticMetal.MobileSuit
         ///     third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static Task WriteLineAsync(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-            OutputType type = OutputType.Default);
+        public static async Task WriteLineAsync(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
+            OutputType type = OutputType.Default)
+        {
+            await WriteAsync(hub, hub.GetLinePrefix(type).Concat(contentArray).Append(("\n", null)), type);
+        }
 
         /// <summary>
         ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
@@ -263,12 +332,12 @@ namespace PlasticMetal.MobileSuit
         {
             if (type != OutputType.Prompt)
             {
-                await foreach (var unit in contentArray)    
+                await foreach (var unit in contentArray)
                 {
                     await hub.WriteAsync(unit);
                 }
             }
-            else
+            else if (!hub.IsOutputRedirected)
             {
                 var carr = new List<PrintUnit>();
                 await foreach (var unit in contentArray)
@@ -296,7 +365,11 @@ namespace PlasticMetal.MobileSuit
             OutputType type = OutputType.Default)
         {
             if (type == OutputType.Prompt)
-                contentArray = hub.Prompt.FormatPrompt(contentArray);
+            {
+                if (hub.IsOutputRedirected) return;
+                contentArray = hub.FormatPrompt(contentArray);
+            }
+
             foreach (var unit in contentArray)
             {
                 await hub.WriteAsync(unit);
@@ -315,10 +388,25 @@ namespace PlasticMetal.MobileSuit
         ///     third is optional, the background color of output.
         /// </param>
         /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        public static Task WriteLineAsync(this IIOHub hub, IAsyncEnumerable<PrintUnit> contentArray,
+        public static async Task WriteLineAsync(this IIOHub hub, IAsyncEnumerable<PrintUnit> contentArray,
             OutputType type = OutputType.Default)
         {
-            
+            if (type != OutputType.Prompt)
+            {
+                await hub.WriteAsync(hub.GetLinePrefix(type), type);
+                await hub.WriteAsync(contentArray, type);
+                await hub.WriteAsync(("\n", null));
+            }
+            else if (!hub.IsOutputRedirected)
+            {
+                var carr = new List<PrintUnit>();
+                await foreach (var unit in contentArray)
+                {
+                    carr.Add(unit);
+                }
+                await hub.WriteAsync(hub.GetLinePrefix(type).Concat(carr).Append(("\n", null)), type);
+            }
+
         }
 
         /// <summary>
@@ -330,7 +418,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
         public static string? ReadLine(this IIOHub hub, string prompt, bool newLine, ConsoleColor? customPromptColor = null)
-        =>hub.ReadLine(prompt, null, newLine, customPromptColor);
+        => hub.ReadLine(prompt, null, newLine, customPromptColor);
         /// <summary>
         ///     Reads a line from input stream, with prompt.
         /// </summary>
@@ -339,7 +427,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
         public static string? ReadLine(this IIOHub hub, string prompt, ConsoleColor? customPromptColor)
-        =>hub.ReadLine(prompt, null, false, customPromptColor);
+        => hub.ReadLine(prompt, null, false, customPromptColor);
 
         /// <summary>
         ///     Reads a line from input stream, with prompt. Return something default if user input "".
@@ -350,7 +438,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor"></param>
         /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
         public static string? ReadLine(this IIOHub hub, string prompt, string? defaultValue,
-            ConsoleColor? customPromptColor)=>hub.ReadLine(prompt, defaultValue, false, customPromptColor);
+            ConsoleColor? customPromptColor) => hub.ReadLine(prompt, defaultValue, false, customPromptColor);
 
         /// <summary>
         ///     Reads a line from input stream, with prompt. Return something default if user input "".
@@ -392,7 +480,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
         public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, bool newLine,
-            ConsoleColor? customPromptColor = null)=>
+            ConsoleColor? customPromptColor = null) =>
             await hub.ReadLineAsync(prompt, null, newLine, customPromptColor).ConfigureAwait(false);
 
         /// <summary>
@@ -414,13 +502,13 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor"></param>
         /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
         public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue,
-            ConsoleColor? customPromptColor)=> await hub.ReadLineAsync(prompt, defaultValue, false, customPromptColor).ConfigureAwait(false);
+            ConsoleColor? customPromptColor) => await hub.ReadLineAsync(prompt, defaultValue, false, customPromptColor).ConfigureAwait(false);
 
-        private static IEnumerable<PrintUnit> CreateReadLinePrompt(IIOHub hub,string prompt, string? defaultValue , ConsoleColor? customPromptColor)
+        private static IEnumerable<PrintUnit> CreateReadLinePrompt(IIOHub hub, string prompt, string? defaultValue, ConsoleColor? customPromptColor)
         {
             var printUnit0 = (prompt, customPromptColor ?? hub.ColorSetting.PromptColor);
-            return defaultValue is null? 
-                CreateContentArray(printUnit0):
+            return defaultValue is null ?
+                CreateContentArray(printUnit0) :
                 CreateContentArray(
                 printUnit0,
                 (defaultValue, hub.ColorSetting.SystemColor));
@@ -438,7 +526,7 @@ namespace PlasticMetal.MobileSuit
         public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue = null,
             bool newLine = false, ConsoleColor? customPromptColor = null)
         {
-            await hub.WriteAsync(CreateReadLinePrompt(hub,prompt,defaultValue,customPromptColor), OutputType.Prompt);
+            await hub.WriteAsync(CreateReadLinePrompt(hub, prompt, defaultValue, customPromptColor), OutputType.Prompt);
             if (newLine)
                 await hub.WriteAsync("\n");
 

@@ -17,7 +17,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         /// CancellationToken of the request.
         /// </summary>
-        public CancellationToken CancellationToken { get;  }
+        public CancellationTokenSource CancellationToken { get;  }
         /// <summary>
         /// Properties of current request.
         /// </summary>
@@ -39,7 +39,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// </summary>
         public IServiceProvider ServiceProvider { get; set; }
 
-        internal SuitContext(IServiceScope scope, CancellationToken token)
+        internal SuitContext(IServiceScope scope, CancellationTokenSource token)
         {
             _serviceScope = scope;
             ServiceProvider = scope.ServiceProvider;

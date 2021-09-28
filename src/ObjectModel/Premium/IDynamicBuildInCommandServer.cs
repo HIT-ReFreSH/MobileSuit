@@ -5,7 +5,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
     /// <summary>
     ///     A Build-in-command server for dynamic host, containing free and create-object
     /// </summary>
-    public interface IDynamicBuildInCommandServer : IBuildInCommandServer
+    public interface IDynamicBuildInCommandServer : ISuitServer
     {
         /// <summary>
         ///     Create and Enter a new SuitObject

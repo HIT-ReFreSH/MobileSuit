@@ -165,8 +165,8 @@
   <data name="MsHelp2" xml:space="preserve">
     <value>' to get MobileSuit Build in commands.</value>
   </data>
-  <data name="ObjectNotFound" xml:space="preserve">
-    <value>Object Not Found</value>
+  <data name="Interrupt" xml:space="preserve">
+    <value>Keyboard Interrupt</value>
   </data>
   <data name="PoweredBy" xml:space="preserve">
     <value> Powered By </value>
@@ -197,5 +197,17 @@
   </data>
   <data name="LogNotCached" xml:space="preserve">
     <value>Current Log has no Cache! Make it Cached!</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks: </value>
+  </data>
+  <data name="OnError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="CommandParsingFailure" xml:space="preserve">
+    <value />
   </data>
 </root>

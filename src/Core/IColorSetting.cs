@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core
@@ -11,60 +12,60 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         /// BackgroundColor
         /// </summary>
-        ConsoleColor BackgroundColor{ get; set; }
+        Color BackgroundColor{ get; set; }
         /// <summary>
         ///     Default color. For OutputType.Default
         /// </summary>
-        ConsoleColor DefaultColor { get; set; }
+        Color DefaultColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Prompt
         /// </summary>
-        ConsoleColor PromptColor { get; set; }
+        Color PromptColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Error
         /// </summary>
-        ConsoleColor ErrorColor { get; set; }
+        Color ErrorColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.OK
         /// </summary>
-        ConsoleColor OkColor { get; set; }
+        Color OkColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Title
         /// </summary>
-        ConsoleColor TitleColor { get; set; }
+        Color TitleColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Info
         /// </summary>
-        ConsoleColor InformationColor { get; set; }
+        Color InformationColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.System
         /// </summary>
-        ConsoleColor SystemColor { get; set; }
+        Color SystemColor { get; set; }
         /// <summary>
         ///     Prompt Color. For OutputType.System
         /// </summary>
-        ConsoleColor WarningColor { get; set; }
+        Color WarningColor { get; set; }
 
         /// <summary>
         ///     Default color settings for IOServer.
         /// </summary>
         public static IColorSetting DefaultColorSetting => new ColorSetting
         {
-            DefaultColor = ConsoleColor.White,
-            ErrorColor = ConsoleColor.Red,
-            PromptColor = ConsoleColor.Magenta,
-            OkColor = ConsoleColor.Green,
-            TitleColor = ConsoleColor.DarkYellow,
-            InformationColor = ConsoleColor.DarkCyan,
-            SystemColor = ConsoleColor.DarkBlue,
-            WarningColor=ConsoleColor.Yellow,
-            BackgroundColor=ConsoleColor.Black
+            DefaultColor = Color.White,
+            ErrorColor = Color.Red,
+            PromptColor = Color.Magenta,
+            OkColor = Color.Green,
+            TitleColor = Color.YellowGreen,
+            InformationColor = Color.DarkCyan,
+            SystemColor = Color.DarkBlue,
+            WarningColor=Color.Yellow,
+            BackgroundColor=Color.Black
         };
 
 
@@ -80,8 +81,8 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="type">output type</param>
         /// <param name="customColor">customized color</param>
         /// <returns></returns>
-        static ConsoleColor SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
-            ConsoleColor? customColor = null)
+        static Color SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
+            Color? customColor = null)
         {
             return
                 customColor

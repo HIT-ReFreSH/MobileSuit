@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.Services;
-using PlasticMetal.MobileSuit.UI;
+using PlasticMetal.MobileSuit.Core.Services;
 
 namespace PlasticMetal.MobileSuit.Core
 {
@@ -52,10 +48,6 @@ namespace PlasticMetal.MobileSuit.Core
         /// </summary>
         TextWriter Output { get; set; }
 
-        /// <summary>
-        ///     The prefix of WriteLine() output, usually used to make indentation.
-        /// </summary>
-        string Prefix { get; set; }
 
         /// <summary>
         ///     Color settings for this IOServer. (default DefaultColorSetting)
@@ -74,7 +66,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
-        public IPromptFormatter Prompt { get; }
+        public PromptFormatter FormatPrompt { get; }
 
 
         /// <summary>
@@ -147,7 +139,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// Get the prefix before writing line.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PrintUnit> GetWriteLinePrefix();
+        IEnumerable<PrintUnit> GetLinePrefix(OutputType type);
         /// <summary>
         ///     Reset this IOServer's input stream to stdin
         /// </summary>

@@ -6,7 +6,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
     /// <summary>
     ///     A build-in-command server for Diagnostic
     /// </summary>
-    public interface IDiagnosticBuildInCommandServer : IBuildInCommandServer
+    public interface IDiagnosticBuildInCommandServer : ISuitServer
     {
         /// <summary>
         ///     The log driver to view logs

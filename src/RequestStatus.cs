@@ -8,36 +8,42 @@
         /// <summary>
         /// No Request is input by the user.
         /// </summary>
-        NoRequest=-1,
+        NoRequest = 1,
         /// <summary>
         ///     The Progress is Exiting
         /// </summary>
-        OnExit = 1,
+        OnExit = -1,
 
         /// <summary>
         ///     Everything is OK
         /// </summary>
-        AllOk = 0,
-
+        Ok = 0,
         /// <summary>
-        ///     This is not a command.
+        ///     Everything is OK
         /// </summary>
-        InvalidCommand = -1,
+        NotHandled = 2,
+        /// <summary>
+        /// Command is Running. Set by the FinalMiddleware.
+        /// </summary>
+        Running = 3,
+        /// <summary>
+        /// Command is Running. Set by the FinalMiddleware.
+        /// </summary>
+        Handled = 4,
 
         /// <summary>
         ///     Cannot find the object referring to.
         /// </summary>
-        ObjectNotFound = -2,
-
+        Interrupt = -2,
         /// <summary>
         ///     Cannot find the member in the object referring to.
         /// </summary>
-        MemberNotFound = -3,
+        CommandNotFound = -3,
 
         /// <summary>
         ///     Error in the application
         /// </summary>
-        ApplicationError = -4,
+        Faulted = -4,
         /// <summary>
         ///     Failed to parse an argument of a command.
         /// </summary>

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using PlasticMetal.MobileSuit.Attributes;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Extensions;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
 {
     /// <summary>
     ///     Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class BuildInCommandServer : IBuildInCommandServer
+    public class BuildInCommandServer : ISuitServer
     {
         /// <summary>
         ///     Initialize a BicServer with the given SuitHost.
@@ -31,12 +31,12 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <summary>
         ///     SuitObject for Host
         /// </summary>
-        protected SuitShell HostRef { get; }
+        protected SuitObjectShell HostRef { get; }
 
         /// <summary>
         ///     Host's current SuitObject.
         /// </summary>
-        protected SuitShell Current
+        protected SuitObjectShell Current
         {
             get => Host.Current;
             set => Host.Current = value;
@@ -63,10 +63,10 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             else
             {
                 r = Current.TryGetField(args[0], out nextObject);
-                if (r != RequestStatus.AllOk || nextObject is null) r = Host.BicServer.TryGetField(args[0], out nextObject);
+                if (r != RequestStatus.Ok || nextObject is null) r = Host.BicServer.TryGetField(args[0], out nextObject);
             }
 
-            if (r != RequestStatus.AllOk || nextObject is null) return r;
+            if (r != RequestStatus.Ok || nextObject is null) return r;
 
             Host.InstanceStack.Push(Host.Current);
             var a0L = args[0].ToLower(CultureInfo.CurrentCulture);
@@ -80,7 +80,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Host.InstanceNameString.Add(a0L);
             Host.Current = nextObject.SuitValue;
             Host.WorkInstanceInit();
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
             Host.Current = Host.InstanceStack.Pop();
             Host.InstanceNameString.RemoveAt(Host.InstanceNameString.Count - 1); //PopBack
             //Host.WorkInstanceInit();
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
 
@@ -114,9 +114,9 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 Host.WorkInstance == null)
                 return RequestStatus.InvalidCommand;
             var r = Current.TryGetField(args[0], out var obj);
-            if (r != RequestStatus.AllOk || obj is null) return r;
+            if (r != RequestStatus.Ok || obj is null) return r;
             Host.IO.WriteLine(obj.ToString() ?? $"<{Lang.Unknown}>");
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
             ), OutputType.Ok);
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
 
@@ -194,7 +194,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         {
             if (Host.WorkType == null) return RequestStatus.InvalidCommand;
             Host.IO.WriteLine($"{Lang.WorkInstance}{Host.WorkType.FullName}");
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
 
@@ -216,14 +216,14 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 (Lang.BicExp2,
                     null)
             ), OutputType.Ok);
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
 
         /// <summary>
         ///     List members of a SuitObject
         /// </summary>
         /// <param name="suitObject">The SuitObject, Maybe this BicServer.</param>
-        protected void ListMembers(SuitShell suitObject)
+        protected void ListMembers(SuitObjectShell suitObject)
         {
             if (suitObject == null) return;
             Host.IO.AppendWriteLinePrefix();
@@ -274,11 +274,11 @@ namespace PlasticMetal.MobileSuit.ObjectModel
         /// <param name="suitObject">the SuitObject, maybe SuitHost.</param>
         /// <param name="args">command args</param>
         /// <returns>Command status</returns>
-        protected RequestStatus ModifyValue(SuitShell suitObject, string[] args)
+        protected RequestStatus ModifyValue(SuitObjectShell suitObject, string[] args)
         {
             if (args == null || args.Length == 0 || suitObject == null) return RequestStatus.InvalidCommand;
             var r = suitObject.TryGetField(args[0], out var target);
-            if (r != RequestStatus.AllOk || target?.Value is null) return r;
+            if (r != RequestStatus.Ok || target?.Value is null) return r;
             string val, newVal;
             if (args.Length == 1)
             {
@@ -319,7 +319,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel
                 }
 
             Host.IO.WriteLine($"{a0L}:{val}->{newVal}", ConsoleColor.Green);
-            return RequestStatus.AllOk;
+            return RequestStatus.Ok;
         }
     }
 }

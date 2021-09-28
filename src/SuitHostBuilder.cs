@@ -1,124 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PlasticMetal.MobileSuit.Core;
+using PlasticMetal.MobileSuit.Core.Services;
 using PlasticMetal.MobileSuit.Logging;
 using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.UI;
-using PlasticMetal.MobileSuit.UI.PowerLine;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
     ///     Builder to build a MobileSuit host.
     /// </summary>
-    public interface ISuitHostBuilder : IHostBuilder { }
-
-    internal class SuitHostBuilder : ISuitHostBuilder
+    public class SuitHostBuilder
     {
-        private readonly IHostBuilder _baseBuilder;
-        internal SuitHostBuilder()
-        {
-            _baseBuilder = Host.CreateDefaultBuilder();
-            this.UseBasicPrompt();
-        }
-
-
-
+        public SuitAppInfo AppInfo { get; } = new();
+        private List<ISuitMiddleware> _middlewares=new();
         /// <summary>
-        ///     Settings of host
+        /// Service collection of suit host.
         /// </summary>
-        protected internal HostSettings Settings { get; set; }
-
+        public IServiceCollection Services { get; }=new ServiceCollection();
         /// <summary>
-        ///     Logger of host
+        /// Service collection of suit host.
         /// </summary>
-        protected internal ISuitLogger? Logger { get; set; }
+        public ConfigurationManager Configuration { get; } = new();
 
-        /// <summary>
-        ///     BuildInCommandServer of host
-        /// </summary>
-        protected internal Type BuildInCommandServer { get; set; } = typeof(BuildInCommandServer);
-
-        /// <summary>
-        ///     IOServer of host
-        /// </summary>
-        protected internal Type IOServer { get; set; } = typeof(IOHub);
-
-        /// <summary>
-        ///     PromptServer of host
-        /// </summary>
-        protected internal PromptGeneratorBuilder PromptBuilder { get; set; } = new();
-
-        /// <summary>
-        ///     Use given color setting for host
-        /// </summary>
-        /// <param name="setting">given color setting</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureColor(ColorSetting setting)
-        {
-            ColorSetting = setting;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given stream as input for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureIn(TextReader stream)
-        {
-            Input = stream;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given stream as output for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureOut(TextWriter stream)
-        {
-            Output = stream;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given stream as error output for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureError(TextWriter stream)
-        {
-            Error = stream;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given settings for host
-        /// </summary>
-        /// <param name="settings">given settings</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureSetting(HostSettings settings)
-        {
-            Settings = settings;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given logger for host
-        /// </summary>
-        /// <param name="logger">given logger</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder UseLog(ISuitLogger logger)
-        {
-            Logger = logger;
-            return this;
-        }
-
+        
         /// <summary>
         ///     Get the host under the configuration of the builder
         /// </summary>
@@ -136,52 +47,26 @@ namespace PlasticMetal.MobileSuit
             if (Error != null) io.ErrorStream = Error;
             Logger ??= ISuitLogger.CreateEmpty();
 
-            var host = new SuitHost(instance, Logger, io, BuildInCommandServer);
+            var host = new SuitHost(instance, Logger<>, io, BuildInCommandServer);
             var prompt = PromptBuilder.Build(host, io, instance);
             host.Prompt.Assign(prompt);
-            io.Prompt.Assign(prompt);
+            io.FormatPrompt.Assign(prompt);
             return host;
         }
 
-        public IHostBuilder ConfigureHostConfiguration(Action<IConfigurationBuilder> configureDelegate)
-        {
-            return _baseBuilder.ConfigureHostConfiguration(configureDelegate);
-        }
-
-        public IHostBuilder ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureDelegate)
-        {
-            
-            return _baseBuilder.ConfigureAppConfiguration(configureDelegate);
-        }
-
-        public IHostBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureDelegate)
-        {
-            return _baseBuilder.ConfigureServices(configureDelegate);
-        }
-
-        public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory)
-            where TContainerBuilder : notnull
-        {
-            return _baseBuilder.UseServiceProviderFactory(factory);
-        }
-
-        public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory)
-            where TContainerBuilder : notnull
-        {
-            return _baseBuilder.UseServiceProviderFactory(factory);
-        }
-
-        public IHostBuilder ConfigureContainer<TContainerBuilder>(Action<HostBuilderContext, TContainerBuilder> configureDelegate)
-        {
-            return _baseBuilder.ConfigureContainer(configureDelegate);
-        }
-
+        /// <summary>
+        /// Build a SuitHost.
+        /// </summary>
+        /// <returns></returns>
         public IHost Build()
         {
-            return new SuitHost(_baseBuilder.Build());
+            return new SuitHost(Services.BuildServiceProvider(),_middlewares);
         }
 
-        public IDictionary<object, object> Properties { get; }
+        public SuitHostBuilder(string[] args)
+        {
+            _appInfo.StartArgs = args;
+        }
     }
 
     /// <summary>
@@ -198,7 +83,7 @@ namespace PlasticMetal.MobileSuit
         /// <returns>Builder for the host</returns>
         public static ISuitHostBuilder UsePrompt<T>(this ISuitHostBuilder builder,
             Action<PromptGeneratorBuilder>? options = null)
-            where T : IPromptFormatter
+            where T : PromptFormatter
         {
             builder.PromptBuilder = new PromptGeneratorBuilder { GeneratorType = typeof(T) };
             options?.Invoke(builder.PromptBuilder);
@@ -213,10 +98,10 @@ namespace PlasticMetal.MobileSuit
         public static SuitHostBuilder UseBasicPrompt(this SuitHostBuilder builder,
             Action<PromptGeneratorBuilder>? options = null)
         {
-            builder.PromptBuilder.GeneratorType = typeof(BasicPromptGenerator);
+            builder.PromptBuilder.GeneratorType = typeof(BasicPromptFormatter);
             builder.PromptBuilder.UseInformation();
-            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputExpressionPromptProvider>();
-            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputDefaultValuePromptProvider>();
+            builder.PromptBuilder.AddProvider<BasicPromptFormatter.InputExpressionPromptProvider>();
+            builder.PromptBuilder.AddProvider<BasicPromptFormatter.InputDefaultValuePromptProvider>();
             options?.Invoke(builder.PromptBuilder);
             builder.PromptBuilder.UseTraceBack();
             builder.PromptBuilder.UseReturnValue();
@@ -234,11 +119,11 @@ namespace PlasticMetal.MobileSuit
             Action<PromptGeneratorBuilder>? options = null)
         {
             builder.PromptBuilder = new();
-            builder.PromptBuilder.GeneratorType = typeof(PowerLineGenerator);
+            builder.PromptBuilder.GeneratorType = typeof(PowerLineFormatter);
             if (prefixCross) builder.PromptBuilder.UseCross();
             builder.PromptBuilder.UseInformation();
-            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputExpressionPromptProvider>();
-            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputDefaultValuePromptProvider>();
+            builder.PromptBuilder.AddProvider<PowerLineFormatter.InputExpressionPromptProvider>();
+            builder.PromptBuilder.AddProvider<PowerLineFormatter.InputDefaultValuePromptProvider>();
             options?.Invoke(builder.PromptBuilder);
             if (!prefixCross) builder.PromptBuilder.UseTraceBack();
             builder.PromptBuilder.UseReturnValue();
@@ -265,7 +150,7 @@ namespace PlasticMetal.MobileSuit
         /// <typeparam name="T">BuildInCommandServer</typeparam>
         /// <returns>Builder for the host</returns>
         public static SuitHostBuilder UseBuildInCommand<T>(this SuitHostBuilder builder)
-            where T : IBuildInCommandServer
+            where T : ISuitServer
         {
             builder ??= new SuitHostBuilder();
             builder.BuildInCommandServer = typeof(T);
