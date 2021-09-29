@@ -44,6 +44,8 @@ namespace PlasticMetal.MobileSuit
             _rootScope.Dispose();
             _delegateHost.Dispose();
         }
+
+
         public async Task StartAsync(CancellationToken cancellationToken = new())
         {
             Console.CancelKeyPress += Console_CancelKeyPress;
@@ -56,13 +58,14 @@ namespace PlasticMetal.MobileSuit
             var requestStack = new Stack<SuitRequestDelegate>();
             requestStack.Push( _ => Task.CompletedTask);
             SuitRequestDelegate last = _ => Task.CompletedTask;
+
+
             foreach (var middleware in _suitApp.Reverse())
             {
-                var p = requestStack.Peek();
-                Task Del(SuitContext c) => middleware.InvokeAsync(c, p);
-                requestStack.Push(Del);
+                var next = requestStack.Peek();
+                requestStack.Push(async c=> await middleware.InvokeAsync(c, next));
             }
-            var handleRequest = last;
+            var handleRequest = requestStack.Peek();
             var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
             if (appInfo.StartArgs.Length > 0)
             {
