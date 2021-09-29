@@ -10,9 +10,19 @@ using System.Threading.Tasks;
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
+    /// A collection contains ordered suit shell members.
+    /// </summary>
+    public interface ISuitShellCollection
+    {
+        /// <summary>
+        /// Ordered members of this
+        /// </summary>
+        IEnumerable<SuitShell> Members();
+    }
+    /// <summary>
     ///     Represents an object in Mobile Suit.
     /// </summary>
-    public class SuitObjectShell : SuitShell
+    public class SuitObjectShell : SuitShell,ISuitShellCollection
     {
         /// <summary>
         ///     The BindingFlags stands for IgnoreCase,  Public and Instance members
@@ -158,7 +168,7 @@ namespace PlasticMetal.MobileSuit.Core
         {
             var origin = context.Request;
             context.Request = origin[1..];
-            foreach (var sys in Members.Where(sys => sys.MayExecute(context.Request.Skip(1).ToImmutableArray())))
+            foreach (var sys in _subSystems.Where(sys => sys.MayExecute(context.Request.Skip(1).ToImmutableArray())))
             {
 
                 await sys.Execute(context);
@@ -176,10 +186,10 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         /// Ordered members of this
         /// </summary>
-        public IReadOnlyList<SuitShell> Members => _subSystems.AsReadOnly();
+        public IEnumerable<SuitShell> Members() => _subSystems.AsReadOnly();
 
 
         /// <inheritdoc/>
-        public override int MemberCount => Members.Count;
+        public override int MemberCount => _subSystems.Count;
     }
 }

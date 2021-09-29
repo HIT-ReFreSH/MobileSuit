@@ -7,9 +7,9 @@ namespace PlasticMetal.MobileSuitDemo
     {
         private static void Main(string[] args)
         {
-            Suit.GetBuilder(args)
+            Suit.CreateBuilder(args)
                 .UsePowerLine()
-                .AddObject<Client>()
+                .MapClient<Client>()
                 .Build()
                 .Run();
         }

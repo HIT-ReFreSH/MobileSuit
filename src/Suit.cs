@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Reflection;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Extensions;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.UI;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -18,17 +16,16 @@ namespace PlasticMetal.MobileSuit
         ///     Get a builder to create host
         /// </summary>
         /// <returns>The builder</returns>
-        public static SuitHostBuilder GetBuilder(string[]? args=null)
+        public static SuitHostBuilder CreateBuilder(string[]? args=null)
         {
             return new SuitHostBuilder(args);
         }
-
         /// <summary>
         ///     provides packaging for ContentArray
         /// </summary>
         /// <param name="contents">ContentArray</param>
         /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents)
+        public static IEnumerable<PrintUnit> CreateContentArray(params (string, Color?)[] contents)
         {
             return SuitTools.CreateContentArray(contents);
         }
@@ -39,7 +36,28 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="contents">ContentArray</param>
         /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?, ConsoleColor?)> CreateContentArray(
+        public static IEnumerable<PrintUnit> CreateContentArray(
+            params (string, Color?, Color?)[] contents)
+        {
+            return SuitTools.CreateContentArray(contents);
+        }
+        /// <summary>
+        ///     provides packaging for ContentArray
+        /// </summary>
+        /// <param name="contents">ContentArray</param>
+        /// <returns>packaged ContentArray</returns>
+        public static IEnumerable<PrintUnit> CreateContentArray(params (string, ConsoleColor?)[] contents)
+        {
+            return SuitTools.CreateContentArray(contents);
+        }
+
+
+        /// <summary>
+        ///     provides packaging for ContentArray
+        /// </summary>
+        /// <param name="contents">ContentArray</param>
+        /// <returns>packaged ContentArray</returns>
+        public static IEnumerable<PrintUnit> CreateContentArray(
             params (string, ConsoleColor?, ConsoleColor?)[] contents)
         {
             return SuitTools.CreateContentArray(contents);
@@ -66,27 +84,25 @@ namespace PlasticMetal.MobileSuit
             if (io == null) return;
 
             if (showMobileSuitPowered)
-                io.WriteLine(CreateContentArray(
+                io.WriteLine(SuitTools.CreateContentArray(
                     (assemblyName, null),
                     (" ", null),
                     (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor),
                     (" ", null),
                     (Lang.PoweredBy, null),
-                    ("MobileSuit(", io.ColorSetting.ErrorColor),
-                    ("https://ms.ifers.xyz", io.ColorSetting.InformationColor),
-                    (") ", null),
+                    ("MobileSuit ", io.ColorSetting.ErrorColor),
                     (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "",
                         io.ColorSetting.TitleColor)
                 ));
             else
-                io.WriteLine(CreateContentArray(
+                io.WriteLine(SuitTools.CreateContentArray(
                     (assemblyName, null),
                     (" ", null),
                     (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor)
                 ));
             io.WriteLine();
             if (owner != null)
-                io.WriteLine(CreateContentArray(
+                io.WriteLine(SuitTools.CreateContentArray(
                     (Lang.CopyrightC, null),
                     (owner, io.ColorSetting.TitleColor)
                     //, (Lang.AllRightsReserved, null)
@@ -100,7 +116,7 @@ namespace PlasticMetal.MobileSuit
 
             if (showLsHelp)
             {
-                io.WriteLine(CreateContentArray(
+                io.WriteLine(SuitTools.CreateContentArray(
                     (Lang.LsHelp1, null),
                     ("Ls", io.ColorSetting.PromptColor),
                     (Lang.LsHelp2, null)
@@ -116,20 +132,20 @@ namespace PlasticMetal.MobileSuit
         public static void PrintMobileSuitInformation(this IIOHub io)
         {
             if (io == null) return;
-            io.WriteLine(CreateContentArray(
+            io.WriteLine(SuitTools. CreateContentArray(
                 (Lang.PoweredBy, null),
                 ("MobileSuit", io.ColorSetting.ErrorColor),
                 (" ", null),
                 (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.TitleColor)
             ));
-            io.WriteLine(CreateContentArray(
+            io.WriteLine(SuitTools.CreateContentArray(
                 (Lang.CopyrightC, null),
                 ("Plastic-Metal", io.ColorSetting.TitleColor)
                 //, (Lang.AllRightsReserved, null)
             ));
             io.WriteLine();
             io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.InformationColor);
-            io.WriteLine(CreateContentArray(
+            io.WriteLine(SuitTools.CreateContentArray(
                 (Lang.LsHelp1, null),
                 ("Help", io.ColorSetting.PromptColor),
                 (Lang.MsHelp2, null)

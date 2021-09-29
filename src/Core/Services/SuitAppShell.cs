@@ -7,7 +7,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
     /// <summary>
     /// SuitShell for Client App.
     /// </summary>
-    public class SuitAppShell : SuitShell
+    public class SuitAppShell : SuitShell, ISuitShellCollection
     {
         internal static SuitAppShell FromClients(IEnumerable<SuitShell> clients)
         {
@@ -49,7 +49,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
                         break;
                     case SuitObjectShell obj:
                     {
-                        foreach (var objMember in obj.Members)
+                        foreach (var objMember in obj.Members())
                         {
                             yield return objMember;
                         }

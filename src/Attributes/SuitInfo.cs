@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Resources;
 using System.Threading;
-using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -9,7 +8,7 @@ namespace PlasticMetal.MobileSuit
     ///     Stores the information of a member to be displayed.
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class SuitInfoAttribute : Attribute, IInfoProvider
+    public sealed class SuitInfoAttribute : Attribute
     {
         /// <summary>
         ///     Initialize with the information.

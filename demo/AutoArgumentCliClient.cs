@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit;
 using PlasticMetal.MobileSuit.Attributes;
@@ -40,4 +40,4 @@ namespace PlasticMetal.MobileSuitDemo
             return 0;
         }
     }
-}
+}*/

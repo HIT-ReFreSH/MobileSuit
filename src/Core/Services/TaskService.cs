@@ -18,5 +18,10 @@ namespace PlasticMetal.MobileSuit.Core.Services
     {
         /// <inheritdoc/>
         public int RunningCount { get; } = 0;
+
+        public void AddTask(Task task, SuitContext context)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

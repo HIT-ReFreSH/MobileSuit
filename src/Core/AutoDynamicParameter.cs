@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuit
+namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
     ///     A DynamicParameter which can parse itself automatically
@@ -51,11 +48,11 @@ namespace PlasticMetal.MobileSuit
         private static Regex ParseMemberRegex { get; } = new Regex(@"^-");
 
         /// <inheritdoc />
-        public bool Parse(string[]? options = null)
+        public bool Parse(IReadOnlyList<string>? options = null)
         {
-            if (options == null || options.Length <= 0)
+            if (options == null || options.Count <= 0)
                 return Members.Values.All(member => member.Assigned);
-            for (var i = 0; i < options.Length;)
+            for (var i = 0; i < options.Count;)
             {
                 if (!ParseMemberRegex.IsMatch(options[i]))
                     throw new ArgumentException(
@@ -71,12 +68,12 @@ namespace PlasticMetal.MobileSuit
                 var parseMember = Members[name];
                 i++;
                 var j = i + parseMember.ParseLength;
-                if (j > options.Length)
+                if (j > options.Count)
                     throw new ArgumentException($@"{options[i]}{Lang.AutoDynamicParameter_Parse__0__length_not_match}",
                         nameof(options));
 
                 parseMember.Set(this,
-                    ConnectStringArray(options[i..j] ?? Array.Empty<string>()));
+                    ConnectStringArray(options.ToArray()[i..j]));
                 i = j;
             }
 

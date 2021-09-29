@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit.Core
 {

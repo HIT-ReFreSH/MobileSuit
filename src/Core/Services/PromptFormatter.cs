@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -64,17 +65,13 @@ namespace PlasticMetal.MobileSuit.Core.Services
         {
             var orgList = origin.ToList();
             //Power line theme uses inverse Background&Foreground
-            var backGrounds = orgList.Select(p => p.Foreground??ConsoleColor.Black).ToArray();
-            var foreGrounds = orgList.Select(p => p.Background??ConsoleColor.White).ToArray();
+            var backGrounds = orgList.Select(p => p.Foreground ?? Color.Black).ToArray();
+            var foreGrounds = orgList.Select(p => p.Background).ToArray();
             for (var i = 0; i < orgList.Count; i++)
             {
-                if (backGrounds[i] is ConsoleColor.White or ConsoleColor.Yellow or ConsoleColor.Cyan)
-                {
-                    foreGrounds[i] = ConsoleColor.Black;
-                }
-
-
-
+                if (foreGrounds[i] is not null) continue;
+                var bg = backGrounds[i];
+                foreGrounds[i] = bg.R + bg.G + bg.B < 0xFF * 3 / 2 ? Color.White : Color.Black;
             }
             var r = new List<PrintUnit>();
             if (orgList.Count > 0)
@@ -82,11 +79,11 @@ namespace PlasticMetal.MobileSuit.Core.Services
             for (var i = 0; i < orgList.Count; i++)
             {
                 var txt = orgList[i].Text;
-                if (txt.StartsWith(Lang.Tasks)) txt.Replace(Lang.Tasks, $"{Lightning} ",StringComparison.CurrentCulture);
+                if (txt.StartsWith(Lang.Tasks)) txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
                 r.Add(($"{txt}", foreGrounds[i], backGrounds[i]));
                 r.Add((" ", foreGrounds[i], backGrounds[i]));
                 r.Add(($"{RightTriangle} ", backGrounds[i],
-                    i + 1< orgList.Count ? backGrounds[i + 1] : null));
+                    i + 1 < orgList.Count ? backGrounds[i + 1] : null));
             }
 
 

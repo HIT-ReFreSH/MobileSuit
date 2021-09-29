@@ -1,23 +1,16 @@
 ﻿#nullable enable
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Logging;
-using PlasticMetal.MobileSuit.ObjectModel;
-using static System.String;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using PlasticMetal.MobileSuit.Core.Services;
+using System.Linq.Expressions;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -28,7 +21,7 @@ namespace PlasticMetal.MobileSuit
     {
         private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
         private readonly IServiceScope _rootScope;
-        private readonly SuitExceptionHandler _exceptionHandler;
+        private readonly ISuitExceptionHandler _exceptionHandler;
         private readonly IHost _delegateHost;
         private IIOHub IO { get; }
         private CancellationTokenSource systemInterruption;
@@ -37,7 +30,7 @@ namespace PlasticMetal.MobileSuit
 
             Services = services;
             _suitApp = middleware;
-            _exceptionHandler = Services.GetService<SuitExceptionHandler>() ?? SuitExceptionHandler.Default();
+            _exceptionHandler = Services.GetRequiredService<ISuitExceptionHandler>();
             _rootScope = Services.CreateScope();
             IO = _rootScope.ServiceProvider.GetRequiredService<IIOHub>();
             Logger = Services.GetRequiredService<ILogger<SuitHost>>();
@@ -51,7 +44,6 @@ namespace PlasticMetal.MobileSuit
             _rootScope.Dispose();
             _delegateHost.Dispose();
         }
-
         public async Task StartAsync(CancellationToken cancellationToken = new())
         {
             Console.CancelKeyPress += Console_CancelKeyPress;
@@ -59,13 +51,18 @@ namespace PlasticMetal.MobileSuit
             {
                 systemInterruption.Cancel();
             });
+
+
             var requestStack = new Stack<SuitRequestDelegate>();
             requestStack.Push( _ => Task.CompletedTask);
+            SuitRequestDelegate last = _ => Task.CompletedTask;
             foreach (var middleware in _suitApp.Reverse())
             {
-                requestStack.Push(async c => await middleware.InvokeAsync(c, requestStack.Peek()));
+                var p = requestStack.Peek();
+                Task Del(SuitContext c) => middleware.InvokeAsync(c, p);
+                requestStack.Push(Del);
             }
-            var handleRequest = requestStack.Peek();
+            var handleRequest = last;
             var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
             if (appInfo.StartArgs.Length > 0)
             {

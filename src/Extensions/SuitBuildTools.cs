@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PlasticMetal.MobileSuit.ObjectModel;
 using System.Collections.Immutable;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core.Services;
 
@@ -53,7 +51,7 @@ namespace PlasticMetal.MobileSuit
             if (sh.MemberCount > 0)
             {
                 var i = 0;
-                foreach (var sys in sh.Members)
+                foreach (var sys in sh.Members())
                 {
                     infoSb.Append(sys.AbsoluteName);
                     infoSb.Append(sys switch

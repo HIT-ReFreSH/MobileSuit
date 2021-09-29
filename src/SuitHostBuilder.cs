@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Middleware;
 using PlasticMetal.MobileSuit.Core.Services;
-using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuit
 {
@@ -113,6 +108,10 @@ namespace PlasticMetal.MobileSuit
         public SuitAppInfo AppInfo { get; } = new();
         private List<SuitShell> _clients = new();
         private Type _commandServer = typeof(SuitCommandServer);
+        /// <summary>
+        /// 
+        /// </summary>
+        public IParsingService Parsing{ get; set; } =new ParsingService();
         private readonly SuitWorkFlow _workFlow = new();
         /// <summary>
         /// 
@@ -175,9 +174,12 @@ namespace PlasticMetal.MobileSuit
             AppInfo.StartArgs = args ?? Array.Empty<string>();
             Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
             Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
-            Services.AddSingleton<TaskService>();
-            Services.AddSingleton<HistoryService>();
-            Services.AddSingleton<IParsingService, ParsingService>();
+            Services.AddSingleton<ITaskService,TaskService>();
+            Services.AddSingleton<IHistoryService,HistoryService>();
+            Services.AddScoped<IIOHub, IOHub>();
+            Services.AddLogging();
+            Services.AddSingleton<IIOHubConfigurer>(_ => { });
+            Services.AddSingleton(Parsing);
             Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
         }
     }
@@ -201,7 +203,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="builder">Builder for the host</param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder AddObject<T>(this SuitHostBuilder builder)
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
         {
             builder.AddClient(SuitObjectShell.FromType(typeof(T)));
             return builder;
@@ -214,7 +216,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="instance"></param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder AddObject<T>(this SuitHostBuilder builder, T instance)
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
         {
             builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
             return builder;
@@ -227,9 +229,9 @@ namespace PlasticMetal.MobileSuit
         /// <param name="method"></param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder AddMethod<T>(this SuitHostBuilder builder, string name,Delegate method)
+        public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
         {
-            builder.AddClient(SuitMethodShell.FromDelegate(name,method));
+            builder.AddClient(SuitMethodShell.FromDelegate(name, method));
             return builder;
         }
         /// <summary>

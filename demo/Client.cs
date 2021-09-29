@@ -1,22 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Attributes;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
-    public class Client : SuitClient
+    public class Client 
     {
+        public IIOHub IO { get; }
+
         /// <summary>
         ///     Initialize a client
         /// </summary>
-        public Client()
+        public Client(IIOHub io)
         {
-            Text = "Demo";
+            IO = io;
         }
 
         [SuitAlias("H")]
@@ -47,18 +46,13 @@ namespace PlasticMetal.MobileSuitDemo
         }
 
         [SuitAlias("Sn")]
-        public void ShowNumber([SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
-            int i)
+        public void ShowNumber(int i)
         {
             IO.WriteLine(i.ToString());
         }
 
         [SuitAlias("Sn2")]
-        public void ShowNumber2(
-            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
-            int i,
-            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
-            int[] j
+        public void ShowNumber2(int i, int[] j
         )
         {
             IO.WriteLine(i.ToString());
@@ -121,7 +115,6 @@ namespace PlasticMetal.MobileSuitDemo
             public List<string> Name { get; set; } = new();
 
             [Option("t")]
-            [SuitParser(typeof(Parsers), nameof(Parsers.ParseInt))]
             [WithDefault]
             public int SleepTime { get; set; } = 0;
 
@@ -138,15 +131,15 @@ namespace PlasticMetal.MobileSuitDemo
              * @param options String[] to parse from.
              * @return Whether the parsing is successful
              */
-            public bool Parse(string[] options)
+            public bool Parse(IReadOnlyList<string>? options)
             {
-                if (options.Length == 1)
+                if (options.Count == 1)
                 {
                     name = options[0];
                     return true;
                 }
 
-                return options.Length == 0;
+                return options.Count == 0;
             }
         }
     }

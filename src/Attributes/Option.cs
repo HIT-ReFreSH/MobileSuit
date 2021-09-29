@@ -1,5 +1,4 @@
 ﻿using System;
-using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuit
 {
