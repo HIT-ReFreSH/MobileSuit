@@ -13,11 +13,6 @@ namespace PlasticMetal.MobileSuit.Core.Services
         /// <param name="context">Context of the request.</param>
         /// <returns></returns>
         public Task InvokeAsync(SuitContext context);
-        /// <summary>
-        /// Get the default exception handler of MobileSuit.
-        /// </summary>
-        /// <returns></returns>
-        public static ISuitExceptionHandler Default() => new SuitExceptionHandler();
     }
     internal class SuitExceptionHandler : ISuitExceptionHandler
     {

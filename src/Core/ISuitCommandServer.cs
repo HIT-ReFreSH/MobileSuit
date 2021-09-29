@@ -3,7 +3,7 @@
     /// <summary>
     ///     Built-In-Command Server's Model.
     /// </summary>
-    public interface ISuitServer
+    public interface ISuitCommandServer
     {
         /// <summary>
         ///     Enter a member of Current SuitObject

@@ -1,20 +1,17 @@
-﻿using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Logging;
+﻿using Microsoft.Extensions.Hosting;
+using PlasticMetal.MobileSuit;
 
 namespace PlasticMetal.MobileSuitDemo
 {
     internal class Program
     {
-        private static int Main(string[] args)
+        private static void Main(string[] args)
         {
-            return Suit.GetBuilder()
-                //.UseLog(ISuitLogger.CreateFileByDirectory(@"D:\\"))
+            Suit.GetBuilder(args)
                 .UsePowerLine()
-                /*.UseBuildInCommand<DiagnosticBuildInCommandServer>()*/
-                .Build<Client>()
-                //.Build<AutoArgumentCliClient>()
-                /*.Build<LoggerTest>()*/
-                .Run(args);
+                .AddObject<Client>()
+                .Build()
+                .Run();
         }
     }
 }

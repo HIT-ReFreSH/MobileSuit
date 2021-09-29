@@ -7,16 +7,16 @@ namespace PlasticMetal.MobileSuit.Core.Services
     /// <summary>
     /// SuitShell for Client App.
     /// </summary>
-    public class SuitClientShell : SuitShell
+    public class SuitAppShell : SuitShell
     {
-        internal static SuitClientShell FromClients(IEnumerable<SuitShell> clients)
+        internal static SuitAppShell FromClients(IEnumerable<SuitShell> clients)
         {
-            var r = new SuitClientShell();
+            var r = new SuitAppShell();
             r._members.AddRange(clients);
             return r;
         }
         private readonly List<SuitShell> _members = new();
-        private SuitClientShell() : base(typeof(object), _ => null, "SuitClient")
+        private SuitAppShell() : base(typeof(object), _ => null, "SuitClient")
         {
         }
         /// <inheritdoc/>

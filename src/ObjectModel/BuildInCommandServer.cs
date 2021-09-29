@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using PlasticMetal.MobileSuit.Attributes;
 using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuit.ObjectModel
@@ -11,13 +10,13 @@ namespace PlasticMetal.MobileSuit.ObjectModel
     /// <summary>
     ///     Built-In-Command Server. May be Override if necessary.
     /// </summary>
-    public class BuildInCommandServer : ISuitServer
+    public class SuitCommandServer : ISuitCommandServer
     {
         /// <summary>
         ///     Initialize a BicServer with the given SuitHost.
         /// </summary>
         /// <param name="host">The given SuitHost.</param>
-        public BuildInCommandServer(SuitHost host)
+        public SuitCommandServer(SuitHost host)
         {
             Host = host;
             HostRef = new SuitShell(Host?.Settings);

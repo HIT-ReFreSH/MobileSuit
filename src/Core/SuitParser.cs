@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit.Core.Services
+namespace PlasticMetal.MobileSuit.Core
 {
 
     /// <summary>

@@ -12,7 +12,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
     /// <summary>
     /// Middleware to execute command over suit server shell.
     /// </summary>
-    public class ServerShellMiddleware : ISuitMiddleware
+    public class HostShellMiddleware : ISuitMiddleware
     {
         /// <inheritdoc/>
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
@@ -29,23 +29,15 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 return;
             }
             var force = context.Properties.TryGetValue(SuitCommandTarget, out var target) &&
-                        target == SuitCommandTargetServer;
-            var forceClient = target == SuitCommandTargetClient;
+                        target == SuitCommandTargetHost;
+            var forceClient = target == SuitCommandTargetApp || target==SuitCommandTargetAppTask;
             if (forceClient)
             {
                 await next(context);
                 return;
             }
-            if (context.Properties.ContainsKey(SuitAsTask))
-            {
-                if (force)
-                {
-                    context.Status = RequestStatus.CommandParsingFailure;
-                }
-                await next(context);
-                return;
-            }
-            var server=context.ServiceProvider.GetRequiredService<SuitServerShell>();
+
+            var server=context.ServiceProvider.GetRequiredService<SuitHostShell>();
             await server.Execute(context);
             if (force && context.Status == RequestStatus.NotHandled)
             {

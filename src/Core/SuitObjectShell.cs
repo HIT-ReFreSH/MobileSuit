@@ -43,6 +43,24 @@ namespace PlasticMetal.MobileSuit.Core
             return sh;
         }
         /// <summary>
+        /// Create a SuitObjectShell from an instance
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="instanceFactory"></param>
+        /// <returns></returns>
+        public static SuitObjectShell FromInstance(Type type,InstanceFactory instanceFactory)
+        {
+            var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
+            var sh = new SuitObjectShell(type,
+                instanceFactory, infoTag?.Text ?? type.Name)
+            {
+                Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
+            };
+            if (infoTag is not null) return sh;
+            sh.Information = SuitBuildTools.GetMemberInfo(sh);
+            return sh;
+        }
+        /// <summary>
         /// Create a SuitObjectShell from an instance field
         /// </summary>
         /// <param name="field"></param>
@@ -69,15 +87,7 @@ namespace PlasticMetal.MobileSuit.Core
         {
             object? InstanceFactory(SuitContext s)
             {
-                var constructors = type.GetConstructors(BindingFlags.Public);
-                foreach (var constructor in constructors)
-                {
-                    var parameters = constructor.GetParameters();
-                    if (parameters.Length == 0) return constructor.Invoke(null);
-                    var args = SuitBuildTools.GetArgs(parameters, Array.Empty<string>(), s);
-                    if (args is not null) return constructor.Invoke(args);
-                }
-                return new object();
+                return SuitBuildTools.CreateInstance(type, s) ?? new object();
             }
             var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
             return new(type, InstanceFactory, infoTag?.Text ?? type.Name)

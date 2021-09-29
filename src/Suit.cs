@@ -13,18 +13,14 @@ namespace PlasticMetal.MobileSuit
     /// </summary>
     public static class Suit
     {
-        /// <summary>
-        ///     Default IOServer, using stdin, stdout, stderr.
-        /// </summary>
-        public static IOHub GeneralIO { get; set; } = new IOHub();
 
         /// <summary>
         ///     Get a builder to create host
         /// </summary>
         /// <returns>The builder</returns>
-        public static ISuitHostBuilder GetBuilder()
+        public static SuitHostBuilder GetBuilder(string[]? args=null)
         {
-            return new SuitHostBuilder();
+            return new SuitHostBuilder(args);
         }
 
         /// <summary>

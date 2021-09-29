@@ -12,6 +12,10 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
         /// <inheritdoc/>
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
         {
+            if (context.Status == RequestStatus.NotHandled)
+            {
+                context.Status = RequestStatus.CommandNotFound;
+            }
             var history = context.ServiceProvider.GetRequiredService<IHistoryService>();
             history.Response = context.Response;
             history.Status = context.Status;

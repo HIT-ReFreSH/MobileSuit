@@ -7,6 +7,7 @@ using PlasticMetal.MobileSuit.ObjectModel;
 using System.Collections.Immutable;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core.Services;
 
@@ -21,9 +22,9 @@ namespace PlasticMetal.MobileSuit
     internal static class SuitBuildTools
     {
         public const string SuitCommandTarget = "suit-cmd-target";
-        public const string SuitCommandTargetClient = "client";
-        public const string SuitCommandTargetServer = "server";
-        public const string SuitAsTask = "suit-as-task";
+        public const string SuitCommandTargetApp = "app";
+        public const string SuitCommandTargetHost = "suit";
+        public const string SuitCommandTargetAppTask = "app-task";
         public static object? GetArg(ParameterInfo parameter, string? arg, SuitContext context, out int step)
         {
 
@@ -105,6 +106,20 @@ namespace PlasticMetal.MobileSuit
             return suitMethodParameterInfo;
         }
 
+        public static object? CreateInstance(Type type, SuitContext s)
+        {
+            var constructors = type.GetConstructors(BindingFlags.Public);
+
+            foreach (var constructor in constructors)
+            {
+                var parameters = constructor.GetParameters();
+                if (parameters.Length == 0) return constructor.Invoke(null);
+                var args = GetArgs(parameters, Array.Empty<string>(), s);
+                if (args is not null) return constructor.Invoke(args);
+            }
+
+            return null;
+        }
         public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, IReadOnlyList<string> args,
             SuitContext context)
             => GetArgs(parameters, GetMethodParameterInfo(parameters), args, context);

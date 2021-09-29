@@ -39,58 +39,46 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                     return;
                 }
 
-                var spl = SplitCommandLine(originInput);
-                var status = 0;
-                var request = new List<string>();
-                foreach (var unit in spl)
+                var (request,control) = SplitCommandLine(originInput);
+                for (var i = 0; i < control.Count; i++)
                 {
-                    switch (status)
+                    switch (control[i][0])
                     {
-                        case 0:
-                            if (!unit.StartsWith("#") && unit.Length == 2)
+                        case '>':
+                            if (++i < control.Count)
                             {
-                                switch (unit[1])
-                                {
-                                    case '>':
-                                        status = 1;
-                                        break;
-                                    case '<':
-                                        status = -1;
-                                        break;
-                                    case '!':
-                                        context.Properties.Add(SuitCommandTarget, SuitCommandTargetClient);
-                                        break;
-                                    case '@':
-                                        context.Properties.Add(SuitCommandTarget, SuitCommandTargetServer);
-                                        break;
-                                    case '&':
-                                        context.Properties.Add(SuitAsTask, string.Empty);
-                                        break;
-                                    default:
-                                        context.Status = RequestStatus.CommandParsingFailure;
-                                        status = 2;
-                                        break;
-                                }
+                                io.Output = new StreamWriter(File.OpenWrite(control[i]));
                             }
                             else
                             {
-                                request.Add(unit);
+                                context.Status = RequestStatus.CommandParsingFailure;
                             }
 
                             break;
-                        case 1:
-                            io.Output = new StreamWriter(File.OpenWrite(unit));
-                            status = 0;
-                            break;
-                        case -1:
-                            io.Input = new StreamReader(File.OpenRead(unit));
-                            status = 0;
-                            break;
-                        case 2:
-                            await next(context);
-                            return;
-                    }
+                        case '<':
+                            if (++i < control.Count)
+                            {
+                                io.Input = new StreamReader(File.OpenRead(control[i]));
+                            }
+                            else
+                            {
+                                context.Status = RequestStatus.CommandParsingFailure;
+                            }
 
+                            break;
+                        case '!':
+                            context.Properties.Add(SuitCommandTarget, SuitCommandTargetApp);
+                            break;
+                        case '@':
+                            context.Properties.Add(SuitCommandTarget, SuitCommandTargetHost);
+                            break;
+                        case '&':
+                            context.Properties.Add(SuitCommandTarget, SuitCommandTargetAppTask);
+                            break;
+                        default:
+                            context.Status = RequestStatus.CommandParsingFailure;
+                            break;
+                    }
                 }
                 if (request.Count == 0)
                 {
@@ -108,118 +96,181 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
         /// </summary>
         /// <param name="commandLine">commandline string</param>
         /// <returns>args[] array</returns>
-        private static unsafe IList<string> SplitCommandLine(string commandLine)
+        private static unsafe (IList<string>, IList<string>) SplitCommandLine(string commandLine)
         {
-            if (string.IsNullOrEmpty(commandLine)) return Array.Empty<string>();
+            if (string.IsNullOrEmpty(commandLine)) return (Array.Empty<string>(), Array.Empty<string>());
             var l = new List<string>();
+            var ctl = new List<string>();
             /*
              * Node:
-             * S0: Default status
-             * S1: InQuotes
-             * S2: CodeNextChar
-             * S3: Comment
-             * S4: AfterSpace
+             * S0: WordStart
+             * S1: IORedirect
+             * S2: Word
+             * S3: QuotesWord
+             * S4: AfterBackslash
+             * S5: Comment
              *
              * Edge
-             * S0--',"->S1
-             * S1--',"->S0
-             * S0,S1--\->S2
-             * S2-->S0,S1
-             * S0--#->S3
-             * S0-- ->S4
-             * S4-->S0
+             * S0:
+             *  &,!,@,<space>: S0
+             *  <,>: S1
+             *  #: S5
+             *  ",': S3(S2)
+             *  \: S4(S2)
+             *  default: S2
+             * S1:
+             *  <space>: S2(S1)
+             *  ",': S3(S2,S1)
+             *  \: S4(S2,S1)
+                #: S5
+             *  default: S2(S1)
+             * S2:
+             *  <space>: pop
+             *  ",': S3(S2)
+             *  \: S4(S2)
+             *  <,>: S1
+             *  #: S5
+             *  default: S2
+             * S3:
+             *  ",': pop
+             *  \: S4(S3)
+             *  default: S3
+             * S4:
+             *  default: pop
+             * S5:
+             *  default: S5
              */
-            var status = 4;
+            var status = (byte)0;
             var quote = '\'';
-            var lastStatus = 0;
+            var stk = stackalloc byte[8];
+            var stkptr = stk;
+
             var i = 0;
             var buf = stackalloc char[256];
-            foreach (var c in commandLine)
+
+            void SpaceCommit()
+            {
+                status = (byte)((stkptr == stk) ? 0 : *(--stkptr));
+                (status == 1 ? ctl : l).Add(Regex.Unescape(new string(buf, 0, i)));
+                status = 0;
+                i = 0;
+            }
+            foreach (var c in commandLine.TakeWhile(c => status != 5))
             {
                 switch (status)
                 {
                     case 0:
                         switch (c)
                         {
-                            case '\'':
-                            case '"':
-                                quote = c;
-                                status = 1;
-                                continue;
-                            case '\\':
-                                buf[i++] = c;
-                                lastStatus = 0;
-                                status = 2;
-                                continue;
-                            case '#':
-                                status = 3;
+                            case '&' or '!' or '@':
+                                ctl.Add(c.ToString());
                                 break;
                             case ' ':
+                                break;
+                            case '<' or '>':
+                                status = 1;
+                                ctl.Add(c.ToString());
+                                break;
+                            case '"' or '\'':
+                                status = 3;
+                                *(stkptr++) = 2;
+                                quote = c;
+                                break;
+                            case '\\':
                                 status = 4;
-                                if (i > 0)
-                                    l.Add(Regex.Unescape(new string(buf, 0, i)));
-                                i = 0;
-                                continue;
-                            default:
+                                *(stkptr++) = 2;
                                 buf[i++] = c;
-                                continue;
+                                break;
+                            case '#':
+                                status = 5;
+                                break;
+                            default:
+                                status = 2;
+                                buf[i++] = c;
+                                break;
                         }
 
                         break;
                     case 1:
+                        switch (c)
+                        {
+                            case ' ':
+                                *(stkptr++) = 1;
+                                status = 2;
+                                break;
+                            case '"' or '\'':
+                                *(stkptr++) = 1;
+                                *(stkptr++) = 2;
+                                status = 3;
+                                quote = c;
+                                break;
+                            case '\\':
+                                *(stkptr++) = 1;
+                                *(stkptr++) = 2;
+                                status = 4;
+                                buf[i++] = c;
+                                break;
+                            default:
+                                *(stkptr++) = 1;
+                                status = 2;
+                                buf[i++] = c;
+                                break;
+                        }
+
+                        break;
+                    case 2:
+                        switch (c)
+                        {
+                            case '\'' or '"':
+                                *(stkptr++) = 2;
+                                status = 3;
+                                quote = c;
+                                break;
+                            case '\\':
+                                *(stkptr++) = 2;
+                                status = 4;
+                                buf[i++] = c;
+                                break;
+                            case ' ':
+                                SpaceCommit();
+                                break;
+                            case '#':
+                                SpaceCommit();
+                                status = 5;
+                                break;
+                            default:
+                                buf[i++] = c;
+                                break;
+                        }
+                        break;
+                    case 3:
                         if (c == quote)
                         {
-                            status = 0;
-                            l.Add(Regex.Unescape(new string(buf, 0, i)));
-                            i = 0;
-                            continue;
+                            status = *(--stkptr);
                         }
                         else if (c == '\\')
                         {
+                            *(stkptr++) = 3;
+                            status = 4;
                             buf[i++] = c;
-                            lastStatus = 1;
-                            status = 2;
-                            continue;
                         }
                         else
                         {
                             buf[i++] = c;
-                            continue;
                         }
-                    case 2:
-                        buf[i++] = c;
-                        status = lastStatus;
-                        continue;
+                        break;
                     case 4:
-                        if (c is '#')
-                        {
-                            break;
-                        }
-                        else switch (c)
-                            {
-                                case '\\':
-                                    buf[i++] = c;
-                                    lastStatus = 0;
-                                    status = 2;
-                                    break;
-                                case '@' or '!' or '&' or '<' or '>':
-                                    l.Add($"#{c}");
-                                    break;
-                                default:
-                                    buf[i++] = c;
-                                    status = 0;
-                                    break;
-                            }
-
-                        continue;
+                        status = *(--stkptr);
+                        buf[i++] = c;
+                        break;
 
                 }
-                break;
             }
 
-            if (i > 0)
-                l.Add(Regex.Unescape(new string(buf, 0, i)));
-            return l;
+            if (status == 2)
+                SpaceCommit();
+
+            return (l, ctl);
         }
     }
 }

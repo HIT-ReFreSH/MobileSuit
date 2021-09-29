@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using PlasticMetal.MobileSuit.Parsing;
 
 namespace PlasticMetal.MobileSuit.Core.Services
 {

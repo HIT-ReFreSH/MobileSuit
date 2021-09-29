@@ -5,7 +5,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
     /// <summary>
     ///     A BuildInCommandServer providing shell and host interfaces
     /// </summary>
-    public interface IAdvancedBuildInCommandServer : ISuitServer
+    public interface IAdvancedBuildInCommandServer : ISuitCommandServer
     {
         /// <summary>
         ///     Switch Options for MobileSuit

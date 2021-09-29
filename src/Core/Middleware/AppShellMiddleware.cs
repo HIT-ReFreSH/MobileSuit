@@ -11,7 +11,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
     /// <summary>
     /// Middleware to execute command over suit server shell.
     /// </summary>
-    public class ServerClientMiddleware : ISuitMiddleware
+    public class AppShellMiddleware : ISuitMiddleware
     {
         /// <inheritdoc/>
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
@@ -27,16 +27,20 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 return;
             }
             var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
-            var client = context.ServiceProvider.GetRequiredService<SuitClientShell>();
+            var client = context.ServiceProvider.GetRequiredService<SuitAppShell>();
             var task = client.Execute(context);
-            if (context.Properties.ContainsKey(SuitBuildTools.SuitAsTask))
+            var asTask = context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) &&
+                         target == SuitBuildTools.SuitCommandTargetAppTask;
+            var forceClient = target == SuitBuildTools.SuitCommandTargetApp;
+            if (asTask)
             {
                 tasks.AddTask(task, context);
             }
             else
             {
+                
                 await task;
-                if (context.Status == RequestStatus.NotHandled)
+                if (forceClient && context.Status == RequestStatus.NotHandled)
                 {
                     context.Status = RequestStatus.CommandNotFound;
                 }

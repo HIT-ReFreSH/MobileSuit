@@ -5,7 +5,7 @@ namespace PlasticMetal.MobileSuit.ObjectModel.Premium
     /// <summary>
     ///     Build in command server for diagnostic
     /// </summary>
-    public class DiagnosticBuildInCommandServer : BuildInCommandServer, IDiagnosticBuildInCommandServer
+    public class DiagnosticBuildInCommandServer : SuitCommandServer, IDiagnosticBuildInCommandServer
     {
         /// <inheritdoc />
         public DiagnosticBuildInCommandServer(SuitHost host) : base(host)
