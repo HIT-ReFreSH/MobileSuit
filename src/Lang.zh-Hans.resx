@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllOK" xml:space="preserve">
-    <value>一切正常</value>
+    <value>就绪</value>
   </data>
   <data name="AllRightsReserved" xml:space="preserve">
     <value>。保留所有权利。</value>
   </data>
   <data name="ApplicationError" xml:space="preserve">
-    <value>应用内部错误</value>
+    <value>未知错误</value>
   </data>
   <data name="Bic" xml:space="preserve">
     <value>内置指令：</value>
@@ -133,7 +133,7 @@
     <value>所有的内置指令都可以不使用特有前缀“</value>
   </data>
   <data name="BicExp2" xml:space="preserve">
-    <value>”而被调用; 然而, 如果当前的对象含有与内置指令有命名冲突的成员，调用内置指令时使用前缀是必要的。</value>
+    <value>”而被调用.</value>
   </data>
   <data name="CopyrightC" xml:space="preserve">
     <value>版权所有</value>
@@ -142,7 +142,7 @@
     <value>默认</value>
   </data>
   <data name="Done" xml:space="preserve">
-    <value>就绪。</value>
+    <value>完成</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>错误：</value>
@@ -157,16 +157,16 @@
     <value>'来获取所有可用命令。</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>没有找到这种成员</value>
+    <value>未找到命令</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>成员：</value>
+    <value>指令：</value>
   </data>
   <data name="MsHelp2" xml:space="preserve">
     <value>’来获取所有内置指令。</value>
   </data>
-  <data name="ObjectNotFound" xml:space="preserve">
-    <value>找不到对象</value>
+  <data name="Interrupt" xml:space="preserve">
+    <value>手动中断</value>
   </data>
   <data name="PoweredBy" xml:space="preserve">
     <value> 基于 </value>
@@ -197,5 +197,14 @@
   </data>
   <data name="LogNotCached" xml:space="preserve">
     <value>当前的日志没有缓存。请使用缓存日志。</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>任务：</value>
+  </data>
+  <data name="OnError" xml:space="preserve">
+    <value>出错</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>正在运行</value>
   </data>
 </root>

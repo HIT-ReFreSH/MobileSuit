@@ -1,156 +1,189 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Logging;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.UI;
-using PlasticMetal.MobileSuit.UI.PowerLine;
+using PlasticMetal.MobileSuit.Core.Middleware;
+using PlasticMetal.MobileSuit.Core.Services;
 
 namespace PlasticMetal.MobileSuit
 {
+    /// <summary>
+    /// Describes the work flow of mobile suit.
+    /// </summary>
+    public interface ISuitWorkFlow
+    {
+        /// <summary>
+        /// Add a custom middleware
+        /// </summary>
+        /// <param name="middlewareType"></param>
+        public ISuitWorkFlow UseCustom(Type middlewareType);
+        /// <summary>
+        /// Add suit prompt middleware
+        /// </summary>
+        public ISuitWorkFlow UsePrompt();
+        /// <summary>
+        /// Add input middleware
+        /// </summary>
+        public ISuitWorkFlow UseInput();
+        /// <summary>
+        /// Add AppShell middleware
+        /// </summary>
+        public ISuitWorkFlow UseAppShell();
+        /// <summary>
+        /// Add HostShell middleware
+        /// </summary>
+        public ISuitWorkFlow UseHostShell();
+        /// <summary>
+        /// Add Finalize middleware
+        /// </summary>
+        public ISuitWorkFlow UseFinalize();
+    }
+
+    internal class SuitWorkFlow : ISuitWorkFlow
+    {
+        private List<Type> _middlewares = new();
+        public ISuitWorkFlow UseCustom(Type middlewareType)
+        {
+            if (middlewareType.GetInterface(nameof(ISuitMiddleware)) is not null)
+            {
+                _middlewares.Add(middlewareType);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(middlewareType));
+            }
+            return this;
+        }
+
+        public ISuitWorkFlow UsePrompt()
+            => this.UseCustom<PromptMiddleware>();
+
+        public ISuitWorkFlow UseInput()
+            => this.UseCustom<UserInputMiddleware>();
+
+        public ISuitWorkFlow UseAppShell()
+            => this.UseCustom<AppShellMiddleware>();
+
+        public ISuitWorkFlow UseHostShell()
+            => this.UseCustom<HostShellMiddleware>();
+
+        public ISuitWorkFlow UseFinalize()
+            => this.UseCustom<FinalizeMiddleware>();
+
+        public IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider)
+        {
+            if (_middlewares.Count == 0)
+            {
+                UsePrompt()
+                    .UseInput()
+                    .UseHostShell()
+                    .UseAppShell()
+                    .UseFinalize();
+            }
+            var r = new List<ISuitMiddleware>();
+            foreach (var type in _middlewares)
+            {
+                if (ActivatorUtilities.CreateInstance(serviceProvider, type) is ISuitMiddleware middleware)
+                {
+                    r.Add(middleware);
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(type.FullName);
+                }
+            }
+            return r;
+        }
+    }
     /// <summary>
     ///     Builder to build a MobileSuit host.
     /// </summary>
     public class SuitHostBuilder
     {
-        internal SuitHostBuilder()
+        /// <summary>
+        /// 
+        /// </summary>
+        public SuitAppInfo AppInfo { get; } = new();
+        private List<SuitShell> _clients = new();
+        private Type _commandServer = typeof(SuitCommandServer);
+        /// <summary>
+        /// 
+        /// </summary>
+        public IParsingService Parsing{ get; set; } =new ParsingService();
+        private readonly SuitWorkFlow _workFlow = new();
+        /// <summary>
+        /// 
+        /// </summary>
+        public ISuitWorkFlow WorkFlow => _workFlow;
+        /// <summary>
+        /// Service collection of suit host.
+        /// </summary>
+        public IServiceCollection Services { get; } = new ServiceCollection();
+        /// <summary>
+        /// Service collection of suit host.
+        /// </summary>
+        public ConfigurationManager Configuration { get; } = new();
+        /// <summary>
+        /// Add a client shell to mobile suit
+        /// </summary>
+        /// <param name="client"></param>
+        public void AddClient(SuitShell client)
+           => _clients.Add(client);
+
+        /// <summary>
+        /// Add a client shell to mobile suit
+        /// </summary>
+        /// <param name="serverType"></param>
+        public void UseCommandServer(Type serverType)
         {
-            this.UseBasicPrompt();
+            if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(serverType));
+            }
+
+            Services.Add(new(typeof(ISuitCommandServer), serverType, ServiceLifetime.Scoped));
+            _commandServer = serverType;
+        }
+        /// <summary>
+        /// config IO
+        /// </summary>
+        /// <param name="configurer"></param>
+        public void ConfigureIO(IIOHubConfigurer configurer)
+        {
+            Services.AddSingleton(configurer);
         }
 
         /// <summary>
-        ///     ColorSetting of host's IO
+        /// Build a SuitHost.
         /// </summary>
-        protected internal ColorSetting? ColorSetting { get; set; }
-
-        /// <summary>
-        ///     Input Stream of host's IO
-        /// </summary>
-        protected internal TextReader? Input { get; set; }
-
-        /// <summary>
-        ///     Output Stream of host's IO
-        /// </summary>
-        protected internal TextWriter? Output { get; set; }
-
-        /// <summary>
-        ///     Error Stream of host's IO
-        /// </summary>
-        protected internal TextWriter? Error { get; set; }
-
-        /// <summary>
-        ///     Settings of host
-        /// </summary>
-        protected internal HostSettings Settings { get; set; }
-
-        /// <summary>
-        ///     Logger of host
-        /// </summary>
-        protected internal ISuitLogger? Logger { get; set; }
-
-        /// <summary>
-        ///     BuildInCommandServer of host
-        /// </summary>
-        protected internal Type BuildInCommandServer { get; set; } = typeof(BuildInCommandServer);
-
-        /// <summary>
-        ///     IOServer of host
-        /// </summary>
-        protected internal Type IOServer { get; set; } = typeof(IOHub);
-
-        /// <summary>
-        ///     PromptServer of host
-        /// </summary>
-        protected internal PromptGeneratorBuilder PromptBuilder { get; set; } = new();
-
-        /// <summary>
-        ///     Use given color setting for host
-        /// </summary>
-        /// <param name="setting">given color setting</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureColor(ColorSetting setting)
+        /// <returns></returns>
+        public IMobileSuitHost Build()
         {
-            ColorSetting = setting;
-            return this;
+            Services.AddSingleton<ISuitAppInfo>(AppInfo);
+            Services.AddSingleton(SuitAppShell.FromClients(_clients));
+            Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
+            var providers = Services.BuildServiceProvider();
+            return new SuitHost(providers, _workFlow.Build(providers));
         }
 
-        /// <summary>
-        ///     Use given stream as input for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureIn(TextReader stream)
+        internal SuitHostBuilder(string[]? args)
         {
-            Input = stream;
-            return this;
-        }
 
-        /// <summary>
-        ///     Use given stream as output for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureOut(TextWriter stream)
-        {
-            Output = stream;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given stream as error output for host
-        /// </summary>
-        /// <param name="stream">given stream</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureError(TextWriter stream)
-        {
-            Error = stream;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given settings for host
-        /// </summary>
-        /// <param name="settings">given settings</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder ConfigureSetting(HostSettings settings)
-        {
-            Settings = settings;
-            return this;
-        }
-
-        /// <summary>
-        ///     Use given logger for host
-        /// </summary>
-        /// <param name="logger">given logger</param>
-        /// <returns>this</returns>
-        public SuitHostBuilder UseLog(ISuitLogger logger)
-        {
-            Logger = logger;
-            return this;
-        }
-
-        /// <summary>
-        ///     Get the host under the configuration of the builder
-        /// </summary>
-        /// <param name="instance">instance to drive</param>
-        /// <returns>The host under the configuration of the builder</returns>
-        public IMobileSuitHost Build(object instance)
-        {
-            var io =
-                IOServer.GetConstructor(Array.Empty<Type>())?.Invoke(null) as IIOHub
-                ?? Suit.GeneralIO;
-            if (Input != null) io.Input = Input;
-
-            if (Output != null) io.Output = Output;
-            if (ColorSetting != null) io.ColorSetting = ColorSetting;
-            if (Error != null) io.ErrorStream = Error;
-            Logger ??= ISuitLogger.CreateEmpty();
-
-            var host = new SuitHost(instance, Logger, io, BuildInCommandServer);
-            var prompt = PromptBuilder.Build(host, io, instance);
-            host.Prompt.Assign(prompt);
-            io.Prompt.Assign(prompt);
-            return host;
+            AppInfo.StartArgs = args ?? Array.Empty<string>();
+            Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
+            Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
+            Services.AddSingleton<ITaskService,TaskService>();
+            Services.AddSingleton<IHistoryService,HistoryService>();
+            Services.AddScoped<IIOHub, IOHub>();
+            Services.AddLogging();
+            Services.AddSingleton<IIOHubConfigurer>(_ => { });
+            Services.AddSingleton(Parsing);
+            Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
         }
     }
 
@@ -160,175 +193,136 @@ namespace PlasticMetal.MobileSuit
     public static class SuitHostBuilderExtensions
     {
         /// <summary>
+        /// Add a custom middleware
+        /// </summary>
+        public static ISuitWorkFlow UseCustom<T>(this ISuitWorkFlow workFlow)
+        where T : ISuitMiddleware
+        {
+            return workFlow.UseCustom(typeof(T));
+        }
+        /// <summary>
         ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
-        /// <param name="options">Options for the generator.</param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePrompt<T>(this SuitHostBuilder builder,
-            Action<PromptGeneratorBuilder>? options = null)
-            where T : IPromptGenerator
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
         {
-            builder.PromptBuilder = new PromptGeneratorBuilder { GeneratorType = typeof(T) };
-            options?.Invoke(builder.PromptBuilder);
+            builder.AddClient(SuitObjectShell.FromType(typeof(T)));
             return builder;
         }
+
         /// <summary>
-        ///     Use BasicPromptGenerator for the Host
+        ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
-        /// <param name="options">Options for the generator.</param>
+        /// <param name="name">Set a name for the client</param>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UseBasicPrompt(this SuitHostBuilder builder,
-            Action<PromptGeneratorBuilder>? options = null)
+        public static SuitHostBuilder HasName(this SuitHostBuilder builder, string name)
         {
-            builder.PromptBuilder.GeneratorType = typeof(BasicPromptGenerator);
-            builder.PromptBuilder.UseInformation();
-            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputExpressionPromptProvider>();
-            builder.PromptBuilder.AddProvider<BasicPromptGenerator.InputDefaultValuePromptProvider>();
-            options?.Invoke(builder.PromptBuilder);
-            builder.PromptBuilder.UseTraceBack();
-            builder.PromptBuilder.UseReturnValue();
+            builder.AppInfo.AppName = name;
             return builder;
         }
-
         /// <summary>
-        ///     Use PowerLinePromptGenerator for the Host. 
+        ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
-        /// <param name="prefixCross">Use prefix cross or suffix label for TraceBack.</param>
-        /// <param name="options">Options for the generator.</param>
+        /// <param name="instance"></param>
+        /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder, bool prefixCross=true,
-            Action<PromptGeneratorBuilder>? options = null)
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
         {
-            builder.PromptBuilder = new();
-            builder.PromptBuilder.GeneratorType = typeof(PowerLineGenerator);
-            if(prefixCross) builder.PromptBuilder.UseCross();
-            builder.PromptBuilder.UseInformation();
-            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputExpressionPromptProvider>();
-            builder.PromptBuilder.AddProvider<PowerLineGenerator.InputDefaultValuePromptProvider>();
-            options?.Invoke(builder.PromptBuilder);
-            if (!prefixCross) builder.PromptBuilder.UseTraceBack();
-            builder.PromptBuilder.UseReturnValue();
+            builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
             return builder;
         }
         /// <summary>
-        /// Use given IOHub for the Host.
-        /// </summary>
-        /// <param name="builder">Builder of the Host</param>
-        /// <typeparam name="T">Type of IOHub</typeparam>
-        /// <returns>Builder of the Host</returns>
-        public static SuitHostBuilder UseIO<T>(this SuitHostBuilder builder)
-            where T : IIOHub
-        {
-            builder ??= new SuitHostBuilder();
-            builder.IOServer = typeof(T);
-            return builder;
-        }
-
-        /// <summary>
-        ///     Use given BuildInCommandServer for the Host
+        ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">BuildInCommandServer</typeparam>
+        /// <param name="name"></param>
+        /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UseBuildInCommand<T>(this SuitHostBuilder builder)
-            where T : IBuildInCommandServer
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
         {
-            builder ??= new SuitHostBuilder();
-            builder.BuildInCommandServer = typeof(T);
+            builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
             return builder;
         }
-
-
         /// <summary>
-        ///     Get the host under the configuration of the builder
+        ///     Use given PromptGenerator for the Host
         /// </summary>
-        /// <param name="builder">the builder</param>
-        /// <typeparam name="T">Type to drive</typeparam>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="name"></param>
+        /// <param name="instance"></param>
+        /// <typeparam name="T">PromptServer</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder,string name, T instance)
+        {
+            builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance,name));
+            return builder;
+        }
+        /// <summary>
+        ///     Use given PromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="name"></param>
+        /// <param name="method"></param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
+        {
+            builder.AddClient(SuitMethodShell.FromDelegate(name, method));
+            return builder;
+        }
+        /// <summary>
+        ///     Use PowerLine PromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLineFormatter);
+            return builder;
+        }
+        /// <summary>
+        ///     Use Plain text IO for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder UsePureTextIO(this SuitHostBuilder builder)
+        {
+            builder.Services.AddScoped<IIOHub,PureTextIOHub>();
+            return builder;
+        }
+        /// <summary>
+        ///     Use 4-bit color IO for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder)
+        {
+            builder.Services.AddScoped<IIOHub, IOHub4Bit>();
+            return builder;
+        }
+        /// <summary>
+        /// Run a mobile suit
+        /// </summary>
+        /// <param name="host"></param>
         /// <returns></returns>
-        public static IMobileSuitHost Build<T>(this SuitHostBuilder builder)
-            where T : new()
+        public static async Task RunAsync(this IMobileSuitHost host)
         {
-            return builder?.Build(typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null) ?? new object())
-                   ?? new SuitHost(new object(), ISuitLogger.CreateEmpty(), Suit.GeneralIO,
-                       typeof(BuildInCommandServer));
-        }
-    }
-    /// <summary>
-    ///     Extensions for PromptGeneratorBuilder
-    /// </summary>
-    public static class PromptGeneratorBuilderExtensions
-    {
-        /// <summary>
-        ///     Add given PromptProvider for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">PromptProvider</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder AddProvider<T>(this PromptGeneratorBuilder builder)
-            where T : IPromptProvider
-        {
-            builder.AddProvider(typeof(T));
-            return builder;
+            var token = new CancellationTokenSource().Token;
+            await host.StartAsync(token).ConfigureAwait(false);
+            await host.StopAsync(token).ConfigureAwait(false);
+            host.Dispose();
         }
         /// <summary>
-        ///     Add TraceBackPromptProvider for the Host
+        /// Run a mobile suit
         /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder UseTraceBack(this PromptGeneratorBuilder builder)
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public static void Run(this IMobileSuitHost host)
         {
-            builder.AddProvider<TraceBackPromptProvider>();
-            return builder;
+            host.RunAsync().GetAwaiter().GetResult();
         }
-        /// <summary>
-        ///     Add CrossTraceBackProvider for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder UseCross(this PromptGeneratorBuilder builder)
-        {
-            builder.AddProvider<CrossTraceBackPromptProvider>();
-            return builder;
-        }
-        /// <summary>
-        ///     Add InformationPromptProvider for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder UseInformation(this PromptGeneratorBuilder builder)
-        {
-            builder.AddProvider<InformationPromptProvider>();
-            return builder;
-        }
-        /// <summary>
-        ///     Add ReturnValuePromptProvider for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder UseReturnValue(this PromptGeneratorBuilder builder)
-        {
-            builder.AddProvider<ReturnValuePromptProvider>();
-            return builder;
-        }
-        /// <summary>
-        ///     Add given PromptProvider for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="selector">Select the provider from source.</param>
-        /// <typeparam name="TProvider">PromptProvider</typeparam>
-        /// <typeparam name="TSource">Source for the provider.</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static PromptGeneratorBuilder AddProvider<TProvider,TSource>(this PromptGeneratorBuilder builder,
-            Func<TSource,TProvider> selector)
-            where TProvider : IPromptProvider
-        {
-            builder.AddProvider(typeof(TProvider),selector);
-            return builder;
-        }
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿using PlasticMetal.MobileSuit;
+﻿/*using PlasticMetal.MobileSuit;
+using PlasticMetal.MobileSuit.Attributes;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuitDemo
@@ -26,4 +27,4 @@ namespace PlasticMetal.MobileSuitDemo
             return 0;
         }
     }
-}
+}*/

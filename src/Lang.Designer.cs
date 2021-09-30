@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Lang {
@@ -79,7 +79,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Exception in application 的本地化字符串。
+        ///   查找类似 Unknown Error 的本地化字符串。
         /// </summary>
         internal static string ApplicationError {
             get {
@@ -133,11 +133,20 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 &apos; as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary. 的本地化字符串。
+        ///   查找类似 &apos; as prefix. 的本地化字符串。
         /// </summary>
         internal static string BicExp2 {
             get {
                 return ResourceManager.GetString("BicExp2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string CommandParsingFailure {
+            get {
+                return ResourceManager.GetString("CommandParsingFailure", resourceCulture);
             }
         }
         
@@ -160,7 +169,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Done. 的本地化字符串。
+        ///   查找类似 Completed 的本地化字符串。
         /// </summary>
         internal static string Done {
             get {
@@ -174,6 +183,15 @@ namespace PlasticMetal.MobileSuit {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Keyboard Interrupt 的本地化字符串。
+        /// </summary>
+        internal static string Interrupt {
+            get {
+                return ResourceManager.GetString("Interrupt", resourceCulture);
             }
         }
         
@@ -214,7 +232,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Member Not Found 的本地化字符串。
+        ///   查找类似 Command Not Found 的本地化字符串。
         /// </summary>
         internal static string MemberNotFound {
             get {
@@ -223,7 +241,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Members: 的本地化字符串。
+        ///   查找类似 Commands: 的本地化字符串。
         /// </summary>
         internal static string Members {
             get {
@@ -241,11 +259,11 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Object Not Found 的本地化字符串。
+        ///   查找类似 Error 的本地化字符串。
         /// </summary>
-        internal static string ObjectNotFound {
+        internal static string OnError {
             get {
-                return ResourceManager.GetString("ObjectNotFound", resourceCulture);
+                return ResourceManager.GetString("OnError", resourceCulture);
             }
         }
         
@@ -273,6 +291,24 @@ namespace PlasticMetal.MobileSuit {
         internal static string ReturnValue {
             get {
                 return ResourceManager.GetString("ReturnValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Running 的本地化字符串。
+        /// </summary>
+        internal static string Running {
+            get {
+                return ResourceManager.GetString("Running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Tasks:  的本地化字符串。
+        /// </summary>
+        internal static string Tasks {
+            get {
+                return ResourceManager.GetString("Tasks", resourceCulture);
             }
         }
         

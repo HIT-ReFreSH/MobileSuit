@@ -1,11 +1,17 @@
 ﻿using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.ObjectModel;
+using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
-    public class QuickStartClient : SuitClient
+    public class QuickStartClient 
     {
+        public IIOHub IO { get; }
+
+        public QuickStartClient(IIOHub io)
+        {
+            IO = io;
+        }
         [SuitAlias("H")]
         [SuitInfo("hello command.")]
         public void Hello()

@@ -1,44 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.UI;
+using PlasticMetal.MobileSuit.Core.Services;
 
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
-    /// A input helper.
+    /// To configure Options of IOHub
     /// </summary>
-    public interface IInputHelper
-    {
-        /// <summary>
-        /// Expression for the input
-        /// </summary>
-        string? Expression { get; }
-        /// <summary>
-        /// Default value for the input.
-        /// </summary>
-        string? DefaultInput { get; }
-    }
+    public delegate void IIOHubConfigurer(IIOHub hub);
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
     public interface IIOHub
     {
-        /// <summary>
+        /*/// <summary>
         /// A input helper for current IOHub. Provides information to the prompt.
         /// </summary>
-        public IInputHelper InputHelper { get; }
+        public IInputHelper InputHelper { get; }*/
         /// <summary>
         ///     Disable Time marks which shows in Output-Redirected Environment.
         /// </summary>
-        public bool DisableTimeMark { get; set; }
+        public bool DisableTags { get; set; }
 
-        /// <summary>
+        /*/// <summary>
         ///     Default IOServer, using stdin, stdout, stderr.
         /// </summary>
-        public static IOHub GeneralIO => Suit.GeneralIO;
+        public static IOHub GeneralIO => Suit.GeneralIO;*/
 
         /// <summary>
         ///     Check if this IOServer's error stream is redirected (NOT stderr)
@@ -60,20 +48,11 @@ namespace PlasticMetal.MobileSuit.Core
         /// </summary>
         TextWriter Output { get; set; }
 
-        /// <summary>
-        ///     The prefix of WriteLine() output, usually used to make indentation.
-        /// </summary>
-        string Prefix { get; set; }
 
         /// <summary>
         ///     Color settings for this IOServer. (default DefaultColorSetting)
         /// </summary>
         IColorSetting ColorSetting { get; set; }
-
-        /// <summary>
-        ///     Prompt server for the io server.
-        /// </summary>
-        IAssignOncePromptGenerator Prompt { get;}
 
         /// <summary>
         ///     Input stream (default stdin)
@@ -84,28 +63,11 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Checks if this IOServer's input stream is redirected (NOT stdin)
         /// </summary>
         bool IsInputRedirected { get; }
-
         /// <summary>
-        ///     Call <a>AppendWriteLinePrefix</a> method with default argument('\t') of an <c>IIOServer</c>.
+        ///     Prompt server for the io server.
         /// </summary>
-        /// <param name="server"><c>IIOServer</c> to <a>AppendWriteLinePrefix</a>.</param>
-        /// <returns><c>IIOServer</c> to <a>AppendWriteLinePrefix</a>.</returns>
-        public static IIOHub operator ++(IIOHub server)
-        {
-            server.AppendWriteLinePrefix();
-            return server;
-        }
+        public PromptFormatter FormatPrompt { get; }
 
-        /// <summary>
-        ///     Call <a>SubtractWriteLinePrefix</a> method of an <c>IIOServer</c>.
-        /// </summary>
-        /// <param name="server"><c>IIOServer</c> to <a>SubtractWriteLinePrefix</a>.</param>
-        /// <returns><c>IIOServer</c> to <a>SubtractWriteLinePrefix</a>.</returns>
-        public static IIOHub operator --(IIOHub server)
-        {
-            server.SubtractWriteLinePrefix();
-            return server;
-        }
 
         /// <summary>
         ///     get label of given output type
@@ -119,35 +81,15 @@ namespace PlasticMetal.MobileSuit.Core
                 OutputType.Default => "",
                 OutputType.Prompt => "[Prompt]",
                 OutputType.Error => "[Error]",
-                OutputType.AllOk => "[AllOk]",
-                OutputType.ListTitle => "[List]",
-                OutputType.CustomInfo => "[Info]",
-                OutputType.MobileSuitInfo => "[Info]",
+                OutputType.Ok => "[AllOk]",
+                OutputType.Title => "[List]",
+                OutputType.Info => "[Info]",
+                OutputType.System => "[System]",
                 _ => ""
             };
         }
 
-        /// <summary>
-        ///     provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?)> CreateContentArray(params (string, ConsoleColor?)[] contents)
-        {
-            return contents;
-        }
 
-
-        /// <summary>
-        ///     provides packaging for ContentArray
-        /// </summary>
-        /// <param name="contents">ContentArray</param>
-        /// <returns>packaged ContentArray</returns>
-        public static IEnumerable<(string, ConsoleColor?, ConsoleColor?)> CreateContentArray(
-            params (string, ConsoleColor?, ConsoleColor?)[] contents)
-        {
-            return contents;
-        }
 
         /// <summary>
         ///     Reset this IOServer's error stream to stderr
@@ -162,315 +104,56 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Append a str to Prefix, usually used to increase indentation
         /// </summary>
-        /// <param name="str">the str to append</param>
-        void AppendWriteLinePrefix(string str = "\t");
+        /// <param name="prefix">the output tuple to append</param>
+        void AppendWriteLinePrefix(PrintUnit prefix);
 
         /// <summary>
         ///     Subtract a str from Prefix, usually used to decrease indentation
         /// </summary>
         void SubtractWriteLinePrefix();
-
         /// <summary>
-        ///     Writes some content to output stream. With certain color in console.
+        /// Clear the prefix before writing line.
         /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="customColor">Customized color in console</param>
-        void Write(string content, ConsoleColor? customColor);
-
-
+        void ClearWriteLinePrefix();
         /// <summary>
-        ///     Writes some content to output stream. With certain color in console.
+        ///     Writes some content to output stream, with line break. With certain Input/Output color.
         /// </summary>
-        /// <param name="content">Content to output.</param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
-        /// <param name="customColor">Optional. Customized color in console</param>
-        void Write(string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
-
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream. With certain color in console.
-        /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="customColor">Customized color in console</param>
-        Task WriteAsync(string content, ConsoleColor? customColor);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream. With certain color in console.
-        /// </summary>
-        /// <param name="content">Content to output.</param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
-        /// <param name="customColor">Optional. Customized color in console</param>
-        Task WriteAsync(string content, OutputType type = OutputType.Default,
-            ConsoleColor? customColor = null);
-
-        /// <summary>
-        ///     Write a blank line to output stream.
-        /// </summary>
-        void WriteLine();
-
-        /// <summary>
-        ///     Writes some content to output stream, with line break. With certain color in console.
-        /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="customColor">Customized color in console.</param>
-        void WriteLine(string content, ConsoleColor customColor);
-
-        /// <summary>
-        ///     Writes some content to output stream, with line break. With certain color in console.
-        /// </summary>
-        /// <param name="content">Content to output.</param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        /// <param name="customColor">Optional. Customized color in console.</param>
-        void WriteLine(string content, OutputType type = OutputType.Default, ConsoleColor? customColor = null);
-        /// <summary>
-        ///     Writes some content to output stream. With certain color for each part of content in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        void Write(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
+        /// <param name="content">
+        ///     Output Tuple
+        ///     first is a part of content;
         ///     second is optional, the foreground color of output (in console),
         ///     third is optional, the background color of output.
         /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        void Write(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
+        void Write(PrintUnit content);
         /// <summary>
-        ///     Writes some content to output stream, with line break. With certain color for each part of content in console.
+        ///     Writes some content to output stream, with line break. With certain Input/Output color.
         /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        void WriteLine(IEnumerable<(string, ConsoleColor?)> contentArray, OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Writes some content to output stream. With certain color for each part of content in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
+        /// <param name="content">
+        ///     Output Tuple
+        ///     first is a part of content;
         ///     second is optional, the foreground color of output (in console),
         ///     third is optional, the background color of output.
         /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        void WriteLine(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
+        Task WriteAsync(PrintUnit content);
         /// <summary>
-        ///     Asynchronously writes a blank line to output stream.
+        /// Get the prefix before writing line.
         /// </summary>
-        Task WriteLineAsync();
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
-        /// </summary>
-        /// <param name="content">content to output.</param>
-        /// <param name="customColor">Customized color in console.</param>
-        Task WriteLineAsync(string content, ConsoleColor customColor);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
-        /// </summary>
-        /// <param name="content">Content to output.</param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        /// <param name="customColor">Optional. Customized color in console.</param>
-        Task WriteLineAsync(string content, OutputType type = OutputType.Default,
-            ConsoleColor? customColor = null);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteLineAsync(IEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
-        ///     second is optional, the foreground color of output (in console),
-        ///     third is optional, the background color of output.
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteLineAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
-        ///     second is optional, the foreground color of output (in console),
-        ///     third is optional, the background color of output.
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-        /// <summary>
-        ///     Asynchronously writes some content to output stream. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteAsync(IEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray. FOR EACH Tuple, first is a part of content; second is optional, the color of
-        ///     output (in console)
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteAsync(IAsyncEnumerable<(string, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
-        ///     second is optional, the foreground color of output (in console),
-        ///     third is optional, the background color of output.
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteAsync(IEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
-
-        /// <summary>
-        ///     Asynchronously writes some content to output stream, with line break. With certain color for each part of content
-        ///     in console.
-        /// </summary>
-        /// <param name="contentArray">
-        ///     TupleArray.
-        ///     FOR EACH Tuple, first is a part of content;
-        ///     second is optional, the foreground color of output (in console),
-        ///     third is optional, the background color of output.
-        /// </param>
-        /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-        Task WriteLineAsync(IAsyncEnumerable<(string, ConsoleColor?, ConsoleColor?)> contentArray,
-            OutputType type = OutputType.Default);
+        /// <returns></returns>
+        IEnumerable<PrintUnit> GetLinePrefix(OutputType type);
         /// <summary>
         ///     Reset this IOServer's input stream to stdin
         /// </summary>
         void ResetInput();
-
         /// <summary>
         ///     Reads a line from input stream, with prompt.
         /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="newLine">If the prompt will display in a single line</param>
-        /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
-        string? ReadLine(string? prompt, bool newLine, ConsoleColor? customPromptColor = null);
-
+        string? ReadLine();
         /// <summary>
         ///     Reads a line from input stream, with prompt.
         /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
-        string? ReadLine(string? prompt, ConsoleColor? customPromptColor);
-
-        /// <summary>
-        ///     Reads a line from input stream, with prompt. Return something default if user input "".
-        /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="defaultValue">Default return value if user input ""</param>
-        /// <param name="customPromptColor"></param>
-        /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-        string? ReadLine(string? prompt, string? defaultValue,
-            ConsoleColor? customPromptColor);
-
-        /// <summary>
-        ///     Reads a line from input stream, with prompt. Return something default if user input "".
-        /// </summary>
-        /// <param name="prompt">Optional. The prompt display (output to output stream) before user input.</param>
-        /// <param name="defaultValue">Optional. Default return value if user input ""</param>
-        /// <param name="newLine">Optional. If the prompt will display in a single line</param>
-        /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
-        /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-        string? ReadLine(string? prompt = null, string? defaultValue = null,
-            bool newLine = false, ConsoleColor? customPromptColor = null);
-
-        /// <summary>
-        ///     Asynchronously reads a line from input stream, with prompt.
-        /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="newLine">If the prompt will display in a single line</param>
-        /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
-        /// <returns>Content from input stream, null if EOF</returns>
-        Task<string?> ReadLineAsync(string? prompt, bool newLine,
-            ConsoleColor? customPromptColor = null);
-
-        /// <summary>
-        ///     Asynchronously reads a line from input stream, with prompt.
-        /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="customPromptColor">Prompt's Color, ColorSetting.PromptColor as default.</param>
-        /// <returns>Content from input stream, null if EOF</returns>
-        Task<string?> ReadLineAsync(string? prompt, ConsoleColor? customPromptColor);
-
-        /// <summary>
-        ///     Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
-        /// </summary>
-        /// <param name="prompt">The prompt display (output to output stream) before user input.</param>
-        /// <param name="defaultValue">Default return value if user input ""</param>
-        /// <param name="customPromptColor"></param>
-        /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-        Task<string?> ReadLineAsync(string? prompt, string? defaultValue,
-            ConsoleColor? customPromptColor);
-
-        /// <summary>
-        ///     Asynchronously reads a line from input stream, with prompt. Return something default if user input "".
-        /// </summary>
-        /// <param name="prompt">Optional. The prompt display (output to output stream) before user input.</param>
-        /// <param name="defaultValue">Optional. Default return value if user input ""</param>
-        /// <param name="newLine">Optional. If the prompt will display in a single line</param>
-        /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
-        /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-        Task<string?> ReadLineAsync(string? prompt = null, string? defaultValue = null,
-            bool newLine = false, ConsoleColor? customPromptColor = null);
+        Task<string?> ReadLineAsync();
 
         /// <summary>
         ///     Reads the next character from input stream without changing the state of the reader or the character source.

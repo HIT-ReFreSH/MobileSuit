@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
+﻿/*using System.Diagnostics;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit;
 using PlasticMetal.MobileSuit.ObjectModel;
 
 namespace PlasticMetal.MobileSuitDemo
 {
-    internal class LoggerTest : SuitClient
+    internal class LoggerTest 
     {
         public async Task Test1()
         {
@@ -30,4 +30,4 @@ namespace PlasticMetal.MobileSuitDemo
         {
         }
     }
-}
+}*/

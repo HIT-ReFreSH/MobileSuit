@@ -1,5 +1,5 @@
 ﻿using System;
-using PlasticMetal.MobileSuit.ObjectModel;
+using System.Drawing;
 
 namespace PlasticMetal.MobileSuit.Core
 {
@@ -9,52 +9,62 @@ namespace PlasticMetal.MobileSuit.Core
     public interface IColorSetting : IEquatable<IColorSetting>
     {
         /// <summary>
+        /// BackgroundColor
+        /// </summary>
+        Color BackgroundColor{ get; set; }
+        /// <summary>
         ///     Default color. For OutputType.Default
         /// </summary>
-        ConsoleColor DefaultColor { get; set; }
+        Color DefaultColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Prompt
         /// </summary>
-        ConsoleColor PromptColor { get; set; }
+        Color PromptColor { get; set; }
 
         /// <summary>
         ///     Prompt Color. For OutputType.Error
         /// </summary>
-        ConsoleColor ErrorColor { get; set; }
+        Color ErrorColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.AllOK
+        ///     Prompt Color. For OutputType.OK
         /// </summary>
-        ConsoleColor AllOkColor { get; set; }
+        Color OkColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.ListTitle
+        ///     Prompt Color. For OutputType.Title
         /// </summary>
-        ConsoleColor ListTitleColor { get; set; }
+        Color TitleColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.CustomInformation
+        ///     Prompt Color. For OutputType.Info
         /// </summary>
-        ConsoleColor CustomInformationColor { get; set; }
+        Color InformationColor { get; set; }
 
         /// <summary>
-        ///     Prompt Color. For OutputType.Information
+        ///     Prompt Color. For OutputType.System
         /// </summary>
-        ConsoleColor InformationColor { get; set; }
+        Color SystemColor { get; set; }
+        /// <summary>
+        ///     Prompt Color. For OutputType.System
+        /// </summary>
+        Color WarningColor { get; set; }
 
         /// <summary>
         ///     Default color settings for IOServer.
         /// </summary>
-        public static ColorSetting DefaultColorSetting => new ColorSetting
+        public static IColorSetting DefaultColorSetting => new ColorSetting
         {
-            DefaultColor = ConsoleColor.White,
-            ErrorColor = ConsoleColor.Red,
-            PromptColor = ConsoleColor.Magenta,
-            AllOkColor = ConsoleColor.Green,
-            ListTitleColor = ConsoleColor.DarkYellow,
-            CustomInformationColor = ConsoleColor.DarkCyan,
-            InformationColor = ConsoleColor.DarkBlue
+            DefaultColor = Color.White,
+            ErrorColor = Color.Red,
+            PromptColor = Color.Magenta,
+            OkColor = Color.Green,
+            TitleColor = Color.YellowGreen,
+            InformationColor = Color.DarkCyan,
+            SystemColor = Color.DarkBlue,
+            WarningColor=Color.Orange,
+            BackgroundColor=Color.Black
         };
 
 
@@ -70,10 +80,9 @@ namespace PlasticMetal.MobileSuit.Core
         /// <param name="type">output type</param>
         /// <param name="customColor">customized color</param>
         /// <returns></returns>
-        static ConsoleColor SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
-            ConsoleColor? customColor = null)
+        static Color SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
+            Color? customColor = null)
         {
-            if (colorSetting == null) colorSetting = DefaultColorSetting;
             return
                 customColor
                 ?? type switch
@@ -81,11 +90,12 @@ namespace PlasticMetal.MobileSuit.Core
                     OutputType.Default => colorSetting.DefaultColor,
                     OutputType.Prompt => colorSetting.PromptColor,
                     OutputType.Error => colorSetting.ErrorColor,
-                    OutputType.AllOk => colorSetting.AllOkColor,
-                    OutputType.ListTitle => colorSetting.ListTitleColor,
-                    OutputType.CustomInfo => colorSetting.CustomInformationColor,
-                    OutputType.MobileSuitInfo => colorSetting.InformationColor,
-                    _ => colorSetting.DefaultColor
+                    OutputType.Ok => colorSetting.OkColor,
+                    OutputType.Title => colorSetting.TitleColor,
+                    OutputType.Info => colorSetting.InformationColor,
+                    OutputType.System => colorSetting.SystemColor,
+                    OutputType.Warning => colorSetting.WarningColor,
+                    _ => colorSetting.BackgroundColor
                 };
         }
     }

@@ -117,49 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Enter" xml:space="preserve">
-    <value>Enter a member of Current SuitObject</value>
+  <data name="ChDir" xml:space="preserve">
+    <value>Set current dir</value>
+  </data>
+  <data name="ClearCompleted" xml:space="preserve">
+    <value>Clear All Completed Tasks</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>Get current dir</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Directory Not Found</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit MobileSuit</value>
   </data>
-  <data name="Free" xml:space="preserve">
-    <value>Free the Current SuitObject, and back to the last one.</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Show Help of MobileSuit</value>
   </data>
-  <data name="Leave" xml:space="preserve">
-    <value>Leave the Current SuitObject, Back to its Parent</value>
+  <data name="Join" xml:space="preserve">
+    <value>Join Task[Join &lt;Index&gt;]</value>
   </data>
   <data name="List" xml:space="preserve">
     <value>Show Members of the Current SuitObject</value>
   </data>
-  <data name="ModifyMember" xml:space="preserve">
-    <value>Modify Certain Member's Value of the Current SuitObject</value>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop Task[Stop &lt;Index&gt;]</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>Create and Enter a new SuitObject</value>
+  <data name="TaskNotFound" xml:space="preserve">
+    <value>Task Not Found.</value>
   </data>
-  <data name="Print" xml:space="preserve">
-    <value>Output something in default way</value>
+  <data name="Tasks" xml:space="preserve">
+    <value>Show All Tasks</value>
   </data>
-  <data name="RunScript" xml:space="preserve">
-    <value>Run SuitScript at the given location</value>
-  </data>
-  <data name="Shell" xml:space="preserve">
-    <value>Execute command with the System Shell</value>
-  </data>
-  <data name="SuperPrint" xml:space="preserve">
-    <value>A more powerful way to output something, with arg1 as option</value>
-  </data>
-  <data name="SwitchOption" xml:space="preserve">
-    <value>Switch Options for MobileSuit</value>
-  </data>
-  <data name="This" xml:space="preserve">
-    <value>Show Current SuitObject Information</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>Show Certain Member's Value of the Current SuitObject</value>
+  <data name="Tasks_Title" xml:space="preserve">
+    <value>#\tRequest\tStatus\tResponse</value>
   </data>
 </root>
