@@ -44,6 +44,7 @@ namespace PlasticMetal.MobileSuit
         {
             return origin switch
             {
+                ConsoleColor.DarkYellow => Color.Orange,
                 { } v => Color.FromName(Enum.GetName(typeof(ConsoleColor), v) ?? "White"),
                 _ => null
             };

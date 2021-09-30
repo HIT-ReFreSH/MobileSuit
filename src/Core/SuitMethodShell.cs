@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -77,7 +78,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <inheritdoc/>
         public override bool MayExecute(IReadOnlyList<string> request)
         {
-            return request.Count > 0 && FriendlyNames.Contains(request[0])
+            return request.Count > 0 && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
                                    && CanFitTo(request.Count - 1);
         }
 
@@ -99,13 +100,26 @@ namespace PlasticMetal.MobileSuit.Core
                         returnValue = null;
                 }
 
-                context.Status = RequestStatus.Handled;
-                context.Response = returnValue?.ToString();
+                if (returnValue is RequestStatus status)
+                {
+                    context.Status = status;
+                    context.Response = null;
+                }
+                else
+                {
+                    context.Status = RequestStatus.Handled;
+                    context.Response = returnValue?.ToString();
+                }
             }
             catch (TargetInvocationException e)
             {
                 context.Status = RequestStatus.Faulted;
                 throw e.InnerException ?? e;
+            }
+            catch (Exception ex)
+            {
+                context.Status = RequestStatus.Faulted;
+                throw ex;
             }
         }
 

@@ -79,7 +79,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Exception in application 的本地化字符串。
+        ///   查找类似 Unknown Error 的本地化字符串。
         /// </summary>
         internal static string ApplicationError {
             get {
@@ -133,7 +133,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 &apos; as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary. 的本地化字符串。
+        ///   查找类似 &apos; as prefix. 的本地化字符串。
         /// </summary>
         internal static string BicExp2 {
             get {
@@ -169,7 +169,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Done. 的本地化字符串。
+        ///   查找类似 Completed 的本地化字符串。
         /// </summary>
         internal static string Done {
             get {
@@ -232,7 +232,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Member Not Found 的本地化字符串。
+        ///   查找类似 Command Not Found 的本地化字符串。
         /// </summary>
         internal static string MemberNotFound {
             get {
@@ -241,7 +241,7 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Members: 的本地化字符串。
+        ///   查找类似 Commands: 的本地化字符串。
         /// </summary>
         internal static string Members {
             get {

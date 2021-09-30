@@ -24,18 +24,18 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
             }
             var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
             var client = context.ServiceProvider.GetRequiredService<SuitAppShell>();
-            var task = client.Execute(context);
             var asTask = context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) &&
                          target == SuitBuildTools.SuitCommandTargetAppTask;
             var forceClient = target == SuitBuildTools.SuitCommandTargetApp;
             if (asTask)
             {
-                tasks.AddTask(task, context);
+                context.Status = RequestStatus.Running;
+                tasks.AddTask(client.Execute(context), context);
             }
             else
             {
                 
-                await task;
+                await client.Execute(context);
                 if (forceClient && context.Status == RequestStatus.NotHandled)
                 {
                     context.Status = RequestStatus.CommandNotFound;

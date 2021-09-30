@@ -18,8 +18,16 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
             }
             var history = context.ServiceProvider.GetRequiredService<IHistoryService>();
             history.Response = context.Response;
-            history.Status = context.Status;
-            if (context.Status != RequestStatus.Running)
+            history.Status = context.Status switch
+            {
+                RequestStatus.Handled or RequestStatus.Ok => RequestStatus.Ok,
+                RequestStatus.OnExit => RequestStatus.OnExit,
+                RequestStatus.NotHandled => RequestStatus.CommandNotFound,
+                RequestStatus.Running => RequestStatus.Running,
+                var r => r
+            };
+            if (!context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) ||
+                target != SuitBuildTools.SuitCommandTargetAppTask)
             {
                 context.Dispose();
             }

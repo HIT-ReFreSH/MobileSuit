@@ -16,9 +16,28 @@ namespace PlasticMetal.MobileSuit.Core.Services
     }
     internal class SuitExceptionHandler : ISuitExceptionHandler
     {
+        public IHistoryService History { get; }
+        public IIOHub IO { get; }
+
+        public SuitExceptionHandler(IHistoryService history, IIOHub io)
+        {
+            History = history;
+            IO = io;
+        }
         public async Task InvokeAsync(SuitContext context)
         {
-            if (context.Exception is null) return;
+            if (context.Exception is null)
+            {
+                History.Status = RequestStatus.Faulted;
+                History.Response = Lang.ApplicationError;
+            }
+            else
+            {
+                History.Status = RequestStatus.Faulted;
+                History.Response = context.Exception.Message;
+                await IO.WriteLineAsync(context.Exception.Message,OutputType.Error);
+            }
+
         }
     }
 }

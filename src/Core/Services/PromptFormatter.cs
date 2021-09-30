@@ -18,7 +18,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
         /// <summary>
         ///     a lightning ⚡ char
         /// </summary>
-        public const char Lightning = '⚡';
+        public const char Lightning = '\u26A1';
         /// <summary>
         ///     a right arrow  char
         /// </summary>
@@ -71,7 +71,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
             {
                 if (foreGrounds[i] is not null) continue;
                 var bg = backGrounds[i];
-                foreGrounds[i] = bg.R + bg.G + bg.B < 0xFF * 3 / 2 ? Color.White : Color.Black;
+                foreGrounds[i] = bg.R <= 0x7F || bg.G <= 0x7F || bg.B <= 0x7F ? Color.White : Color.Black ;
             }
             var r = new List<PrintUnit>();
             if (orgList.Count > 0)
@@ -79,7 +79,8 @@ namespace PlasticMetal.MobileSuit.Core.Services
             for (var i = 0; i < orgList.Count; i++)
             {
                 var txt = orgList[i].Text;
-                if (txt.StartsWith(Lang.Tasks)) txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
+                if (txt.StartsWith(Lang.Tasks)) 
+                    txt=txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
                 r.Add(($"{txt}", foreGrounds[i], backGrounds[i]));
                 r.Add((" ", foreGrounds[i], backGrounds[i]));
                 r.Add(($"{RightTriangle} ", backGrounds[i],

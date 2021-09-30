@@ -63,7 +63,7 @@ namespace PlasticMetal.MobileSuit.Core
             TitleColor = Color.YellowGreen,
             InformationColor = Color.DarkCyan,
             SystemColor = Color.DarkBlue,
-            WarningColor=Color.Yellow,
+            WarningColor=Color.Orange,
             BackgroundColor=Color.Black
         };
 

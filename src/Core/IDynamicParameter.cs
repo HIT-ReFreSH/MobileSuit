@@ -12,8 +12,9 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Parse this Parameter from String[].
         /// </summary>
-        /// <param name="options">String[] to parse from.</param>
+        /// <param name="args"></param>
+        /// <param name="context"></param>
         /// <returns>Whether the parsing is successful</returns>
-        bool Parse(IReadOnlyList<string>? options = null);
+        bool Parse(IReadOnlyList<string> args, SuitContext context);
     }
 }

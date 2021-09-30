@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -159,7 +162,7 @@ namespace PlasticMetal.MobileSuit
         /// Build a SuitHost.
         /// </summary>
         /// <returns></returns>
-        public IHost Build()
+        public IMobileSuitHost Build()
         {
             Services.AddSingleton<ISuitAppInfo>(AppInfo);
             Services.AddSingleton(SuitAppShell.FromClients(_clients));
@@ -213,6 +216,17 @@ namespace PlasticMetal.MobileSuit
         ///     Use given PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
+        /// <param name="name">Set a name for the client</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder HasName(this SuitHostBuilder builder, string name)
+        {
+            builder.AppInfo.AppName = name;
+            return builder;
+        }
+        /// <summary>
+        ///     Use given PromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
         /// <param name="instance"></param>
         /// <typeparam name="T">PromptServer</typeparam>
         /// <returns>Builder for the host</returns>
@@ -226,8 +240,32 @@ namespace PlasticMetal.MobileSuit
         /// </summary>
         /// <param name="builder">Builder for the host</param>
         /// <param name="name"></param>
-        /// <param name="method"></param>
         /// <typeparam name="T">PromptServer</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
+        {
+            builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
+            return builder;
+        }
+        /// <summary>
+        ///     Use given PromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="name"></param>
+        /// <param name="instance"></param>
+        /// <typeparam name="T">PromptServer</typeparam>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder,string name, T instance)
+        {
+            builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance,name));
+            return builder;
+        }
+        /// <summary>
+        ///     Use given PromptGenerator for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <param name="name"></param>
+        /// <param name="method"></param>
         /// <returns>Builder for the host</returns>
         public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
         {
@@ -235,14 +273,56 @@ namespace PlasticMetal.MobileSuit
             return builder;
         }
         /// <summary>
-        ///     Use given PromptGenerator for the Host
+        ///     Use PowerLine PromptGenerator for the Host
         /// </summary>
         /// <param name="builder">Builder for the host</param>
         /// <returns>Builder for the host</returns>
         public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder)
         {
-            builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
+            Console.OutputEncoding = Encoding.UTF8;
+            builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLineFormatter);
             return builder;
+        }
+        /// <summary>
+        ///     Use Plain text IO for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder UsePureTextIO(this SuitHostBuilder builder)
+        {
+            builder.Services.AddScoped<IIOHub,PureTextIOHub>();
+            return builder;
+        }
+        /// <summary>
+        ///     Use 4-bit color IO for the Host
+        /// </summary>
+        /// <param name="builder">Builder for the host</param>
+        /// <returns>Builder for the host</returns>
+        public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder)
+        {
+            builder.Services.AddScoped<IIOHub, IOHub4Bit>();
+            return builder;
+        }
+        /// <summary>
+        /// Run a mobile suit
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public static async Task RunAsync(this IMobileSuitHost host)
+        {
+            var token = new CancellationTokenSource().Token;
+            await host.StartAsync(token).ConfigureAwait(false);
+            await host.StopAsync(token).ConfigureAwait(false);
+            host.Dispose();
+        }
+        /// <summary>
+        /// Run a mobile suit
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public static void Run(this IMobileSuitHost host)
+        {
+            host.RunAsync().GetAwaiter().GetResult();
         }
     }
 }

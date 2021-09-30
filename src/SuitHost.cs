@@ -22,9 +22,7 @@ namespace PlasticMetal.MobileSuit
         private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
         private readonly IServiceScope _rootScope;
         private readonly ISuitExceptionHandler _exceptionHandler;
-        private readonly IHost _delegateHost;
-        private IIOHub IO { get; }
-        private CancellationTokenSource systemInterruption;
+        private CancellationTokenSource _systemInterruption;
         public SuitHost(IServiceProvider services,IReadOnlyList<ISuitMiddleware> middleware)
         {
 
@@ -32,17 +30,15 @@ namespace PlasticMetal.MobileSuit
             _suitApp = middleware;
             _exceptionHandler = Services.GetRequiredService<ISuitExceptionHandler>();
             _rootScope = Services.CreateScope();
-            IO = _rootScope.ServiceProvider.GetRequiredService<IIOHub>();
             Logger = Services.GetRequiredService<ILogger<SuitHost>>();
-            systemInterruption = new();
+            _systemInterruption = new();
         }
         /// <inheritdoc/>
         public ILogger Logger{ get; }
 
         public void Dispose()
         {
-            _rootScope.Dispose();
-            _delegateHost.Dispose();
+            _rootScope?.Dispose();
         }
 
 
@@ -51,7 +47,7 @@ namespace PlasticMetal.MobileSuit
             Console.CancelKeyPress += Console_CancelKeyPress;
             cancellationToken.Register(() =>
             {
-                systemInterruption.Cancel();
+                _systemInterruption.Cancel();
             });
 
 
@@ -69,9 +65,9 @@ namespace PlasticMetal.MobileSuit
             var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
             if (appInfo.StartArgs.Length > 0)
             {
-                systemInterruption = new();
+                _systemInterruption = new();
                 var requestScope = Services.CreateScope();
-                var context = new SuitContext(requestScope, systemInterruption);
+                var context = new SuitContext(requestScope, _systemInterruption);
                 context.Status = RequestStatus.NotHandled;
                 context.Request = appInfo.StartArgs;
                 try
@@ -85,14 +81,22 @@ namespace PlasticMetal.MobileSuit
                     await _exceptionHandler.InvokeAsync(context);
                 }
             }
+
+            await HandleRequest(handleRequest);
+
+
+        }
+
+        private async Task HandleRequest(SuitRequestDelegate requestHandler)
+        {
             for (; ; )
             {
-                systemInterruption = new();
+                _systemInterruption = new();
                 var requestScope = Services.CreateScope();
-                var context = new SuitContext(requestScope, systemInterruption);
+                var context = new SuitContext(requestScope, _systemInterruption);
                 try
                 {
-                    await handleRequest(context);
+                    await requestHandler(context);
                 }
                 catch (Exception ex)
                 {
@@ -101,24 +105,21 @@ namespace PlasticMetal.MobileSuit
                     await _exceptionHandler.InvokeAsync(context);
                     continue;
                 }
-                if (context.Status == RequestStatus.NoRequest && systemInterruption.IsCancellationRequested)
+                if (context.Status==RequestStatus.OnExit || (context.Status == RequestStatus.NoRequest && _systemInterruption.IsCancellationRequested))
                 {
                     break;
                 }
             }
-
         }
-
         private void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
         {
             e.Cancel = true;
-            systemInterruption.Cancel();
+            _systemInterruption.Cancel();
         }
 
-        public Task StopAsync(CancellationToken cancellationToken = new())
+        public async Task StopAsync(CancellationToken cancellationToken = new())
         {
-            systemInterruption.Cancel();
-            return Task.CompletedTask;
+            _systemInterruption?.Cancel();
         }
 
         public IServiceProvider Services { get; }

@@ -28,7 +28,8 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 var prompt = new List<PrintUnit>();
                 if (tasks.RunningCount > 0)
                     prompt.Add(($"{Lang.Tasks}{tasks.RunningCount}", io.ColorSetting.SystemColor));
-                prompt.Add((info.AppName, io.ColorSetting.PromptColor));
+                if (!string.IsNullOrEmpty(info.AppName))
+                    prompt.Add((info.AppName, io.ColorSetting.PromptColor));
                 if (history.Response is not null)
                     prompt.Add((history.Response, io.ColorSetting.InformationColor));
                 prompt.Add(history.Status switch
@@ -42,7 +43,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 });
                 await io.WriteAsync(prompt, OutputType.Prompt);
             }
-            
+
             await next(context);
         }
     }

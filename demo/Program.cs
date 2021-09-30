@@ -7,11 +7,14 @@ namespace PlasticMetal.MobileSuitDemo
     {
         private static void Main(string[] args)
         {
-            Suit.CreateBuilder(args)
+            /*Suit.CreateBuilder(args)
+                .HasName("demo")
                 .UsePowerLine()
+                .Use4BitColorIO()
                 .MapClient<Client>()
                 .Build()
-                .Run();
+                .Run();*/
+            Suit.QuickStart4BitPowerLine<Client>(args);
         }
     }
 }

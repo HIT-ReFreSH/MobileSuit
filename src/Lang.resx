@@ -124,7 +124,7 @@
     <value>. All rights reserved.</value>
   </data>
   <data name="ApplicationError" xml:space="preserve">
-    <value>Exception in application</value>
+    <value>Unknown Error</value>
   </data>
   <data name="Bic" xml:space="preserve">
     <value>Built-In Commands:</value>
@@ -133,7 +133,7 @@
     <value>All of the Built-In Commands Can be used as default with the starting'</value>
   </data>
   <data name="BicExp2" xml:space="preserve">
-    <value>' as prefix; However, if the object do not contains commands which have the same name as a certain Built-In Command, the prefix is not necessary.</value>
+    <value>' as prefix.</value>
   </data>
   <data name="CopyrightC" xml:space="preserve">
     <value>Copyright (c) </value>
@@ -142,7 +142,7 @@
     <value>Default</value>
   </data>
   <data name="Done" xml:space="preserve">
-    <value>Done.</value>
+    <value>Completed</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error:</value>
@@ -157,10 +157,10 @@
     <value>' to get all available command.</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>Member Not Found</value>
+    <value>Command Not Found</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members:</value>
+    <value>Commands:</value>
   </data>
   <data name="MsHelp2" xml:space="preserve">
     <value>' to get MobileSuit Build in commands.</value>

@@ -11,7 +11,50 @@ namespace PlasticMetal.MobileSuit
     /// </summary>
     public static class Suit
     {
-
+        /// <summary>
+        /// Quick start a mobilesuit on specific client class with 4bit IO and PowerLine
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args"></param>
+        public static void QuickStart4BitPowerLine<T>(string[] args)
+        {
+            Suit.CreateBuilder(args)
+                .HasName("demo")
+                .UsePowerLine()
+                .Use4BitColorIO()
+                .MapClient<T>()
+                .Build()
+                .Run();
+        }
+        /// <summary>
+        /// Quick start a mobilesuit on specific client class with default settings.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args"></param>
+        public static void QuickStart<T>(string[] args)
+        {
+            Suit.CreateBuilder(args)
+                .HasName("demo")
+                .UsePowerLine()
+                .Use4BitColorIO()
+                .MapClient<T>()
+                .Build()
+                .Run();
+        }
+        /// <summary>
+        /// Quick start a mobilesuit on specific client class with PowerLine
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args"></param>
+        public static void QuickStartPowerLine<T>(string[] args)
+        {
+            Suit.CreateBuilder(args)
+                .HasName("demo")
+                .UsePowerLine()
+                .MapClient<T>()
+                .Build()
+                .Run();
+        }
         /// <summary>
         ///     Get a builder to create host
         /// </summary>

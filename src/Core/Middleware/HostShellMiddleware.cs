@@ -26,7 +26,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
             }
             var force = context.Properties.TryGetValue(SuitCommandTarget, out var target) &&
                         target == SuitCommandTargetHost;
-            var forceClient = target == SuitCommandTargetApp || target==SuitCommandTargetAppTask;
+            var forceClient = target is SuitCommandTargetApp or SuitCommandTargetAppTask;
             if (forceClient)
             {
                 await next(context);

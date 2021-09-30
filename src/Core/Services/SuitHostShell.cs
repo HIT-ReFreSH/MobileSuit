@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
             if (serverType.GetInterface(nameof(ISuitCommandServer)) is null) throw new ArgumentOutOfRangeException(nameof(serverType));
             return new(serverType, s => s.ServiceProvider.GetRequiredService<ISuitCommandServer>(), "SuitServer");
         }
-        private SuitHostShell(Type type, InstanceFactory factory, string info) : base(type, factory, info)
+        private SuitHostShell(Type type, InstanceFactory factory, string info) : base(type, factory, info,"")
         {
         }
     }

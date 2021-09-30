@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static PlasticMetal.MobileSuit.SuitTools;
 
 namespace PlasticMetal.MobileSuit.Core.Services
 {
@@ -9,28 +13,25 @@ namespace PlasticMetal.MobileSuit.Core.Services
     /// </summary>
     public class SuitCommandServer : ISuitCommandServer
     {
-        public IIOHub IO { get; }
-        public SuitAppShell App { get; }
-        public SuitHostShell Host { get; }
+        private IIOHub IO { get; }
+        private SuitAppShell App { get; }
+        private SuitHostShell Host { get; }
+        private ITaskService TaskService { get; }
 
         /// <summary>
         ///     Initialize a BicServer with the given SuitHost.
         /// </summary>
-        public SuitCommandServer(IIOHub io, SuitAppShell app,SuitHostShell host)
+        public SuitCommandServer(IIOHub io, SuitAppShell app, SuitHostShell host, ITaskService taskService)
         {
             IO = io;
             App = app;
             Host = host;
+            TaskService = taskService;
         }
 
 
 
-
-        /// <summary>
-        ///     Show Members of the Current SuitObject
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
+        /// <inheritdoc/>
         [SuitAlias("Ls")]
         [SuitInfo(typeof(BuildInCommandInformations), "List")]
         public virtual async Task ListCommands(string[] args)
@@ -45,24 +46,95 @@ namespace PlasticMetal.MobileSuit.Core.Services
                 ("'", null)
             ), OutputType.Ok);
         }
-        /// <summary>
-        ///     Exit MobileSuit
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
+        /// <inheritdoc/>
         [SuitInfo(typeof(BuildInCommandInformations), "Exit")]
         [SuitAlias("Exit")]
-        public virtual async Task ExitSuit()
+        public virtual RequestStatus ExitSuit()
         {
-            throw new NotImplementedException();
+            return RequestStatus.OnExit;
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(Join))]
+        public async Task<string?> Join(int index, [SuitInjected]SuitContext context)
+        {
+            if (TaskService.HasTask(index))
+            {
+                await TaskService.Join(index, context);
+                return context.Response;
+            }
+
+            await IO.WriteLineAsync(BuildInCommandInformations.TaskNotFound, OutputType.Error);
+            return null;
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(Tasks))]
+        public async Task Tasks()
+        {
+            await IO.WriteLineAsync(Regex.Unescape( BuildInCommandInformations.Tasks_Title), OutputType.Title);
+            foreach (var task in TaskService.GetTasks())
+            {
+                var line = new List<PrintUnit>
+                {
+                    (task.Index.ToString(), null, null),
+                    ("\t", null, null),
+                    (task.Request, IO.ColorSetting.InformationColor, null),
+                    ("\t", null, null),
+                    task.Status switch
+                    {
+                        RequestStatus.Ok or RequestStatus.NoRequest or RequestStatus.Handled => (Lang.Done,
+                            IO.ColorSetting.OkColor),
+                        RequestStatus.Running => (Lang.Running, IO.ColorSetting.WarningColor),
+                        RequestStatus.CommandParsingFailure => (Lang.InvalidCommand, IO.ColorSetting.ErrorColor),
+                        RequestStatus.CommandNotFound => (Lang.MemberNotFound, IO.ColorSetting.ErrorColor),
+                        RequestStatus.Interrupt => (Lang.Interrupt, IO.ColorSetting.ErrorColor),
+                        _ => (Lang.OnError, IO.ColorSetting.ErrorColor)
+                    },
+                    ("\t", null, null),
+                    (task.Response ?? "-", IO.ColorSetting.InformationColor, null)
+                };
+                await IO.WriteLineAsync(line);
+            }
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(Stop))]
+        public async Task Stop(int index)
+        {
+            if (TaskService.HasTask(index))
+            {
+                TaskService.Stop(index);
+            }
+            else
+            {
+                await IO.WriteLineAsync(BuildInCommandInformations.TaskNotFound, OutputType.Error);
+            }
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(ClearCompleted))]
+        [SuitAlias("Cct")]
+        public async Task ClearCompleted()
+        {
+            TaskService.ClearCompleted();
+            await Tasks();
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(Dir))]
+        public string Dir()
+        {
+            return Directory.GetCurrentDirectory();
+        }
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(ChDir))]
+        [SuitAlias("cd")]
+        public string ChDir(string path)
+        {
+            if (!Directory.Exists(path)) return BuildInCommandInformations.DirectoryNotFound;
+            Directory.SetCurrentDirectory(path);
+            return Directory.GetCurrentDirectory();
+
         }
 
-        /// <summary>
-        ///     Show Help of MobileSuit
-        /// </summary>
-        /// <param name="args">command args</param>
-        /// <returns>Command status</returns>
-        [SuitInfo(typeof(BuildInCommandInformations), "Help")]
+        /// <inheritdoc/>
+        [SuitInfo(typeof(BuildInCommandInformations), nameof(Help))]
         public virtual async Task Help(string[] args)
         {
             await IO.WriteLineAsync(Lang.Bic, OutputType.Title);

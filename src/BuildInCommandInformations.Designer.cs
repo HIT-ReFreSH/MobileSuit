@@ -19,7 +19,7 @@ namespace PlasticMetal.MobileSuit {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class BuildInCommandInformations {
@@ -47,8 +47,8 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -61,11 +61,38 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Enter a member of Current SuitObject 的本地化字符串。
+        ///   查找类似 Set current dir 的本地化字符串。
         /// </summary>
-        internal static string Enter {
+        internal static string ChDir {
             get {
-                return ResourceManager.GetString("Enter", resourceCulture);
+                return ResourceManager.GetString("ChDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Clear All Completed Tasks 的本地化字符串。
+        /// </summary>
+        internal static string ClearCompleted {
+            get {
+                return ResourceManager.GetString("ClearCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Get current dir 的本地化字符串。
+        /// </summary>
+        internal static string Dir {
+            get {
+                return ResourceManager.GetString("Dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Directory Not Found 的本地化字符串。
+        /// </summary>
+        internal static string DirectoryNotFound {
+            get {
+                return ResourceManager.GetString("DirectoryNotFound", resourceCulture);
             }
         }
         
@@ -79,15 +106,6 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Free the Current SuitObject, and back to the last one. 的本地化字符串。
-        /// </summary>
-        internal static string Free {
-            get {
-                return ResourceManager.GetString("Free", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Show Help of MobileSuit 的本地化字符串。
         /// </summary>
         internal static string Help {
@@ -97,11 +115,11 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Leave the Current SuitObject, Back to its Parent 的本地化字符串。
+        ///   查找类似 Join Task[Join &lt;Index&gt;] 的本地化字符串。
         /// </summary>
-        internal static string Leave {
+        internal static string Join {
             get {
-                return ResourceManager.GetString("Leave", resourceCulture);
+                return ResourceManager.GetString("Join", resourceCulture);
             }
         }
         
@@ -115,83 +133,38 @@ namespace PlasticMetal.MobileSuit {
         }
         
         /// <summary>
-        ///   查找类似 Modify Certain Member&apos;s Value of the Current SuitObject 的本地化字符串。
+        ///   查找类似 Stop Task[Stop &lt;Index&gt;] 的本地化字符串。
         /// </summary>
-        internal static string ModifyMember {
+        internal static string Stop {
             get {
-                return ResourceManager.GetString("ModifyMember", resourceCulture);
+                return ResourceManager.GetString("Stop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Create and Enter a new SuitObject 的本地化字符串。
+        ///   查找类似 Task Not Found. 的本地化字符串。
         /// </summary>
-        internal static string New {
+        internal static string TaskNotFound {
             get {
-                return ResourceManager.GetString("New", resourceCulture);
+                return ResourceManager.GetString("TaskNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Output something in default way 的本地化字符串。
+        ///   查找类似 Show All Tasks 的本地化字符串。
         /// </summary>
-        internal static string Print {
+        internal static string Tasks {
             get {
-                return ResourceManager.GetString("Print", resourceCulture);
+                return ResourceManager.GetString("Tasks", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Run SuitScript at the given location 的本地化字符串。
+        ///   查找类似 #\tRequest\tStatus\tResponse 的本地化字符串。
         /// </summary>
-        internal static string RunScript {
+        internal static string Tasks_Title {
             get {
-                return ResourceManager.GetString("RunScript", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Execute command with the System Shell 的本地化字符串。
-        /// </summary>
-        internal static string Shell {
-            get {
-                return ResourceManager.GetString("Shell", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 A more powerful way to output something, with arg1 as option 的本地化字符串。
-        /// </summary>
-        internal static string SuperPrint {
-            get {
-                return ResourceManager.GetString("SuperPrint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Switch Options for MobileSuit 的本地化字符串。
-        /// </summary>
-        internal static string SwitchOption {
-            get {
-                return ResourceManager.GetString("SwitchOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Show Current SuitObject Information 的本地化字符串。
-        /// </summary>
-        internal static string This {
-            get {
-                return ResourceManager.GetString("This", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Show Certain Member&apos;s Value of the Current SuitObject 的本地化字符串。
-        /// </summary>
-        internal static string View {
-            get {
-                return ResourceManager.GetString("View", resourceCulture);
+                return ResourceManager.GetString("Tasks_Title", resourceCulture);
             }
         }
     }

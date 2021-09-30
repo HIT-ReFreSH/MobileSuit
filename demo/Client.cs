@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit;
 using PlasticMetal.MobileSuit.Core;
@@ -18,6 +19,13 @@ namespace PlasticMetal.MobileSuitDemo
             IO = io;
         }
 
+        public void Loop([SuitInjected] CancellationToken token)
+        {
+            for (;;)
+            {
+                if (token.IsCancellationRequested) return;
+            }
+        }
         [SuitAlias("H")]
         [SuitInfo("hello command.")]
         public void Hello()
@@ -131,15 +139,15 @@ namespace PlasticMetal.MobileSuitDemo
              * @param options String[] to parse from.
              * @return Whether the parsing is successful
              */
-            public bool Parse(IReadOnlyList<string>? options)
+            public bool Parse(IReadOnlyList<string> args, SuitContext context)
             {
-                if (options.Count == 1)
+                if (args.Count == 1)
                 {
-                    name = options[0];
+                    name = args[0];
                     return true;
                 }
 
-                return options.Count == 0;
+                return args.Count == 0;
             }
         }
     }

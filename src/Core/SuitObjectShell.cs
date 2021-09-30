@@ -22,7 +22,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// <summary>
     ///     Represents an object in Mobile Suit.
     /// </summary>
-    public class SuitObjectShell : SuitShell,ISuitShellCollection
+    public class SuitObjectShell : SuitShell, ISuitShellCollection
     {
         /// <summary>
         ///     The BindingFlags stands for IgnoreCase,  Public and Instance members
@@ -44,7 +44,7 @@ namespace PlasticMetal.MobileSuit.Core
         {
             var infoTag = property.GetCustomAttribute<SuitInfoAttribute>();
             var sh = new SuitObjectShell(property.PropertyType,
-                c => property.GetValue(instanceFactory(c)), infoTag?.Text ?? property.Name)
+                c => property.GetValue(instanceFactory(c)), infoTag?.Text ?? property.Name, property.Name)
             {
                 Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
             };
@@ -52,17 +52,19 @@ namespace PlasticMetal.MobileSuit.Core
             sh.Information = SuitBuildTools.GetMemberInfo(sh);
             return sh;
         }
+
         /// <summary>
         /// Create a SuitObjectShell from an instance
         /// </summary>
         /// <param name="type"></param>
         /// <param name="instanceFactory"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static SuitObjectShell FromInstance(Type type,InstanceFactory instanceFactory)
+        public static SuitObjectShell FromInstance(Type type, InstanceFactory instanceFactory, string name = "")
         {
             var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
             var sh = new SuitObjectShell(type,
-                instanceFactory, infoTag?.Text ?? type.Name)
+                instanceFactory, infoTag?.Text ?? type.Name, name)
             {
                 Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
             };
@@ -80,7 +82,7 @@ namespace PlasticMetal.MobileSuit.Core
         {
             var infoTag = field.GetCustomAttribute<SuitInfoAttribute>();
             var sh = new SuitObjectShell(field.FieldType,
-                s => field.GetValue(instanceFactory(s)), infoTag?.Text ?? field.Name)
+                s => field.GetValue(instanceFactory(s)), infoTag?.Text ?? field.Name, field.Name)
             {
                 Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
             };
@@ -92,26 +94,29 @@ namespace PlasticMetal.MobileSuit.Core
         /// Create a SuitObjectShell from a Type.
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static SuitObjectShell FromType(Type type)
+        public static SuitObjectShell FromType(Type type, string name = "")
         {
             object? InstanceFactory(SuitContext s)
             {
                 return SuitBuildTools.CreateInstance(type, s) ?? new object();
             }
             var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
-            return new(type, InstanceFactory, infoTag?.Text ?? type.Name)
+            return new(type, InstanceFactory, infoTag?.Text ?? type.Name, name)
             {
                 Type = MemberType.FieldWithInfo
             };
         }
+
         /// <summary>
         ///     Initialize a SuitObject with an instance.
         /// </summary>
         /// <param name="type">The instance that this SuitObject represents.</param>
         /// <param name="factory"></param>
         /// <param name="info"></param>
-        public SuitObjectShell(Type type, InstanceFactory factory, string info) : base(type, factory)
+        /// <param name="name"></param>
+        public SuitObjectShell(Type type, InstanceFactory factory, string info, string name) : base(type, factory, name)
         {
             _instanceFactory = factory;
             if (type is null) return;
@@ -167,8 +172,9 @@ namespace PlasticMetal.MobileSuit.Core
         public override async Task Execute(SuitContext context)
         {
             var origin = context.Request;
-            context.Request = origin[1..];
-            foreach (var sys in _subSystems.Where(sys => sys.MayExecute(context.Request.Skip(1).ToImmutableArray())))
+            if(!string.IsNullOrEmpty(AbsoluteName))
+                context.Request = origin[1..];
+            foreach (var sys in _subSystems.Where(sys => sys.MayExecute(context.Request.ToImmutableArray())))
             {
 
                 await sys.Execute(context);
@@ -180,8 +186,13 @@ namespace PlasticMetal.MobileSuit.Core
         /// <inheritdoc/>
         public override bool MayExecute(IReadOnlyList<string> request)
         {
-            return (request.Count > 0 && FriendlyNames.Contains(request[0]) &&
-                _subSystems.Any(sys => sys.MayExecute(request.Skip(1).ToImmutableArray())));
+            if (string.IsNullOrEmpty(AbsoluteName))
+            {
+                return request.Count > 0 &&
+                       _subSystems.Any(sys => sys.MayExecute(request.ToImmutableArray()));
+            }
+            return request.Count > 1 && FriendlyNames.Contains(request[0],StringComparer.OrdinalIgnoreCase) &&
+                   _subSystems.Any(sys => sys.MayExecute(request.Skip(1).ToImmutableArray()));
         }
         /// <summary>
         /// Ordered members of this
