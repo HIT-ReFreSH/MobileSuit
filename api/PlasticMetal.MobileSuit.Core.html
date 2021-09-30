@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace PlasticMetal.MobileSuit.Core
    ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -79,36 +79,61 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.AlreadyAssignedException-1.html">AlreadyAssignedException&lt;T&gt;</a></p>
-          <p><p>The exception throws when trying to assign to a assigned AssignOnce.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.AutoDynamicParameter.html">AutoDynamicParameter</a></p>
+          <p><p>A DynamicParameter which can parse itself automatically</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.AssignOnce-1.html">AssignOnce&lt;T&gt;</a></p>
-          <p><p>A read-only container which contains a T object. Once T is put in, it will never change.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitContext.html">SuitContext</a></p>
+          <p><p>Context through the lifetime of a SuitRequest(A Command)</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ContainerMember.html">ContainerMember</a></p>
-          <p><p>Stands for SuitObject's members which can also be SuitObjects (Field/Property).</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitMethodShell.html">SuitMethodShell</a></p>
+          <p><p>Object's Member which may be a method.</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.Member.html">Member</a></p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitObjectShell.html">SuitObjectShell</a></p>
+          <p><p>Represents an object in Mobile Suit.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitParser.html">SuitParser</a></p>
+          <p><p>A data parser of MobileSuit</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitShell.html">SuitShell</a></p>
           <p><p>A SuitObject's member.</p>
 </p>
         </td>
       </tr>
+    </table>
+    <h3 id="structs">Structs
+  </h3>
+    <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitObject.html">SuitObject</a></p>
-          <p><p>Represents an object in Mobile Suit.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ColorSetting.html">ColorSetting</a></p>
+          <p><p>Color settings of a Mobile Suit.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitMethodParameterInfo.html">SuitMethodParameterInfo</a></p>
+          <p><p>Parameter information of a method in MobileSuit</p>
 </p>
         </td>
       </tr>
@@ -118,20 +143,6 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IAssignOnce-1.html">IAssignOnce&lt;T&gt;</a></p>
-          <p><p>A read-only container which contains a T object. Once T is put in, it will never change.</p>
-</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IBuildInCommandServer.html">IBuildInCommandServer</a></p>
-          <p><p>Built-In-Command Server's Model.</p>
-</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IColorSetting.html">IColorSetting</a></p>
           <p><p>Color settings of a Mobile Suit.</p>
 </p>
@@ -139,22 +150,8 @@
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IExecutable.html">IExecutable</a></p>
-          <p><p>Represents an entity which can be executed.</p>
-</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IExitInteractive.html">IExitInteractive</a></p>
-          <p><p>When exiting, Call OnExit() of the object which implements this interface.</p>
-</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IInputHelper.html">IInputHelper</a></p>
-          <p><p>A input helper.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IDynamicParameter.html">IDynamicParameter</a></p>
+          <p><p>Represents a Parameter which can be parsed from a String[].</p>
 </p>
         </td>
       </tr>
@@ -167,8 +164,29 @@
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IStartingInteractive.html">IStartingInteractive</a></p>
-          <p><p>After initialized, Call OnInitialized() of the object which implements this interface.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ISuitCommandServer.html">ISuitCommandServer</a></p>
+          <p><p>Built-In-Command Server's Model.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ISuitMiddleware.html">ISuitMiddleware</a></p>
+          <p><p>A middleware of Mobile Suit.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ISuitShell.html">ISuitShell</a></p>
+          <p><p>Represents an entity which can be executed.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.ISuitShellCollection.html">ISuitShellCollection</a></p>
+          <p><p>A collection contains ordered suit shell members.</p>
 </p>
         </td>
       </tr>
@@ -178,15 +196,15 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.MemberAccess.html">MemberAccess</a></p>
-          <p><p>Whether a member is SuitIgnore or not.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.MemberType.html">MemberType</a></p>
+          <p><p>Type of a member</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.MemberType.html">MemberType</a></p>
-          <p><p>Type of a member</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.TailParameterType.html">TailParameterType</a></p>
+          <p><p>Represents type of the last parameter of a method</p>
 </p>
         </td>
       </tr>
@@ -196,8 +214,15 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.BuildInCommand.html">BuildInCommand</a></p>
-          <p><p>Build-In-Command's model</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.IIOHubConfigurer.html">IIOHubConfigurer</a></p>
+          <p><p>To configure Options of IOHub</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.Core.SuitRequestDelegate.html">SuitRequestDelegate</a></p>
+          <p><p>A function to handle a suit request.</p>
 </p>
         </td>
       </tr>

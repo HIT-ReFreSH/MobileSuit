@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace PlasticMetal.MobileSuit
    ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -79,15 +79,29 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.LoggerExtensions.html">LoggerExtensions</a></p>
-          <p><p>Useful Extension Methods for SuitLogger.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.AsCollectionAttribute.html">AsCollectionAttribute</a></p>
+          <p><p>A option used in a dynamic parameter</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.PromptGeneratorBuilderExtensions.html">PromptGeneratorBuilderExtensions</a></p>
-          <p><p>Extensions for PromptGeneratorBuilder</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html">IOExtensions</a></p>
+          <p><p>Extension methods for IOHub.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.OptionAttribute.html">OptionAttribute</a></p>
+          <p><p>A option used in a dynamic parameter</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.ParsingMemberAttribute.html">ParsingMemberAttribute</a></p>
+          <p><p>A member of a dynamic parameter</p>
 </p>
         </td>
       </tr>
@@ -102,13 +116,6 @@
         <td>
           <p><a class="xref" href="PlasticMetal.MobileSuit.SuitAliasAttribute.html">SuitAliasAttribute</a></p>
           <p><p>Alias for a SuitObject's member</p>
-</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.SuitHost.html">SuitHost</a></p>
-          <p><p>A entity, which serves the shell functions of a mobile-suit program.</p>
 </p>
         </td>
       </tr>
@@ -135,8 +142,61 @@
       </tr>
       <tr>
         <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.SuitIncludedAttribute.html">SuitIncludedAttribute</a></p>
+          <p><p>Indicate that Mobile Suit should Inject to this Object.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <p><a class="xref" href="PlasticMetal.MobileSuit.SuitInfoAttribute.html">SuitInfoAttribute</a></p>
           <p><p>Stores the information of a member to be displayed.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.SuitInjected.html">SuitInjected</a></p>
+          <p><p>Indicate that Mobile Suit should Inject to this Object.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.SuitParserAttribute.html">SuitParserAttribute</a></p>
+          <p><p>Stores a parser which convert string argument to certain type.</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.SuitTools.html">SuitTools</a></p>
+          <p><p>Useful static functions for MobileSuit Programming</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.SwitchAttribute.html">SwitchAttribute</a></p>
+          <p><p>A switch used in a dynamic parameter</p>
+</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.WithDefaultAttribute.html">WithDefaultAttribute</a></p>
+          <p><p>A DynamicParameter member with default value</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="structs">Structs
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.PrintUnit.html">PrintUnit</a></p>
+          <p><p>A basic unit of output print, contains foreground, background and text.</p>
 </p>
         </td>
       </tr>
@@ -146,15 +206,15 @@
     <table>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.IHostStatus.html">IHostStatus</a></p>
-          <p><p>Providing status of current host.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html">IMobileSuitHost</a></p>
+          <p><p>A host of Mobile Suit, which may run commands.</p>
 </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.IMobileSuitHost.html">IMobileSuitHost</a></p>
-          <p><p>A host of Mobile Suit, which may run commands.</p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.ISuitWorkFlow.html">ISuitWorkFlow</a></p>
+          <p><p>Describes the work flow of mobile suit.</p>
 </p>
         </td>
       </tr>
@@ -171,8 +231,19 @@
       </tr>
       <tr>
         <td>
-          <p><a class="xref" href="PlasticMetal.MobileSuit.TraceBack.html">TraceBack</a></p>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.RequestStatus.html">RequestStatus</a></p>
           <p><p>Status of the last Commandline. Return value type for Built-In-Commands and Host Functions.</p>
+</p>
+        </td>
+      </tr>
+    </table>
+    <h3 id="delegates">Delegates
+  </h3>
+    <table>
+      <tr>
+        <td>
+          <p><a class="xref" href="PlasticMetal.MobileSuit.InstanceFactory.html">InstanceFactory</a></p>
+          <p><p>Factory to create instance from certain context</p>
 </p>
         </td>
       </tr>
