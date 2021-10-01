@@ -1,22 +1,23 @@
-﻿using PlasticMetal.MobileSuit.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Services;
 
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
-    /// Factory to create instance from certain context
+    ///     Factory to create instance from certain context
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
     public delegate object? InstanceFactory(SuitContext context);
+
     internal static class SuitBuildTools
     {
         public const string SuitCommandTarget = "suit-cmd-target";
@@ -24,28 +25,28 @@ namespace PlasticMetal.MobileSuit
         public const string SuitCommandTargetHost = "suit";
         public const string SuitCommandTargetAppTask = "app-task";
 
-        public static Func<SuitContext, Converter<string, object?>> CreateConverterFactory(Type type, SuitParserAttribute? parserAttribute)
+        public static Func<SuitContext, Converter<string, object?>> CreateConverterFactory(Type type,
+            SuitParserAttribute? parserAttribute)
         {
             return context =>
             {
                 if (parserAttribute?.Converter is { } c) return c;
                 if (type.GetInterfaces().FirstOrDefault(t =>
-                     t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ICollection<>)) is {} iCollection)
-                {
+                    t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ICollection<>)) is { } iCollection)
                     type = iCollection.GetGenericArguments()[0];
-
-                }
                 if (type.IsAssignableFrom(typeof(string))) return s => s;
                 return context.ServiceProvider.GetRequiredService<IParsingService>().Get(type,
                     parserAttribute?.Name ?? string.Empty);
             };
         }
+
         public static object? GetArg(ParameterInfo parameter, string? arg, SuitContext context, out int step)
         {
-            if(arg is null||parameter.GetCustomAttribute<SuitInjected>() is not null)
+            if (arg is null || parameter.GetCustomAttribute<SuitInjected>() is not null)
             {
                 step = 0;
-                if (parameter.ParameterType.IsAssignableFrom(typeof(CancellationToken))) return context.CancellationToken.Token;
+                if (parameter.ParameterType.IsAssignableFrom(typeof(CancellationToken)))
+                    return context.CancellationToken.Token;
                 if (parameter.ParameterType.IsAssignableFrom(typeof(SuitContext))) return context;
                 var service = context.ServiceProvider.GetService(parameter.ParameterType);
                 if (service is not null) return service;
@@ -59,8 +60,8 @@ namespace PlasticMetal.MobileSuit
             step = 1;
             var converterAttr = parameter.GetCustomAttribute<SuitParserAttribute>(true);
             return CreateConverterFactory(parameter.ParameterType, converterAttr)(context)(arg);
-
         }
+
         public static object GetArrayArg(ParameterInfo parameter, IReadOnlyList<string> argArray, SuitContext context)
         {
             var converterAttr = parameter.GetCustomAttribute<SuitParserAttribute>(true);
@@ -71,6 +72,7 @@ namespace PlasticMetal.MobileSuit
             foreach (var arg in argArray) array.SetValue(convert(arg), k++);
             return array;
         }
+
         public static string GetMemberInfo(SuitObjectShell sh)
         {
             var infoSb = new StringBuilder();
@@ -97,10 +99,11 @@ namespace PlasticMetal.MobileSuit
 
             return "";
         }
+
         public static SuitMethodParameterInfo GetMethodParameterInfo(IReadOnlyList<ParameterInfo> parameters)
         {
             var suitMethodParameterInfo = new SuitMethodParameterInfo();
-            var originCount= parameters.Count;
+            var originCount = parameters.Count;
             parameters = parameters.Where(p => p.GetCustomAttribute<SuitInjected>() is null).ToList();
             if (originCount == 0)
             {
@@ -109,9 +112,7 @@ namespace PlasticMetal.MobileSuit
             else
             {
                 if (parameters.Count == 0)
-                {
                     suitMethodParameterInfo.TailParameterType = TailParameterType.Normal;
-                }
                 else if (parameters[^1].ParameterType.IsArray)
                     suitMethodParameterInfo.TailParameterType = TailParameterType.Array;
                 else if (parameters[^1].ParameterType.GetInterface("IDynamicParameter") is not null)
@@ -120,22 +121,26 @@ namespace PlasticMetal.MobileSuit
                     suitMethodParameterInfo.TailParameterType = TailParameterType.Normal;
 
 
-                suitMethodParameterInfo.MaxParameterCount = suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
-                    ? parameters.Count
-                    : int.MaxValue;
-                suitMethodParameterInfo.NonArrayParameterCount = suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
-                    ? parameters.Count
-                    : parameters.Count - 1;
+                suitMethodParameterInfo.MaxParameterCount =
+                    suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
+                        ? parameters.Count
+                        : int.MaxValue;
+                suitMethodParameterInfo.NonArrayParameterCount =
+                    suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
+                        ? parameters.Count
+                        : parameters.Count - 1;
                 var i = suitMethodParameterInfo.NonArrayParameterCount - 1;
                 for (; i >= 0 && parameters[i].IsOptional; i--)
                 {
                 }
 
                 suitMethodParameterInfo.MinParameterCount = i + 1;
-                suitMethodParameterInfo.NonArrayParameterCount = suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
-                    ? originCount
-                    : originCount - 1;
+                suitMethodParameterInfo.NonArrayParameterCount =
+                    suitMethodParameterInfo.TailParameterType == TailParameterType.Normal
+                        ? originCount
+                        : originCount - 1;
             }
+
             return suitMethodParameterInfo;
         }
 
@@ -154,10 +159,15 @@ namespace PlasticMetal.MobileSuit
 
             return null;
         }
+
         public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, IReadOnlyList<string> args,
             SuitContext context)
-            => GetArgs(parameters, GetMethodParameterInfo(parameters), args, context);
-        public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, SuitMethodParameterInfo parameterInfo, IReadOnlyList<string> args, SuitContext context)
+        {
+            return GetArgs(parameters, GetMethodParameterInfo(parameters), args, context);
+        }
+
+        public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, SuitMethodParameterInfo parameterInfo,
+            IReadOnlyList<string> args, SuitContext context)
         {
             var pass = new object?[parameters.Count];
             var i = 0;
@@ -165,7 +175,6 @@ namespace PlasticMetal.MobileSuit
             try
             {
                 for (; i < parameterInfo.NonArrayParameterCount; i++)
-                {
                     if (j < args.Count)
                     {
                         pass[i] = GetArg(parameters[i], args[j], context, out var step);
@@ -175,11 +184,6 @@ namespace PlasticMetal.MobileSuit
                     {
                         pass[i] = GetArg(parameters[i], null, context, out _);
                     }
-
-
-
-
-                }
 
                 if (parameterInfo.TailParameterType == TailParameterType.Normal) return pass;
 
@@ -196,14 +200,10 @@ namespace PlasticMetal.MobileSuit
                 }
 
                 if (i < args.Count)
-                {
                     pass[i] = GetArrayArg(parameters[^1], args.Skip(i).ToImmutableArray(), context);
-                }
                 else
-                {
                     pass[i] = Array.CreateInstance(parameters[^1].ParameterType.GetElementType()
                                                    ?? typeof(string), 0);
-                }
 
                 return pass;
             }

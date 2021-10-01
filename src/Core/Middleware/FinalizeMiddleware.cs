@@ -5,17 +5,14 @@ using PlasticMetal.MobileSuit.Core.Services;
 namespace PlasticMetal.MobileSuit.Core.Middleware
 {
     /// <summary>
-    /// Middleware to finalize the command execution.
+    ///     Middleware to finalize the command execution.
     /// </summary>
     public class FinalizeMiddleware : ISuitMiddleware
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
         {
-            if (context.Status == RequestStatus.NotHandled)
-            {
-                context.Status = RequestStatus.CommandNotFound;
-            }
+            if (context.Status == RequestStatus.NotHandled) context.Status = RequestStatus.CommandNotFound;
             var history = context.ServiceProvider.GetRequiredService<IHistoryService>();
             history.Response = context.Response;
             history.Status = context.Status switch
@@ -28,9 +25,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
             };
             if (!context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) ||
                 target != SuitBuildTools.SuitCommandTargetAppTask)
-            {
                 context.Dispose();
-            }
             await next(context);
         }
     }

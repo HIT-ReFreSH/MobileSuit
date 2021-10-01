@@ -6,9 +6,10 @@
     public enum RequestStatus
     {
         /// <summary>
-        /// No Request is input by the user.
+        ///     No Request is input by the user.
         /// </summary>
         NoRequest = 1,
+
         /// <summary>
         ///     The Progress is Exiting
         /// </summary>
@@ -18,16 +19,19 @@
         ///     Everything is OK
         /// </summary>
         Ok = 0,
+
         /// <summary>
         ///     Everything is OK
         /// </summary>
         NotHandled = 2,
+
         /// <summary>
-        /// Command is Running. Set by the FinalMiddleware.
+        ///     Command is Running. Set by the FinalMiddleware.
         /// </summary>
         Running = 3,
+
         /// <summary>
-        /// Command is Running. Set by the FinalMiddleware.
+        ///     Command is Running. Set by the FinalMiddleware.
         /// </summary>
         Handled = 4,
 
@@ -35,6 +39,7 @@
         ///     Cannot find the object referring to.
         /// </summary>
         Interrupt = -2,
+
         /// <summary>
         ///     Cannot find the member in the object referring to.
         /// </summary>
@@ -44,6 +49,7 @@
         ///     Error in the application
         /// </summary>
         Faulted = -4,
+
         /// <summary>
         ///     Failed to parse an argument of a command.
         /// </summary>

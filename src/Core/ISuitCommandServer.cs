@@ -7,8 +7,6 @@ namespace PlasticMetal.MobileSuit.Core
     /// </summary>
     public interface ISuitCommandServer
     {
-
-
         /// <summary>
         ///     Show Members of the Current SuitObject
         /// </summary>
@@ -24,38 +22,44 @@ namespace PlasticMetal.MobileSuit.Core
         RequestStatus ExitSuit();
 
         /// <summary>
-        /// Join a Running task
+        ///     Join a Running task
         /// </summary>
         /// <param name="index"></param>
         /// <param name="context"></param>
         /// <returns></returns>
         Task<string?> Join(int index, SuitContext context);
+
         /// <summary>
-        /// Get All tasks
+        ///     Get All tasks
         /// </summary>
         /// <returns></returns>
         Task Tasks();
+
         /// <summary>
-        /// Stop a Running task
+        ///     Stop a Running task
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
         Task Stop(int index);
+
         /// <summary>
-        /// Clear all Completed Tasks.
+        ///     Clear all Completed Tasks.
         /// </summary>
         /// <returns></returns>
         Task ClearCompleted();
+
         /// <summary>
-        /// Get current directory
+        ///     Get current directory
         /// </summary>
         /// <returns></returns>
         string Dir();
+
         /// <summary>
-        /// Set current directory
+        ///     Set current directory
         /// </summary>
         /// <returns></returns>
         string ChDir(string path);
+
         /// <summary>
         ///     Show Help of MobileSuit
         /// </summary>

@@ -21,10 +21,12 @@ namespace PlasticMetal.MobileSuit
                     BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase)
                 ?.CreateDelegate(typeof(Converter<string, object>)) as Converter<string, object>;
         }
+
         /// <summary>
-        /// The parser name, name of injected parser, ot parser class's name
+        ///     The parser name, name of injected parser, ot parser class's name
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         ///     The parser which convert string argument to certain type.
         /// </summary>

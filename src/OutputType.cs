@@ -39,9 +39,10 @@
         ///     Information provided by MobileSuit.
         /// </summary>
         System = 6,
+
         /// <summary>
         ///     Error content.
         /// </summary>
-        Warning = 7,
+        Warning = 7
     }
 }

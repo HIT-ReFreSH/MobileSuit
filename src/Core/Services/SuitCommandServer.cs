@@ -13,11 +13,6 @@ namespace PlasticMetal.MobileSuit.Core.Services
     /// </summary>
     public class SuitCommandServer : ISuitCommandServer
     {
-        private IIOHub IO { get; }
-        private SuitAppShell App { get; }
-        private SuitHostShell Host { get; }
-        private ITaskService TaskService { get; }
-
         /// <summary>
         ///     Initialize a BicServer with the given SuitHost.
         /// </summary>
@@ -29,9 +24,13 @@ namespace PlasticMetal.MobileSuit.Core.Services
             TaskService = taskService;
         }
 
+        private IIOHub IO { get; }
+        private SuitAppShell App { get; }
+        private SuitHostShell Host { get; }
+        private ITaskService TaskService { get; }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         [SuitAlias("Ls")]
         [SuitInfo(typeof(BuildInCommandInformations), "List")]
         public virtual async Task ListCommands(string[] args)
@@ -39,23 +38,25 @@ namespace PlasticMetal.MobileSuit.Core.Services
             await IO.WriteLineAsync(Lang.Members, OutputType.Title);
             await ListMembersAsync(App);
             await IO.WriteLineAsync();
-            await IO.WriteLineAsync(SuitTools.CreateContentArray
+            await IO.WriteLineAsync(CreateContentArray
             (
                 (Lang.ViewBic, null),
                 ("@Help", ConsoleColor.Cyan),
                 ("'", null)
             ), OutputType.Ok);
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), "Exit")]
         [SuitAlias("Exit")]
         public virtual RequestStatus ExitSuit()
         {
             return RequestStatus.OnExit;
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(Join))]
-        public async Task<string?> Join(int index, [SuitInjected]SuitContext context)
+        public async Task<string?> Join(int index, [SuitInjected] SuitContext context)
         {
             if (TaskService.HasTask(index))
             {
@@ -66,11 +67,12 @@ namespace PlasticMetal.MobileSuit.Core.Services
             await IO.WriteLineAsync(BuildInCommandInformations.TaskNotFound, OutputType.Error);
             return null;
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(Tasks))]
         public async Task Tasks()
         {
-            await IO.WriteLineAsync(Regex.Unescape( BuildInCommandInformations.Tasks_Title), OutputType.Title);
+            await IO.WriteLineAsync(Regex.Unescape(BuildInCommandInformations.Tasks_Title), OutputType.Title);
             foreach (var task in TaskService.GetTasks())
             {
                 var line = new List<PrintUnit>
@@ -95,20 +97,18 @@ namespace PlasticMetal.MobileSuit.Core.Services
                 await IO.WriteLineAsync(line);
             }
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(Stop))]
         public async Task Stop(int index)
         {
             if (TaskService.HasTask(index))
-            {
                 TaskService.Stop(index);
-            }
             else
-            {
                 await IO.WriteLineAsync(BuildInCommandInformations.TaskNotFound, OutputType.Error);
-            }
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(ClearCompleted))]
         [SuitAlias("Cct")]
         public async Task ClearCompleted()
@@ -116,13 +116,15 @@ namespace PlasticMetal.MobileSuit.Core.Services
             TaskService.ClearCompleted();
             await Tasks();
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(Dir))]
         public string Dir()
         {
             return Directory.GetCurrentDirectory();
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(ChDir))]
         [SuitAlias("cd")]
         public string ChDir(string path)
@@ -130,17 +132,16 @@ namespace PlasticMetal.MobileSuit.Core.Services
             if (!Directory.Exists(path)) return BuildInCommandInformations.DirectoryNotFound;
             Directory.SetCurrentDirectory(path);
             return Directory.GetCurrentDirectory();
-
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         [SuitInfo(typeof(BuildInCommandInformations), nameof(Help))]
         public virtual async Task Help(string[] args)
         {
             await IO.WriteLineAsync(Lang.Bic, OutputType.Title);
             await ListMembersAsync(Host);
             await IO.WriteLineAsync();
-            await IO.WriteLineAsync(SuitTools.CreateContentArray
+            await IO.WriteLineAsync(CreateContentArray
             (
                 (Lang.BicExp1, null),
                 ("@", ConsoleColor.Cyan),
@@ -169,7 +170,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
                 };
                 var aliasesExpression = new StringBuilder();
                 foreach (var alias in shell.Aliases) aliasesExpression.Append($"/{alias}");
-                await IO.WriteLineAsync(SuitTools.CreateContentArray
+                await IO.WriteLineAsync(CreateContentArray
                 (
                     (shell.AbsoluteName, null),
                     (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
@@ -179,8 +180,5 @@ namespace PlasticMetal.MobileSuit.Core.Services
 
             IO.SubtractWriteLinePrefix();
         }
-
-
-
     }
 }

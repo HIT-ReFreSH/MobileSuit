@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using PlasticMetal.MobileSuit;
+﻿using PlasticMetal.MobileSuit;
 
 namespace PlasticMetal.MobileSuitDemo
 {

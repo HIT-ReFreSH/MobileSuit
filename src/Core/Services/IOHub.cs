@@ -9,36 +9,52 @@ using System.Threading.Tasks;
 namespace PlasticMetal.MobileSuit.Core.Services
 {
     /// <summary>
-    /// IO hub with pure text output.
+    ///     IO hub with pure text output.
     /// </summary>
     public class PureTextIOHub : IOHub
     {
         /// <summary>
         ///     Initialize a IOhub.
         /// </summary>
-        public PureTextIOHub(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter, configurer)
+        public PureTextIOHub(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter,
+            configurer)
         {
         }
+
         /// <inheritdoc />
         public override void Write(PrintUnit content)
         {
             Output.Write(content.Text);
         }
+
         /// <inheritdoc />
         public override async Task WriteAsync(PrintUnit content)
         {
             await Output.WriteAsync(content.Text);
         }
     }
+
     /// <summary>
-    /// IO hub using 4-bit color output.
+    ///     IO hub using 4-bit color output.
     /// </summary>
     public class IOHub4Bit : IOHub
     {
+        /// <summary>
+        ///     Initialize a IOhub.
+        /// </summary>
+        public IOHub4Bit(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter,
+            configurer)
+        {
+        }
+
         private static int BackgroundCodeOf(Color c)
-            => 10 + ForegroundCodeOf(c);
+        {
+            return 10 + ForegroundCodeOf(c);
+        }
+
         private static int ForegroundCodeOf(Color c)
-            => ConsoleColorOf(c) switch
+        {
+            return ConsoleColorOf(c) switch
             {
                 ConsoleColor.Black => 30,
                 ConsoleColor.DarkBlue => 34,
@@ -58,6 +74,8 @@ namespace PlasticMetal.MobileSuit.Core.Services
                 ConsoleColor.White => 97,
                 _ => throw new ArgumentOutOfRangeException(nameof(c), c, null)
             };
+        }
+
         private static ConsoleColor ConsoleColorOf(Color color)
         {
             ConsoleColor re = default;
@@ -73,55 +91,34 @@ namespace PlasticMetal.MobileSuit.Core.Services
                 delta = t;
                 re = cc;
             }
+
             return re;
         }
-        /// <summary>
-        ///     Initialize a IOhub.
-        /// </summary>
-        public IOHub4Bit(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter, configurer)
-        {
-        }
+
         /// <inheritdoc />
         public override void Write(PrintUnit content)
         {
-            if (content.Foreground is { } f)
-            {
-                Output.Write($"\u001b[{ForegroundCodeOf(f)}m");
-            }
-            if (content.Background is { } b)
-            {
-                Output.Write($"\u001b[{BackgroundCodeOf(b)}m");
-            }
+            if (content.Foreground is { } f) Output.Write($"\u001b[{ForegroundCodeOf(f)}m");
+            if (content.Background is { } b) Output.Write($"\u001b[{BackgroundCodeOf(b)}m");
             Output.Write(content.Text);
-            if (content.Foreground is { } || content.Background is { })
-            {
-                Output.Write("\u001b[0m");
-            }
+            if (content.Foreground is { } || content.Background is { }) Output.Write("\u001b[0m");
         }
+
         /// <inheritdoc />
         public override async Task WriteAsync(PrintUnit content)
         {
-            if (content.Foreground is { } f)
-            {
-                await Output.WriteAsync($"\u001b[{ForegroundCodeOf(f)}m");
-            }
-            if (content.Background is { } b)
-            {
-                await Output.WriteAsync($"\u001b[{BackgroundCodeOf(b)}m");
-            }
+            if (content.Foreground is { } f) await Output.WriteAsync($"\u001b[{ForegroundCodeOf(f)}m");
+            if (content.Background is { } b) await Output.WriteAsync($"\u001b[{BackgroundCodeOf(b)}m");
             await Output.WriteAsync(content.Text);
-            if (content.Foreground is { } || content.Background is { })
-            {
-                await Output.WriteAsync("\u001b[0m");
-            }
+            if (content.Foreground is { } || content.Background is { }) await Output.WriteAsync("\u001b[0m");
         }
     }
+
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
     public class IOHub : IIOHub
     {
-
         /// <summary>
         ///     Initialize a IOServer.
         /// </summary>
@@ -135,11 +132,15 @@ namespace PlasticMetal.MobileSuit.Core.Services
             configurer(this);
         }
 
+        private List<PrintUnit> Prefix { get; } = new();
+
 
         /// <inheritdoc />
         public IColorSetting ColorSetting { get; set; }
+
         /// <inheritdoc />
         public PromptFormatter FormatPrompt { get; }
+
         /// <inheritdoc />
         public TextReader Input { get; set; }
 
@@ -154,10 +155,15 @@ namespace PlasticMetal.MobileSuit.Core.Services
 
         /// <inheritdoc />
         public string? ReadLine()
-            => Input.ReadLine();
+        {
+            return Input.ReadLine();
+        }
+
         /// <inheritdoc />
         public async Task<string?> ReadLineAsync()
-            => await Input.ReadLineAsync();
+        {
+            return await Input.ReadLineAsync();
+        }
 
         /// <inheritdoc />
         public int Peek()
@@ -182,6 +188,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
         {
             return await Input.ReadToEndAsync().ConfigureAwait(false);
         }
+
         /// <inheritdoc />
         public bool DisableTags { get; set; }
 
@@ -197,72 +204,57 @@ namespace PlasticMetal.MobileSuit.Core.Services
         /// <inheritdoc />
         public TextWriter Output { get; set; }
 
-        private List<PrintUnit> Prefix { get; } = new();
         /// <inheritdoc />
         public void ResetError()
         {
             ErrorStream = Console.Error;
         }
+
         /// <inheritdoc />
         public void ResetOutput()
         {
             Output = Console.Out;
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public void AppendWriteLinePrefix(PrintUnit prefix)
         {
             Prefix.Add(prefix);
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void SubtractWriteLinePrefix()
         {
             Prefix.RemoveAt(Prefix.Count - 1);
         }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public void ClearWriteLinePrefix()
         {
             Prefix.Clear();
         }
+
         /// <inheritdoc />
         public virtual void Write(PrintUnit content)
         {
-            if (content.Foreground is { } f)
-            {
-                Output.Write($"\u001b[38;2;{f.R};{f.G};{f.B}m");
-            }
-            if (content.Background is { } b)
-            {
-                Output.Write($"\u001b[48;2;{b.R};{b.G};{b.B}m");
-            }
+            if (content.Foreground is { } f) Output.Write($"\u001b[38;2;{f.R};{f.G};{f.B}m");
+            if (content.Background is { } b) Output.Write($"\u001b[48;2;{b.R};{b.G};{b.B}m");
             Output.Write(content.Text);
-            if (content.Foreground is { } || content.Background is { })
-            {
-                Output.Write("\u001b[0m");
-            }
+            if (content.Foreground is { } || content.Background is { }) Output.Write("\u001b[0m");
         }
+
         /// <inheritdoc />
         public virtual async Task WriteAsync(PrintUnit content)
         {
-            if (content.Foreground is { } f)
-            {
-                await Output.WriteAsync($"\u001b[38;2;{f.R};{f.G};{f.B}m");
-            }
-            if (content.Background is { } b)
-            {
-                await Output.WriteAsync($"\u001b[48;2;{b.R};{b.G};{b.B}m");
-            }
+            if (content.Foreground is { } f) await Output.WriteAsync($"\u001b[38;2;{f.R};{f.G};{f.B}m");
+            if (content.Background is { } b) await Output.WriteAsync($"\u001b[48;2;{b.R};{b.G};{b.B}m");
             await Output.WriteAsync(content.Text);
-            if (content.Foreground is { } || content.Background is { })
-            {
-                await Output.WriteAsync("\u001b[0m");
-            }
+            if (content.Foreground is { } || content.Background is { }) await Output.WriteAsync("\u001b[0m");
         }
 
 
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IEnumerable<PrintUnit> GetLinePrefix(OutputType type)
         {
             if (IsOutputRedirected)
@@ -277,8 +269,8 @@ namespace PlasticMetal.MobileSuit.Core.Services
             }
 
             return Prefix;
-
         }
+
         private static void AppendTimeStamp(StringBuilder sb)
         {
             sb.Append('[');

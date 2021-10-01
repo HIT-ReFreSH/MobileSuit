@@ -30,7 +30,7 @@ namespace PlasticMetal.MobileSuit.Core
                                 property.PropertyType.GetMethod("Add", new[]
                                 {
                                     property.GetType().GetElementType() ?? typeof(string)
-                                })?.Invoke(property.GetValue(obj), new[] {value});
+                                })?.Invoke(property.GetValue(obj), new[] { value });
                             }
                         )
                         : property.SetValue,
@@ -43,9 +43,9 @@ namespace PlasticMetal.MobileSuit.Core
         /// <summary>
         ///     Members of this AutoDynamicParameter
         /// </summary>
-        private Dictionary<string, ParsingMember> Members { get; } = new Dictionary<string, ParsingMember>();
+        private Dictionary<string, ParsingMember> Members { get; } = new();
 
-        private static Regex ParseMemberRegex { get; } = new Regex(@"^-");
+        private static Regex ParseMemberRegex { get; } = new(@"^-");
 
         /// <inheritdoc />
         public bool Parse(IReadOnlyList<string> args, SuitContext context)
@@ -73,7 +73,7 @@ namespace PlasticMetal.MobileSuit.Core
                         nameof(args));
 
                 parseMember.Set(this,
-                    ConnectStringArray(args.ToArray()[i..j]),context);
+                    ConnectStringArray(args.ToArray()[i..j]), context);
                 i = j;
             }
 

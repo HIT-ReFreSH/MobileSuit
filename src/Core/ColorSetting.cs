@@ -8,7 +8,7 @@ namespace PlasticMetal.MobileSuit.Core
     /// </summary>
     public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Color BackgroundColor { get; set; }
 
         /// <summary>
@@ -45,7 +45,8 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Prompt Color. For OutputType.Information
         /// </summary>
         public Color SystemColor { get; set; }
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public Color WarningColor { get; set; }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -57,8 +58,8 @@ namespace PlasticMetal.MobileSuit.Core
                    DefaultColor == other.DefaultColor && PromptColor == other.PromptColor &&
                    ErrorColor == other.ErrorColor && OkColor == other.OkColor &&
                    TitleColor == other.TitleColor && InformationColor == other.InformationColor &&
-                   SystemColor == other.SystemColor && WarningColor==other.WarningColor &&
-                   BackgroundColor==other.BackgroundColor;
+                   SystemColor == other.SystemColor && WarningColor == other.WarningColor &&
+                   BackgroundColor == other.BackgroundColor;
         }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -66,7 +67,7 @@ namespace PlasticMetal.MobileSuit.Core
         /// <returns>whether this instance and a specified object are equal.</returns>
         public override bool Equals(object? that)
         {
-            return that is IColorSetting && Equals((ColorSetting) that);
+            return that is IColorSetting && Equals((ColorSetting)that);
         }
 
         /// <summary>
@@ -75,8 +76,10 @@ namespace PlasticMetal.MobileSuit.Core
         /// <returns> hash code of all colors</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(HashCode.Combine(DefaultColor.GetHashCode(), (int) PromptColor.GetHashCode(), (int) ErrorColor.GetHashCode(), (int) OkColor.GetHashCode(),
-                (int) TitleColor.GetHashCode(), (int) InformationColor.GetHashCode(), (int) SystemColor.GetHashCode(), (int)WarningColor.GetHashCode()), (int)BackgroundColor.GetHashCode());
+            return HashCode.Combine(HashCode.Combine(DefaultColor.GetHashCode(), PromptColor.GetHashCode(),
+                ErrorColor.GetHashCode(), OkColor.GetHashCode(),
+                TitleColor.GetHashCode(), InformationColor.GetHashCode(), SystemColor.GetHashCode(),
+                WarningColor.GetHashCode()), BackgroundColor.GetHashCode());
         }
 
         /// <summary>

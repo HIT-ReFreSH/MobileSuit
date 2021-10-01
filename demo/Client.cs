@@ -7,10 +7,8 @@ using PlasticMetal.MobileSuit.Core;
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
-    public class Client 
+    public class Client
     {
-        public IIOHub IO { get; }
-
         /// <summary>
         ///     Initialize a client
         /// </summary>
@@ -19,13 +17,15 @@ namespace PlasticMetal.MobileSuitDemo
             IO = io;
         }
 
+        public IIOHub IO { get; }
+
         public void Loop([SuitInjected] CancellationToken token)
         {
             for (;;)
-            {
-                if (token.IsCancellationRequested) return;
-            }
+                if (token.IsCancellationRequested)
+                    return;
         }
+
         [SuitAlias("H")]
         [SuitInfo("hello command.")]
         public void Hello()
@@ -122,9 +122,7 @@ namespace PlasticMetal.MobileSuitDemo
             [WithDefault]
             public List<string> Name { get; set; } = new();
 
-            [Option("t")]
-            [WithDefault]
-            public int SleepTime { get; set; } = 0;
+            [Option("t")] [WithDefault] public int SleepTime { get; set; } = 0;
 
             [Switch("s")] public bool IsSleeping { get; set; }
         }

@@ -10,8 +10,9 @@ namespace PlasticMetal.MobileSuit.Core.Services
     ///     represents a generator provides prompt output.
     /// </summary>
     public delegate IEnumerable<PrintUnit> PromptFormatter(IEnumerable<PrintUnit> origin);
+
     /// <summary>
-    /// Default prompt formatters.
+    ///     Default prompt formatters.
     /// </summary>
     public static class PromptFormatters
     {
@@ -19,6 +20,7 @@ namespace PlasticMetal.MobileSuit.Core.Services
         ///     a lightning ⚡ char
         /// </summary>
         public const char Lightning = '\u26A1';
+
         /// <summary>
         ///     a right arrow  char
         /// </summary>
@@ -33,8 +35,9 @@ namespace PlasticMetal.MobileSuit.Core.Services
         ///     a cross ⨯ char
         /// </summary>
         public const char Cross = '⨯';
+
         /// <summary>
-        /// A basic prompt formatter for Mobile Suit.
+        ///     A basic prompt formatter for Mobile Suit.
         /// </summary>
         public static IEnumerable<PrintUnit> BasicPromptFormatter(IEnumerable<PrintUnit> origin)
         {
@@ -44,22 +47,18 @@ namespace PlasticMetal.MobileSuit.Core.Services
             {
                 var unit = orgList[i];
                 var output = new StringBuilder();
-                if (i == 0)
-                {
-                    output.Append(' ');
-                }
+                if (i == 0) output.Append(' ');
 
                 output.Append($"[{unit.Text}] ");
-                if (i == orgList.Count - 1)
-                {
-                    output.Append('>');
-                }
+                if (i == orgList.Count - 1) output.Append('>');
                 l.Add((output.ToString(), unit.Foreground, unit.Background));
             }
+
             return l;
         }
+
         /// <summary>
-        /// A PowerLine themed prompt generator
+        ///     A PowerLine themed prompt generator
         /// </summary>
         public static IEnumerable<PrintUnit> PowerLineFormatter(IEnumerable<PrintUnit> origin)
         {
@@ -71,16 +70,17 @@ namespace PlasticMetal.MobileSuit.Core.Services
             {
                 if (foreGrounds[i] is not null) continue;
                 var bg = backGrounds[i];
-                foreGrounds[i] = bg.R <= 0x7F || bg.G <= 0x7F || bg.B <= 0x7F ? Color.White : Color.Black ;
+                foreGrounds[i] = bg.R <= 0x7F || bg.G <= 0x7F || bg.B <= 0x7F ? Color.White : Color.Black;
             }
+
             var r = new List<PrintUnit>();
             if (orgList.Count > 0)
                 r.Add((" ", foreGrounds[0], backGrounds[0]));
             for (var i = 0; i < orgList.Count; i++)
             {
                 var txt = orgList[i].Text;
-                if (txt.StartsWith(Lang.Tasks)) 
-                    txt=txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
+                if (txt.StartsWith(Lang.Tasks))
+                    txt = txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
                 r.Add(($"{txt}", foreGrounds[i], backGrounds[i]));
                 r.Add((" ", foreGrounds[i], backGrounds[i]));
                 r.Add(($"{RightTriangle} ", backGrounds[i],
@@ -89,8 +89,6 @@ namespace PlasticMetal.MobileSuit.Core.Services
 
 
             return r;
-
         }
     }
-
 }

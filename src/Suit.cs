@@ -12,13 +12,13 @@ namespace PlasticMetal.MobileSuit
     public static class Suit
     {
         /// <summary>
-        /// Quick start a mobilesuit on specific client class with 4bit IO and PowerLine
+        ///     Quick start a mobilesuit on specific client class with 4bit IO and PowerLine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="args"></param>
         public static void QuickStart4BitPowerLine<T>(string[] args)
         {
-            Suit.CreateBuilder(args)
+            CreateBuilder(args)
                 .HasName("demo")
                 .UsePowerLine()
                 .Use4BitColorIO()
@@ -26,14 +26,15 @@ namespace PlasticMetal.MobileSuit
                 .Build()
                 .Run();
         }
+
         /// <summary>
-        /// Quick start a mobilesuit on specific client class with default settings.
+        ///     Quick start a mobilesuit on specific client class with default settings.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="args"></param>
         public static void QuickStart<T>(string[] args)
         {
-            Suit.CreateBuilder(args)
+            CreateBuilder(args)
                 .HasName("demo")
                 .UsePowerLine()
                 .Use4BitColorIO()
@@ -41,28 +42,31 @@ namespace PlasticMetal.MobileSuit
                 .Build()
                 .Run();
         }
+
         /// <summary>
-        /// Quick start a mobilesuit on specific client class with PowerLine
+        ///     Quick start a mobilesuit on specific client class with PowerLine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="args"></param>
         public static void QuickStartPowerLine<T>(string[] args)
         {
-            Suit.CreateBuilder(args)
+            CreateBuilder(args)
                 .HasName("demo")
                 .UsePowerLine()
                 .MapClient<T>()
                 .Build()
                 .Run();
         }
+
         /// <summary>
         ///     Get a builder to create host
         /// </summary>
         /// <returns>The builder</returns>
-        public static SuitHostBuilder CreateBuilder(string[]? args=null)
+        public static SuitHostBuilder CreateBuilder(string[]? args = null)
         {
             return new SuitHostBuilder(args);
         }
+
         /// <summary>
         ///     provides packaging for ContentArray
         /// </summary>
@@ -84,6 +88,7 @@ namespace PlasticMetal.MobileSuit
         {
             return SuitTools.CreateContentArray(contents);
         }
+
         /// <summary>
         ///     provides packaging for ContentArray
         /// </summary>
@@ -175,7 +180,7 @@ namespace PlasticMetal.MobileSuit
         public static void PrintMobileSuitInformation(this IIOHub io)
         {
             if (io == null) return;
-            io.WriteLine(SuitTools. CreateContentArray(
+            io.WriteLine(SuitTools.CreateContentArray(
                 (Lang.PoweredBy, null),
                 ("MobileSuit", io.ColorSetting.ErrorColor),
                 (" ", null),

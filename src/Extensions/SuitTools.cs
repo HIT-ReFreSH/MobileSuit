@@ -6,7 +6,7 @@ using System.Linq;
 namespace PlasticMetal.MobileSuit
 {
     /// <summary>
-    /// Useful static functions for MobileSuit Programming
+    ///     Useful static functions for MobileSuit Programming
     /// </summary>
     public static class SuitTools
     {

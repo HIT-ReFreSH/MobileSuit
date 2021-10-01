@@ -1,15 +1,13 @@
 ﻿#nullable enable
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PlasticMetal.MobileSuit.Core
 {
-
-
     /// <summary>
     ///     Object's Member which may be a method.
     /// </summary>
@@ -17,27 +15,8 @@ namespace PlasticMetal.MobileSuit.Core
     {
         private readonly SuitMethodParameterInfo _suitMethodParameterInfo;
 
-        /// <summary>
-        /// Create a method shell from delegate
-        /// </summary>
-        /// <param name="methodName">Name of this command</param>
-        /// <param name="delegate"></param>
-        /// <returns></returns>
-        public static SuitMethodShell FromDelegate(string methodName, Delegate @delegate)
-        {
-            return new SuitMethodShell(@delegate.Method, _ => @delegate.Target, methodName);
-        }
-        /// <summary>
-        ///     Initialize an Object's Member with its instance and Method's information.
-        /// </summary>
-        /// <param name="method">Object's member(Method)'s information</param>
-        /// <param name="factory"></param>
-        public static SuitMethodShell FromInstance(MethodBase method, InstanceFactory factory)
-        {
-            return new SuitMethodShell(method,factory);
-        }
-
-        private SuitMethodShell(MethodBase method, InstanceFactory factory, string? absoluteName = null) : base(method, factory, absoluteName)
+        private SuitMethodShell(MethodBase method, InstanceFactory factory, string? absoluteName = null) : base(method,
+            factory, absoluteName)
         {
             if (method == null) throw new Exception();
             InvokeMember = method.Invoke;
@@ -75,15 +54,40 @@ namespace PlasticMetal.MobileSuit.Core
                 Information = info.Text;
             }
         }
-        /// <inheritdoc/>
-        public override bool MayExecute(IReadOnlyList<string> request)
-        {
-            return request.Count > 0 && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
-                                   && CanFitTo(request.Count - 1);
-        }
 
         private ParameterInfo[] Parameters { get; }
         private Func<object?, object?[]?, object?> InvokeMember { get; }
+
+        /// <inheritdoc />
+        public override int MemberCount => Parameters.Length;
+
+        /// <summary>
+        ///     Create a method shell from delegate
+        /// </summary>
+        /// <param name="methodName">Name of this command</param>
+        /// <param name="delegate"></param>
+        /// <returns></returns>
+        public static SuitMethodShell FromDelegate(string methodName, Delegate @delegate)
+        {
+            return new SuitMethodShell(@delegate.Method, _ => @delegate.Target, methodName);
+        }
+
+        /// <summary>
+        ///     Initialize an Object's Member with its instance and Method's information.
+        /// </summary>
+        /// <param name="method">Object's member(Method)'s information</param>
+        /// <param name="factory"></param>
+        public static SuitMethodShell FromInstance(MethodBase method, InstanceFactory factory)
+        {
+            return new SuitMethodShell(method, factory);
+        }
+
+        /// <inheritdoc />
+        public override bool MayExecute(IReadOnlyList<string> request)
+        {
+            return request.Count > 0 && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
+                                     && CanFitTo(request.Count - 1);
+        }
 
         private async Task Execute(SuitContext context, object?[]? args)
         {
@@ -129,10 +133,7 @@ namespace PlasticMetal.MobileSuit.Core
                    && argumentCount <= _suitMethodParameterInfo.MaxParameterCount;
         }
 
-        /// <inheritdoc/>
-        public override int MemberCount => Parameters.Length;
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override async Task Execute(SuitContext context)
         {
             if (_suitMethodParameterInfo.TailParameterType == TailParameterType.NoParameter)

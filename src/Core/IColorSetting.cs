@@ -9,9 +9,10 @@ namespace PlasticMetal.MobileSuit.Core
     public interface IColorSetting : IEquatable<IColorSetting>
     {
         /// <summary>
-        /// BackgroundColor
+        ///     BackgroundColor
         /// </summary>
-        Color BackgroundColor{ get; set; }
+        Color BackgroundColor { get; set; }
+
         /// <summary>
         ///     Default color. For OutputType.Default
         /// </summary>
@@ -46,6 +47,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Prompt Color. For OutputType.System
         /// </summary>
         Color SystemColor { get; set; }
+
         /// <summary>
         ///     Prompt Color. For OutputType.System
         /// </summary>
@@ -63,8 +65,8 @@ namespace PlasticMetal.MobileSuit.Core
             TitleColor = Color.YellowGreen,
             InformationColor = Color.DarkCyan,
             SystemColor = Color.DarkBlue,
-            WarningColor=Color.Orange,
-            BackgroundColor=Color.Black
+            WarningColor = Color.Orange,
+            BackgroundColor = Color.Black
         };
 
 

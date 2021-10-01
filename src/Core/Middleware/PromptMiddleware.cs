@@ -1,16 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core.Services;
 
 namespace PlasticMetal.MobileSuit.Core.Middleware
 {
     /// <summary>
-    /// Middleware which provides the prompt output before user input.
+    ///     Middleware which provides the prompt output before user input.
     /// </summary>
     public class PromptMiddleware : ISuitMiddleware
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
         {
             if (context.CancellationToken.IsCancellationRequested)

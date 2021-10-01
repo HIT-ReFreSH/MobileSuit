@@ -6,9 +6,10 @@ using PlasticMetal.MobileSuit.Core.Services;
 namespace PlasticMetal.MobileSuit.Core
 {
     /// <summary>
-    /// To configure Options of IOHub
+    ///     To configure Options of IOHub
     /// </summary>
     public delegate void IIOHubConfigurer(IIOHub hub);
+
     /// <summary>
     ///     A entity, which serves the input/output of a mobile suit.
     /// </summary>
@@ -63,6 +64,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Checks if this IOServer's input stream is redirected (NOT stdin)
         /// </summary>
         bool IsInputRedirected { get; }
+
         /// <summary>
         ///     Prompt server for the io server.
         /// </summary>
@@ -90,7 +92,6 @@ namespace PlasticMetal.MobileSuit.Core
         }
 
 
-
         /// <summary>
         ///     Reset this IOServer's error stream to stderr
         /// </summary>
@@ -111,10 +112,12 @@ namespace PlasticMetal.MobileSuit.Core
         ///     Subtract a str from Prefix, usually used to decrease indentation
         /// </summary>
         void SubtractWriteLinePrefix();
+
         /// <summary>
-        /// Clear the prefix before writing line.
+        ///     Clear the prefix before writing line.
         /// </summary>
         void ClearWriteLinePrefix();
+
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain Input/Output color.
         /// </summary>
@@ -125,6 +128,7 @@ namespace PlasticMetal.MobileSuit.Core
         ///     third is optional, the background color of output.
         /// </param>
         void Write(PrintUnit content);
+
         /// <summary>
         ///     Writes some content to output stream, with line break. With certain Input/Output color.
         /// </summary>
@@ -135,20 +139,24 @@ namespace PlasticMetal.MobileSuit.Core
         ///     third is optional, the background color of output.
         /// </param>
         Task WriteAsync(PrintUnit content);
+
         /// <summary>
-        /// Get the prefix before writing line.
+        ///     Get the prefix before writing line.
         /// </summary>
         /// <returns></returns>
         IEnumerable<PrintUnit> GetLinePrefix(OutputType type);
+
         /// <summary>
         ///     Reset this IOServer's input stream to stdin
         /// </summary>
         void ResetInput();
+
         /// <summary>
         ///     Reads a line from input stream, with prompt.
         /// </summary>
         /// <returns>Content from input stream, null if EOF</returns>
         string? ReadLine();
+
         /// <summary>
         ///     Reads a line from input stream, with prompt.
         /// </summary>

@@ -4,14 +4,15 @@ using PlasticMetal.MobileSuit.Core;
 namespace PlasticMetal.MobileSuitDemo
 {
     [SuitInfo("Demo")]
-    public class QuickStartClient 
+    public class QuickStartClient
     {
-        public IIOHub IO { get; }
-
         public QuickStartClient(IIOHub io)
         {
             IO = io;
         }
+
+        public IIOHub IO { get; }
+
         [SuitAlias("H")]
         [SuitInfo("hello command.")]
         public void Hello()

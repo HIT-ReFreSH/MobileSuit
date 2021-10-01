@@ -1,20 +1,20 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using static PlasticMetal.MobileSuit.SuitBuildTools;
 
 namespace PlasticMetal.MobileSuit.Core.Middleware
 {
     /// <summary>
-    /// Middleware which provides user input
+    ///     Middleware which provides user input
     /// </summary>
     public class UserInputMiddleware : ISuitMiddleware
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
         {
             if (context.CancellationToken.IsCancellationRequested)
@@ -22,6 +22,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 context.Status = RequestStatus.Interrupt;
                 await next(context);
             }
+
             if (context.Status == RequestStatus.NoRequest)
             {
                 var io = context.ServiceProvider.GetRequiredService<IIOHub>();
@@ -31,37 +32,29 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                     context.Status = RequestStatus.OnExit;
                     return;
                 }
+
                 if (originInput.StartsWith("#"))
                 {
                     context.Status = RequestStatus.Ok;
                     return;
                 }
 
-                var (request,control) = SplitCommandLine(originInput);
+                var (request, control) = SplitCommandLine(originInput);
                 for (var i = 0; i < control.Count; i++)
-                {
                     switch (control[i][0])
                     {
                         case '>':
                             if (++i < control.Count)
-                            {
                                 io.Output = new StreamWriter(File.OpenWrite(control[i]));
-                            }
                             else
-                            {
                                 context.Status = RequestStatus.CommandParsingFailure;
-                            }
 
                             break;
                         case '<':
                             if (++i < control.Count)
-                            {
                                 io.Input = new StreamReader(File.OpenRead(control[i]));
-                            }
                             else
-                            {
                                 context.Status = RequestStatus.CommandParsingFailure;
-                            }
 
                             break;
                         case '!':
@@ -77,7 +70,7 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                             context.Status = RequestStatus.CommandParsingFailure;
                             break;
                     }
-                }
+
                 if (request.Count == 0)
                 {
                     context.Status = RequestStatus.Ok;
@@ -87,8 +80,10 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                 context.Status = RequestStatus.NotHandled;
                 context.Request = request.ToArray();
             }
+
             await next(context);
         }
+
         /// <summary>
         ///     Split a commandline string to args[] array.
         /// </summary>
@@ -148,13 +143,13 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
 
             void SpaceCommit()
             {
-                status = (byte)((stkptr == stk) ? 0 : *(--stkptr));
+                status = (byte)(stkptr == stk ? 0 : *--stkptr);
                 (status == 1 ? ctl : l).Add(Regex.Unescape(new string(buf, 0, i)));
                 status = 0;
                 i = 0;
             }
+
             foreach (var c in commandLine.TakeWhile(c => status != 5))
-            {
                 switch (status)
                 {
                     case 0:
@@ -171,12 +166,12 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                                 break;
                             case '"' or '\'':
                                 status = 3;
-                                *(stkptr++) = 2;
+                                *stkptr++ = 2;
                                 quote = c;
                                 break;
                             case '\\':
                                 status = 4;
-                                *(stkptr++) = 2;
+                                *stkptr++ = 2;
                                 buf[i++] = c;
                                 break;
                             case '#':
@@ -193,23 +188,23 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                         switch (c)
                         {
                             case ' ':
-                                *(stkptr++) = 1;
+                                *stkptr++ = 1;
                                 status = 2;
                                 break;
                             case '"' or '\'':
-                                *(stkptr++) = 1;
-                                *(stkptr++) = 2;
+                                *stkptr++ = 1;
+                                *stkptr++ = 2;
                                 status = 3;
                                 quote = c;
                                 break;
                             case '\\':
-                                *(stkptr++) = 1;
-                                *(stkptr++) = 2;
+                                *stkptr++ = 1;
+                                *stkptr++ = 2;
                                 status = 4;
                                 buf[i++] = c;
                                 break;
                             default:
-                                *(stkptr++) = 1;
+                                *stkptr++ = 1;
                                 status = 2;
                                 buf[i++] = c;
                                 break;
@@ -220,12 +215,12 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                         switch (c)
                         {
                             case '\'' or '"':
-                                *(stkptr++) = 2;
+                                *stkptr++ = 2;
                                 status = 3;
                                 quote = c;
                                 break;
                             case '\\':
-                                *(stkptr++) = 2;
+                                *stkptr++ = 2;
                                 status = 4;
                                 buf[i++] = c;
                                 break;
@@ -240,15 +235,16 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                                 buf[i++] = c;
                                 break;
                         }
+
                         break;
                     case 3:
                         if (c == quote)
                         {
-                            status = *(--stkptr);
+                            status = *--stkptr;
                         }
                         else if (c == '\\')
                         {
-                            *(stkptr++) = 3;
+                            *stkptr++ = 3;
                             status = 4;
                             buf[i++] = c;
                         }
@@ -256,14 +252,13 @@ namespace PlasticMetal.MobileSuit.Core.Middleware
                         {
                             buf[i++] = c;
                         }
+
                         break;
                     case 4:
-                        status = *(--stkptr);
+                        status = *--stkptr;
                         buf[i++] = c;
                         break;
-
                 }
-            }
 
             if (status == 2)
                 SpaceCommit();
