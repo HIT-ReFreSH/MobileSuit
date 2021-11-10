@@ -189,6 +189,7 @@ namespace PlasticMetal.MobileSuit
             Services.AddSingleton<ISuitAppInfo>(AppInfo);
             Services.AddSingleton(SuitAppShell.FromClients(_clients));
             Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
+            Services.AddSingleton<IConfiguration>(Configuration);
             var providers = Services.BuildServiceProvider();
             return new SuitHost(providers, _workFlow.Build(providers));
         }

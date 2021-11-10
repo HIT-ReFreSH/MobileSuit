@@ -594,7 +594,7 @@ namespace PlasticMetal.MobileSuit
         /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
         /// <returns>Content from input stream, null if EOF</returns>
         public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, bool newLine,
-            Color? customPromptColor = null)
+            Color? customPromptColor)
         {
             return await hub.ReadLineAsync(prompt, null, newLine, customPromptColor).ConfigureAwait(false);
         }

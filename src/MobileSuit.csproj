@@ -16,10 +16,10 @@
 		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
-		<Version>4.0-alpha2</Version>
+		<Version>4.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Nullable>enable</Nullable>
-		<LangVersion>preview</LangVersion>
+		<LangVersion>10</LangVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	</PropertyGroup>
 
