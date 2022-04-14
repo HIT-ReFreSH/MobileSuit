@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IIOHub
    ">
-    <meta name="generator" content="docfx 2.58.9.0">
+    <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -211,7 +211,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">TextWriter</span>
+        <span class="xref">System.IO.TextWriter</span>
         <p>
       </td>
     </tr>
@@ -299,7 +299,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">TextReader</span>
+        <span class="xref">System.IO.TextReader</span>
         <p>
       </td>
     </tr>
@@ -475,7 +475,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">TextWriter</span>
+        <span class="xref">System.IO.TextWriter</span>
         <p>
       </td>
     </tr>
@@ -591,7 +591,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">static string GetLabel(OutputType type = default(OutputType))</code></pre>
+    <pre><code class="lang-csharp hljs">static string GetLabel(OutputType type = OutputType.Default)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -665,7 +665,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">IEnumerable</span>&lt;<a class="xref" href="PlasticMetal.MobileSuit.PrintUnit.html">PrintUnit</a>&gt;
+        <span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="PlasticMetal.MobileSuit.PrintUnit.html">PrintUnit</a>&gt;
         <p>
       </td>
     </tr>
@@ -791,7 +791,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string? ReadLine()</code></pre>
+    <pre><code class="lang-csharp hljs">string ReadLine()</code></pre>
   </div>
   
   
@@ -799,7 +799,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;
+        <span class="xref">System.String</span>
         <p><p>Content from input stream, null if EOF</p>
 </p>
       </td>
@@ -836,7 +836,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;string?&gt; ReadLineAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; ReadLineAsync()</code></pre>
   </div>
   
   
@@ -844,7 +844,7 @@
   <table>
     <tr>
       <td>
-        <span class="xref">Task</span>&lt;<span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;&gt;
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
         <p><p>Content from input stream, null if EOF</p>
 </p>
       </td>
@@ -935,7 +935,7 @@ one string.</p>
   <table>
     <tr>
       <td>
-        <span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
         <p><p>All characters from the current position to the end.</p>
 </p>
       </td>
@@ -1183,7 +1183,7 @@ third is optional, the background color of output.</p>
   <table>
     <tr>
       <td>
-        <span class="xref">Task</span>
+        <span class="xref">System.Threading.Tasks.Task</span>
         <p>
       </td>
     </tr>
@@ -1205,115 +1205,115 @@ third is optional, the background color of output.</p>
       <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_AppendWriteLinePrefix_PlasticMetal_MobileSuit_Core_IIOHub_System_String_">IOExtensions.AppendWriteLinePrefix(IIOHub, String)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_ConsoleColor__">IOExtensions.Write(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.Write(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_ConsoleColor__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_Color__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_Color__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_Color__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
       <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_">IOExtensions.WriteLine(IIOHub)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_Color_">IOExtensions.WriteLine(IIOHub, String, Color)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Drawing_Color_">IOExtensions.WriteLine(IIOHub, String, Color)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_ConsoleColor_">IOExtensions.WriteLine(IIOHub, String, ConsoleColor)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_ConsoleColor_">IOExtensions.WriteLine(IIOHub, String, ConsoleColor)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_ConsoleColor__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_Color__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.Write(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.Write(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLine(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLine(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
       <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_">IOExtensions.WriteLineAsync(IIOHub)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_ConsoleColor_">IOExtensions.WriteLineAsync(IIOHub, String, ConsoleColor)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_ConsoleColor_">IOExtensions.WriteLineAsync(IIOHub, String, ConsoleColor)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_Color_">IOExtensions.WriteLineAsync(IIOHub, String, Color)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Drawing_Color_">IOExtensions.WriteLineAsync(IIOHub, String, Color)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_ConsoleColor__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_Color__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Nullable_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;String&gt;, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Boolean_System_Nullable_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;String&gt;, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Boolean_System_Nullable_Color__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;String&gt;, Boolean, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Nullable_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;String&gt;, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Nullable_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;String&gt;, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Boolean_System_Nullable_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;String&gt;, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_String__System_Boolean_System_Nullable_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;String&gt;, Boolean, Nullable&lt;Color&gt;)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable&lt;Color&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_Version__System_Boolean_System_Nullable_System_String__System_Nullable_System_String__System_Boolean_">Suit.PrintAssemblyInformation(IIOHub, String, Nullable&lt;Version&gt;, Boolean, Nullable&lt;String&gt;, Nullable&lt;String&gt;, Boolean)</a>
+      <a class="xref" href="PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Version_System_Boolean_System_String_System_String_System_Boolean_">Suit.PrintAssemblyInformation(IIOHub, String, Version, Boolean, String, String, Boolean)</a>
   </div>
   <div>
       <a class="xref" href="PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintMobileSuitInformation_PlasticMetal_MobileSuit_Core_IIOHub_">Suit.PrintMobileSuitInformation(IIOHub)</a>
