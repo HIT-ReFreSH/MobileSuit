@@ -9,338 +9,337 @@ using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Middleware;
 using PlasticMetal.MobileSuit.Core.Services;
 
-namespace PlasticMetal.MobileSuit
+namespace PlasticMetal.MobileSuit;
+
+/// <summary>
+///     Describes the work flow of mobile suit.
+/// </summary>
+public interface ISuitWorkFlow
 {
     /// <summary>
-    ///     Describes the work flow of mobile suit.
+    ///     Add a custom middleware
     /// </summary>
-    public interface ISuitWorkFlow
+    /// <param name="middlewareType"></param>
+    public ISuitWorkFlow UseCustom(Type middlewareType);
+
+    /// <summary>
+    ///     Add suit prompt middleware
+    /// </summary>
+    public ISuitWorkFlow UsePrompt();
+
+    /// <summary>
+    ///     Add input middleware
+    /// </summary>
+    public ISuitWorkFlow UseInput();
+
+    /// <summary>
+    ///     Add AppShell middleware
+    /// </summary>
+    public ISuitWorkFlow UseAppShell();
+
+    /// <summary>
+    ///     Add HostShell middleware
+    /// </summary>
+    public ISuitWorkFlow UseHostShell();
+
+    /// <summary>
+    ///     Add Finalize middleware
+    /// </summary>
+    public ISuitWorkFlow UseFinalize();
+}
+
+internal class SuitWorkFlow : ISuitWorkFlow
+{
+    private readonly List<Type> _middlewares = new();
+
+    public ISuitWorkFlow UseCustom(Type middlewareType)
     {
-        /// <summary>
-        ///     Add a custom middleware
-        /// </summary>
-        /// <param name="middlewareType"></param>
-        public ISuitWorkFlow UseCustom(Type middlewareType);
-
-        /// <summary>
-        ///     Add suit prompt middleware
-        /// </summary>
-        public ISuitWorkFlow UsePrompt();
-
-        /// <summary>
-        ///     Add input middleware
-        /// </summary>
-        public ISuitWorkFlow UseInput();
-
-        /// <summary>
-        ///     Add AppShell middleware
-        /// </summary>
-        public ISuitWorkFlow UseAppShell();
-
-        /// <summary>
-        ///     Add HostShell middleware
-        /// </summary>
-        public ISuitWorkFlow UseHostShell();
-
-        /// <summary>
-        ///     Add Finalize middleware
-        /// </summary>
-        public ISuitWorkFlow UseFinalize();
+        if (middlewareType.GetInterface(nameof(ISuitMiddleware)) is not null)
+            _middlewares.Add(middlewareType);
+        else
+            throw new ArgumentOutOfRangeException(nameof(middlewareType));
+        return this;
     }
 
-    internal class SuitWorkFlow : ISuitWorkFlow
+    public ISuitWorkFlow UsePrompt()
     {
-        private readonly List<Type> _middlewares = new();
+        return this.UseCustom<PromptMiddleware>();
+    }
 
-        public ISuitWorkFlow UseCustom(Type middlewareType)
-        {
-            if (middlewareType.GetInterface(nameof(ISuitMiddleware)) is not null)
-                _middlewares.Add(middlewareType);
+    public ISuitWorkFlow UseInput()
+    {
+        return this.UseCustom<UserInputMiddleware>();
+    }
+
+    public ISuitWorkFlow UseAppShell()
+    {
+        return this.UseCustom<AppShellMiddleware>();
+    }
+
+    public ISuitWorkFlow UseHostShell()
+    {
+        return this.UseCustom<HostShellMiddleware>();
+    }
+
+    public ISuitWorkFlow UseFinalize()
+    {
+        return this.UseCustom<FinalizeMiddleware>();
+    }
+
+    public IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider)
+    {
+        if (_middlewares.Count == 0)
+            UsePrompt()
+                .UseInput()
+                .UseHostShell()
+                .UseAppShell()
+                .UseFinalize();
+        var r = new List<ISuitMiddleware>();
+        foreach (var type in _middlewares)
+            if (ActivatorUtilities.CreateInstance(serviceProvider, type) is ISuitMiddleware middleware)
+                r.Add(middleware);
             else
-                throw new ArgumentOutOfRangeException(nameof(middlewareType));
-            return this;
-        }
+                throw new ArgumentOutOfRangeException(type.FullName);
+        return r;
+    }
+}
 
-        public ISuitWorkFlow UsePrompt()
-        {
-            return this.UseCustom<PromptMiddleware>();
-        }
+/// <summary>
+///     Builder to build a MobileSuit host.
+/// </summary>
+public class SuitHostBuilder
+{
+    private readonly List<SuitShell> _clients = new();
+    private readonly SuitWorkFlow _workFlow = new();
+    private Type _commandServer = typeof(SuitCommandServer);
 
-        public ISuitWorkFlow UseInput()
-        {
-            return this.UseCustom<UserInputMiddleware>();
-        }
-
-        public ISuitWorkFlow UseAppShell()
-        {
-            return this.UseCustom<AppShellMiddleware>();
-        }
-
-        public ISuitWorkFlow UseHostShell()
-        {
-            return this.UseCustom<HostShellMiddleware>();
-        }
-
-        public ISuitWorkFlow UseFinalize()
-        {
-            return this.UseCustom<FinalizeMiddleware>();
-        }
-
-        public IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider)
-        {
-            if (_middlewares.Count == 0)
-                UsePrompt()
-                    .UseInput()
-                    .UseHostShell()
-                    .UseAppShell()
-                    .UseFinalize();
-            var r = new List<ISuitMiddleware>();
-            foreach (var type in _middlewares)
-                if (ActivatorUtilities.CreateInstance(serviceProvider, type) is ISuitMiddleware middleware)
-                    r.Add(middleware);
-                else
-                    throw new ArgumentOutOfRangeException(type.FullName);
-            return r;
-        }
+    internal SuitHostBuilder(string[]? args)
+    {
+        AppInfo.StartArgs = args ?? Array.Empty<string>();
+        Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
+        Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
+        Services.AddSingleton<ITaskService, TaskService>();
+        Services.AddSingleton<IHistoryService, HistoryService>();
+        Services.AddScoped<IIOHub, IOHub>();
+        Services.AddLogging();
+        Services.AddSingleton<IIOHubConfigurer>(_ => { });
+        Services.AddSingleton(Parsing);
+        Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
     }
 
     /// <summary>
-    ///     Builder to build a MobileSuit host.
     /// </summary>
-    public class SuitHostBuilder
+    public SuitAppInfo AppInfo { get; } = new();
+
+    /// <summary>
+    /// </summary>
+    public IParsingService Parsing { get; set; } = new ParsingService();
+
+    /// <summary>
+    /// </summary>
+    public ISuitWorkFlow WorkFlow => _workFlow;
+
+    /// <summary>
+    ///     Service collection of suit host.
+    /// </summary>
+    public IServiceCollection Services { get; } = new ServiceCollection();
+
+    /// <summary>
+    ///     Service collection of suit host.
+    /// </summary>
+    public ConfigurationManager Configuration { get; } = new();
+
+    /// <summary>
+    ///     Add a client shell to mobile suit
+    /// </summary>
+    /// <param name="client"></param>
+    public void AddClient(SuitShell client)
     {
-        private readonly SuitWorkFlow _workFlow = new();
-        private readonly List<SuitShell> _clients = new();
-        private Type _commandServer = typeof(SuitCommandServer);
-
-        internal SuitHostBuilder(string[]? args)
-        {
-            AppInfo.StartArgs = args ?? Array.Empty<string>();
-            Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
-            Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
-            Services.AddSingleton<ITaskService, TaskService>();
-            Services.AddSingleton<IHistoryService, HistoryService>();
-            Services.AddScoped<IIOHub, IOHub>();
-            Services.AddLogging();
-            Services.AddSingleton<IIOHubConfigurer>(_ => { });
-            Services.AddSingleton(Parsing);
-            Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
-        }
-
-        /// <summary>
-        /// </summary>
-        public SuitAppInfo AppInfo { get; } = new();
-
-        /// <summary>
-        /// </summary>
-        public IParsingService Parsing { get; set; } = new ParsingService();
-
-        /// <summary>
-        /// </summary>
-        public ISuitWorkFlow WorkFlow => _workFlow;
-
-        /// <summary>
-        ///     Service collection of suit host.
-        /// </summary>
-        public IServiceCollection Services { get; } = new ServiceCollection();
-
-        /// <summary>
-        ///     Service collection of suit host.
-        /// </summary>
-        public ConfigurationManager Configuration { get; } = new();
-
-        /// <summary>
-        ///     Add a client shell to mobile suit
-        /// </summary>
-        /// <param name="client"></param>
-        public void AddClient(SuitShell client)
-        {
-            _clients.Add(client);
-        }
-
-        /// <summary>
-        ///     Add a client shell to mobile suit
-        /// </summary>
-        /// <param name="serverType"></param>
-        public void UseCommandServer(Type serverType)
-        {
-            if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
-                throw new ArgumentOutOfRangeException(nameof(serverType));
-
-            Services.Add(new ServiceDescriptor(typeof(ISuitCommandServer), serverType, ServiceLifetime.Scoped));
-            _commandServer = serverType;
-        }
-
-        /// <summary>
-        ///     config IO
-        /// </summary>
-        /// <param name="configurer"></param>
-        public void ConfigureIO(IIOHubConfigurer configurer)
-        {
-            Services.AddSingleton(configurer);
-        }
-
-        /// <summary>
-        ///     Build a SuitHost.
-        /// </summary>
-        /// <returns></returns>
-        public IMobileSuitHost Build()
-        {
-            Services.AddSingleton<ISuitAppInfo>(AppInfo);
-            Services.AddSingleton(SuitAppShell.FromClients(_clients));
-            Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
-            Services.AddSingleton<IConfiguration>(Configuration);
-            var providers = Services.BuildServiceProvider();
-            return new SuitHost(providers, _workFlow.Build(providers));
-        }
+        _clients.Add(client);
     }
 
     /// <summary>
-    ///     Extensions for MobileSuitHostBuilder
+    ///     Add a client shell to mobile suit
     /// </summary>
-    public static class SuitHostBuilderExtensions
+    /// <param name="serverType"></param>
+    public void UseCommandServer(Type serverType)
     {
-        /// <summary>
-        ///     Add a custom middleware
-        /// </summary>
-        public static ISuitWorkFlow UseCustom<T>(this ISuitWorkFlow workFlow)
-            where T : ISuitMiddleware
-        {
-            return workFlow.UseCustom(typeof(T));
-        }
+        if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
+            throw new ArgumentOutOfRangeException(nameof(serverType));
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <typeparam name="T">PromptServer</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
-        {
-            builder.AddClient(SuitObjectShell.FromType(typeof(T)));
-            return builder;
-        }
+        Services.Add(new ServiceDescriptor(typeof(ISuitCommandServer), serverType, ServiceLifetime.Scoped));
+        _commandServer = serverType;
+    }
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="name">Set a name for the client</param>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder HasName(this SuitHostBuilder builder, string name)
-        {
-            builder.AppInfo.AppName = name;
-            return builder;
-        }
+    /// <summary>
+    ///     config IO
+    /// </summary>
+    /// <param name="configurer"></param>
+    public void ConfigureIO(IIOHubConfigurer configurer)
+    {
+        Services.AddSingleton(configurer);
+    }
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="instance"></param>
-        /// <typeparam name="T">PromptServer</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
-        {
-            builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
-            return builder;
-        }
+    /// <summary>
+    ///     Build a SuitHost.
+    /// </summary>
+    /// <returns></returns>
+    public IMobileSuitHost Build()
+    {
+        Services.AddSingleton<ISuitAppInfo>(AppInfo);
+        Services.AddSingleton(SuitAppShell.FromClients(_clients));
+        Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
+        Services.AddSingleton<IConfiguration>(Configuration);
+        var providers = Services.BuildServiceProvider();
+        return new SuitHost(providers, _workFlow.Build(providers));
+    }
+}
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="name"></param>
-        /// <typeparam name="T">PromptServer</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
-        {
-            builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
-            return builder;
-        }
+/// <summary>
+///     Extensions for MobileSuitHostBuilder
+/// </summary>
+public static class SuitHostBuilderExtensions
+{
+    /// <summary>
+    ///     Add a custom middleware
+    /// </summary>
+    public static ISuitWorkFlow UseCustom<T>(this ISuitWorkFlow workFlow)
+        where T : ISuitMiddleware
+    {
+        return workFlow.UseCustom(typeof(T));
+    }
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="name"></param>
-        /// <param name="instance"></param>
-        /// <typeparam name="T">PromptServer</typeparam>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name, T instance)
-        {
-            builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance, name));
-            return builder;
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <typeparam name="T">PromptServer</typeparam>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
+    {
+        builder.AddClient(SuitObjectShell.FromType(typeof(T)));
+        return builder;
+    }
 
-        /// <summary>
-        ///     Use given PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <param name="name"></param>
-        /// <param name="method"></param>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
-        {
-            builder.AddClient(SuitMethodShell.FromDelegate(name, method));
-            return builder;
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <param name="name">Set a name for the client</param>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder HasName(this SuitHostBuilder builder, string name)
+    {
+        builder.AppInfo.AppName = name;
+        return builder;
+    }
 
-        /// <summary>
-        ///     Use PowerLine PromptGenerator for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder)
-        {
-            Console.OutputEncoding = Encoding.UTF8;
-            builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLineFormatter);
-            return builder;
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <param name="instance"></param>
+    /// <typeparam name="T">PromptServer</typeparam>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
+    {
+        builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
+        return builder;
+    }
 
-        /// <summary>
-        ///     Use Plain text IO for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder UsePureTextIO(this SuitHostBuilder builder)
-        {
-            builder.Services.AddScoped<IIOHub, PureTextIOHub>();
-            return builder;
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <param name="name"></param>
+    /// <typeparam name="T">PromptServer</typeparam>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
+    {
+        builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
+        return builder;
+    }
 
-        /// <summary>
-        ///     Use 4-bit color IO for the Host
-        /// </summary>
-        /// <param name="builder">Builder for the host</param>
-        /// <returns>Builder for the host</returns>
-        public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder)
-        {
-            builder.Services.AddScoped<IIOHub, IOHub4Bit>();
-            return builder;
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <param name="name"></param>
+    /// <param name="instance"></param>
+    /// <typeparam name="T">PromptServer</typeparam>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name, T instance)
+    {
+        builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance, name));
+        return builder;
+    }
 
-        /// <summary>
-        ///     Run a mobile suit
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns></returns>
-        public static async Task RunAsync(this IMobileSuitHost host)
-        {
-            var token = new CancellationTokenSource().Token;
-            await host.StartAsync(token).ConfigureAwait(false);
-            await host.StopAsync(token).ConfigureAwait(false);
-            host.Dispose();
-        }
+    /// <summary>
+    ///     Use given PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <param name="name"></param>
+    /// <param name="method"></param>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
+    {
+        builder.AddClient(SuitMethodShell.FromDelegate(name, method));
+        return builder;
+    }
 
-        /// <summary>
-        ///     Run a mobile suit
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns></returns>
-        public static void Run(this IMobileSuitHost host)
-        {
-            host.RunAsync().GetAwaiter().GetResult();
-        }
+    /// <summary>
+    ///     Use PowerLine PromptGenerator for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLineFormatter);
+        return builder;
+    }
+
+    /// <summary>
+    ///     Use Plain text IO for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder UsePureTextIO(this SuitHostBuilder builder)
+    {
+        builder.Services.AddScoped<IIOHub, PureTextIOHub>();
+        return builder;
+    }
+
+    /// <summary>
+    ///     Use 4-bit color IO for the Host
+    /// </summary>
+    /// <param name="builder">Builder for the host</param>
+    /// <returns>Builder for the host</returns>
+    public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder)
+    {
+        builder.Services.AddScoped<IIOHub, IOHub4Bit>();
+        return builder;
+    }
+
+    /// <summary>
+    ///     Run a mobile suit
+    /// </summary>
+    /// <param name="host"></param>
+    /// <returns></returns>
+    public static async Task RunAsync(this IMobileSuitHost host)
+    {
+        var token = new CancellationTokenSource().Token;
+        await host.StartAsync(token).ConfigureAwait(false);
+        await host.StopAsync(token).ConfigureAwait(false);
+        host.Dispose();
+    }
+
+    /// <summary>
+    ///     Run a mobile suit
+    /// </summary>
+    /// <param name="host"></param>
+    /// <returns></returns>
+    public static void Run(this IMobileSuitHost host)
+    {
+        host.RunAsync().GetAwaiter().GetResult();
     }
 }

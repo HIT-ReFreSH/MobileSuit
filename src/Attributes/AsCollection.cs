@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit
+namespace PlasticMetal.MobileSuit;
+
+/// <summary>
+///     A option used in a dynamic parameter
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public sealed class AsCollectionAttribute : Attribute
 {
-    /// <summary>
-    ///     A option used in a dynamic parameter
-    /// </summary>
-    [AttributeUsage(AttributeTargets.All)]
-    public sealed class AsCollectionAttribute : Attribute
-    {
-    }
 }

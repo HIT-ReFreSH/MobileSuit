@@ -1,25 +1,24 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit
+namespace PlasticMetal.MobileSuit;
+
+/// <summary>
+///     Alias for a SuitObject's member
+/// </summary>
+[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+public sealed class SuitAliasAttribute : Attribute
 {
     /// <summary>
-    ///     Alias for a SuitObject's member
+    ///     Initialize a SuitAlias with its text.
     /// </summary>
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-    public sealed class SuitAliasAttribute : Attribute
+    /// <param name="text">The alias.</param>
+    public SuitAliasAttribute(string text)
     {
-        /// <summary>
-        ///     Initialize a SuitAlias with its text.
-        /// </summary>
-        /// <param name="text">The alias.</param>
-        public SuitAliasAttribute(string text)
-        {
-            Text = text;
-        }
-
-        /// <summary>
-        ///     The alias.
-        /// </summary>
-        public string Text { get; }
+        Text = text;
     }
+
+    /// <summary>
+    ///     The alias.
+    /// </summary>
+    public string Text { get; }
 }

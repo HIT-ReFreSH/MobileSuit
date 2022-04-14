@@ -1,24 +1,23 @@
-﻿namespace PlasticMetal.MobileSuit.Core.Services
+﻿namespace PlasticMetal.MobileSuit.Core.Services;
+
+/// <summary>
+///     Provides request history.
+/// </summary>
+public interface IHistoryService
 {
     /// <summary>
-    ///     Provides request history.
+    ///     Status of last Request.
     /// </summary>
-    public interface IHistoryService
-    {
-        /// <summary>
-        ///     Status of last Request.
-        /// </summary>
-        public RequestStatus Status { get; set; }
+    public RequestStatus Status { get; set; }
 
-        /// <summary>
-        ///     Response of last Request.
-        /// </summary>
-        public string? Response { get; set; }
-    }
+    /// <summary>
+    ///     Response of last Request.
+    /// </summary>
+    public string? Response { get; set; }
+}
 
-    internal class HistoryService : IHistoryService
-    {
-        public RequestStatus Status { get; set; } = RequestStatus.Ok;
-        public string? Response { get; set; }
-    }
+internal class HistoryService : IHistoryService
+{
+    public RequestStatus Status { get; set; } = RequestStatus.Ok;
+    public string? Response { get; set; }
 }

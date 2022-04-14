@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace PlasticMetal.MobileSuit
+namespace PlasticMetal.MobileSuit;
+
+/// <summary>
+///     A DynamicParameter member with default value
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public sealed class WithDefaultAttribute : Attribute
 {
-    /// <summary>
-    ///     A DynamicParameter member with default value
-    /// </summary>
-    [AttributeUsage(AttributeTargets.All)]
-    public sealed class WithDefaultAttribute : Attribute
-    {
-    }
 }

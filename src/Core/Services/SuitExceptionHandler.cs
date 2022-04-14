@@ -1,44 +1,51 @@
 ﻿using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core.Services
+namespace PlasticMetal.MobileSuit.Core.Services;
+
+/// <summary>
+///     The handler
+/// </summary>
+public interface ISuitExceptionHandler
 {
     /// <summary>
-    ///     The handler
+    /// Define whether Exception will be thrown when faulted.
     /// </summary>
-    public interface ISuitExceptionHandler
+    public static bool ThrowIfFaulted { get; set; }
+    /// <summary>
+    ///     To invoke the middleware
+    /// </summary>
+    /// <param name="context">Context of the request.</param>
+    /// <returns></returns>
+    public Task InvokeAsync(SuitContext context);
+}
+
+internal class SuitExceptionHandler : ISuitExceptionHandler
+{
+    public SuitExceptionHandler(IHistoryService history, IIOHub io)
     {
-        /// <summary>
-        ///     To invoke the middleware
-        /// </summary>
-        /// <param name="context">Context of the request.</param>
-        /// <returns></returns>
-        public Task InvokeAsync(SuitContext context);
+        History = history;
+        IO = io;
     }
 
-    internal class SuitExceptionHandler : ISuitExceptionHandler
+    public IHistoryService History { get; }
+    public IIOHub IO { get; }
+
+    public async Task InvokeAsync(SuitContext context)
     {
-        public SuitExceptionHandler(IHistoryService history, IIOHub io)
+        if (context.Exception is null)
         {
-            History = history;
-            IO = io;
+            History.Status = RequestStatus.Faulted;
+            History.Response = Lang.ApplicationError;
         }
-
-        public IHistoryService History { get; }
-        public IIOHub IO { get; }
-
-        public async Task InvokeAsync(SuitContext context)
+        else
         {
-            if (context.Exception is null)
+            if (ISuitExceptionHandler.ThrowIfFaulted)
             {
-                History.Status = RequestStatus.Faulted;
-                History.Response = Lang.ApplicationError;
+                throw context.Exception;
             }
-            else
-            {
-                History.Status = RequestStatus.Faulted;
-                History.Response = context.Exception.Message;
-                await IO.WriteLineAsync(context.Exception.Message, OutputType.Error);
-            }
+            History.Status = RequestStatus.Faulted;
+            History.Response = context.Exception.Message;
+            await IO.WriteLineAsync(context.Exception.Message, OutputType.Error);
         }
     }
 }
