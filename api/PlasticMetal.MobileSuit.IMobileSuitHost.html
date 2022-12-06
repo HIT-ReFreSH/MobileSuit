@@ -82,6 +82,9 @@
     <div>
       <span class="xref">System.IDisposable.Dispose()</span>
     </div>
+    <div>
+      <span class="xref">System.IAsyncDisposable.DisposeAsync()</span>
+    </div>
   </div>
   
   <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.html">PlasticMetal.MobileSuit</a></h6>
@@ -89,128 +92,15 @@
   
   <h5 id="PlasticMetal_MobileSuit_IMobileSuitHost_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IMobileSuitHost : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IMobileSuitHost : IDisposable, IAsyncDisposable</code></pre>
   </div>
   
   
   
   
   
-  <h3 id="methods">Methods
-  </h3>
-  
-  <span class="small pull-right mobile-hide">
-    <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/IMobileSuitHost.cs/#L16" title="View Source"><i class="fa fa-code"></i></a>
-  </span>
-  
-  <a id="PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_" data-uid="PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync*"></a>
-  
-  <h4 id="PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_System_Threading_CancellationToken_" data-uid="PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync(System.Threading.CancellationToken)"><a href="#collapsible-PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_System_Threading_CancellationToken_" class="expander" data-toggle="collapse">StartAsync(CancellationToken)</a></h4>
-  
-  <div id="collapsible-PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_System_Threading_CancellationToken_" class="collapse in">
-  <div class="markdown level1 summary"><p>Start A mobile suit</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task StartAsync(CancellationToken cancellationToken)</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="pull-right"><span class="xref">System.Threading.CancellationToken</span></span>
-        <span class="parametername">cancellationToken</span>
-        <p>
-      </td>
-    </tr>
-  </table>
-  
-  <h5 class="returns">Returns</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
-        <p>
-      </td>
-    </tr>
-  </table>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </div>
-  
-  <span class="small pull-right mobile-hide">
-    <span class="divider"> </span>
-    <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/IMobileSuitHost.cs/#L22" title="View Source"><i class="fa fa-code"></i></a>
-  </span>
-  
-  <a id="PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_" data-uid="PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync*"></a>
-  
-  <h4 id="PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_System_Threading_CancellationToken_" data-uid="PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync(System.Threading.CancellationToken)"><a href="#collapsible-PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_System_Threading_CancellationToken_" class="expander" data-toggle="collapse">StopAsync(CancellationToken)</a></h4>
-  
-  <div id="collapsible-PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_System_Threading_CancellationToken_" class="collapse in">
-  <div class="markdown level1 summary"><p>Stop A mobile suit</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task StopAsync(CancellationToken cancellationToken)</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="pull-right"><span class="xref">System.Threading.CancellationToken</span></span>
-        <span class="parametername">cancellationToken</span>
-        <p>
-      </td>
-    </tr>
-  </table>
-  
-  <h5 class="returns">Returns</h5>
-  <table>
-    <tr>
-      <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
-        <p>
-      </td>
-    </tr>
-  </table>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </div>
   
   <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html#PlasticMetal_MobileSuit_SuitHostBuilderExtensions_RunAsync_PlasticMetal_MobileSuit_IMobileSuitHost_">SuitHostBuilderExtensions.RunAsync(IMobileSuitHost)</a>
-  </div>
   <div>
       <a class="xref" href="PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html#PlasticMetal_MobileSuit_SuitHostBuilderExtensions_Run_PlasticMetal_MobileSuit_IMobileSuitHost_">SuitHostBuilderExtensions.Run(IMobileSuitHost)</a>
   </div>
@@ -219,7 +109,7 @@
           </div>
           <div class="contribution-panel mobile-hide">
               <a href="https://github.com/Plastic-Metal/MobileSuit/new/main/apiSpec/new?filename=PlasticMetal_MobileSuit_IMobileSuitHost.md&amp;value=---%0Auid%3A%20PlasticMetal.MobileSuit.IMobileSuitHost%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/IMobileSuitHost.cs/#L10" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/src/IMobileSuitHost.cs/#L11" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">

@@ -1390,6 +1390,19 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.Services.ITaskService.RunningCount
   nameWithType: ITaskService.RunningCount
+- uid: PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately(System.Threading.Tasks.Task)
+  name: RunTaskImmediately(Task)
+  href: api/PlasticMetal.MobileSuit.Core.Services.ITaskService.html#PlasticMetal_MobileSuit_Core_Services_ITaskService_RunTaskImmediately_System_Threading_Tasks_Task_
+  commentId: M:PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately(System.Threading.Tasks.Task)
+  fullName: PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately(System.Threading.Tasks.Task)
+  nameWithType: ITaskService.RunTaskImmediately(Task)
+- uid: PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately*
+  name: RunTaskImmediately
+  href: api/PlasticMetal.MobileSuit.Core.Services.ITaskService.html#PlasticMetal_MobileSuit_Core_Services_ITaskService_RunTaskImmediately_
+  commentId: Overload:PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.Core.Services.ITaskService.RunTaskImmediately
+  nameWithType: ITaskService.RunTaskImmediately
 - uid: PlasticMetal.MobileSuit.Core.Services.ITaskService.Stop(System.Int32)
   name: Stop(Int32)
   href: api/PlasticMetal.MobileSuit.Core.Services.ITaskService.html#PlasticMetal_MobileSuit_Core_Services_ITaskService_Stop_System_Int32_
@@ -2781,32 +2794,6 @@ references:
   commentId: T:PlasticMetal.MobileSuit.IMobileSuitHost
   fullName: PlasticMetal.MobileSuit.IMobileSuitHost
   nameWithType: IMobileSuitHost
-- uid: PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync(System.Threading.CancellationToken)
-  name: StartAsync(CancellationToken)
-  href: api/PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_System_Threading_CancellationToken_
-  commentId: M:PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync(System.Threading.CancellationToken)
-  fullName: PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync(System.Threading.CancellationToken)
-  nameWithType: IMobileSuitHost.StartAsync(CancellationToken)
-- uid: PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync*
-  name: StartAsync
-  href: api/PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_StartAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.IMobileSuitHost.StartAsync
-  nameWithType: IMobileSuitHost.StartAsync
-- uid: PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync(System.Threading.CancellationToken)
-  name: StopAsync(CancellationToken)
-  href: api/PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_System_Threading_CancellationToken_
-  commentId: M:PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync(System.Threading.CancellationToken)
-  fullName: PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync(System.Threading.CancellationToken)
-  nameWithType: IMobileSuitHost.StopAsync(CancellationToken)
-- uid: PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync*
-  name: StopAsync
-  href: api/PlasticMetal.MobileSuit.IMobileSuitHost.html#PlasticMetal_MobileSuit_IMobileSuitHost_StopAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.IMobileSuitHost.StopAsync
-  nameWithType: IMobileSuitHost.StopAsync
 - uid: PlasticMetal.MobileSuit.InstanceFactory
   name: InstanceFactory
   href: api/PlasticMetal.MobileSuit.InstanceFactory.html
@@ -3962,19 +3949,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.Run
   nameWithType: SuitHostBuilderExtensions.Run
-- uid: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync(PlasticMetal.MobileSuit.IMobileSuitHost)
-  name: RunAsync(IMobileSuitHost)
-  href: api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html#PlasticMetal_MobileSuit_SuitHostBuilderExtensions_RunAsync_PlasticMetal_MobileSuit_IMobileSuitHost_
-  commentId: M:PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync(PlasticMetal.MobileSuit.IMobileSuitHost)
-  fullName: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync(PlasticMetal.MobileSuit.IMobileSuitHost)
-  nameWithType: SuitHostBuilderExtensions.RunAsync(IMobileSuitHost)
-- uid: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync*
-  name: RunAsync
-  href: api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html#PlasticMetal_MobileSuit_SuitHostBuilderExtensions_RunAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.RunAsync
-  nameWithType: SuitHostBuilderExtensions.RunAsync
 - uid: PlasticMetal.MobileSuit.SuitHostBuilderExtensions.Use4BitColorIO(PlasticMetal.MobileSuit.SuitHostBuilder)
   name: Use4BitColorIO(SuitHostBuilder)
   href: api/PlasticMetal.MobileSuit.SuitHostBuilderExtensions.html#PlasticMetal_MobileSuit_SuitHostBuilderExtensions_Use4BitColorIO_PlasticMetal_MobileSuit_SuitHostBuilder_
