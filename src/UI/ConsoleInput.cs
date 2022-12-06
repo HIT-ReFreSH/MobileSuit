@@ -58,6 +58,7 @@ public static class ConsoleInput
                     ($"{label}\t", null, hub.ColorSetting.TitleColor),
                     (serializer(t), hub.ColorSetting.DefaultColor, null)
                 ));
+                i++;
             }
 
             var ans = hub.ReadLine("", "0");
@@ -132,7 +133,7 @@ public static class ConsoleInput
                 case 2:
                     var (lt, gt) = (labels[0], labels[1]);
                     if (gt < lt) throw new SpaceHyphenParserException();
-                    for (var it = lt; it < gt; it++) yield return it;
+                    for (var it = lt; it <= gt; it++) yield return it;
                     break;
             }
         }
@@ -169,6 +170,7 @@ public static class ConsoleInput
                     ($"{label}\t", null, hub.ColorSetting.TitleColor),
                     (serializer(t), hub.ColorSetting.DefaultColor, null)
                 ));
+                i++;
             }
 
             var ans = parser( hub.ReadLine("", "0"),labels);

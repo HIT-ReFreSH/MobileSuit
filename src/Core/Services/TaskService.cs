@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -60,7 +63,12 @@ public interface ITaskService
     /// </summary>
     /// <returns></returns>
     public IEnumerable<TaskInfo> GetTasks();
-
+    /// <summary>
+    /// Run some task immediately
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    public ValueTask RunTaskImmediately(Task task);
     /// <summary>
     ///     Stop the task with certain index.
     /// </summary>
@@ -80,9 +88,36 @@ public interface ITaskService
     public void ClearCompleted();
 }
 
+internal class TaskRecorder : IEnumerable<Task>
+{
+    public bool IsLocked { get; set; }
+    private List<Task> _tasks = new();
+    public IEnumerator<Task> GetEnumerator() => _tasks.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+    public bool Add(Task task)
+    {
+        if (!IsLocked) _tasks.Add(task);
+        return !IsLocked;
+    }
+    public bool Remove(Task task)
+    {
+        if (!IsLocked) _tasks.Remove(task);
+        return !IsLocked;
+    }
+}
 internal class TaskService : ITaskService
 {
+    private readonly TaskRecorder _cancelTasks;
     private readonly List<(Task, SuitContext)> _tasks = new();
+
+    public TaskService(TaskRecorder cancelTasks)
+    {
+        _cancelTasks = cancelTasks;
+    }
 
     /// <inheritdoc />
     public bool HasTask(int index)
@@ -99,6 +134,7 @@ internal class TaskService : ITaskService
         var io = context.ServiceProvider.GetRequiredService<IIOHub>();
         io.AppendWriteLinePrefix((_tasks.Count.ToString(), io.ColorSetting.SystemColor, null));
         _tasks.Add((task, context));
+        _cancelTasks.Add(task);
     }
 
     public IEnumerable<TaskInfo> GetTasks()
@@ -114,14 +150,24 @@ internal class TaskService : ITaskService
             };
     }
 
+    public async ValueTask RunTaskImmediately(Task task)
+    {
+        _cancelTasks.Add(task);
+        await task;
+        _cancelTasks.Remove(task);
+    }
+
     public void Stop(int index)
     {
-        _tasks[index].Item2.CancellationToken.Cancel();
+        var (task, context) = _tasks[index];
+        context.CancellationToken.Cancel();
+        _cancelTasks.Remove(task);
     }
 
     public async Task Join(int index, SuitContext newContext)
     {
         var (task, context) = _tasks[index];
+        _cancelTasks.Remove(task);
         await task;
         newContext.Status = context.Status;
         newContext.Response = context.Response;

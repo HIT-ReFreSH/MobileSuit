@@ -31,12 +31,13 @@ public class AppShellMiddleware : ISuitMiddleware
         var forceClient = target == SuitBuildTools.SuitCommandTargetApp;
         if (asTask)
         {
+
             context.Status = RequestStatus.Running;
             tasks.AddTask(client.Execute(context), context);
         }
         else
         {
-            await client.Execute(context);
+            await tasks.RunTaskImmediately(client.Execute(context));
             if (forceClient && context.Status == RequestStatus.NotHandled)
                 context.Status = RequestStatus.CommandNotFound;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
+using Microsoft.Extensions.Hosting;
 
 namespace PlasticMetal.MobileSuit;
 
@@ -15,15 +16,15 @@ public static class Suit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="args"></param>
-    public static void QuickStart4BitPowerLine<T>(string[] args)
+    public static async void QuickStart4BitPowerLine<T>(string[] args)
     {
-        CreateBuilder(args)
+        await CreateBuilder(args)
             .HasName("demo")
             .UsePowerLine()
             .Use4BitColorIO()
             .MapClient<T>()
             .Build()
-            .Run();
+            .RunAsync();
     }
 
     /// <summary>

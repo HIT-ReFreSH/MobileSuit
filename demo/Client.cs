@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit;
+using PlasticMetal.MobileSuit.UI;
 using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuitDemo;
@@ -46,7 +48,22 @@ public class Client
         else
             IO.WriteLine(nameChain + " is not sleeping.");
     }
-
+    [SuitAlias("cui")]
+    public void CuiTest()
+    {
+        var selected=IO.CuiSelectItemFrom("Select one", new[] { "x", "y", "z" }, null,
+            (_, x) => x);
+        var yes = IO.CuiYesNo($"You've selected {selected}, aren't you? SelectMany?");
+        if (yes)
+        {
+            var selecteds = IO.CuiSelectItemsFrom("Select many", new[]
+                {
+                    "w","x", "y", "z"
+                }, null,
+                (_, x) => x);
+            Console.WriteLine($@"{string.Join(",",selecteds)} is selected");
+        }
+    }
 
     public static object NumberConvert(string arg)
     {

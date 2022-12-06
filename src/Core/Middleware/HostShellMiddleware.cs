@@ -24,7 +24,7 @@ public class HostShellMiddleware : ISuitMiddleware
             await next(context);
             return;
         }
-
+        var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
         var force = context.Properties.TryGetValue(SuitCommandTarget, out var target) &&
                     target == SuitCommandTargetHost;
         var forceClient = target is SuitCommandTargetApp or SuitCommandTargetAppTask;
@@ -35,7 +35,7 @@ public class HostShellMiddleware : ISuitMiddleware
         }
 
         var server = context.ServiceProvider.GetRequiredService<SuitHostShell>();
-        await server.Execute(context);
+        await tasks.RunTaskImmediately( server.Execute(context));
         if (force && context.Status == RequestStatus.NotHandled) context.Status = RequestStatus.CommandNotFound;
         await next(context);
     }

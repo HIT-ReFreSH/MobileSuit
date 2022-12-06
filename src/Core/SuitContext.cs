@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace PlasticMetal.MobileSuit.Core;
 
@@ -12,11 +13,14 @@ public class SuitContext : IDisposable
 {
     private readonly IServiceScope _serviceScope;
 
-    internal SuitContext(IServiceScope scope, CancellationTokenSource token)
+    internal SuitContext(IServiceScope scope)
     {
         _serviceScope = scope;
         ServiceProvider = scope.ServiceProvider;
-        CancellationToken = token;
+        CancellationToken = new();
+        var hostLifeTime = ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
+        hostLifeTime.ApplicationStopping.Register(() => CancellationToken.Cancel());
+
     }
 
     /// <summary>

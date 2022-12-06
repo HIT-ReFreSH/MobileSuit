@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Middleware;
 using PlasticMetal.MobileSuit.Core.Services;
@@ -112,13 +113,13 @@ public class SuitHostBuilder
     private readonly List<SuitShell> _clients = new();
     private readonly SuitWorkFlow _workFlow = new();
     private Type _commandServer = typeof(SuitCommandServer);
-
+    private TaskRecorder _cancelTasks = new();
     internal SuitHostBuilder(string[]? args)
     {
         AppInfo.StartArgs = args ?? Array.Empty<string>();
         Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
         Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
-        Services.AddSingleton<ITaskService, TaskService>();
+        Services.AddSingleton<ITaskService>(new TaskService(_cancelTasks));
         Services.AddSingleton<IHistoryService, HistoryService>();
         Services.AddScoped<IIOHub, IOHub>();
         Services.AddLogging();
@@ -189,9 +190,16 @@ public class SuitHostBuilder
         Services.AddSingleton<ISuitAppInfo>(AppInfo);
         Services.AddSingleton(SuitAppShell.FromClients(_clients));
         Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
+        var startUp = new TaskCompletionSource();
+        Services.AddSingleton<IHostApplicationLifetime>(
+            new SuitHostApplicationLifetime(startUp, () =>
+            {
+                _cancelTasks.IsLocked = true;
+                return Task.WhenAll(_cancelTasks);
+            }));
         Services.AddSingleton<IConfiguration>(Configuration);
         var providers = Services.BuildServiceProvider();
-        return new SuitHost(providers, _workFlow.Build(providers));
+        return new SuitHost(providers, _workFlow.Build(providers),startUp,_cancelTasks);
     }
 }
 
@@ -320,18 +328,18 @@ public static class SuitHostBuilderExtensions
         return builder;
     }
 
-    /// <summary>
-    ///     Run a mobile suit
-    /// </summary>
-    /// <param name="host"></param>
-    /// <returns></returns>
-    public static async Task RunAsync(this IMobileSuitHost host)
-    {
-        var token = new CancellationTokenSource().Token;
-        await host.StartAsync(token).ConfigureAwait(false);
-        await host.StopAsync(token).ConfigureAwait(false);
-        host.Dispose();
-    }
+    ///// <summary>
+    /////     Run a mobile suit
+    ///// </summary>
+    ///// <param name="host"></param>
+    ///// <returns></returns>
+    //public static async Task RunAsync(this IMobileSuitHost host)
+    //{
+    //    var token = new CancellationTokenSource().Token;
+    //    await host.StartAsync(token).ConfigureAwait(false);
+    //    await host.StopAsync(token).ConfigureAwait(false);
+    //    host.Dispose();
+    //}
 
     /// <summary>
     ///     Run a mobile suit

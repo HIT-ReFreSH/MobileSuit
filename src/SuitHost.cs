@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Services;
@@ -18,18 +20,27 @@ namespace PlasticMetal.MobileSuit;
 internal class SuitHost : IMobileSuitHost
 {
     private readonly ISuitExceptionHandler _exceptionHandler;
-    private readonly IServiceScope _rootScope;
+    private readonly AsyncServiceScope _rootScope;
     private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
-    private CancellationTokenSource _systemInterruption;
+    private IHostApplicationLifetime _lifetime;
+    private TaskCompletionSource _startUp;
+    private readonly TaskRecorder _cancellationTasks;
+    private Task? _hostTask;
 
-    public SuitHost(IServiceProvider services, IReadOnlyList<ISuitMiddleware> middleware)
+    public SuitHost(IServiceProvider services, 
+        IReadOnlyList<ISuitMiddleware> middleware,
+        TaskCompletionSource startUp,
+        TaskRecorder cancellationTasks)
     {
         Services = services;
         _suitApp = middleware;
+        _startUp = startUp;
+        _cancellationTasks = cancellationTasks;
+        _lifetime = Services.GetRequiredService<IHostApplicationLifetime>();
         _exceptionHandler = Services.GetRequiredService<ISuitExceptionHandler>();
-        _rootScope = Services.CreateScope();
+        _rootScope = Services.CreateAsyncScope();
         Logger = Services.GetRequiredService<ILogger<SuitHost>>();
-        _systemInterruption = new CancellationTokenSource();
+
     }
 
     /// <inheritdoc />
@@ -39,19 +50,17 @@ internal class SuitHost : IMobileSuitHost
 
     public void Dispose()
     {
-        _rootScope?.Dispose();
+        _rootScope.Dispose();
     }
 
 
     public async Task StartAsync(CancellationToken cancellationToken = new())
     {
-        Console.CancelKeyPress += Console_CancelKeyPress;
-        cancellationToken.Register(() => { _systemInterruption.Cancel(); });
-
+        if (_hostTask is not null) return;
+        Console.CancelKeyPress += StartTimeCancelKeyPress;
 
         var requestStack = new Stack<SuitRequestDelegate>();
         requestStack.Push(_ => Task.CompletedTask);
-        SuitRequestDelegate last = _ => Task.CompletedTask;
 
 
         foreach (var middleware in _suitApp.Reverse())
@@ -62,13 +71,18 @@ internal class SuitHost : IMobileSuitHost
 
         var handleRequest = requestStack.Peek();
         var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
+        Console.CancelKeyPress -= StartTimeCancelKeyPress;
+        if (cancellationToken.IsCancellationRequested) return;
         if (appInfo.StartArgs.Length > 0)
         {
-            _systemInterruption = new CancellationTokenSource();
             var requestScope = Services.CreateScope();
-            var context = new SuitContext(requestScope, _systemInterruption);
-            context.Status = RequestStatus.NotHandled;
-            context.Request = appInfo.StartArgs;
+            var context = new SuitContext(requestScope)
+            {
+                Status = RequestStatus.NotHandled,
+                Request = appInfo.StartArgs
+            };
+            var cancelKeyHandler=CreateCancelKeyHandler(context);
+            Console.CancelKeyPress += cancelKeyHandler;
             try
             {
                 await handleRequest(context);
@@ -79,23 +93,29 @@ internal class SuitHost : IMobileSuitHost
                 context.Status = RequestStatus.Faulted;
                 await _exceptionHandler.InvokeAsync(context);
             }
+            Console.CancelKeyPress -= cancelKeyHandler;
         }
 
-        await HandleRequest(handleRequest);
+        _startUp.SetResult();
+        _hostTask = HandleRequest(handleRequest);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken = new())
     {
-        _systemInterruption?.Cancel();
+        if (_hostTask is null) return;
+        //await _hostTask;
+        await _rootScope.DisposeAsync();
+        _hostTask = null;
     }
 
     private async Task HandleRequest(SuitRequestDelegate requestHandler)
     {
-        for (;;)
+        for (; ; )
         {
-            _systemInterruption = new CancellationTokenSource();
             var requestScope = Services.CreateScope();
-            var context = new SuitContext(requestScope, _systemInterruption);
+            var context = new SuitContext(requestScope);
+            var cancelKeyHandler = CreateCancelKeyHandler(context);
+            Console.CancelKeyPress += cancelKeyHandler;
             try
             {
                 await requestHandler(context);
@@ -107,15 +127,31 @@ internal class SuitHost : IMobileSuitHost
                 await _exceptionHandler.InvokeAsync(context);
                 continue;
             }
-
-            if (context.Status == RequestStatus.OnExit || context.Status == RequestStatus.NoRequest &&
-                _systemInterruption.IsCancellationRequested) break;
+            Console.CancelKeyPress -= cancelKeyHandler;
+            if (context.Status == RequestStatus.OnExit || 
+                context.Status == RequestStatus.NoRequest &&
+                context.CancellationToken.IsCancellationRequested) break;
         }
+        _lifetime.StopApplication();
     }
 
-    private void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
+    private void StartTimeCancelKeyPress(object? sender, ConsoleCancelEventArgs e)
     {
         e.Cancel = true;
-        _systemInterruption.Cancel();
+    }
+
+    private static ConsoleCancelEventHandler CreateCancelKeyHandler(SuitContext context)
+    {
+        return (sender, e) =>
+        {
+            e.Cancel = true;
+            context.CancellationToken.Cancel();
+        };
+    }
+
+
+    public async ValueTask DisposeAsync()
+    {
+        await _rootScope.DisposeAsync();
     }
 }
