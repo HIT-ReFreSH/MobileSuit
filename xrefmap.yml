@@ -428,343 +428,6 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Core.IDynamicParameter.Parse
   nameWithType: IDynamicParameter.Parse
-- uid: PlasticMetal.MobileSuit.Core.IIOHub
-  name: IIOHub
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html
-  commentId: T:PlasticMetal.MobileSuit.Core.IIOHub
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub
-  nameWithType: IIOHub
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
-  name: AppendWriteLinePrefix(PrintUnit)
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_AppendWriteLinePrefix_PlasticMetal_MobileSuit_PrintUnit_
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
-  nameWithType: IIOHub.AppendWriteLinePrefix(PrintUnit)
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix*
-  name: AppendWriteLinePrefix
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_AppendWriteLinePrefix_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.AppendWriteLinePrefix
-  nameWithType: IIOHub.AppendWriteLinePrefix
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix
-  name: ClearWriteLinePrefix()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ClearWriteLinePrefix
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix()
-  nameWithType: IIOHub.ClearWriteLinePrefix()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix*
-  name: ClearWriteLinePrefix
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ClearWriteLinePrefix_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ClearWriteLinePrefix
-  nameWithType: IIOHub.ClearWriteLinePrefix
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting
-  name: ColorSetting
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ColorSetting
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting
-  nameWithType: IIOHub.ColorSetting
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting*
-  name: ColorSetting
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ColorSetting_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ColorSetting
-  nameWithType: IIOHub.ColorSetting
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.DisableTags
-  name: DisableTags
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_DisableTags
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.DisableTags
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.DisableTags
-  nameWithType: IIOHub.DisableTags
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.DisableTags*
-  name: DisableTags
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_DisableTags_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.DisableTags
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.DisableTags
-  nameWithType: IIOHub.DisableTags
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream
-  name: ErrorStream
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ErrorStream
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream
-  nameWithType: IIOHub.ErrorStream
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream*
-  name: ErrorStream
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ErrorStream_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ErrorStream
-  nameWithType: IIOHub.ErrorStream
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt
-  name: FormatPrompt
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_FormatPrompt
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt
-  nameWithType: IIOHub.FormatPrompt
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt*
-  name: FormatPrompt
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_FormatPrompt_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.FormatPrompt
-  nameWithType: IIOHub.FormatPrompt
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
-  name: GetLabel(OutputType)
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_GetLabel_PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
-  nameWithType: IIOHub.GetLabel(OutputType)
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.GetLabel*
-  name: GetLabel
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_GetLabel_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.GetLabel
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.GetLabel
-  nameWithType: IIOHub.GetLabel
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
-  name: GetLinePrefix(OutputType)
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_GetLinePrefix_PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
-  nameWithType: IIOHub.GetLinePrefix(OutputType)
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix*
-  name: GetLinePrefix
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_GetLinePrefix_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.GetLinePrefix
-  nameWithType: IIOHub.GetLinePrefix
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Input
-  name: Input
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Input
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.Input
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Input
-  nameWithType: IIOHub.Input
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Input*
-  name: Input
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Input_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.Input
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Input
-  nameWithType: IIOHub.Input
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected
-  name: IsErrorRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsErrorRedirected
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected
-  nameWithType: IIOHub.IsErrorRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected*
-  name: IsErrorRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsErrorRedirected_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsErrorRedirected
-  nameWithType: IIOHub.IsErrorRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected
-  name: IsInputRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsInputRedirected
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected
-  nameWithType: IIOHub.IsInputRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected*
-  name: IsInputRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsInputRedirected_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsInputRedirected
-  nameWithType: IIOHub.IsInputRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected
-  name: IsOutputRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsOutputRedirected
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected
-  nameWithType: IIOHub.IsOutputRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected*
-  name: IsOutputRedirected
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_IsOutputRedirected_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.IsOutputRedirected
-  nameWithType: IIOHub.IsOutputRedirected
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Output
-  name: Output
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Output
-  commentId: P:PlasticMetal.MobileSuit.Core.IIOHub.Output
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Output
-  nameWithType: IIOHub.Output
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Output*
-  name: Output
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Output_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.Output
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Output
-  nameWithType: IIOHub.Output
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Peek
-  name: Peek()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Peek
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.Peek
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Peek()
-  nameWithType: IIOHub.Peek()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Peek*
-  name: Peek
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Peek_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.Peek
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Peek
-  nameWithType: IIOHub.Peek
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Read
-  name: Read()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Read
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.Read
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Read()
-  nameWithType: IIOHub.Read()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Read*
-  name: Read
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Read_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.Read
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Read
-  nameWithType: IIOHub.Read
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadLine
-  name: ReadLine()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadLine
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ReadLine
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadLine()
-  nameWithType: IIOHub.ReadLine()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadLine*
-  name: ReadLine
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadLine_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ReadLine
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadLine
-  nameWithType: IIOHub.ReadLine
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync
-  name: ReadLineAsync()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadLineAsync
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync()
-  nameWithType: IIOHub.ReadLineAsync()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync*
-  name: ReadLineAsync
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadLineAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadLineAsync
-  nameWithType: IIOHub.ReadLineAsync
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd
-  name: ReadToEnd()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadToEnd
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd()
-  nameWithType: IIOHub.ReadToEnd()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd*
-  name: ReadToEnd
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadToEnd_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEnd
-  nameWithType: IIOHub.ReadToEnd
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync
-  name: ReadToEndAsync()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadToEndAsync
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync()
-  nameWithType: IIOHub.ReadToEndAsync()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync*
-  name: ReadToEndAsync
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ReadToEndAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ReadToEndAsync
-  nameWithType: IIOHub.ReadToEndAsync
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetError
-  name: ResetError()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetError
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ResetError
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetError()
-  nameWithType: IIOHub.ResetError()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetError*
-  name: ResetError
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetError_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ResetError
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetError
-  nameWithType: IIOHub.ResetError
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetInput
-  name: ResetInput()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetInput
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ResetInput
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetInput()
-  nameWithType: IIOHub.ResetInput()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetInput*
-  name: ResetInput
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetInput_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ResetInput
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetInput
-  nameWithType: IIOHub.ResetInput
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput
-  name: ResetOutput()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetOutput
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput()
-  nameWithType: IIOHub.ResetOutput()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput*
-  name: ResetOutput
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_ResetOutput_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.ResetOutput
-  nameWithType: IIOHub.ResetOutput
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix
-  name: SubtractWriteLinePrefix()
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_SubtractWriteLinePrefix
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix()
-  nameWithType: IIOHub.SubtractWriteLinePrefix()
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix*
-  name: SubtractWriteLinePrefix
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_SubtractWriteLinePrefix_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.SubtractWriteLinePrefix
-  nameWithType: IIOHub.SubtractWriteLinePrefix
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
-  name: Write(PrintUnit)
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Write_PlasticMetal_MobileSuit_PrintUnit_
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
-  nameWithType: IIOHub.Write(PrintUnit)
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.Write*
-  name: Write
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_Write_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.Write
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.Write
-  nameWithType: IIOHub.Write
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
-  name: WriteAsync(PrintUnit)
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_WriteAsync_PlasticMetal_MobileSuit_PrintUnit_
-  commentId: M:PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
-  nameWithType: IIOHub.WriteAsync(PrintUnit)
-- uid: PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync*
-  name: WriteAsync
-  href: api/PlasticMetal.MobileSuit.Core.IIOHub.html#PlasticMetal_MobileSuit_Core_IIOHub_WriteAsync_
-  commentId: Overload:PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync
-  isSpec: "True"
-  fullName: PlasticMetal.MobileSuit.Core.IIOHub.WriteAsync
-  nameWithType: IIOHub.WriteAsync
-- uid: PlasticMetal.MobileSuit.Core.IIOHubConfigurer
-  name: IIOHubConfigurer
-  href: api/PlasticMetal.MobileSuit.Core.IIOHubConfigurer.html
-  commentId: T:PlasticMetal.MobileSuit.Core.IIOHubConfigurer
-  fullName: PlasticMetal.MobileSuit.Core.IIOHubConfigurer
-  nameWithType: IIOHubConfigurer
 - uid: PlasticMetal.MobileSuit.Core.ISuitCommandServer
   name: ISuitCommandServer
   href: api/PlasticMetal.MobileSuit.Core.ISuitCommandServer.html
@@ -1168,11 +831,11 @@ references:
   commentId: T:PlasticMetal.MobileSuit.Core.Services.IOHub
   fullName: PlasticMetal.MobileSuit.Core.Services.IOHub
   nameWithType: IOHub
-- uid: PlasticMetal.MobileSuit.Core.Services.IOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+- uid: PlasticMetal.MobileSuit.Core.Services.IOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
   name: IOHub(PromptFormatter, IIOHubConfigurer)
-  href: api/PlasticMetal.MobileSuit.Core.Services.IOHub.html#PlasticMetal_MobileSuit_Core_Services_IOHub__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_Core_IIOHubConfigurer_
-  commentId: M:PlasticMetal.MobileSuit.Core.Services.IOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
-  fullName: PlasticMetal.MobileSuit.Core.Services.IOHub.IOHub(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+  href: api/PlasticMetal.MobileSuit.Core.Services.IOHub.html#PlasticMetal_MobileSuit_Core_Services_IOHub__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_IIOHubConfigurer_
+  commentId: M:PlasticMetal.MobileSuit.Core.Services.IOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
+  fullName: PlasticMetal.MobileSuit.Core.Services.IOHub.IOHub(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.IIOHubConfigurer)
   nameWithType: IOHub.IOHub(PromptFormatter, IIOHubConfigurer)
 - uid: PlasticMetal.MobileSuit.Core.Services.IOHub.#ctor*
   name: IOHub
@@ -1499,11 +1162,11 @@ references:
   commentId: T:PlasticMetal.MobileSuit.Core.Services.IOHub4Bit
   fullName: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit
   nameWithType: IOHub4Bit
-- uid: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+- uid: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
   name: IOHub4Bit(PromptFormatter, IIOHubConfigurer)
-  href: api/PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.html#PlasticMetal_MobileSuit_Core_Services_IOHub4Bit__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_Core_IIOHubConfigurer_
-  commentId: M:PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
-  fullName: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.IOHub4Bit(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+  href: api/PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.html#PlasticMetal_MobileSuit_Core_Services_IOHub4Bit__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_IIOHubConfigurer_
+  commentId: M:PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
+  fullName: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.IOHub4Bit(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.IIOHubConfigurer)
   nameWithType: IOHub4Bit.IOHub4Bit(PromptFormatter, IIOHubConfigurer)
 - uid: PlasticMetal.MobileSuit.Core.Services.IOHub4Bit.#ctor*
   name: IOHub4Bit
@@ -1814,11 +1477,11 @@ references:
   commentId: T:PlasticMetal.MobileSuit.Core.Services.PureTextIOHub
   fullName: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub
   nameWithType: PureTextIOHub
-- uid: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+- uid: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
   name: PureTextIOHub(PromptFormatter, IIOHubConfigurer)
-  href: api/PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.html#PlasticMetal_MobileSuit_Core_Services_PureTextIOHub__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_Core_IIOHubConfigurer_
-  commentId: M:PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
-  fullName: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.PureTextIOHub(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+  href: api/PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.html#PlasticMetal_MobileSuit_Core_Services_PureTextIOHub__ctor_PlasticMetal_MobileSuit_Core_Services_PromptFormatter_PlasticMetal_MobileSuit_IIOHubConfigurer_
+  commentId: M:PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.#ctor(PlasticMetal.MobileSuit.Core.Services.PromptFormatter,PlasticMetal.MobileSuit.IIOHubConfigurer)
+  fullName: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.PureTextIOHub(PlasticMetal.MobileSuit.Core.Services.PromptFormatter, PlasticMetal.MobileSuit.IIOHubConfigurer)
   nameWithType: PureTextIOHub.PureTextIOHub(PromptFormatter, IIOHubConfigurer)
 - uid: PlasticMetal.MobileSuit.Core.Services.PureTextIOHub.#ctor*
   name: PureTextIOHub
@@ -1952,11 +1615,11 @@ references:
   commentId: T:PlasticMetal.MobileSuit.Core.Services.SuitCommandServer
   fullName: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer
   nameWithType: SuitCommandServer
-- uid: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.#ctor(PlasticMetal.MobileSuit.Core.IIOHub,PlasticMetal.MobileSuit.Core.Services.SuitAppShell,PlasticMetal.MobileSuit.Core.Services.SuitHostShell,PlasticMetal.MobileSuit.Core.Services.ITaskService)
+- uid: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.#ctor(PlasticMetal.MobileSuit.IIOHub,PlasticMetal.MobileSuit.Core.Services.SuitAppShell,PlasticMetal.MobileSuit.Core.Services.SuitHostShell,PlasticMetal.MobileSuit.Core.Services.ITaskService)
   name: SuitCommandServer(IIOHub, SuitAppShell, SuitHostShell, ITaskService)
-  href: api/PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.html#PlasticMetal_MobileSuit_Core_Services_SuitCommandServer__ctor_PlasticMetal_MobileSuit_Core_IIOHub_PlasticMetal_MobileSuit_Core_Services_SuitAppShell_PlasticMetal_MobileSuit_Core_Services_SuitHostShell_PlasticMetal_MobileSuit_Core_Services_ITaskService_
-  commentId: M:PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.#ctor(PlasticMetal.MobileSuit.Core.IIOHub,PlasticMetal.MobileSuit.Core.Services.SuitAppShell,PlasticMetal.MobileSuit.Core.Services.SuitHostShell,PlasticMetal.MobileSuit.Core.Services.ITaskService)
-  fullName: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.SuitCommandServer(PlasticMetal.MobileSuit.Core.IIOHub, PlasticMetal.MobileSuit.Core.Services.SuitAppShell, PlasticMetal.MobileSuit.Core.Services.SuitHostShell, PlasticMetal.MobileSuit.Core.Services.ITaskService)
+  href: api/PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.html#PlasticMetal_MobileSuit_Core_Services_SuitCommandServer__ctor_PlasticMetal_MobileSuit_IIOHub_PlasticMetal_MobileSuit_Core_Services_SuitAppShell_PlasticMetal_MobileSuit_Core_Services_SuitHostShell_PlasticMetal_MobileSuit_Core_Services_ITaskService_
+  commentId: M:PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.#ctor(PlasticMetal.MobileSuit.IIOHub,PlasticMetal.MobileSuit.Core.Services.SuitAppShell,PlasticMetal.MobileSuit.Core.Services.SuitHostShell,PlasticMetal.MobileSuit.Core.Services.ITaskService)
+  fullName: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.SuitCommandServer(PlasticMetal.MobileSuit.IIOHub, PlasticMetal.MobileSuit.Core.Services.SuitAppShell, PlasticMetal.MobileSuit.Core.Services.SuitHostShell, PlasticMetal.MobileSuit.Core.Services.ITaskService)
   nameWithType: SuitCommandServer.SuitCommandServer(IIOHub, SuitAppShell, SuitHostShell, ITaskService)
 - uid: PlasticMetal.MobileSuit.Core.Services.SuitCommandServer.#ctor*
   name: SuitCommandServer
@@ -2775,6 +2438,343 @@ references:
   commentId: F:PlasticMetal.MobileSuit.Core.TailParameterType.Normal
   fullName: PlasticMetal.MobileSuit.Core.TailParameterType.Normal
   nameWithType: TailParameterType.Normal
+- uid: PlasticMetal.MobileSuit.IIOHub
+  name: IIOHub
+  href: api/PlasticMetal.MobileSuit.IIOHub.html
+  commentId: T:PlasticMetal.MobileSuit.IIOHub
+  fullName: PlasticMetal.MobileSuit.IIOHub
+  nameWithType: IIOHub
+- uid: PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
+  name: AppendWriteLinePrefix(PrintUnit)
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_AppendWriteLinePrefix_PlasticMetal_MobileSuit_PrintUnit_
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
+  fullName: PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix(PlasticMetal.MobileSuit.PrintUnit)
+  nameWithType: IIOHub.AppendWriteLinePrefix(PrintUnit)
+- uid: PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix*
+  name: AppendWriteLinePrefix
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_AppendWriteLinePrefix_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.AppendWriteLinePrefix
+  nameWithType: IIOHub.AppendWriteLinePrefix
+- uid: PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix
+  name: ClearWriteLinePrefix()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ClearWriteLinePrefix
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix
+  fullName: PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix()
+  nameWithType: IIOHub.ClearWriteLinePrefix()
+- uid: PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix*
+  name: ClearWriteLinePrefix
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ClearWriteLinePrefix_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ClearWriteLinePrefix
+  nameWithType: IIOHub.ClearWriteLinePrefix
+- uid: PlasticMetal.MobileSuit.IIOHub.ColorSetting
+  name: ColorSetting
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ColorSetting
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.ColorSetting
+  fullName: PlasticMetal.MobileSuit.IIOHub.ColorSetting
+  nameWithType: IIOHub.ColorSetting
+- uid: PlasticMetal.MobileSuit.IIOHub.ColorSetting*
+  name: ColorSetting
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ColorSetting_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ColorSetting
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ColorSetting
+  nameWithType: IIOHub.ColorSetting
+- uid: PlasticMetal.MobileSuit.IIOHub.DisableTags
+  name: DisableTags
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_DisableTags
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.DisableTags
+  fullName: PlasticMetal.MobileSuit.IIOHub.DisableTags
+  nameWithType: IIOHub.DisableTags
+- uid: PlasticMetal.MobileSuit.IIOHub.DisableTags*
+  name: DisableTags
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_DisableTags_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.DisableTags
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.DisableTags
+  nameWithType: IIOHub.DisableTags
+- uid: PlasticMetal.MobileSuit.IIOHub.ErrorStream
+  name: ErrorStream
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ErrorStream
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.ErrorStream
+  fullName: PlasticMetal.MobileSuit.IIOHub.ErrorStream
+  nameWithType: IIOHub.ErrorStream
+- uid: PlasticMetal.MobileSuit.IIOHub.ErrorStream*
+  name: ErrorStream
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ErrorStream_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ErrorStream
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ErrorStream
+  nameWithType: IIOHub.ErrorStream
+- uid: PlasticMetal.MobileSuit.IIOHub.FormatPrompt
+  name: FormatPrompt
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_FormatPrompt
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.FormatPrompt
+  fullName: PlasticMetal.MobileSuit.IIOHub.FormatPrompt
+  nameWithType: IIOHub.FormatPrompt
+- uid: PlasticMetal.MobileSuit.IIOHub.FormatPrompt*
+  name: FormatPrompt
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_FormatPrompt_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.FormatPrompt
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.FormatPrompt
+  nameWithType: IIOHub.FormatPrompt
+- uid: PlasticMetal.MobileSuit.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
+  name: GetLabel(OutputType)
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_GetLabel_PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IIOHub.GetLabel(PlasticMetal.MobileSuit.OutputType)
+  nameWithType: IIOHub.GetLabel(OutputType)
+- uid: PlasticMetal.MobileSuit.IIOHub.GetLabel*
+  name: GetLabel
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_GetLabel_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.GetLabel
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.GetLabel
+  nameWithType: IIOHub.GetLabel
+- uid: PlasticMetal.MobileSuit.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
+  name: GetLinePrefix(OutputType)
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_GetLinePrefix_PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IIOHub.GetLinePrefix(PlasticMetal.MobileSuit.OutputType)
+  nameWithType: IIOHub.GetLinePrefix(OutputType)
+- uid: PlasticMetal.MobileSuit.IIOHub.GetLinePrefix*
+  name: GetLinePrefix
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_GetLinePrefix_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.GetLinePrefix
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.GetLinePrefix
+  nameWithType: IIOHub.GetLinePrefix
+- uid: PlasticMetal.MobileSuit.IIOHub.Input
+  name: Input
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Input
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.Input
+  fullName: PlasticMetal.MobileSuit.IIOHub.Input
+  nameWithType: IIOHub.Input
+- uid: PlasticMetal.MobileSuit.IIOHub.Input*
+  name: Input
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Input_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.Input
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.Input
+  nameWithType: IIOHub.Input
+- uid: PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected
+  name: IsErrorRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsErrorRedirected
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected
+  nameWithType: IIOHub.IsErrorRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected*
+  name: IsErrorRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsErrorRedirected_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsErrorRedirected
+  nameWithType: IIOHub.IsErrorRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.IsInputRedirected
+  name: IsInputRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsInputRedirected
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.IsInputRedirected
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsInputRedirected
+  nameWithType: IIOHub.IsInputRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.IsInputRedirected*
+  name: IsInputRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsInputRedirected_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.IsInputRedirected
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsInputRedirected
+  nameWithType: IIOHub.IsInputRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected
+  name: IsOutputRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsOutputRedirected
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected
+  nameWithType: IIOHub.IsOutputRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected*
+  name: IsOutputRedirected
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_IsOutputRedirected_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.IsOutputRedirected
+  nameWithType: IIOHub.IsOutputRedirected
+- uid: PlasticMetal.MobileSuit.IIOHub.Output
+  name: Output
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Output
+  commentId: P:PlasticMetal.MobileSuit.IIOHub.Output
+  fullName: PlasticMetal.MobileSuit.IIOHub.Output
+  nameWithType: IIOHub.Output
+- uid: PlasticMetal.MobileSuit.IIOHub.Output*
+  name: Output
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Output_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.Output
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.Output
+  nameWithType: IIOHub.Output
+- uid: PlasticMetal.MobileSuit.IIOHub.Peek
+  name: Peek()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Peek
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.Peek
+  fullName: PlasticMetal.MobileSuit.IIOHub.Peek()
+  nameWithType: IIOHub.Peek()
+- uid: PlasticMetal.MobileSuit.IIOHub.Peek*
+  name: Peek
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Peek_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.Peek
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.Peek
+  nameWithType: IIOHub.Peek
+- uid: PlasticMetal.MobileSuit.IIOHub.Read
+  name: Read()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Read
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.Read
+  fullName: PlasticMetal.MobileSuit.IIOHub.Read()
+  nameWithType: IIOHub.Read()
+- uid: PlasticMetal.MobileSuit.IIOHub.Read*
+  name: Read
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Read_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.Read
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.Read
+  nameWithType: IIOHub.Read
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadLine
+  name: ReadLine()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadLine
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ReadLine
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadLine()
+  nameWithType: IIOHub.ReadLine()
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadLine*
+  name: ReadLine
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadLine_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ReadLine
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadLine
+  nameWithType: IIOHub.ReadLine
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadLineAsync
+  name: ReadLineAsync()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadLineAsync
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ReadLineAsync
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadLineAsync()
+  nameWithType: IIOHub.ReadLineAsync()
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadLineAsync*
+  name: ReadLineAsync
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadLineAsync_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ReadLineAsync
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadLineAsync
+  nameWithType: IIOHub.ReadLineAsync
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadToEnd
+  name: ReadToEnd()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadToEnd
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ReadToEnd
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadToEnd()
+  nameWithType: IIOHub.ReadToEnd()
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadToEnd*
+  name: ReadToEnd
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadToEnd_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ReadToEnd
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadToEnd
+  nameWithType: IIOHub.ReadToEnd
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync
+  name: ReadToEndAsync()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadToEndAsync
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync()
+  nameWithType: IIOHub.ReadToEndAsync()
+- uid: PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync*
+  name: ReadToEndAsync
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ReadToEndAsync_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ReadToEndAsync
+  nameWithType: IIOHub.ReadToEndAsync
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetError
+  name: ResetError()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetError
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ResetError
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetError()
+  nameWithType: IIOHub.ResetError()
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetError*
+  name: ResetError
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetError_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ResetError
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetError
+  nameWithType: IIOHub.ResetError
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetInput
+  name: ResetInput()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetInput
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ResetInput
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetInput()
+  nameWithType: IIOHub.ResetInput()
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetInput*
+  name: ResetInput
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetInput_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ResetInput
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetInput
+  nameWithType: IIOHub.ResetInput
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetOutput
+  name: ResetOutput()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetOutput
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.ResetOutput
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetOutput()
+  nameWithType: IIOHub.ResetOutput()
+- uid: PlasticMetal.MobileSuit.IIOHub.ResetOutput*
+  name: ResetOutput
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_ResetOutput_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.ResetOutput
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.ResetOutput
+  nameWithType: IIOHub.ResetOutput
+- uid: PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix
+  name: SubtractWriteLinePrefix()
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_SubtractWriteLinePrefix
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix
+  fullName: PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix()
+  nameWithType: IIOHub.SubtractWriteLinePrefix()
+- uid: PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix*
+  name: SubtractWriteLinePrefix
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_SubtractWriteLinePrefix_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.SubtractWriteLinePrefix
+  nameWithType: IIOHub.SubtractWriteLinePrefix
+- uid: PlasticMetal.MobileSuit.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
+  name: Write(PrintUnit)
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Write_PlasticMetal_MobileSuit_PrintUnit_
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
+  fullName: PlasticMetal.MobileSuit.IIOHub.Write(PlasticMetal.MobileSuit.PrintUnit)
+  nameWithType: IIOHub.Write(PrintUnit)
+- uid: PlasticMetal.MobileSuit.IIOHub.Write*
+  name: Write
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_Write_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.Write
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.Write
+  nameWithType: IIOHub.Write
+- uid: PlasticMetal.MobileSuit.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
+  name: WriteAsync(PrintUnit)
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_WriteAsync_PlasticMetal_MobileSuit_PrintUnit_
+  commentId: M:PlasticMetal.MobileSuit.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
+  fullName: PlasticMetal.MobileSuit.IIOHub.WriteAsync(PlasticMetal.MobileSuit.PrintUnit)
+  nameWithType: IIOHub.WriteAsync(PrintUnit)
+- uid: PlasticMetal.MobileSuit.IIOHub.WriteAsync*
+  name: WriteAsync
+  href: api/PlasticMetal.MobileSuit.IIOHub.html#PlasticMetal_MobileSuit_IIOHub_WriteAsync_
+  commentId: Overload:PlasticMetal.MobileSuit.IIOHub.WriteAsync
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.IIOHub.WriteAsync
+  nameWithType: IIOHub.WriteAsync
+- uid: PlasticMetal.MobileSuit.IIOHubConfigurer
+  name: IIOHubConfigurer
+  href: api/PlasticMetal.MobileSuit.IIOHubConfigurer.html
+  commentId: T:PlasticMetal.MobileSuit.IIOHubConfigurer
+  fullName: PlasticMetal.MobileSuit.IIOHubConfigurer
+  nameWithType: IIOHubConfigurer
 - uid: PlasticMetal.MobileSuit.IMobileSuitHost
   name: IMobileSuitHost
   href: api/PlasticMetal.MobileSuit.IMobileSuitHost.html
@@ -2819,11 +2819,11 @@ references:
   commentId: T:PlasticMetal.MobileSuit.IOExtensions
   fullName: PlasticMetal.MobileSuit.IOExtensions
   nameWithType: IOExtensions
-- uid: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.Core.IIOHub,System.String)
+- uid: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.IIOHub,System.String)
   name: AppendWriteLinePrefix(IIOHub, String)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_AppendWriteLinePrefix_PlasticMetal_MobileSuit_Core_IIOHub_System_String_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.Core.IIOHub,System.String)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.Core.IIOHub, System.String)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_AppendWriteLinePrefix_PlasticMetal_MobileSuit_IIOHub_System_String_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.IIOHub,System.String)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix(PlasticMetal.MobileSuit.IIOHub, System.String)
   nameWithType: IOExtensions.AppendWriteLinePrefix(IIOHub, String)
 - uid: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix*
   name: AppendWriteLinePrefix
@@ -2832,49 +2832,49 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.AppendWriteLinePrefix
   nameWithType: IOExtensions.AppendWriteLinePrefix
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name: ReadLine(IIOHub, String, Boolean, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name.vb: ReadLine(IIOHub, String, Boolean, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLine(IIOHub, String, Boolean, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLine(IIOHub, String, Boolean, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name: ReadLine(IIOHub, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name.vb: ReadLine(IIOHub, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLine(IIOHub, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLine(IIOHub, String, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name: ReadLine(IIOHub, String, String, Boolean, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name.vb: ReadLine(IIOHub, String, String, Boolean, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name: ReadLine(IIOHub, String, String, Boolean, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name.vb: ReadLine(IIOHub, String, String, Boolean, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable<Color>)
   nameWithType.vb: IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
   name: ReadLine(IIOHub, String, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
   name.vb: ReadLine(IIOHub, String, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLine(IIOHub, String, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLine(IIOHub, String, String, Nullable(Of ConsoleColor))
 - uid: PlasticMetal.MobileSuit.IOExtensions.ReadLine*
@@ -2884,76 +2884,76 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLine
   nameWithType: IOExtensions.ReadLine
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name: ReadLineAsync(IIOHub, String, Boolean, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name.vb: ReadLineAsync(IIOHub, String, Boolean, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name: ReadLineAsync(IIOHub, String, Boolean, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name.vb: ReadLineAsync(IIOHub, String, Boolean, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable<Color>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name: ReadLineAsync(IIOHub, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name.vb: ReadLineAsync(IIOHub, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Drawing.Color})
   name: ReadLineAsync(IIOHub, String, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Drawing.Color})
   name.vb: ReadLineAsync(IIOHub, String, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, Nullable<Color>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name: ReadLineAsync(IIOHub, String, String, Boolean, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.ConsoleColor})
   name.vb: ReadLineAsync(IIOHub, String, String, Boolean, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name: ReadLineAsync(IIOHub, String, String, Boolean, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Boolean,System.Nullable{System.Drawing.Color})
   name.vb: ReadLineAsync(IIOHub, String, String, Boolean, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Boolean, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable<Color>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
   name: ReadLineAsync(IIOHub, String, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.ConsoleColor})
   name.vb: ReadLineAsync(IIOHub, String, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.Drawing.Color})
   name: ReadLineAsync(IIOHub, String, String, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_String_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.String,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_ReadLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.String,System.Nullable{System.Drawing.Color})
   name.vb: ReadLineAsync(IIOHub, String, String, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.String, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.String, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable<Color>)
   nameWithType.vb: IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable(Of Color))
 - uid: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync*
@@ -2963,40 +2963,40 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.ReadLineAsync
   nameWithType: IOExtensions.ReadLineAsync
-- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: Write(IIOHub, IEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: Write(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.Write(IIOHub, IEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.Write(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name: Write(IIOHub, String, OutputType, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name.vb: Write(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.Write(IIOHub, String, OutputType, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.Write(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name: Write(IIOHub, String, OutputType, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name.vb: Write(IIOHub, String, OutputType, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.Write(IIOHub, String, OutputType, Nullable<Color>)
   nameWithType.vb: IOExtensions.Write(IIOHub, String, OutputType, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name: Write(IIOHub, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_Write_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name.vb: Write(IIOHub, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.Write(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.Write(IIOHub, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.Write(IIOHub, String, Nullable(Of ConsoleColor))
 - uid: PlasticMetal.MobileSuit.IOExtensions.Write*
@@ -3006,58 +3006,58 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.Write
   nameWithType: IOExtensions.Write
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: WriteAsync(IIOHub, IAsyncEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: WriteAsync(IIOHub, IAsyncEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IAsyncEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IAsyncEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IAsyncEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IAsyncEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.WriteAsync(IIOHub, IAsyncEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, IAsyncEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: WriteAsync(IIOHub, IEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: WriteAsync(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.WriteAsync(IIOHub, IEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name: WriteAsync(IIOHub, String, OutputType, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name.vb: WriteAsync(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name: WriteAsync(IIOHub, String, OutputType, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name.vb: WriteAsync(IIOHub, String, OutputType, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable<Color>)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name: WriteAsync(IIOHub, String, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.ConsoleColor})
   name.vb: WriteAsync(IIOHub, String, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.WriteAsync(IIOHub, String, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, String, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Drawing.Color})
   name: WriteAsync(IIOHub, String, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Drawing.Color})
   name.vb: WriteAsync(IIOHub, String, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.WriteAsync(IIOHub, String, Nullable<Color>)
   nameWithType.vb: IOExtensions.WriteAsync(IIOHub, String, Nullable(Of Color))
 - uid: PlasticMetal.MobileSuit.IOExtensions.WriteAsync*
@@ -3067,50 +3067,50 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.WriteAsync
   nameWithType: IOExtensions.WriteAsync
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub)
   name: WriteLine(IIOHub)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub)
   nameWithType: IOExtensions.WriteLine(IIOHub)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: WriteLine(IIOHub, IEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: WriteLine(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.WriteLine(IIOHub, IEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.WriteLine(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name: WriteLine(IIOHub, String, OutputType, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name.vb: WriteLine(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name: WriteLine(IIOHub, String, OutputType, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name.vb: WriteLine(IIOHub, String, OutputType, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable<Color>)
   nameWithType.vb: IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.ConsoleColor)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.ConsoleColor)
   name: WriteLine(IIOHub, String, ConsoleColor)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_ConsoleColor_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.ConsoleColor)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.ConsoleColor)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_ConsoleColor_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.ConsoleColor)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.ConsoleColor)
   nameWithType: IOExtensions.WriteLine(IIOHub, String, ConsoleColor)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Drawing.Color)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Drawing.Color)
   name: WriteLine(IIOHub, String, Color)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Drawing_Color_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Drawing.Color)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Drawing.Color)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLine_PlasticMetal_MobileSuit_IIOHub_System_String_System_Drawing_Color_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub,System.String,System.Drawing.Color)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine(PlasticMetal.MobileSuit.IIOHub, System.String, System.Drawing.Color)
   nameWithType: IOExtensions.WriteLine(IIOHub, String, Color)
 - uid: PlasticMetal.MobileSuit.IOExtensions.WriteLine*
   name: WriteLine
@@ -3119,59 +3119,59 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLine
   nameWithType: IOExtensions.WriteLine
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub)
   name: WriteLineAsync(IIOHub)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub)
   nameWithType: IOExtensions.WriteLineAsync(IIOHub)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: WriteLineAsync(IIOHub, IAsyncEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IAsyncEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IAsyncEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: WriteLineAsync(IIOHub, IAsyncEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IAsyncEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IAsyncEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IAsyncEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IAsyncEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, IAsyncEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.WriteLineAsync(IIOHub, IAsyncEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name: WriteLineAsync(IIOHub, IEnumerable<PrintUnit>, OutputType)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_PlasticMetal_MobileSuit_PrintUnit__PlasticMetal_MobileSuit_OutputType_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.Collections.Generic.IEnumerable{PlasticMetal.MobileSuit.PrintUnit},PlasticMetal.MobileSuit.OutputType)
   name.vb: WriteLineAsync(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable<PlasticMetal.MobileSuit.PrintUnit>, PlasticMetal.MobileSuit.OutputType)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.Collections.Generic.IEnumerable(Of PlasticMetal.MobileSuit.PrintUnit), PlasticMetal.MobileSuit.OutputType)
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, IEnumerable<PrintUnit>, OutputType)
   nameWithType.vb: IOExtensions.WriteLineAsync(IIOHub, IEnumerable(Of PrintUnit), OutputType)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name: WriteLineAsync(IIOHub, String, OutputType, Nullable<ConsoleColor>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.ConsoleColor})
   name.vb: WriteLineAsync(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.ConsoleColor>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.ConsoleColor))
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable<ConsoleColor>)
   nameWithType.vb: IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable(Of ConsoleColor))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name: WriteLineAsync(IIOHub, String, OutputType, Nullable<Color>)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_PlasticMetal_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,PlasticMetal.MobileSuit.OutputType,System.Nullable{System.Drawing.Color})
   name.vb: WriteLineAsync(IIOHub, String, OutputType, Nullable(Of Color))
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
-  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable<System.Drawing.Color>)
+  fullName.vb: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, PlasticMetal.MobileSuit.OutputType, System.Nullable(Of System.Drawing.Color))
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable<Color>)
   nameWithType.vb: IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable(Of Color))
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.ConsoleColor)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.ConsoleColor)
   name: WriteLineAsync(IIOHub, String, ConsoleColor)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_ConsoleColor_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.ConsoleColor)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.ConsoleColor)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_ConsoleColor_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.ConsoleColor)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.ConsoleColor)
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, String, ConsoleColor)
-- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Drawing.Color)
+- uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Drawing.Color)
   name: WriteLineAsync(IIOHub, String, Color)
-  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Drawing_Color_
-  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Drawing.Color)
-  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Drawing.Color)
+  href: api/PlasticMetal.MobileSuit.IOExtensions.html#PlasticMetal_MobileSuit_IOExtensions_WriteLineAsync_PlasticMetal_MobileSuit_IIOHub_System_String_System_Drawing_Color_
+  commentId: M:PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub,System.String,System.Drawing.Color)
+  fullName: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync(PlasticMetal.MobileSuit.IIOHub, System.String, System.Drawing.Color)
   nameWithType: IOExtensions.WriteLineAsync(IIOHub, String, Color)
 - uid: PlasticMetal.MobileSuit.IOExtensions.WriteLineAsync*
   name: WriteLineAsync
@@ -3645,11 +3645,11 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Suit.CreateContentArray
   nameWithType: Suit.CreateContentArray
-- uid: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
+- uid: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.IIOHub,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
   name: PrintAssemblyInformation(IIOHub, String, Version, Boolean, String, String, Boolean)
-  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_PlasticMetal_MobileSuit_Core_IIOHub_System_String_System_Version_System_Boolean_System_String_System_String_System_Boolean_
-  commentId: M:PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOHub,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
-  fullName: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.Core.IIOHub, System.String, System.Version, System.Boolean, System.String, System.String, System.Boolean)
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintAssemblyInformation_PlasticMetal_MobileSuit_IIOHub_System_String_System_Version_System_Boolean_System_String_System_String_System_Boolean_
+  commentId: M:PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.IIOHub,System.String,System.Version,System.Boolean,System.String,System.String,System.Boolean)
+  fullName: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation(PlasticMetal.MobileSuit.IIOHub, System.String, System.Version, System.Boolean, System.String, System.String, System.Boolean)
   nameWithType: Suit.PrintAssemblyInformation(IIOHub, String, Version, Boolean, String, String, Boolean)
 - uid: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation*
   name: PrintAssemblyInformation
@@ -3658,11 +3658,11 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.Suit.PrintAssemblyInformation
   nameWithType: Suit.PrintAssemblyInformation
-- uid: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOHub)
+- uid: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.IIOHub)
   name: PrintMobileSuitInformation(IIOHub)
-  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintMobileSuitInformation_PlasticMetal_MobileSuit_Core_IIOHub_
-  commentId: M:PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOHub)
-  fullName: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.Core.IIOHub)
+  href: api/PlasticMetal.MobileSuit.Suit.html#PlasticMetal_MobileSuit_Suit_PrintMobileSuitInformation_PlasticMetal_MobileSuit_IIOHub_
+  commentId: M:PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.IIOHub)
+  fullName: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation(PlasticMetal.MobileSuit.IIOHub)
   nameWithType: Suit.PrintMobileSuitInformation(IIOHub)
 - uid: PlasticMetal.MobileSuit.Suit.PrintMobileSuitInformation*
   name: PrintMobileSuitInformation
@@ -3809,11 +3809,11 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.SuitHostBuilder.Configuration
   nameWithType: SuitHostBuilder.Configuration
-- uid: PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+- uid: PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.IIOHubConfigurer)
   name: ConfigureIO(IIOHubConfigurer)
-  href: api/PlasticMetal.MobileSuit.SuitHostBuilder.html#PlasticMetal_MobileSuit_SuitHostBuilder_ConfigureIO_PlasticMetal_MobileSuit_Core_IIOHubConfigurer_
-  commentId: M:PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
-  fullName: PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.Core.IIOHubConfigurer)
+  href: api/PlasticMetal.MobileSuit.SuitHostBuilder.html#PlasticMetal_MobileSuit_SuitHostBuilder_ConfigureIO_PlasticMetal_MobileSuit_IIOHubConfigurer_
+  commentId: M:PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.IIOHubConfigurer)
+  fullName: PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO(PlasticMetal.MobileSuit.IIOHubConfigurer)
   nameWithType: SuitHostBuilder.ConfigureIO(IIOHubConfigurer)
 - uid: PlasticMetal.MobileSuit.SuitHostBuilder.ConfigureIO*
   name: ConfigureIO
@@ -4199,6 +4199,104 @@ references:
   isSpec: "True"
   fullName: PlasticMetal.MobileSuit.SwitchAttribute.SwitchAttribute
   nameWithType: SwitchAttribute.SwitchAttribute
+- uid: PlasticMetal.MobileSuit.UI
+  name: PlasticMetal.MobileSuit.UI
+  href: api/PlasticMetal.MobileSuit.UI.html
+  commentId: N:PlasticMetal.MobileSuit.UI
+  fullName: PlasticMetal.MobileSuit.UI
+  nameWithType: PlasticMetal.MobileSuit.UI
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput
+  name: ConsoleInput
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html
+  commentId: T:PlasticMetal.MobileSuit.UI.ConsoleInput
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput
+  nameWithType: ConsoleInput
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom*
+  name: CuiSelectItemFrom
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiSelectItemFrom_
+  commentId: Overload:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom
+  nameWithType: ConsoleInput.CuiSelectItemFrom
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom``1(PlasticMetal.MobileSuit.IIOHub,System.String,``0[],System.Func{``0,System.String},System.Func{System.Int32,``0,System.String})
+  name: CuiSelectItemFrom<T>(IIOHub, String, T[], Func<T, String>, Func<Int32, T, String>)
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiSelectItemFrom__1_PlasticMetal_MobileSuit_IIOHub_System_String___0___System_Func___0_System_String__System_Func_System_Int32___0_System_String__
+  commentId: M:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom``1(PlasticMetal.MobileSuit.IIOHub,System.String,``0[],System.Func{``0,System.String},System.Func{System.Int32,``0,System.String})
+  name.vb: CuiSelectItemFrom(Of T)(IIOHub, String, T(), Func(Of T, String), Func(Of Int32, T, String))
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom<T>(PlasticMetal.MobileSuit.IIOHub, System.String, T[], System.Func<T, System.String>, System.Func<System.Int32, T, System.String>)
+  fullName.vb: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemFrom(Of T)(PlasticMetal.MobileSuit.IIOHub, System.String, T(), System.Func(Of T, System.String), System.Func(Of System.Int32, T, System.String))
+  nameWithType: ConsoleInput.CuiSelectItemFrom<T>(IIOHub, String, T[], Func<T, String>, Func<Int32, T, String>)
+  nameWithType.vb: ConsoleInput.CuiSelectItemFrom(Of T)(IIOHub, String, T(), Func(Of T, String), Func(Of Int32, T, String))
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom*
+  name: CuiSelectItemsFrom
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiSelectItemsFrom_
+  commentId: Overload:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom
+  nameWithType: ConsoleInput.CuiSelectItemsFrom
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom``1(PlasticMetal.MobileSuit.IIOHub,System.String,``0[],System.Func{``0,System.String},System.Func{System.Int32,``0,System.String},PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput)
+  name: CuiSelectItemsFrom<T>(IIOHub, String, T[], Func<T, String>, Func<Int32, T, String>, ConsoleInput.ParseUserSelectItemsInput)
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiSelectItemsFrom__1_PlasticMetal_MobileSuit_IIOHub_System_String___0___System_Func___0_System_String__System_Func_System_Int32___0_System_String__PlasticMetal_MobileSuit_UI_ConsoleInput_ParseUserSelectItemsInput_
+  commentId: M:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom``1(PlasticMetal.MobileSuit.IIOHub,System.String,``0[],System.Func{``0,System.String},System.Func{System.Int32,``0,System.String},PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput)
+  name.vb: CuiSelectItemsFrom(Of T)(IIOHub, String, T(), Func(Of T, String), Func(Of Int32, T, String), ConsoleInput.ParseUserSelectItemsInput)
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom<T>(PlasticMetal.MobileSuit.IIOHub, System.String, T[], System.Func<T, System.String>, System.Func<System.Int32, T, System.String>, PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput)
+  fullName.vb: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiSelectItemsFrom(Of T)(PlasticMetal.MobileSuit.IIOHub, System.String, T(), System.Func(Of T, System.String), System.Func(Of System.Int32, T, System.String), PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput)
+  nameWithType: ConsoleInput.CuiSelectItemsFrom<T>(IIOHub, String, T[], Func<T, String>, Func<Int32, T, String>, ConsoleInput.ParseUserSelectItemsInput)
+  nameWithType.vb: ConsoleInput.CuiSelectItemsFrom(Of T)(IIOHub, String, T(), Func(Of T, String), Func(Of Int32, T, String), ConsoleInput.ParseUserSelectItemsInput)
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Boolean})
+  name: CuiYesNo(IIOHub, String, Nullable<Boolean>)
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiYesNo_PlasticMetal_MobileSuit_IIOHub_System_String_System_Nullable_System_Boolean__
+  commentId: M:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo(PlasticMetal.MobileSuit.IIOHub,System.String,System.Nullable{System.Boolean})
+  name.vb: CuiYesNo(IIOHub, String, Nullable(Of Boolean))
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable<System.Boolean>)
+  fullName.vb: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo(PlasticMetal.MobileSuit.IIOHub, System.String, System.Nullable(Of System.Boolean))
+  nameWithType: ConsoleInput.CuiYesNo(IIOHub, String, Nullable<Boolean>)
+  nameWithType.vb: ConsoleInput.CuiYesNo(IIOHub, String, Nullable(Of Boolean))
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo*
+  name: CuiYesNo
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_CuiYesNo_
+  commentId: Overload:PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.CuiYesNo
+  nameWithType: ConsoleInput.CuiYesNo
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput
+  name: ConsoleInput.ParseUserSelectItemsInput
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput.html
+  commentId: T:PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.ParseUserSelectItemsInput
+  nameWithType: ConsoleInput.ParseUserSelectItemsInput
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Int32})
+  name: SpaceHyphenParser(String, IReadOnlyDictionary<String, Int32>)
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_SpaceHyphenParser_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Int32__
+  commentId: M:PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Int32})
+  name.vb: SpaceHyphenParser(String, IReadOnlyDictionary(Of String, Int32))
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser(System.String, System.Collections.Generic.IReadOnlyDictionary<System.String, System.Int32>)
+  fullName.vb: PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser(System.String, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.Int32))
+  nameWithType: ConsoleInput.SpaceHyphenParser(String, IReadOnlyDictionary<String, Int32>)
+  nameWithType.vb: ConsoleInput.SpaceHyphenParser(String, IReadOnlyDictionary(Of String, Int32))
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser*
+  name: SpaceHyphenParser
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_SpaceHyphenParser_
+  commentId: Overload:PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.SpaceHyphenParser
+  nameWithType: ConsoleInput.SpaceHyphenParser
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer*
+  name: ToStringOrEmptySerializer
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_ToStringOrEmptySerializer_
+  commentId: Overload:PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer
+  isSpec: "True"
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer
+  nameWithType: ConsoleInput.ToStringOrEmptySerializer
+- uid: PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer``1(``0)
+  name: ToStringOrEmptySerializer<T>(T)
+  href: api/PlasticMetal.MobileSuit.UI.ConsoleInput.html#PlasticMetal_MobileSuit_UI_ConsoleInput_ToStringOrEmptySerializer__1___0_
+  commentId: M:PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer``1(``0)
+  name.vb: ToStringOrEmptySerializer(Of T)(T)
+  fullName: PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer<T>(T)
+  fullName.vb: PlasticMetal.MobileSuit.UI.ConsoleInput.ToStringOrEmptySerializer(Of T)(T)
+  nameWithType: ConsoleInput.ToStringOrEmptySerializer<T>(T)
+  nameWithType.vb: ConsoleInput.ToStringOrEmptySerializer(Of T)(T)
 - uid: PlasticMetal.MobileSuit.WithDefaultAttribute
   name: WithDefaultAttribute
   href: api/PlasticMetal.MobileSuit.WithDefaultAttribute.html
