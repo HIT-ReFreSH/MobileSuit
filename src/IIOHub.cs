@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Services;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace PlasticMetal.MobileSuit;
 
 /// <summary>
 ///     To configure Options of IOHub

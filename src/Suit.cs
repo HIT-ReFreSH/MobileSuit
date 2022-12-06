@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
-using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuit;
 

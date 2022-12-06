@@ -16,7 +16,7 @@
 		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
-		<Version>4.0.1</Version>
+		<Version>4.1.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Nullable>enable</Nullable>
 		<LangVersion>10</LangVersion>
@@ -25,7 +25,7 @@
 
 	<PropertyGroup>
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-		<PackageReleaseNotes>Add full Async Support.</PackageReleaseNotes>
+		<PackageReleaseNotes>Add CUI components.</PackageReleaseNotes>
 		<Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
 		<Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
