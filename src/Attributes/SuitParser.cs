@@ -1,25 +1,37 @@
-﻿using System;
+﻿using PlasticMetal.MobileSuit.Core;
+using System;
 using System.Reflection;
 
 namespace PlasticMetal.MobileSuit;
 
 /// <summary>
+///     Describes a parser which convert string argument to certain type.
+/// </summary>
+public interface IParsingInfoProvider<out T>
+{
+    /// <summary>
+    ///     The parser name, name of injected parser, ot parser class's name
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    ///     The parser which convert string argument to certain type.
+    /// </summary>
+    public Converter<string, T?>? Converter{ get; }
+}
+/// <summary>
 ///     Stores a parser which convert string argument to certain type.
 /// </summary>
 [AttributeUsage(AttributeTargets.All)]
-public sealed class SuitParserAttribute : Attribute
+public sealed class SuitParserAttribute : Attribute, IParsingInfoProvider<object>
 {
     /// <summary>
     ///     Initialize with a parser.
     /// </summary>
-    /// <param name="parserClass">The class which contains the parser method(A public static method)</param>
-    /// <param name="name">The parser name, name of injected parser, ot parser class's name</param>
-    public SuitParserAttribute(string name, Type? parserClass = null)
+    /// <param name="name">The parser name, name of injected parser, or parser method's name; "Parser" is default.</param>
+    public SuitParserAttribute(string name = "Parse")
     {
-        Name = name;
-        Converter = parserClass?.GetMethod(name,
-                BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase)
-            ?.CreateDelegate(typeof(Converter<string, object>)) as Converter<string, object>;
+        Name=name;
     }
 
     /// <summary>
@@ -30,5 +42,48 @@ public sealed class SuitParserAttribute : Attribute
     /// <summary>
     ///     The parser which convert string argument to certain type.
     /// </summary>
-    public Converter<string, object?>? Converter { get; }
+    public Converter<string, object?>? Converter => null;
+}
+/// <summary>
+///     Stores a parser which convert string argument to certain type.
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public sealed class SuitParserAttribute<TTarget> : SuitParserAttribute<TTarget,TTarget>
+{
+    /// <summary>
+    ///     Initialize with a parser.
+    /// </summary>
+    /// <param name="name">The parser name, name of injected parser, or parser method's name; "Parser" is default.</param>
+    public SuitParserAttribute(string name = "Parse") : base(name)
+    {
+
+    }
+}
+/// <summary>
+///     Stores a parser which convert string argument to certain type.
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class SuitParserAttribute<TConverter,TTarget> : Attribute, IParsingInfoProvider<TTarget>
+{
+    /// <summary>
+    ///     Initialize with a parser.
+    /// </summary>
+    /// <param name="name">The parser name, name of injected parser, or parser method's name; "Parser" is default.</param>
+    public SuitParserAttribute(string name="Parse")
+    {
+        Name = name;
+        Converter = typeof(TConverter).GetMethod(name,
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase)
+            ?.CreateDelegate(typeof(Converter<string, TTarget>)) as Converter<string, TTarget>;
+    }
+
+    /// <summary>
+    ///     The parser name, name of injected parser, ot parser class's name
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    ///     The parser which convert string argument to certain type.
+    /// </summary>
+    public Converter<string, TTarget?>? Converter { get; }
 }

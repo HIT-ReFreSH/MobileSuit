@@ -134,12 +134,10 @@ public class Client
 
     public class SleepArgument : AutoDynamicParameter
     {
-        [Option("n")]
-        [AsCollection]
-        [WithDefault]
+        [Option("n"),AsCollection,WithDefault]
         public List<string> Name { get; set; } = new();
 
-        [Option("t")] [WithDefault] public int SleepTime { get; set; } = 0;
+        [Option("t"),WithDefault] public int SleepTime { get; set; } = 0;
 
         [Switch("s")] public bool IsSleeping { get; set; }
     }

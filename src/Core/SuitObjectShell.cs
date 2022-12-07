@@ -90,7 +90,7 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
             Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
         };
         if (infoTag is not null) return sh;
-        sh.Information = SuitBuildTools.GetMemberInfo(sh);
+        sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
     }
 
@@ -110,7 +110,7 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
             Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
         };
         if (infoTag is not null) return sh;
-        sh.Information = SuitBuildTools.GetMemberInfo(sh);
+        sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
     }
 
@@ -129,7 +129,7 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
             Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
         };
         if (infoTag is not null) return sh;
-        sh.Information = SuitBuildTools.GetMemberInfo(sh);
+        sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
     }
 
@@ -143,7 +143,7 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     {
         object? InstanceFactory(SuitContext s)
         {
-            return SuitBuildTools.CreateInstance(type, s) ?? new object();
+            return SuitBuildUtils.CreateInstance(type, s) ?? new object();
         }
 
         var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();

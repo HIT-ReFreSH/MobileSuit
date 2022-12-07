@@ -22,7 +22,7 @@ public class SuitMethodShell : SuitShell
         InvokeMember = method.Invoke;
         Parameters = method.GetParameters();
 
-        _suitMethodParameterInfo = SuitBuildTools.GetMethodParameterInfo(Parameters);
+        _suitMethodParameterInfo = SuitBuildUtils.GetMethodParameterInfo(Parameters);
 
         var info = method.GetCustomAttribute<SuitInfoAttribute>();
         if (info is null)
@@ -146,7 +146,7 @@ public class SuitMethodShell : SuitShell
         var args = context.Request[1..];
         try
         {
-            var pass = SuitBuildTools.GetArgs(Parameters, _suitMethodParameterInfo, args, context);
+            var pass = SuitBuildUtils.GetArgs(Parameters, _suitMethodParameterInfo, args, context);
             if (pass is null) return;
             await Execute(context, pass);
         }

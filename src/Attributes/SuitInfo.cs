@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Resources;
+using System.Security.AccessControl;
 using System.Threading;
 
 namespace PlasticMetal.MobileSuit;
@@ -8,7 +9,7 @@ namespace PlasticMetal.MobileSuit;
 ///     Stores the information of a member to be displayed.
 /// </summary>
 [AttributeUsage(AttributeTargets.All)]
-public sealed class SuitInfoAttribute : Attribute
+public class SuitInfoAttribute : Attribute
 {
     /// <summary>
     ///     Initialize with the information.
@@ -36,4 +37,18 @@ public sealed class SuitInfoAttribute : Attribute
     ///     The information.
     /// </summary>
     public string Text { get; }
+}
+/// <summary>
+///     Stores the information of a member to be displayed.
+/// </summary>
+public sealed class SuitInfoAttribute<T> : SuitInfoAttribute
+{
+    /// <summary>
+    ///     Initialize with the information.
+    /// </summary>
+    /// <param name="text">The information.</param>
+    public SuitInfoAttribute(string text) : base(new ResourceManager(typeof(T)).GetString(text, Thread.CurrentThread.CurrentCulture) ?? "")
+    {
+    }
+
 }

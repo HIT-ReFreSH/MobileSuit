@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using static PlasticMetal.MobileSuit.SuitBuildTools;
+using static PlasticMetal.MobileSuit.Core.SuitBuildUtils;
 
 namespace PlasticMetal.MobileSuit.Core.Middleware;
 

@@ -26,9 +26,9 @@ public class AppShellMiddleware : ISuitMiddleware
 
         var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
         var client = context.ServiceProvider.GetRequiredService<SuitAppShell>();
-        var asTask = context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) &&
-                     target == SuitBuildTools.SuitCommandTargetAppTask;
-        var forceClient = target == SuitBuildTools.SuitCommandTargetApp;
+        var asTask = context.Properties.TryGetValue(SuitBuildUtils.SuitCommandTarget, out var target) &&
+                     target == SuitBuildUtils.SuitCommandTargetAppTask;
+        var forceClient = target == SuitBuildUtils.SuitCommandTargetApp;
         if (asTask)
         {
 

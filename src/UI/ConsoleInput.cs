@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using static PlasticMetal.MobileSuit.SuitTools;
+using static PlasticMetal.MobileSuit.SuitUtils;
 
 namespace PlasticMetal.MobileSuit.UI;
 

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PlasticMetal.MobileSuit.Core.Services;
-using static PlasticMetal.MobileSuit.SuitBuildTools;
+using static PlasticMetal.MobileSuit.Core.SuitBuildUtils;
 
 namespace PlasticMetal.MobileSuit.Core.Middleware;
 

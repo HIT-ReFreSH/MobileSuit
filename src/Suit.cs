@@ -74,7 +74,7 @@ public static class Suit
     /// <returns>packaged ContentArray</returns>
     public static IEnumerable<PrintUnit> CreateContentArray(params (string, Color?)[] contents)
     {
-        return SuitTools.CreateContentArray(contents);
+        return SuitUtils.CreateContentArray(contents);
     }
 
 
@@ -86,7 +86,7 @@ public static class Suit
     public static IEnumerable<PrintUnit> CreateContentArray(
         params (string, Color?, Color?)[] contents)
     {
-        return SuitTools.CreateContentArray(contents);
+        return SuitUtils.CreateContentArray(contents);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public static class Suit
     /// <returns>packaged ContentArray</returns>
     public static IEnumerable<PrintUnit> CreateContentArray(params (string, ConsoleColor?)[] contents)
     {
-        return SuitTools.CreateContentArray(contents);
+        return SuitUtils.CreateContentArray(contents);
     }
 
 
@@ -108,7 +108,7 @@ public static class Suit
     public static IEnumerable<PrintUnit> CreateContentArray(
         params (string, ConsoleColor?, ConsoleColor?)[] contents)
     {
-        return SuitTools.CreateContentArray(contents);
+        return SuitUtils.CreateContentArray(contents);
     }
 
     /// <summary>
@@ -132,7 +132,7 @@ public static class Suit
         if (io == null) return;
 
         if (showMobileSuitPowered)
-            io.WriteLine(SuitTools.CreateContentArray(
+            io.WriteLine(SuitUtils.CreateContentArray(
                 (assemblyName, null),
                 (" ", null),
                 (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor),
@@ -143,14 +143,14 @@ public static class Suit
                     io.ColorSetting.TitleColor)
             ));
         else
-            io.WriteLine(SuitTools.CreateContentArray(
+            io.WriteLine(SuitUtils.CreateContentArray(
                 (assemblyName, null),
                 (" ", null),
                 (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor)
             ));
         io.WriteLine();
         if (owner != null)
-            io.WriteLine(SuitTools.CreateContentArray(
+            io.WriteLine(SuitUtils.CreateContentArray(
                 (Lang.CopyrightC, null),
                 (owner, io.ColorSetting.TitleColor)
                 //, (Lang.AllRightsReserved, null)
@@ -164,7 +164,7 @@ public static class Suit
 
         if (showLsHelp)
         {
-            io.WriteLine(SuitTools.CreateContentArray(
+            io.WriteLine(SuitUtils.CreateContentArray(
                 (Lang.LsHelp1, null),
                 ("Ls", io.ColorSetting.PromptColor),
                 (Lang.LsHelp2, null)
@@ -180,20 +180,20 @@ public static class Suit
     public static void PrintMobileSuitInformation(this IIOHub io)
     {
         if (io == null) return;
-        io.WriteLine(SuitTools.CreateContentArray(
+        io.WriteLine(SuitUtils.CreateContentArray(
             (Lang.PoweredBy, null),
             ("MobileSuit", io.ColorSetting.ErrorColor),
             (" ", null),
             (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.TitleColor)
         ));
-        io.WriteLine(SuitTools.CreateContentArray(
+        io.WriteLine(SuitUtils.CreateContentArray(
             (Lang.CopyrightC, null),
             ("Plastic-Metal", io.ColorSetting.TitleColor)
             //, (Lang.AllRightsReserved, null)
         ));
         io.WriteLine();
         io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.InformationColor);
-        io.WriteLine(SuitTools.CreateContentArray(
+        io.WriteLine(SuitUtils.CreateContentArray(
             (Lang.LsHelp1, null),
             ("Help", io.ColorSetting.PromptColor),
             (Lang.MsHelp2, null)

@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static PlasticMetal.MobileSuit.SuitTools;
+using static PlasticMetal.MobileSuit.SuitUtils;
 
 namespace PlasticMetal.MobileSuit.Core.Services;
 

@@ -8,7 +8,7 @@ using PlasticMetal.MobileSuit.Core;
 
 namespace PlasticMetal.MobileSuit;
 
-using static SuitTools;
+using static SuitUtils;
 
 /// <summary>
 ///     A basic unit of output print, contains foreground, background and text.

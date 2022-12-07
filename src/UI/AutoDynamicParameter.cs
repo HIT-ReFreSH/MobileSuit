@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace PlasticMetal.MobileSuit.UI;
 
 /// <summary>
 ///     A DynamicParameter which can parse itself automatically
@@ -30,11 +31,11 @@ public abstract class AutoDynamicParameter : IDynamicParameter
                             property.PropertyType.GetMethod("Add", new[]
                             {
                                 property.GetType().GetElementType() ?? typeof(string)
-                            })?.Invoke(property.GetValue(obj), new[] {value});
+                            })?.Invoke(property.GetValue(obj), new[] { value });
                         }
                     )
                     : property.SetValue,
-                SuitBuildTools.CreateConverterFactory(property.PropertyType, parseAttr),
+                SuitBuildUtils.CreateConverterFactory(property.PropertyType, parseAttr),
                 memberAttr.Length,
                 property.GetCustomAttribute<WithDefaultAttribute>(true) != null));
         }
@@ -50,7 +51,7 @@ public abstract class AutoDynamicParameter : IDynamicParameter
     /// <inheritdoc />
     public bool Parse(IReadOnlyList<string> args, SuitContext context)
     {
-        if (args is not {Count: > 0})
+        if (args is not { Count: > 0 })
             return Members.Values.All(member => member.Assigned);
         for (var i = 0; i < args.Count;)
         {

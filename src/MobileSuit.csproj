@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6</TargetFrameworks>
+		<TargetFrameworks>net7</TargetFrameworks>
 		<PackageId>PlasticMetal.MobileSuit</PackageId>
 		<Authors>PlaticMetal</Authors>
 		<OutputType>Library</OutputType>
@@ -16,10 +16,10 @@
 		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
-		<Version>4.1.1</Version>
+		<Version>4.2.0-beta1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Nullable>enable</Nullable>
-		<LangVersion>10</LangVersion>
+		<LangVersion>11</LangVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	</PropertyGroup>
 
@@ -50,10 +50,10 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

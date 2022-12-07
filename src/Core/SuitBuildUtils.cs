@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
-using PlasticMetal.MobileSuit.Core;
 using PlasticMetal.MobileSuit.Core.Services;
+using PlasticMetal.MobileSuit.UI;
 
-namespace PlasticMetal.MobileSuit;
+namespace PlasticMetal.MobileSuit.Core;
 
 /// <summary>
 ///     Factory to create instance from certain context
@@ -18,7 +18,7 @@ namespace PlasticMetal.MobileSuit;
 /// <returns></returns>
 public delegate object? InstanceFactory(SuitContext context);
 
-internal static class SuitBuildTools
+internal static class SuitBuildUtils
 {
     public const string SuitCommandTarget = "suit-cmd-target";
     public const string SuitCommandTargetApp = "app";

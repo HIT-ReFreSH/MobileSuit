@@ -1,8 +1,9 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using PlasticMetal.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace PlasticMetal.MobileSuit.UI;
 
 /// <summary>
 ///     Represents a Parameter which can be parsed from a String[].

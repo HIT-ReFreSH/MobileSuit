@@ -23,8 +23,8 @@ public class FinalizeMiddleware : ISuitMiddleware
             RequestStatus.Running => RequestStatus.Running,
             var r => r
         };
-        if (!context.Properties.TryGetValue(SuitBuildTools.SuitCommandTarget, out var target) ||
-            target != SuitBuildTools.SuitCommandTargetAppTask)
+        if (!context.Properties.TryGetValue(SuitBuildUtils.SuitCommandTarget, out var target) ||
+            target != SuitBuildUtils.SuitCommandTargetAppTask)
             context.Dispose();
         await next(context);
     }

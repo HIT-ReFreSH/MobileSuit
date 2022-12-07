@@ -8,7 +8,7 @@ namespace PlasticMetal.MobileSuit;
 /// <summary>
 ///     Useful static functions for MobileSuit Programming
 /// </summary>
-public static class SuitTools
+public static class SuitUtils
 {
     /// <summary>
     ///     provides packaging for ContentArray
