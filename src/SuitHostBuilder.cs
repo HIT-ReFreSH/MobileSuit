@@ -123,7 +123,7 @@ public class SuitHostBuilder
         Services.AddSingleton<IHistoryService, HistoryService>();
         Services.AddScoped<IIOHub, IOHub>();
         Services.AddLogging();
-        Services.AddSingleton<IIOHubConfigurer>(_ => { });
+        Services.AddSingleton<IIOHubConfigurator>(_ => { });
         Services.AddSingleton(Parsing);
         Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
     }
@@ -176,7 +176,7 @@ public class SuitHostBuilder
     ///     config IO
     /// </summary>
     /// <param name="configurer"></param>
-    public void ConfigureIO(IIOHubConfigurer configurer)
+    public void ConfigureIO(IIOHubConfigurator configurer)
     {
         Services.AddSingleton(configurer);
     }

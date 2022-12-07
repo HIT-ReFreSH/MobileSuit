@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using PlasticMetal.MobileSuit.Core;
@@ -9,8 +10,30 @@ namespace PlasticMetal.MobileSuit;
 /// <summary>
 ///     To configure Options of IOHub
 /// </summary>
-public delegate void IIOHubConfigurer(IIOHub hub);
-
+public delegate void IIOHubConfigurator(IIOHub hub);
+/// <summary>
+/// Featured Options of IOHub
+/// </summary>
+[Flags]
+public enum IOOptions:ulong
+{
+    /// <summary>
+    /// No feature applied.
+    /// </summary>
+    None = 0,
+    /// <summary>
+    /// Suggests no prompt should be output to the stream
+    /// </summary>
+    DisablePrompt = 1 << 1,
+    /// <summary>
+    /// Suggests no type/time tag should be output to the stream
+    /// </summary>
+    DisableTag = 1 << 2,
+    /// <summary>
+    /// Suggests no Line prefix should be output to the stream
+    /// </summary>
+    DisableLinePrefix = 1<< 3,
+}
 /// <summary>
 ///     A entity, which serves the input/output of a mobile suit.
 /// </summary>
@@ -23,12 +46,8 @@ public interface IIOHub
     /// <summary>
     ///     Disable Time marks which shows in Output-Redirected Environment.
     /// </summary>
-    public bool DisableTags { get; set; }
+    public IOOptions Options { get; set; }
 
-    /*/// <summary>
-    ///     Default IOServer, using stdin, stdout, stderr.
-    /// </summary>
-    public static IOHub GeneralIO => Suit.GeneralIO;*/
 
     /// <summary>
     ///     Check if this IOServer's error stream is redirected (NOT stderr)

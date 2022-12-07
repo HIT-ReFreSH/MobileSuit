@@ -16,8 +16,8 @@ public class PureTextIOHub : IOHub
     /// <summary>
     ///     Initialize a IOhub.
     /// </summary>
-    public PureTextIOHub(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter,
-        configurer)
+    public PureTextIOHub(PromptFormatter promptFormatter, IIOHubConfigurator configurator) : base(promptFormatter,
+        configurator)
     {
     }
 
@@ -42,8 +42,8 @@ public class IOHub4Bit : IOHub
     /// <summary>
     ///     Initialize a IOhub.
     /// </summary>
-    public IOHub4Bit(PromptFormatter promptFormatter, IIOHubConfigurer configurer) : base(promptFormatter,
-        configurer)
+    public IOHub4Bit(PromptFormatter promptFormatter, IIOHubConfigurator configurator) : base(promptFormatter,
+        configurator)
     {
     }
 
@@ -122,14 +122,14 @@ public class IOHub : IIOHub
     /// <summary>
     ///     Initialize a IOServer.
     /// </summary>
-    public IOHub(PromptFormatter promptFormatter, IIOHubConfigurer configurer)
+    public IOHub(PromptFormatter promptFormatter, IIOHubConfigurator configurator)
     {
         ColorSetting = IColorSetting.DefaultColorSetting;
         Input = Console.In;
         Output = Console.Out;
         ErrorStream = Console.Error;
         FormatPrompt = promptFormatter;
-        configurer(this);
+        configurator(this);
     }
 
     private List<PrintUnit> Prefix { get; } = new();
@@ -190,7 +190,7 @@ public class IOHub : IIOHub
     }
 
     /// <inheritdoc />
-    public bool DisableTags { get; set; }
+    public IOOptions Options { get; set; }
 
     /// <inheritdoc />
     public bool IsErrorRedirected => !Console.Error.Equals(ErrorStream);
@@ -203,6 +203,7 @@ public class IOHub : IIOHub
 
     /// <inheritdoc />
     public TextWriter Output { get; set; }
+    
 
     /// <inheritdoc />
     public void ResetError()
@@ -257,18 +258,13 @@ public class IOHub : IIOHub
     /// <inheritdoc />
     public IEnumerable<PrintUnit> GetLinePrefix(OutputType type)
     {
-        if (IsOutputRedirected)
-        {
-            if (DisableTags) return Array.Empty<PrintUnit>();
-            var sb = new StringBuilder();
-            if (DisableTags) return new PrintUnit[] {("", null)};
-            AppendTimeStamp(sb);
-            AppendTimeStamp(sb);
-            sb.Append(IIOHub.GetLabel(type));
-            return new PrintUnit[] {(sb.ToString(), null)};
-        }
+        if (!Options.HasFlag(IOOptions.DisableLinePrefix)) return Prefix;
+        if (Options.HasFlag(IOOptions.DisableTag)) return Array.Empty<PrintUnit>();
+        var sb = new StringBuilder();
+        AppendTimeStamp(sb);
+        sb.Append(IIOHub.GetLabel(type));
+        return new PrintUnit[] {(sb.ToString(), null)};
 
-        return Prefix;
     }
 
     private static void AppendTimeStamp(StringBuilder sb)
