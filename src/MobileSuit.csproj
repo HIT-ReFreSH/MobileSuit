@@ -16,7 +16,7 @@
 		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
-		<Version>4.2.0</Version>
+		<Version>4.2.1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Nullable>enable</Nullable>
 		<LangVersion>11</LangVersion>

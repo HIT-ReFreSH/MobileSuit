@@ -27,7 +27,7 @@ internal class SuitHostApplicationLifetime: IHostApplicationLifetime
     /// <inheritdoc/>
     public async void StopApplication()
     {
-        if (ApplicationStartedSource.IsCancellationRequested) return;
+        if (ApplicationStoppingSource.IsCancellationRequested) return;
         ApplicationStoppingSource.Cancel();
         await _stopCallback();
         ApplicationStoppedSource.Cancel();

@@ -46,7 +46,7 @@ public class SuitParser<T>
     /// <returns></returns>
     public static SuitParser<T> FromName(string name)
         => FromConverter((typeof(T).GetMethod("Parse",
-                                 BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase)
+                                 BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase, new[]{typeof(string)})
                              ?.CreateDelegate(typeof(Converter<string, T>)) as Converter<string, T>) ??
                          throw new KeyNotFoundException("Parse"), name);
     /// <summary>
