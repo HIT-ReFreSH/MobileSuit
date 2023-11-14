@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net7</TargetFramework>
     <AssemblyName>PlasticMetal.MobileSuit.Tests</AssemblyName>
-    <RootNamespace>PlasticMetal.MobileSuit.Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
