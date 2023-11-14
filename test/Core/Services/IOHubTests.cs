@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core.Services.Tests
+namespace PlasticMetal.MobileSuit.Tests.Core.Services
 {
 	[TestClass]
 	public class IOHubTests
