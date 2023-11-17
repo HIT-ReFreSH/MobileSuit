@@ -30,16 +30,16 @@
 		<Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>images\Plastic-Metal.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>/images/Plastic-Metal.png</PackageIcon>
+		<PackageReadmeFile>/README.md</PackageReadmeFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+		<None Include="..\README.md" Pack="true" PackagePath="/"/>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="\images\" />
+		<None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="/images/" />
 
 	</ItemGroup>
 
