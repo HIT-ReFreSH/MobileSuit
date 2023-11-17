@@ -129,11 +129,12 @@ public class UserInputMiddleware : ISuitMiddleware
          *  \: S4(S3)
          *  default: S3
          * S4:
-         *  default: pop
+         *  default: pop, setbuf
          * S5:
          *  default: S5
+         * S6: <POP-State>
          */
-        var status = (byte) 0;
+        var status = (byte)0;
         var quote = '\'';
         var stk = stackalloc byte[8];
         var stkptr = stk;
@@ -143,7 +144,7 @@ public class UserInputMiddleware : ISuitMiddleware
 
         void SpaceCommit()
         {
-            status = (byte) (stkptr == stk ? 0 : *--stkptr);
+            status = (byte)(stkptr == stk ? 0 : *--stkptr);
             (status == 1 ? ctl : l).Add(Regex.Unescape(new string(buf, 0, i)));
             status = 0;
             i = 0;
@@ -265,4 +266,192 @@ public class UserInputMiddleware : ISuitMiddleware
 
         return (l, ctl);
     }
+
+    private enum StackOp
+    {
+        None = 0,
+        Push1 = 1,
+        Push2 = 2,
+        Push1Then2 = 3,
+        Push3 = 4,
+        Pop = -1
+    }
+
+    private struct Operation
+    {
+        public bool AddToControl;
+        public bool AddToBuffer;
+        public StackOp StackOp;
+        public bool SpaceCommit;
+        public bool SetQuote;
+    }
+
+    private unsafe static (IList<string>, IList<string>) SplitCommandLine_2(string commandLine)
+    {
+        /*
+         * Node:
+         * S0: WordStart
+         * S1: IORedirect
+         * S2: Word
+         * S3: QuotesWord
+         * S4: AfterBackslash
+         * S5: Comment
+         *
+         * Edge
+         * S0:
+         *  &,!,@,<space>: S0
+         *  <,>: S1
+         *  #: S5
+         *  ",': S3(S2)
+         *  \: S4(S2)
+         *  default: S2
+         * S1:
+         *  <space>: S2(S1)
+         *  ",': S3(S2,S1)
+         *  \: S4(S2,S1)
+            #: S5
+         *  default: S2(S1)
+         * S2:
+         *  <space>: pop
+         *  ",': S3(S2)
+         *  \: S4(S2)
+         *  <,>: S1
+         *  #: S5
+         *  default: S2
+         * S3:
+         *  ",': pop
+         *  \: S4(S3)
+         *  default: S3
+         * S4:
+         *  default: pop, setbuf
+         * S5:
+         *  default: S5
+         * S6: <POP-State>
+         */
+        if (string.IsNullOrEmpty(commandLine))
+            return (new List<string>(), new List<string>());
+
+        var l = new List<string>();
+        var ctl = new List<string>();
+
+        var status = 0;
+        var quote = '\'';
+        var stk = stackalloc int[8];
+        var stkptr = stk;
+
+        var i = 0;
+        var buf = stackalloc char[256];
+
+        void SpaceCommit()
+        {
+            status = stkptr == stk ? 0 : stkptr[-1];
+            (status == 1 ? ctl : l).Add(Regex.Unescape(new string(buf, 0, i)));
+            status = 0;
+            i = 0;
+        }
+
+        (int, Operation) transitions(
+            int lastStatus, char c, char currentQuote) => (lastStatus, c) switch
+            {
+                (0, '&' or '!' or '@') => (0, new Operation { AddToControl = true }),
+                (0, ' ') => (0, new Operation { }),
+                (0, '<' or '>') => (1, new Operation { AddToControl = true }),
+                (0, '"' or '\'') => (3, new Operation
+                {
+                    StackOp = StackOp.Push2,
+                    SetQuote = true
+                }),
+                (0, '\\') => (4, new Operation
+                {
+                    StackOp = StackOp.Push2,
+                    AddToBuffer = true
+                }),
+                (0, '#') => (5, new Operation { }),
+                (0, _) => (2, new Operation { AddToBuffer = true }),
+
+                (1, ' ') => (2, new Operation { StackOp = StackOp.Push1 }),
+                (1, '"' or '\'') => (3, new Operation
+                {
+                    StackOp = StackOp.Push1Then2,
+                    SetQuote = true
+                }),
+                (1, '\\') => (4, new Operation
+                {
+                    StackOp = StackOp.Push1Then2,
+                    AddToBuffer = true
+                }),
+                (1, _) => (2, new Operation
+                {
+                    StackOp = StackOp.Push1,
+                    AddToBuffer = true
+                }),
+
+                (2, '\'' or '"') => (3, new Operation
+                {
+                    StackOp = StackOp.Push2,
+                    SetQuote = true
+                }),
+                (2, '\\') => (4, new Operation
+                {
+                    StackOp = StackOp.Push2,
+                    AddToBuffer = true
+                }),
+                (2, ' ') => (0, new Operation { SpaceCommit = true }),
+                (2, '#') => (5, new Operation { SpaceCommit = true }),
+                (2, _) => (2, new Operation { AddToBuffer = true }),
+                (3, '"' or '\'') when c == currentQuote => (6, new Operation { StackOp = StackOp.Pop }),
+                (3, '\\') => (4, new Operation
+                {
+                    StackOp = StackOp.Push3,
+                    AddToBuffer = true
+                }),
+                (3, _) => (3, new Operation { AddToBuffer = true }),
+                (4, _) => (6, new Operation
+                {
+                    StackOp = StackOp.Pop,
+                    AddToBuffer = true
+                }),
+            };
+
+        foreach (var c in commandLine.TakeWhile(c => status != 5))
+        {
+            var (newStatus, operation) = transitions(status, c, quote);
+
+            status = newStatus;
+            if (operation.AddToControl)
+                ctl.Add(c.ToString());
+            if (operation.AddToBuffer)
+                buf[i++] = c;
+            switch (operation.StackOp)
+            {
+                case StackOp.Push1:
+                    *stkptr++ = 1;
+                    break;
+                case StackOp.Push2:
+                    *stkptr++ = 2;
+                    break;
+                case StackOp.Push1Then2:
+                    *stkptr++ = 1;
+                    *stkptr++ = 2;
+                    break;
+                case StackOp.Push3:
+                    *stkptr++ = 3;
+                    break;
+                case StackOp.Pop:
+                    status = *--stkptr;
+                    break;
+            }
+            if (operation.SpaceCommit)
+                SpaceCommit();
+            if (operation.SetQuote)
+                quote = c;
+        }
+
+        if (status == 2)
+            SpaceCommit();
+
+        return (l, ctl);
+    }
+
+
 }
