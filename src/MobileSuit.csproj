@@ -16,7 +16,7 @@
 		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
-		<Version>4.3</Version>
+		<Version>4.3.1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
@@ -30,8 +30,8 @@
 		<Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>/images/Plastic-Metal.png</PackageIcon>
-		<PackageReadmeFile>/README.md</PackageReadmeFile>
+		<PackageIcon>Plastic-Metal.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
@@ -39,7 +39,7 @@
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="/"/>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="/images/" />
+		<None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="/" />
 
 	</ItemGroup>
 

@@ -11,7 +11,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-
       # Required for a specific dotnet version that doesn't come with ubuntu-latest / windows-latest
       # Visit bit.ly/2synnZl to see the list of SDKs that are pre-installed with ubuntu-latest / windows-latest
       - name: Setup dotnet
@@ -22,20 +21,18 @@ jobs:
         run: dotnet build -c release MobileSuit.sln
       - name: Test
         run: dotnet test -c release MobileSuit.sln --no-build --verbosity normal
-      # Publish
-      - name: publish on version change
-        uses: rohith/publish-nuget@v2
+      # Publish all NuGet packages to NuGet.org
+      # Use --skip-duplicate to prevent errors if a package with the same version already exists.
+      # If you retry a failed workflow, already published packages will be skipped without error.
+      - name: Publish NuGet package
+        run: |
+          foreach($file in (Get-ChildItem "src/bin/Release/" -Recurse -Include *.nupkg)) {
+              dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+          }
+      # Publish the NuGet package as an artifact, so they can be used in the following jobs
+      - uses: actions/upload-artifact@v3
         with:
-          PROJECT_FILE_PATH: src/MobileSuit.csproj # Relative to repository root
-          # VERSION_FILE_PATH: Directory.Build.props # Filepath with version info, relative to repository root. Defaults to project file
-          # VERSION_REGEX: <Version>(.*)<\/Version> # Regex pattern to extract version info in a capturing group
-          # VERSION_STATIC: Bypasses version resolution; useful for external providers like Nerdbank.GitVersioning
-          # TAG_COMMIT: true # Flag to enable / disalge git tagging
-          # TAG_FORMAT: v* # Format of the git tag, [*] gets replaced with version
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}} # nuget.org API key
-          PACKAGE_NAME: PlasticMetal.MobileSuit
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: test-publish
-          path: ./src/bin/Release/
+          name: nuget
+          if-no-files-found: error
+          retention-days: 7
+          path: src/bin/Release/*.nupkg
