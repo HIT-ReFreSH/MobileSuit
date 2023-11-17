@@ -82,37 +82,13 @@
   </div>
   
   
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   
   <h6><strong>Namespace</strong>: <a class="xref" href="PlasticMetal.MobileSuit.Core.Services.html">PlasticMetal.MobileSuit.Core.Services</a></h6>
   <h6><strong>Assembly</strong>: PlasticMetal.MobileSuit.dll</h6>
   
   <h5 id="PlasticMetal_MobileSuit_Core_Services_SuitCommandServer_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SuitCommandServer : ISuitCommandServer</code></pre>
+    <pre><code class="lang-csharp hljs">public class SuitCommandServer : object, ISuitCommandServer</code></pre>
   </div>
   
   
@@ -209,9 +185,7 @@
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;ChDir&quot;)]
-[SuitAlias(&quot;cd&quot;)]
-public string ChDir(string path)</code></pre>
+    <pre><code class="lang-csharp hljs">public string ChDir(string path)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -267,9 +241,7 @@ public string ChDir(string path)</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;ClearCompleted&quot;)]
-[SuitAlias(&quot;Cct&quot;)]
-public async Task ClearCompleted()</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task ClearCompleted()</code></pre>
   </div>
   
   
@@ -277,7 +249,7 @@ public async Task ClearCompleted()</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p>
       </td>
     </tr>
@@ -315,8 +287,7 @@ public async Task ClearCompleted()</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Dir&quot;)]
-public string Dir()</code></pre>
+    <pre><code class="lang-csharp hljs">public string Dir()</code></pre>
   </div>
   
   
@@ -362,9 +333,7 @@ public string Dir()</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Exit&quot;)]
-[SuitAlias(&quot;Exit&quot;)]
-public virtual RequestStatus ExitSuit()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual RequestStatus ExitSuit()</code></pre>
   </div>
   
   
@@ -411,8 +380,7 @@ public virtual RequestStatus ExitSuit()</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Help&quot;)]
-public virtual async Task Help(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual async Task Help(string[] args)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -431,7 +399,7 @@ public virtual async Task Help(string[] args)</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p><p>Command status</p>
 </p>
       </td>
@@ -470,8 +438,7 @@ public virtual async Task Help(string[] args)</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Join&quot;)]
-public async Task&lt;string&gt; Join(int index, SuitContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task&lt;string?&gt; Join(int index, SuitContext context)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -496,7 +463,7 @@ public async Task&lt;string&gt; Join(int index, SuitContext context)</code></pre
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <span class="xref">Task</span>&lt;<span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;&gt;
         <p>
       </td>
     </tr>
@@ -534,9 +501,7 @@ public async Task&lt;string&gt; Join(int index, SuitContext context)</code></pre
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitAlias(&quot;Ls&quot;)]
-[SuitInfo(typeof(BuildInCommandInformations), &quot;List&quot;)]
-public virtual async Task ListCommands(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual async Task ListCommands(string[] args)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -555,7 +520,7 @@ public virtual async Task ListCommands(string[] args)</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p><p>Command status</p>
 </p>
       </td>
@@ -613,7 +578,7 @@ public virtual async Task ListCommands(string[] args)</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p>
       </td>
     </tr>
@@ -649,8 +614,7 @@ public virtual async Task ListCommands(string[] args)</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Stop&quot;)]
-public async Task Stop(int index)</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task Stop(int index)</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -668,7 +632,7 @@ public async Task Stop(int index)</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p>
       </td>
     </tr>
@@ -706,8 +670,7 @@ public async Task Stop(int index)</code></pre>
   <h5 class="declaration">Declaration</h5>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuitInfo(typeof(BuildInCommandInformations), &quot;Tasks&quot;)]
-public async Task Tasks()</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task Tasks()</code></pre>
   </div>
   
   
@@ -715,7 +678,7 @@ public async Task Tasks()</code></pre>
   <table>
     <tr>
       <td>
-        <span class="xref">System.Threading.Tasks.Task</span>
+        <span class="xref">Task</span>
         <p>
       </td>
     </tr>

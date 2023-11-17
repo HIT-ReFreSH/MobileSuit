@@ -83,21 +83,21 @@
   
   <h5 id="PlasticMetal_MobileSuit_UI_ConsoleInput_ParseUserSelectItemsInput_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate int[] ParseUserSelectItemsInput(string userInput, IReadOnlyDictionary&lt;string, int&gt; labelMapping);</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate int[] ParseUserSelectItemsInput(string? userInput, IReadOnlyDictionary&lt;string, int&gt; labelMapping);</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
       <td>
-        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="pull-right"><span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;</span>
         <span class="parametername">userInput</span>
         <p>
       </td>
     </tr>
     <tr>
       <td>
-        <span class="pull-right"><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</span>
+        <span class="pull-right"><span class="xref">IReadOnlyDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</span>
         <span class="parametername">labelMapping</span>
         <p>
       </td>
