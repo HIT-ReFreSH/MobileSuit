@@ -21,7 +21,7 @@ jobs:
       - name: build project
         run: dotnet build -c release MobileSuit.sln
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test -c release MobileSuit.sln --no-build --verbosity normal
       # Publish
       - name: publish on version change
         uses: rohith/publish-nuget@v2
