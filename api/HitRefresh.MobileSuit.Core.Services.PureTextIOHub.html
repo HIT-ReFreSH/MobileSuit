@@ -1,0 +1,519 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PureTextIOHub
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PureTextIOHub
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub">
+  <h1 id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub">Class PureTextIOHub
+  </h1>
+  <div class="markdown level0 summary"><p>IO hub with pure text output.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html">IOHub</a></div>
+    <div class="level2"><span class="xref">PureTextIOHub</span></div>
+  </div>
+  
+  
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ColorSetting">IOHub.ColorSetting</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_FormatPrompt">IOHub.FormatPrompt</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Input">IOHub.Input</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_IsInputRedirected">IOHub.IsInputRedirected</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ResetInput">IOHub.ResetInput()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ReadLine">IOHub.ReadLine()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ReadLineAsync">IOHub.ReadLineAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Peek">IOHub.Peek()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Read">IOHub.Read()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ReadToEnd">IOHub.ReadToEnd()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ReadToEndAsync">IOHub.ReadToEndAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Options">IOHub.Options</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_IsErrorRedirected">IOHub.IsErrorRedirected</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_IsOutputRedirected">IOHub.IsOutputRedirected</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ErrorStream">IOHub.ErrorStream</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Output">IOHub.Output</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ResetError">IOHub.ResetError()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ResetOutput">IOHub.ResetOutput()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_AppendWriteLinePrefix_HitRefresh_MobileSuit_PrintUnit_">IOHub.AppendWriteLinePrefix(PrintUnit)</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_SubtractWriteLinePrefix">IOHub.SubtractWriteLinePrefix()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_ClearWriteLinePrefix">IOHub.ClearWriteLinePrefix()</a>
+    </div>
+    <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_GetLinePrefix_HitRefresh_MobileSuit_OutputType_">IOHub.GetLinePrefix(OutputType)</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  
+  <h6><strong>Namespace</strong>: <a class="xref" href="HitRefresh.MobileSuit.Core.Services.html">HitRefresh.MobileSuit.Core.Services</a></h6>
+  <h6><strong>Assembly</strong>: HitRefresh.MobileSuit.dll</h6>
+  
+  <h5 id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PureTextIOHub : IOHub, IIOHub</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/new/main/apiSpec/new?filename=HitRefresh_MobileSuit_Core_Services_PureTextIOHub__ctor_HitRefresh_MobileSuit_Core_Services_PromptFormatter_HitRefresh_MobileSuit_IIOHubConfigurator_.md&amp;value=---%0Auid%3A%20HitRefresh.MobileSuit.Core.Services.PureTextIOHub.%23ctor(HitRefresh.MobileSuit.Core.Services.PromptFormatter%2CHitRefresh.MobileSuit.IIOHubConfigurator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/blob/main/src/Core/Services/IOHub.cs/#L19" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub__ctor_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.#ctor*"></a>
+  
+  <h4 id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub__ctor_HitRefresh_MobileSuit_Core_Services_PromptFormatter_HitRefresh_MobileSuit_IIOHubConfigurator_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.#ctor(HitRefresh.MobileSuit.Core.Services.PromptFormatter,HitRefresh.MobileSuit.IIOHubConfigurator)"><a href="#collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub__ctor_HitRefresh_MobileSuit_Core_Services_PromptFormatter_HitRefresh_MobileSuit_IIOHubConfigurator_" class="expander" data-toggle="collapse">PureTextIOHub(PromptFormatter, IIOHubConfigurator)</a></h4>
+  
+  <div id="collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub__ctor_HitRefresh_MobileSuit_Core_Services_PromptFormatter_HitRefresh_MobileSuit_IIOHubConfigurator_" class="collapse in">
+  <div class="markdown level1 summary"><p>Initialize a IOhub.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PureTextIOHub(PromptFormatter promptFormatter, IIOHubConfigurator configurator)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="HitRefresh.MobileSuit.Core.Services.PromptFormatter.html">PromptFormatter</a></span>
+        <span class="parametername">promptFormatter</span>
+        <p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="HitRefresh.MobileSuit.IIOHubConfigurator.html">IIOHubConfigurator</a></span>
+        <span class="parametername">configurator</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/new/main/apiSpec/new?filename=HitRefresh_MobileSuit_Core_Services_PureTextIOHub_Write_HitRefresh_MobileSuit_PrintUnit_.md&amp;value=---%0Auid%3A%20HitRefresh.MobileSuit.Core.Services.PureTextIOHub.Write(HitRefresh.MobileSuit.PrintUnit)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/blob/main/src/Core/Services/IOHub.cs/#L25" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub_Write_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.Write*"></a>
+  
+  <h4 id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub_Write_HitRefresh_MobileSuit_PrintUnit_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.Write(HitRefresh.MobileSuit.PrintUnit)"><a href="#collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub_Write_HitRefresh_MobileSuit_PrintUnit_" class="expander" data-toggle="collapse">Write(PrintUnit)</a></h4>
+  
+  <div id="collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub_Write_HitRefresh_MobileSuit_PrintUnit_" class="collapse in">
+  <div class="markdown level1 summary"><p>Writes some content to output stream, with line break. With certain Input/Output color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(PrintUnit content)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="HitRefresh.MobileSuit.PrintUnit.html">PrintUnit</a></span>
+        <span class="parametername">content</span>
+        <p><p>Output Tuple
+first is a part of content;
+second is optional, the foreground color of output (in console),
+third is optional, the background color of output.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_Write_HitRefresh_MobileSuit_PrintUnit_">IOHub.Write(PrintUnit)</a></div>
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/new/main/apiSpec/new?filename=HitRefresh_MobileSuit_Core_Services_PureTextIOHub_WriteAsync_HitRefresh_MobileSuit_PrintUnit_.md&amp;value=---%0Auid%3A%20HitRefresh.MobileSuit.Core.Services.PureTextIOHub.WriteAsync(HitRefresh.MobileSuit.PrintUnit)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/HIT-ReFreSH/MobileSuit/blob/main/src/Core/Services/IOHub.cs/#L31" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub_WriteAsync_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.WriteAsync*"></a>
+  
+  <h4 id="HitRefresh_MobileSuit_Core_Services_PureTextIOHub_WriteAsync_HitRefresh_MobileSuit_PrintUnit_" data-uid="HitRefresh.MobileSuit.Core.Services.PureTextIOHub.WriteAsync(HitRefresh.MobileSuit.PrintUnit)"><a href="#collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub_WriteAsync_HitRefresh_MobileSuit_PrintUnit_" class="expander" data-toggle="collapse">WriteAsync(PrintUnit)</a></h4>
+  
+  <div id="collapsible-HitRefresh_MobileSuit_Core_Services_PureTextIOHub_WriteAsync_HitRefresh_MobileSuit_PrintUnit_" class="collapse in">
+  <div class="markdown level1 summary"><p>Writes some content to output stream, with line break. With certain Input/Output color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override async Task WriteAsync(PrintUnit content)</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="HitRefresh.MobileSuit.PrintUnit.html">PrintUnit</a></span>
+        <span class="parametername">content</span>
+        <p><p>Output Tuple
+first is a part of content;
+second is optional, the foreground color of output (in console),
+third is optional, the background color of output.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>
+        <p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="HitRefresh.MobileSuit.Core.Services.IOHub.html#HitRefresh_MobileSuit_Core_Services_IOHub_WriteAsync_HitRefresh_MobileSuit_PrintUnit_">IOHub.WriteAsync(PrintUnit)</a></div>
+  
+  
+  
+  
+  
+  </div>
+  
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_AppendWriteLinePrefix_HitRefresh_MobileSuit_IIOHub_System_String_">IOExtensions.AppendWriteLinePrefix(IIOHub, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_Write_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.Write(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_Write_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_Write_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.Write(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_">IOExtensions.WriteLine(IIOHub)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_System_String_System_Drawing_Color_">IOExtensions.WriteLine(IIOHub, String, Color)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_System_String_System_ConsoleColor_">IOExtensions.WriteLine(IIOHub, String, ConsoleColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteLine(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_Write_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.Write(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLine_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.WriteLine(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_">IOExtensions.WriteLineAsync(IIOHub)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_ConsoleColor_">IOExtensions.WriteLineAsync(IIOHub, String, ConsoleColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Drawing_Color_">IOExtensions.WriteLineAsync(IIOHub, String, Color)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_ConsoleColor__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_HitRefresh_MobileSuit_OutputType_System_Nullable_System_Drawing_Color__">IOExtensions.WriteLineAsync(IIOHub, String, OutputType, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IAsyncEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteAsync_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.WriteAsync(IIOHub, IEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_WriteLineAsync_HitRefresh_MobileSuit_IIOHub_System_Collections_Generic_IAsyncEnumerable_HitRefresh_MobileSuit_PrintUnit__HitRefresh_MobileSuit_OutputType_">IOExtensions.WriteLineAsync(IIOHub, IAsyncEnumerable&lt;PrintUnit&gt;, OutputType)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLine_HitRefresh_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLine_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLine_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLine_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLine_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLine(IIOHub, String, String, Boolean, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, String, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_ConsoleColor__">IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable&lt;ConsoleColor&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.IOExtensions.html#HitRefresh_MobileSuit_IOExtensions_ReadLineAsync_HitRefresh_MobileSuit_IIOHub_System_String_System_String_System_Boolean_System_Nullable_System_Drawing_Color__">IOExtensions.ReadLineAsync(IIOHub, String, String, Boolean, Nullable&lt;Color&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Suit.html#HitRefresh_MobileSuit_Suit_PrintAssemblyInformation_HitRefresh_MobileSuit_IIOHub_System_String_System_Version_System_Boolean_System_String_System_String_System_Boolean_">Suit.PrintAssemblyInformation(IIOHub, String, Version, Boolean, String, String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.Suit.html#HitRefresh_MobileSuit_Suit_PrintMobileSuitInformation_HitRefresh_MobileSuit_IIOHub_">Suit.PrintMobileSuitInformation(IIOHub)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.UI.ConsoleInput.html#HitRefresh_MobileSuit_UI_ConsoleInput_CuiSelectItemFrom__1_HitRefresh_MobileSuit_IIOHub_System_String___0___System_Func___0_System_String__System_Func_System_Int32___0_System_String__">ConsoleInput.CuiSelectItemFrom&lt;T&gt;(IIOHub, String, T[], Func&lt;T, String&gt;, Func&lt;Int32, T, String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.UI.ConsoleInput.html#HitRefresh_MobileSuit_UI_ConsoleInput_CuiSelectItemsFrom__1_HitRefresh_MobileSuit_IIOHub_System_String___0___System_Func___0_System_String__System_Func_System_Int32___0_System_String__HitRefresh_MobileSuit_UI_ConsoleInput_ParseUserSelectItemsInput_">ConsoleInput.CuiSelectItemsFrom&lt;T&gt;(IIOHub, String, T[], Func&lt;T, String&gt;, Func&lt;Int32, T, String&gt;, ConsoleInput.ParseUserSelectItemsInput)</a>
+  </div>
+  <div>
+      <a class="xref" href="HitRefresh.MobileSuit.UI.ConsoleInput.html#HitRefresh_MobileSuit_UI_ConsoleInput_CuiYesNo_HitRefresh_MobileSuit_IIOHub_System_String_System_Nullable_System_Boolean__">ConsoleInput.CuiYesNo(IIOHub, String, Nullable&lt;Boolean&gt;)</a>
+  </div>
+  
+</article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/HIT-ReFreSH/MobileSuit/new/main/apiSpec/new?filename=HitRefresh_MobileSuit_Core_Services_PureTextIOHub.md&amp;value=---%0Auid%3A%20HitRefresh.MobileSuit.Core.Services.PureTextIOHub%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/HIT-ReFreSH/MobileSuit/blob/main/src/Core/Services/IOHub.cs/#L14" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

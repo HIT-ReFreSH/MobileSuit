@@ -72,7 +72,7 @@
 <p>Normally, CommandLine Application should accept a <strong>string[] args</strong> parameter, and return an int.</p>
 <p>We assume that you have already read <a href="./GetStarted.html">Get Started</a>.</p>
 <h2 id="add-a-client-class">Add a client class</h2>
-<p>Add a Class to your project, named <em><strong>CliClient</strong></em> . It inherits class <em><strong>PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication</strong></em> .</p>
+<p>Add a Class to your project, named <em><strong>CliClient</strong></em> . It inherits class <em><strong>HitRefresh.MobileSuit.ObjectModel.CommandLineApplication</strong></em> .</p>
 <p>Then, override <strong>int SuitStartUp(string[] args)</strong>. This method will be called when args.Length&gt;0 &amp;&amp; args as a command cannot be resolved by MobileSuit.</p>
 <h2 id="add-members-and-attributes">Add members and attributes</h2>
 <p>Do just like with <em><strong>QuickStartClient</strong></em>.</p>
@@ -87,9 +87,9 @@
 </code></pre>
 <h2 id="check-your-code-for-quickstartclientcs">Check your code for QuickStartClient.cs</h2>
 <p>It may looks like:</p>
-<pre><code class="lang-csharp">using PlasticMetal.MobileSuit;
+<pre><code class="lang-csharp">using HitRefresh.MobileSuit;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     [SuitInfo(&quot;Demo&quot;)]
     public class CliClient : MobileSuit.ObjectModel.CommandLineApplication
@@ -129,7 +129,7 @@ demo bye bar
 </article>
           </div>
           <div class="contribution-panel mobile-hide">
-              <a href="https://github.com/Plastic-Metal/MobileSuit/blob/main/articles/CreateCommandLineApplication.md/#L1" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/HIT-ReFreSH/MobileSuit/blob/main/articles/CreateCommandLineApplication.md/#L1" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
