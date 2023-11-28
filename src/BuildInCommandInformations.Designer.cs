@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlasticMetal.MobileSuit {
+namespace HitRefresh.MobileSuit {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PlasticMetal.MobileSuit {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PlasticMetal.MobileSuit.BuildInCommandInformations", typeof(BuildInCommandInformations).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HitRefresh.MobileSuit.BuildInCommandInformations", typeof(BuildInCommandInformations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

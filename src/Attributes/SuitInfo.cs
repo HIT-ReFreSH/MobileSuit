@@ -3,7 +3,7 @@ using System.Resources;
 using System.Security.AccessControl;
 using System.Threading;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Stores the information of a member to be displayed.

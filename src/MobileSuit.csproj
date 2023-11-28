@@ -2,19 +2,19 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net8</TargetFrameworks>
-		<PackageId>PlasticMetal.MobileSuit</PackageId>
-		<Authors>PlaticMetal</Authors>
+		<PackageId>HitRefresh.MobileSuit</PackageId>
+		<Authors>HIT-ReFreSH</Authors>
 		<OutputType>Library</OutputType>
 		<ApplicationIcon />
 		<StartupObject />
-		<AssemblyName>PlasticMetal.MobileSuit</AssemblyName>
-		<RootNamespace>PlasticMetal.MobileSuit</RootNamespace>
+		<AssemblyName>HitRefresh.MobileSuit</AssemblyName>
+		<RootNamespace>HitRefresh.MobileSuit</RootNamespace>
 		<GenerateDocumentFile>true</GenerateDocumentFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-		<Company>PlasticMetal</Company>
-		<PackageProjectUrl>https://github.com/Plastic-Metal/MobileSuit</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Plastic-Metal/MobileSuit.git</RepositoryUrl>
+		<Company>HitReFreSH</Company>
+		<PackageProjectUrl>https://github.com/HIT-ReFreSH/MobileSuit</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/HIT-ReFreSH/MobileSuit.git</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
 		<Version>4.3.1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -27,10 +27,10 @@
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
 		<PackageReleaseNotes>Add CUI components, IHost Support, .NET 7, IOOptions.</PackageReleaseNotes>
 		<Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
-		<Copyright>Copyright (c) 2019-2020 Plastic-Metal</Copyright>
+		<Copyright>Copyright (c) 2019-2024 HIT-ReFreSH</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>Plastic-Metal.png</PackageIcon>
+		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -39,7 +39,7 @@
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="/"/>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<None Include="..\images\Plastic-Metal.png" Pack="true" PackagePath="/" />
+		<None Include="..\images\logo.png" Pack="true" PackagePath="/" />
 
 	</ItemGroup>
 

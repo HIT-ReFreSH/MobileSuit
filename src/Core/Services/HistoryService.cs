@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.Core.Services;
+﻿namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     Provides request history.

@@ -1,8 +1,8 @@
-﻿/*using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Attributes;
-using PlasticMetal.MobileSuit.ObjectModel;
+﻿/*using HitRefresh.MobileSuit;
+using HitRefresh.MobileSuit.Attributes;
+using HitRefresh.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     [SuitInfo("Demo")]
     public class CliClient : CommandLineApplication

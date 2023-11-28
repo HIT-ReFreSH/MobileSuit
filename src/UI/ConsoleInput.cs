@@ -1,4 +1,4 @@
-﻿using PlasticMetal.MobileSuit;
+﻿using HitRefresh.MobileSuit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using static PlasticMetal.MobileSuit.SuitUtils;
+using static HitRefresh.MobileSuit.SuitUtils;
 
-namespace PlasticMetal.MobileSuit.UI;
+namespace HitRefresh.MobileSuit.UI;
 
 /// <summary>
 /// Useful input components for console UI.

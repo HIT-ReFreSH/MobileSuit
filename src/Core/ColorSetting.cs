@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     Color settings of a Mobile Suit.

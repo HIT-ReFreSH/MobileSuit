@@ -1,9 +1,9 @@
 ﻿/*using System.Diagnostics;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.ObjectModel;
+using HitRefresh.MobileSuit;
+using HitRefresh.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     internal class LoggerTest 
     {

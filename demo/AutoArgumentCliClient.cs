@@ -1,12 +1,12 @@
 ﻿/*using System;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.Attributes;
-using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.ObjectModel;
-using PlasticMetal.MobileSuit.Parsing;
+using HitRefresh.MobileSuit;
+using HitRefresh.MobileSuit.Attributes;
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.ObjectModel;
+using HitRefresh.MobileSuit.Parsing;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     internal class IOSet : AutoDynamicParameter
     {

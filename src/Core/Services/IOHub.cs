@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core.Services;
+namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     IO hub with pure text output.

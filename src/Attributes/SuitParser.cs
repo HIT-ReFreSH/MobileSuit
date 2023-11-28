@@ -1,8 +1,8 @@
-﻿using PlasticMetal.MobileSuit.Core;
+﻿using HitRefresh.MobileSuit.Core;
 using System;
 using System.Reflection;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Describes a parser which convert string argument to certain type.

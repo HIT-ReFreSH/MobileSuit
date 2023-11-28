@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 /// A HostApplicationLifetime for MobileSuit

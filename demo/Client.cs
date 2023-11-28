@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.UI;
-using PlasticMetal.MobileSuit.Core;
+using HitRefresh.MobileSuit;
+using HitRefresh.MobileSuit.UI;
+using HitRefresh.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuitDemo;
+namespace HitRefresh.MobileSuitDemo;
 
 [SuitInfo("Demo")]
 public class Client

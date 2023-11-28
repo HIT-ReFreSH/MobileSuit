@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace PlasticMetal.MobileSuit.Core.Services;
+namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     represents a generator provides prompt output.

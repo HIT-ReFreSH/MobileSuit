@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Middleware;
-using PlasticMetal.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core.Middleware;
+using HitRefresh.MobileSuit.Core.Services;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Describes the work flow of mobile suit.

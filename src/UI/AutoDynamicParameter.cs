@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using PlasticMetal.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit.UI;
+namespace HitRefresh.MobileSuit.UI;
 
 /// <summary>
 ///     A DynamicParameter which can parse itself automatically

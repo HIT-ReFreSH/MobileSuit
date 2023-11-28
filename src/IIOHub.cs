@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core.Services;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     To configure Options of IOHub

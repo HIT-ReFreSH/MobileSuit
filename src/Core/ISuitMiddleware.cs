@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     A function to handle a suit request.

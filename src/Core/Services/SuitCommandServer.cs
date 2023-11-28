@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static PlasticMetal.MobileSuit.SuitUtils;
+using static HitRefresh.MobileSuit.SuitUtils;
 
-namespace PlasticMetal.MobileSuit.Core.Services;
+namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     Built-In-Command Server. May be Override if necessary.

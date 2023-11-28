@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     A data parser of MobileSuit

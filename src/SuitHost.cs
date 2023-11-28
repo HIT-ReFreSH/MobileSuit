@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PlasticMetal.MobileSuit.Core;
-using PlasticMetal.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core.Services;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     A entity, which serves the shell functions of a mobile-suit program.

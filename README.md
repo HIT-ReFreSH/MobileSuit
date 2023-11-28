@@ -1,32 +1,33 @@
 <div  align=center>
-    <img src="https://raw.githubusercontent.com/Plastic-Metal/MobileSuit/main/images/Plastic-Metal.png" width = 30% height = 30%  />
+    <img src="https://raw.githubusercontent.com/HIT-ReFreSH/MobileSuit/main/images/logo.png" width = 30% height = 30%  />
 </div>
 
-# PlasticMetal.MobileSuit
+# HitRefresh.MobileSuit
 
-![nuget](https://img.shields.io/nuget/v/PlasticMetal.MobileSuit?style=flat-square) 
-![Nuget](https://img.shields.io/nuget/dt/PlasticMetal.MobileSuit?style=flat-square)
-![GitHub](https://img.shields.io/github/license/Plastic-Metal/MobileSuit?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/Plastic-Metal/MobileSuit?style=flat-square)
-![Test & Publish](https://img.shields.io/github/actions/workflow/status/Plastic-Metal/MobileSuit/publish.yml?style=flat-square&label=Test%20%26%20Publish)
-![Documentation Publish](https://img.shields.io/github/actions/workflow/status/Plastic-Metal/MobileSuit/docs.yml?style=flat-square&label=Documentation%20Publish)
-![GitHub repo size](https://img.shields.io/github/repo-size/Plastic-Metal/MobileSuit?style=flat-square)
-![GitHub code size](https://img.shields.io/github/languages/code-size/Plastic-Metal/MobileSuit?style=flat-square)
+![nuget](https://img.shields.io/nuget/v/HitRefresh.MobileSuit?style=flat-square) 
+![Nuget](https://img.shields.io/nuget/dt/HitRefresh.MobileSuit?style=flat-square)
+![GitHub](https://img.shields.io/github/license/HIT-ReFreSH/MobileSuit?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/HIT-ReFreSH/MobileSuit?style=flat-square)
+![Test & Publish](https://img.shields.io/github/actions/workflow/status/HIT-ReFreSH/MobileSuit/publish.yml?style=flat-square&label=Test%20%26%20Publish)
+![Documentation Publish](https://img.shields.io/github/actions/workflow/status/HIT-ReFreSH/MobileSuit/docs.yml?style=flat-square&label=Documentation%20Publish)
+![GitHub repo size](https://img.shields.io/github/repo-size/HIT-ReFreSH/MobileSuit?style=flat-square)
+![GitHub code size](https://img.shields.io/github/languages/code-size/HIT-ReFreSH/MobileSuit?style=flat-square)
 
 
+[View at Nuget.org](https://www.nuget.org/packages/HitRefresh.MobileSuit/)
 
-[View at Nuget.org](https://www.nuget.org/packages/PlasticMetal.MobileSuit/)
+[View Documentation](https://HIT-ReFreSH.github.io/MobileSuit/)
 
 MobileSuit provides an easy way to quickly build a .NET Console App.
 
-Focus on writing the backend part, Import PlasticMetal.MobileSuit, and simply write a Frontend in a very simple standard, then a beautiful Console App is born.
+Focus on writing the backend part, Import HitRefresh.MobileSuit, and simply write a Frontend in a very simple standard, then a beautiful Console App is born.
 
 For Example: HIT-Schedule-Master CLI 
 
-![MsRtExample-1](https://raw.githubusercontent.com/Plastic-Metal/MobileSuit/main/images/MsRtExample-1.png)
+![MsRtExample-1](https://raw.githubusercontent.com/HIT-ReFreSH/MobileSuit/main/images/MsRtExample-1.png)
 
 with PowerLine theme & I18N support
 
-![MsRtExample-2](https://raw.githubusercontent.com/Plastic-Metal/MobileSuit/main/images/MsRtExample-2.png)
+![MsRtExample-2](https://raw.githubusercontent.com/HIT-ReFreSH/MobileSuit/main/images/MsRtExample-2.png)
 
-[View Documentation](https://plastic-metal.github.io/MobileSuit/)
+**Previously named as [PlasticMetal.MobileSuit](https://github.com/Plastic-Metal/MobileSuit).**

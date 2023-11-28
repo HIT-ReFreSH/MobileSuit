@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     Built-In-Command Server's Model.

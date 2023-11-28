@@ -6,7 +6,7 @@ We assume that you have already read [Get Started](./GetStarted.html).
 
 ## Add a client class
 
-Add a Class to your project, named ***CliClient*** . It inherits class ***PlasticMetal.MobileSuit.ObjectModel.CommandLineApplication*** .
+Add a Class to your project, named ***CliClient*** . It inherits class ***HitRefresh.MobileSuit.ObjectModel.CommandLineApplication*** .
 
 Then, override **int SuitStartUp(string[] args)**. This method will be called when args.Length>0 && args as a command cannot be resolved by MobileSuit.
 
@@ -35,9 +35,9 @@ return Suit.GetBuilder().Build<QuickStartClient>().Run(args);
 It may looks like:
 
 ``` csharp
-using PlasticMetal.MobileSuit;
+using HitRefresh.MobileSuit;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     [SuitInfo("Demo")]
     public class CliClient : MobileSuit.ObjectModel.CommandLineApplication

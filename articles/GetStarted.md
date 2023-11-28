@@ -1,6 +1,6 @@
 # Quick Start
 
-PlasticMetal.MobileSuit is a powerful tool to quickly build a .NET Core ConsoleApp.
+HitRefresh.MobileSuit is a powerful tool to quickly build a .NET Core ConsoleApp.
 
 In this article, I'll introduce to build a basic MobileSuit App.
 
@@ -8,17 +8,17 @@ In this article, I'll introduce to build a basic MobileSuit App.
 
 So firstly, you need to create a new Application in your IDE.
 
-Then, add [PlasticMetal.MobileSuit](https://www.nuget.org/packages/PlasticMetal.MobileSuit/) to your project through nuget.
+Then, add [HitRefresh.MobileSuit](https://www.nuget.org/packages/HitRefresh.MobileSuit/) to your project through nuget.
 
 ## Write the MobileSuit Client class
 
 ### Create the class
 
-Add a Class to your project, named ***QuickStartClient*** . It inherits class ***PlasticMetal.MobileSuit.ObjectModel.SuitClient*** .
+Add a Class to your project, named ***QuickStartClient*** . It inherits class ***HitRefresh.MobileSuit.ObjectModel.SuitClient*** .
 
 ### Add custom attributes to the class
 
-*PlasticMetal.MobileSuit.SuitInfoAttribute* with argument "Demo"
+*HitRefresh.MobileSuit.SuitInfoAttribute* with argument "Demo"
 
 ### Add the first command
 
@@ -30,8 +30,8 @@ Add a method called ***Hello*** to class ***Client*** . It has no parameters and
 
 Add custom attributes to the method:
 
-1. *PlasticMetal.MobileSuit.SuitInfoAttribute* with argument "hello command."
-2. *PlasticMetal.MobileSuit.SuitAliasAttribute* with argument "H"
+1. *HitRefresh.MobileSuit.SuitInfoAttribute* with argument "hello command."
+2. *HitRefresh.MobileSuit.SuitAliasAttribute* with argument "H"
 
 ### Add another command
 
@@ -64,10 +64,10 @@ Suit.GetBuilder().Build<QuickStartClient>().Run();
 It may looks like:
 
 ``` csharp
-using PlasticMetal.MobileSuit;
-using PlasticMetal.MobileSuit.ObjectModel;
+using HitRefresh.MobileSuit;
+using HitRefresh.MobileSuit.ObjectModel;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     [SuitInfo("Demo")]
     public class QuickStartClient : SuitClient

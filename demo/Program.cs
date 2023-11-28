@@ -1,6 +1,6 @@
-﻿using PlasticMetal.MobileSuit;
+﻿using HitRefresh.MobileSuit;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     internal class Program
     {

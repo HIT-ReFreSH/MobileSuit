@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core.Services;
+namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     The handler

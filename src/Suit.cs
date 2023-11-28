@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Providing Common APIs for MobileSuit
@@ -188,7 +188,7 @@ public static class Suit
         ));
         io.WriteLine(SuitUtils.CreateContentArray(
             (Lang.CopyrightC, null),
-            ("Plastic-Metal", io.ColorSetting.TitleColor)
+            ("HIT-ReFreSH", io.ColorSetting.TitleColor)
             //, (Lang.AllRightsReserved, null)
         ));
         io.WriteLine();

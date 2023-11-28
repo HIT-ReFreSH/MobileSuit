@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PlasticMetal.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasticMetal.MobileSuit.Core.Services.Tests
+namespace HitRefresh.MobileSuit.Core.Services.Tests
 {
 	[TestClass]
 	public class IOHubTests

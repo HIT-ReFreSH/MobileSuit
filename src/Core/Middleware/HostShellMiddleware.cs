@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using PlasticMetal.MobileSuit.Core.Services;
-using static PlasticMetal.MobileSuit.Core.SuitBuildUtils;
+using HitRefresh.MobileSuit.Core.Services;
+using static HitRefresh.MobileSuit.Core.SuitBuildUtils;
 
-namespace PlasticMetal.MobileSuit.Core.Middleware;
+namespace HitRefresh.MobileSuit.Core.Middleware;
 
 /// <summary>
 ///     Middleware to execute command over suit server shell.

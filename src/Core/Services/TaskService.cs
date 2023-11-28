@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PlasticMetal.MobileSuit.Core.Services;
+namespace HitRefresh.MobileSuit.Core.Services;
 
 /// <summary>
 ///     Information of Suit Task

@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit;
+﻿namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Type of content that writes to the output stream.

@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to Documentation  for PlasticMetal.MobileSuit!
+Welcome to Documentation  for HitRefresh.MobileSuit!
 
 In this page, you can learn how to use MobileSuit to quickly build a .NET Core ConsoleApp.
 

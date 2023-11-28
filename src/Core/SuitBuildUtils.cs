@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
-using PlasticMetal.MobileSuit.Core.Services;
-using PlasticMetal.MobileSuit.UI;
+using HitRefresh.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.UI;
 
-namespace PlasticMetal.MobileSuit.Core;
+namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     Factory to create instance from certain context

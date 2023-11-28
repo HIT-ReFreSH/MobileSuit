@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlasticMetal.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core;
 
-namespace PlasticMetal.MobileSuit;
+namespace HitRefresh.MobileSuit;
 
 using static SuitUtils;
 

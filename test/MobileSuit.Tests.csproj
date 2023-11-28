@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8</TargetFramework>
-    <AssemblyName>PlasticMetal.MobileSuit.Tests</AssemblyName>
+    <AssemblyName>HitRefresh.MobileSuit.Tests</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 

@@ -1,6 +1,6 @@
-﻿using PlasticMetal.MobileSuit;
+﻿using HitRefresh.MobileSuit;
 
-namespace PlasticMetal.MobileSuitDemo
+namespace HitRefresh.MobileSuitDemo
 {
     [SuitInfo("Demo")]
     public class QuickStartClient

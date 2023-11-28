@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8</TargetFramework>
-    <RootNamespace>PlasticMetal.MobileSuitDemo</RootNamespace>
-    <AssemblyName>PlasticMetal.MobileSuitDemo</AssemblyName>
+    <RootNamespace>HitRefresh.MobileSuitDemo</RootNamespace>
+    <AssemblyName>HitRefresh.MobileSuitDemo</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -100,7 +100,7 @@ For example:
 
 ### Create a class implements DynamicParameter
 
-Add a class, called ***GoodMorningParameter***, it implements ***PlasticMetal.MobileSuit.ObjectModel.IDynamicParameter*** interface. The class should be `public`:
+Add a class, called ***GoodMorningParameter***, it implements ***HitRefresh.MobileSuit.ObjectModel.IDynamicParameter*** interface. The class should be `public`:
 
 Add some Contents to ***GoodMorningParameter*** , fill the ***Parse(string[]? options)***. The method should return true, if parsing is successful, otherwise, it should return false.
 

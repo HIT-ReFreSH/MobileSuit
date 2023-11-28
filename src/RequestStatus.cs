@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit;
+﻿namespace HitRefresh.MobileSuit;
 
 /// <summary>
 ///     Status of the last Commandline. Return value type for Built-In-Commands and Host Functions.

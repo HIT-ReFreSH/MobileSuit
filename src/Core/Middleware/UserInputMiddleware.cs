@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using static PlasticMetal.MobileSuit.Core.SuitBuildUtils;
+using static HitRefresh.MobileSuit.Core.SuitBuildUtils;
 
-namespace PlasticMetal.MobileSuit.Core.Middleware;
+namespace HitRefresh.MobileSuit.Core.Middleware;
 
 /// <summary>
 ///     Middleware which provides user input

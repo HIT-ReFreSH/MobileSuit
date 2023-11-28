@@ -1,4 +1,4 @@
-﻿namespace PlasticMetal.MobileSuit.Core;
+﻿namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
 ///     Represents type of the last parameter of a method
