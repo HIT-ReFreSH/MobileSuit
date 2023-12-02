@@ -31,9 +31,7 @@
         "files": [
           "toc.yml",
           "index.md"
-        ],
-        "src": "./",
-        "dest": "./"
+        ]
       }
     ],
     "resource": [
