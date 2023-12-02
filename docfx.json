@@ -4,11 +4,11 @@
       "src": [
         {
           "files": [
-            "src/**.csproj"
+            "src/*.csproj"
           ]
         }
       ],
-      "dest": "api",
+      "dest": "docs/api",
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -17,17 +17,29 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
-        ]
+          "docs/api/**.yml",
+          "docs/api/index.md"
+        ],
+        "src":"./",
+        "dest":"api/"
       },
       {
         "files": [
-          "articles/**.md",
-          "articles/**/toc.yml",
+          "docs/articles/**.md",
+          "docs/articles/**/toc.yml",
+          "docs/toc.yml",
+          "docs/*.md"
+        ],
+        "src":"./",
+        "dest":"articles/"
+      },
+      {
+        "files": [
           "toc.yml",
           "*.md"
-        ]
+        ],
+        "src": "./",
+        "dest": "./"
       }
     ],
     "resource": [
@@ -42,16 +54,22 @@
         "files": [
           "apidoc/**.md"
         ],
-        "exclude": [
-          "obj/**",
-          "docs/**"
-        ]
+        "exclude": []
       }
     ],
-    "dest": "docs",
+    "dest": "docs/_site",
     "globalMetadataFiles": [],
+    "globalMetadata":{
+      "_appName": "ReFreSH.MobileSuit",
+      "_appLogoPath": "images/logo_docfx.png",
+      "_appFaviconPath": "images/logo.png"
+    },
     "fileMetadataFiles": [],
-    "template":["default","docfx-tmpl/src"],
+    "template": [
+      "default",
+      "modern",
+      "docs/templates/material"
+    ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,

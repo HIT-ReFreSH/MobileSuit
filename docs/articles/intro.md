@@ -6,10 +6,10 @@ In this page, you can learn how to use MobileSuit to quickly build a .NET Core C
 
 Before starting, make sure you are already familiar with C#.
 
-[Get Started](./GetStarted.html)
+[Get Started](./GetStarted.md)
 
-[Create CommandLine Applications](./CreateCommandLineApplication.html)
+[Create CommandLine Applications](./CreateCommandLineApplication.md)
 
-[Use Special Parameters](./UseSpecialParameters.html)
+[Use Special Parameters](./UseSpecialParameters.md)
 
-[Customization](./Customization.html)
+[Customization](./Customization.md)

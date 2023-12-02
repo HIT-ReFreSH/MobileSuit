@@ -11,8 +11,7 @@
 *.sln.docstates
 
 Debug/
-docs/
-apidoc/
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

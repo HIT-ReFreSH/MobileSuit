@@ -2,7 +2,7 @@
 
 Normally, CommandLine Application should accept a **string[] args** parameter, and return an int.
 
-We assume that you have already read [Get Started](./GetStarted.html).
+We assume that you have already read [Get Started](./GetStarted.md).
 
 ## Add a client class
 

@@ -110,7 +110,7 @@ Comments can be added in lines format "^\s*#"
 
 For Example:
 
-``` MobileSuitScript
+```text
  #comment
 he%
 llo
@@ -118,10 +118,10 @@ llo
 
 equals
 
-``` MobileSuitScript
+```text
 hello
 ```
 
 The process of build such a app is so easy that you just need one class to write.
 
-To let your application accept string[] args, See [Create CommandLine Application](./CreateCommandLineApplication.html)
+To let your application accept string[] args, See [Create CommandLine Application](./CreateCommandLineApplication.md)

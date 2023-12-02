@@ -10,8 +10,8 @@ Focus on writing the backend part, Import HitRefresh.MobileSuit, and simply writ
 
 [Download/Install](https://www.nuget.org/packages/HitRefresh.MobileSuit/)
 
-[Detailed Introduction](./articles/intro.md)
+[Detailed Introduction](./docs/articles/intro.md)
 
-[Get Started](./articles/GetStarted.html)
+[Get Started](./docs/articles/GetStarted.md)
 
-[View APIs](./api/index.html)
+[View APIs](./docs/api/index.md)

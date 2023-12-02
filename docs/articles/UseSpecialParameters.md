@@ -7,10 +7,12 @@ MobileSuit's parameter type can be anything you like, in case there is a parser.
 ### Create or Select a parser
 
 A parser is a method that takes a String as input, then output a object;
-For example: 
+For example:
+
 ```csharp
 public static object NumberConvert(string arg) => int.Parse(arg);
 ```
+
 Parsers must be **public static** modified, returning **object** and taking a **string** as input. 
 
 ### Create a command with Parsable-type parameter
@@ -42,13 +44,14 @@ In the console, you may input:
 **GoodEvening** with 0, 1, 2 ... arguments, which will be seen as an array. 
 
 Code:
-``` csharp
-        [SuitAlias("GE")]
-        public void GoodEvening(string[] arg)
-        {
 
-            IO.WriteLine("Good Evening, " + (arg.Length >= 1 ? arg[0] : ""));
-        }
+``` csharp
+[SuitAlias("GE")]
+public void GoodEvening(string[] arg)
+{
+
+    IO.WriteLine("Good Evening, " + (arg.Length >= 1 ? arg[0] : ""));
+}
 ```
 
 ### Create a command with a array parameter and other parameters
@@ -66,12 +69,12 @@ The most important thing when you're using this type of command is that The para
 Code:
 
 ``` csharp
-        [SuitAlias("GE2")]
-        public void GoodEvening2(string arg0, string[] args)
-        {
+[SuitAlias("GE2")]
+public void GoodEvening2(string arg0, string[] args)
+{
 
-            IO.WriteLine("Good Evening, " + arg0 + (args.Length >= 1 ? " and " + args[0] : ""));
-        }
+    IO.WriteLine("Good Evening, " + arg0 + (args.Length >= 1 ? " and " + args[0] : ""));
+}
 ```
 
 ### Array parameter for Parsable-types
@@ -82,16 +85,16 @@ For example:
 
 ```csharp
 [SuitAlias("Sn2")]
-        public void ShowNumber2(
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
-            int i,
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
-            int[] j
-    )
-        {
-            IO.WriteLine(i.ToString());
-            IO.WriteLine(j.Length >= 1 ? j[0].ToString() : "");
-        }
+public void ShowNumber2(
+    [SuitParser(typeof(Client), nameof(NumberConvert))]
+    int i,
+    [SuitParser(typeof(Client), nameof(NumberConvert))]
+    int[] j
+)
+{
+    IO.WriteLine(i.ToString());
+    IO.WriteLine(j.Length >= 1 ? j[0].ToString() : "");
+}
 ```
 
 **Attention!** The parser parsed *string* to something, **NOT** *string[]* to something!
@@ -107,28 +110,28 @@ Add some Contents to ***GoodMorningParameter*** , fill the ***Parse(string[]? op
 For example:
 
 ``` csharp
-        public class GoodMorningParameter : IDynamicParameter
+public class GoodMorningParameter : IDynamicParameter
+{
+    public string name = "foo";
+
+    /**
+        * Parse this Parameter from String[].
+        *
+        * @param options String[] to parse from.
+        * @return Whether the parsing is successful
+        */
+
+    public bool Parse(string[] options)
+    {
+        if (options.Length == 1)
         {
-            public string name = "foo";
-
-            /**
-             * Parse this Parameter from String[].
-             *
-             * @param options String[] to parse from.
-             * @return Whether the parsing is successful
-             */
-
-            public bool Parse(string[] options)
-            {
-                if (options.Length == 1)
-                {
-                    name = options[0];
-                    return true;
-                }
-                else return options.Length == 0;
-
-            }
+            name = options[0];
+            return true;
         }
+        else return options.Length == 0;
+
+    }
+}
 ```
 
 ### Create a command with only a DynamicParameter
@@ -144,11 +147,11 @@ In the console, you may input:
 Code:
 
 ```csharp
-        [SuitAlias("GM")]
-        public void GoodMorning(GoodMorningParameter arg)
-        {
-            IO.WriteLine("Good morning," + arg.name);
-        }
+[SuitAlias("GM")]
+public void GoodMorning(GoodMorningParameter arg)
+{
+    IO.WriteLine("Good morning," + arg.name);
+}
 ```
 
 ### Create a command with a DynamicParameter and other parameters
@@ -164,11 +167,11 @@ In the console, you may input:
 The most important thing when you're using this type of command is that The parameter with ***? extends DynamicParameter*** type **MUST BE** the last parameter of the method. If not, JMobileSuit will not parse you command correctly.
 
 ```csharp
-        [SuitAlias("GM2")]
-        public void GoodMorning2(string arg, GoodMorningParameter arg1)
-        {
-            IO.WriteLine("Good morning, " + arg + " and " + arg1.name);
-        }
+[SuitAlias("GM2")]
+public void GoodMorning2(string arg, GoodMorningParameter arg1)
+{
+    IO.WriteLine("Good morning, " + arg + " and " + arg1.name);
+}
 ```
 
 ### Auto DynamicParameter Class
@@ -192,45 +195,45 @@ If some ***Option*** properties without ***WithDefault*** is not parsed, the par
 For Example:
 
 ``` csharp
-        public class SleepArgument : AutoDynamicParameter
-        {
-            [Option("n")]
-            [AsCollection]
-            [WithDefault]
-            public List<string> Name { get; set; } = new List<string>();
+public class SleepArgument : AutoDynamicParameter
+{
+   [Option("n")]
+   [AsCollection]
+   [WithDefault]
+   public List<string> Name { get; set; } = new List<string>();
 
-            [Option("t")]
-            [SuitParser(typeof(Client), nameof(NumberConvert))]
-            [WithDefault]
-            public int SleepTime { get; set; } = 0;
-            [Switch("s")]
-            public bool isSleeping { get; set; }
-        }
-    }
-        [SuitAlias("Sl")]
-        [SuitInfo("Sleep {-n name (, -t hours, -s)}")]
-        public void Sleep(SleepArgument argument)
-        {
-            var nameChain = "";
-            foreach (var item in argument.Name)
-            {
-                nameChain += item;
-            }
-            if (nameChain == "") nameChain = "No one";
+   [Option("t")]
+   [SuitParser(typeof(Client), nameof(NumberConvert))]
+   [WithDefault]
+   public int SleepTime { get; set; } = 0;
+   [Switch("s")]
+   public bool isSleeping { get; set; }
+}
+    
+[SuitAlias("Sl")]
+[SuitInfo("Sleep {-n name (, -t hours, -s)}")]
+public void Sleep(SleepArgument argument)
+{
+   var nameChain = "";
+   foreach (var item in argument.Name)
+   {
+       nameChain += item;
+   }
+   if (nameChain == "") nameChain = "No one";
 
-            if (argument.isSleeping)
-            {
-                IO.WriteLine(nameChain + " has been sleeping for " + argument.SleepTime + " hour(s).");
-            }
-            else
-            {
-                IO.WriteLine(nameChain + " is not sleeping.");
-            }
-        }
+   if (argument.isSleeping)
+   {
+       IO.WriteLine(nameChain + " has been sleeping for " + argument.SleepTime + " hour(s).");
+   }
+   else
+   {
+       IO.WriteLine(nameChain + " is not sleeping.");
+   }
+}
 ```
 
 ## Dynamic Parameters for CommandLine Application arg
 
-We have learned to use string[] as CommandLine Application args in [Create CommandLine Application](./CreateCommandLineApplication.html), but how if I want to use a Dynamic Parameter as the arg?
+We have learned to use string[] as CommandLine Application args in [Create CommandLine Application](./CreateCommandLineApplication.md), but how if I want to use a Dynamic Parameter as the arg?
 
 Just make your client class extend CommandLineApplication\<TArgument\>, where TArgument is the Dynamic Parameter.
