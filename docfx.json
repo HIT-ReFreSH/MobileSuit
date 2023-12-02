@@ -15,23 +15,20 @@
   ],
   "build": {
     "content": [
-      {
+       {
         "files": [
-          "docs/api/**.yml",
-          "docs/api/index.md"
-        ]
-      },
-      {
-        "files": [
-          "docs/articles/**.md",
-          "docs/articles/**.yml"
+          "docs/api/*.{md,yml}",
+          "docs/articles/*.{md,yml}"
         ]
       },
       {
         "files": [
           "toc.yml",
           "index.md"
-        ]
+        ],
+        "src": "./",
+        "dest": "./"
+        
       }
     ],
     "resource": [
