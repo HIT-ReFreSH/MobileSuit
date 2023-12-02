@@ -19,24 +19,18 @@
         "files": [
           "docs/api/**.yml",
           "docs/api/index.md"
-        ],
-        "src":"./",
-        "dest":"api/"
+        ]
       },
       {
         "files": [
           "docs/articles/**.md",
-          "docs/articles/**/toc.yml",
-          "docs/toc.yml",
-          "docs/*.md"
-        ],
-        "src":"./",
-        "dest":"articles/"
+          "docs/articles/**.yml"
+        ]
       },
       {
         "files": [
           "toc.yml",
-          "*.md"
+          "index.md"
         ],
         "src": "./",
         "dest": "./"
