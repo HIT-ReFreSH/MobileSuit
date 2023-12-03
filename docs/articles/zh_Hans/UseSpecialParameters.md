@@ -234,6 +234,6 @@ public void Sleep(SleepArgument argument)
 
 ## 命令行应用程序参数的动态参数
 
-我们已经学会在[创建命令行应用程序](./创建命令行应用程序.md)中使用 string[] 作为命令行应用程序参数，但是如果我想将动态参数用作参数怎么办？
+我们已经学会在[创建命令行应用程序](./CreateCommandLineApplication.md)中使用 string[] 作为命令行应用程序参数，但是如果我想将动态参数用作参数怎么办？
 
 只需让你的客户端类扩展 CommandLineApplication\<TArgument>，其中 TArgument 是动态参数。

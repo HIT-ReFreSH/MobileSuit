@@ -1,5 +1,24 @@
-- name: English Documentation
-  href: English Documentation/
+- name: Introduction
+  href: intro.md
+- name: Get Started
+  href: GetStarted.md
+- name: Create CommandLine Applications
+  href: CreateCommandLineApplication.md
+- name: Use Special Parameters
+  href: UseSpecialParameters.md
+- name: Customization
+  href: Customization.md
 - name: 中文文档
-  href: 中文文档/
-  homepage: index.md
+  href: zh_Hans/
+  homepage: zh_Hans/intro.md
+  items:
+  - name: 介绍
+    href: zh_Hans/intro.md
+  - name: 快速入门
+    href: zh_Hans/GetStarted.md
+  - name: 创建命令行应用程序
+    href: zh_Hans/CreateCommandLineApplication.md
+  - name: 在命令中使用特殊参数
+    href: zh_Hans/UseSpecialParameters.md
+  - name: 用户自定义
+    href: zh_Hans/Customization.md

@@ -15,20 +15,14 @@
   ],
   "build": {
     "content": [
-       {
-        "files": [
-          "docs/api/*.{md,yml}",
-          "docs/articles/*.{md,yml}"
-        ]
-      },
       {
         "files": [
+          "api/*.{md,yml}",
+          "articles/**/*.{md,yml}",
           "toc.yml",
           "index.md"
         ],
-        "src": "./",
-        "dest": "./"
-        
+        "src": "docs/"
       }
     ],
     "resource": [
@@ -36,6 +30,12 @@
         "files": [
           "images/**"
         ]
+      },
+      {
+        "files": [
+          "*.*"
+        ],
+        "src": "./docs/static"
       }
     ],
     "overwrite": [
@@ -48,10 +48,11 @@
     ],
     "dest": "docs/_site",
     "globalMetadataFiles": [],
-    "globalMetadata":{
+    "globalMetadata": {
       "_appName": "ReFreSH.MobileSuit",
       "_appLogoPath": "images/logo_docfx.png",
-      "_appFaviconPath": "images/logo.png"
+      "_appFaviconPath": "images/logo.png",
+      "_enableSearch": true
     },
     "fileMetadataFiles": [],
     "template": [

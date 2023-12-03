@@ -128,4 +128,4 @@ hello
 
 构建这样一个应用程序的过程非常简单，你只需要编写一个类。
 
-要让你的应用程序接受 string[] args，参见 [创建命令行应用程序](./创建命令行应用程序.md)
+要让你的应用程序接受 string[] args，参见 [创建命令行应用程序](./CreateCommandLineApplication.md)

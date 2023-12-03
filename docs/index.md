@@ -1,7 +1,3 @@
-[View English Documentation](English%20Documentation/intro.md)
-
-[查看中文文档](中文文档/介绍.md)
-
 # Documentation for MobileSuit
 
 ## What's MobileSuit?
@@ -14,8 +10,10 @@ Focus on writing the backend part, Import HitRefresh.MobileSuit, and simply writ
 
 [Download/Install](https://www.nuget.org/packages/HitRefresh.MobileSuit/)
 
-[Detailed Introduction](./docs/articles/intro.md)
+[Detailed Introduction](./articles/intro.md)
 
-[Get Started](./docs/articles/GetStarted.md)
+[查看中文文档](./articles/zh_Hans/intro.md)
 
-[View APIs](./docs/api/index.md)
+[Get Started](./articles/GetStarted.md)
+
+[View APIs](./api/index.md)
