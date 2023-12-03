@@ -38,14 +38,11 @@
         "src": "./docs/static"
       }
     ],
-    "overwrite": [
-      {
-        "files": [
-          "apidoc/**.md"
-        ],
-        "exclude": []
-      }
-    ],
+    "sitemap": {
+      "baseUrl": "https://hit-refresh.github.io/MobileSuit/",
+      "priority": 0.3,
+      "changefreq": "monthly"
+    },
     "dest": "docs/_site",
     "globalMetadataFiles": [],
     "globalMetadata": {
