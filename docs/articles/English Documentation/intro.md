@@ -1,3 +1,5 @@
+[查看中文文档](../中文文档/介绍.md)
+
 # Introduction
 
 Welcome to Documentation  for HitRefresh.MobileSuit!

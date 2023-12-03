@@ -1,0 +1,253 @@
+{
+  "source_base_path": "/Users/kingegg-/Desktop/2023 Fall/OSSDP/OpenSource-Lab3/MobileSuit",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/docs/api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/English Documentation/CreateCommandLineApplication.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/CreateCommandLineApplication.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/English Documentation/Customization.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/Customization.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/English Documentation/GetStarted.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/GetStarted.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/English Documentation/UseSpecialParameters.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/UseSpecialParameters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/English Documentation/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/articles/English Documentation/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/English Documentation/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/docs/articles/English Documentation/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/docs/articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/articles/中文文档/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/docs/articles/中文文档/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/中文文档/介绍.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/介绍.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/中文文档/创建命令行应用程序.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/创建命令行应用程序.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/中文文档/在命令中使用特殊参数.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/在命令中使用特殊参数.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/中文文档/快速入门.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/快速入门.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/articles/中文文档/用户自定义.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/docs/articles/中文文档/用户自定义.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MsRtExample-1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MsRtExample-1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MsRtExample-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MsRtExample-2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo_docfx.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo_docfx.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

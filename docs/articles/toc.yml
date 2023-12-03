@@ -1,12 +1,5 @@
-- name: Introduction
-  href: intro.md
-- name: Get Started
-  href: GetStarted.md
-- name: Create CommandLine Applications
-  href: CreateCommandLineApplication.md
-
-- name: Use Special Parameters
-  href: UseSpecialParameters.md
-
-- name: Customization
-  href: Customization.md
+- name: English Documentation
+  href: English Documentation/
+- name: 中文文档
+  href: 中文文档/
+  homepage: index.md

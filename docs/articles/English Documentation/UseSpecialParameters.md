@@ -164,7 +164,7 @@ In the console, you may input:
 
 **GoodMorning2** with 1, 2 ... arguments, first will be mapped to the ***String*** parameter, else will be seen as an array and parsed to the ***GoodMorningParameter*** one.
 
-The most important thing when you're using this type of command is that The parameter with ***? extends DynamicParameter*** type **MUST BE** the last parameter of the method. If not, JMobileSuit will not parse you command correctly.
+The most important thing when you're using this type of command is that The parameter with ***? extends DynamicParameter*** type **MUST BE** the last parameter of the method. If not, MobileSuit will not parse you command correctly.
 
 ```csharp
 [SuitAlias("GM2")]
