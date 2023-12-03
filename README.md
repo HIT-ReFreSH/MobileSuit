@@ -16,7 +16,7 @@
 
 [View at Nuget.org](https://www.nuget.org/packages/HitRefresh.MobileSuit/)
 
-[View Documentation](https://HIT-ReFreSH.github.io/MobileSuit/articles/intro.html)|[查看中文文档](https://HIT-ReFreSH.github.io/MobileSuit/articles/zh_Hans/intro.html)
+[View Documentation](https://HIT-ReFreSH.github.io/MobileSuit/articles/intro.html) | [查看中文文档](https://HIT-ReFreSH.github.io/MobileSuit/articles/zh_Hans/intro.html)
 
 MobileSuit provides an easy way to quickly build a .NET Console App.
 
