@@ -1,5 +1,8 @@
 # Customization for MobileSuit
 
+>![WARNING]
+> This is documentation written for old MobileSuit(v2.x,v1.x), so this may not work in the new versions.
+
 MobileSuit supports customization in Many ways through configuring the HostBuilder.
 
 ## Customize Settings & Color

@@ -1,5 +1,8 @@
 # Create CommandLine Application
 
+>![WARNING]
+> This is documentation written for old MobileSuit(v2.x,v1.x), so this may not work in the new versions.
+
 Normally, CommandLine Application should accept a **string[] args** parameter, and return an int.
 
 We assume that you have already read [Get Started](./GetStarted.md).

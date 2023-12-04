@@ -1,7 +1,7 @@
 - name: 介绍
   href: intro.md
 - name: 快速入门
-  href: GetStarted.md
+  href: QuickStart.md
 - name: 创建命令行应用程序
   href: CreateCommandLineApplication.md
 - name: 在命令中使用特殊参数

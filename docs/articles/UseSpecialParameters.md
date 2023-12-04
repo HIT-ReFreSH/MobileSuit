@@ -1,5 +1,8 @@
 # Use Special Parameters in Commands
 
+>![WARNING]
+> This is documentation written for old MobileSuit(v2.x,v1.x), so this may not work in the new versions.
+
 ## Parsable-type Parameters
 
 MobileSuit's parameter type can be anything you like, in case there is a parser.

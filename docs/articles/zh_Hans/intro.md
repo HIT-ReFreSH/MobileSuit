@@ -6,14 +6,12 @@
 >[!NOTE]
 >在开始之前，请确保你已经熟悉 C#。
 
-[更快的入门](./QuickStart.md)
+[快速入门](./QuickStart.md)
 
-[快速入门](./GetStarted.md)
+[创建命令行应用程序(可能已过期)](./CreateCommandLineApplication.md)
 
-[创建命令行应用程序](./CreateCommandLineApplication.md)
+[在命令中使用特殊参数(可能已过期)](./UseSpecialParameters.md)
 
-[在命令中使用特殊参数](./UseSpecialParameters.md)
-
-[用户自定义](./Customization.md)
+[用户自定义(可能已过期)](./Customization.md)
 
 [View English Documentation](../intro.md)

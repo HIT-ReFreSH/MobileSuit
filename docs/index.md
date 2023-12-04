@@ -14,6 +14,6 @@ Focus on writing the backend part, Import HitRefresh.MobileSuit, and simply writ
 
 [查看中文文档](./articles/zh_Hans/intro.md)
 
-[Get Started](./articles/GetStarted.md)
+[Get Started](./articles/QuickStart.md)
 
 [View APIs](./api/index.md)
