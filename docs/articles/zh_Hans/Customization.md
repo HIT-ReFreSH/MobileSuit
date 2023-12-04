@@ -1,6 +1,6 @@
 # MobileSuit 的定制
 
->![WARNING]
+> [!WARNING]
 > 这是一个针对旧版本MobileSuit(v2.x,v1.x)编写的文档，很久没有更新，可能无法正常生效
 
 MobileSuit通过配置HostBuilder支持许多定制方式。
