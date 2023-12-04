@@ -6,7 +6,9 @@
 >[!NOTE]
 >在开始之前，请确保你已经熟悉 C#。
 
-[快速入门](./intro.md)
+[更快的入门](./QuickStart.md)
+
+[快速入门](./GetStarted.md)
 
 [创建命令行应用程序](./CreateCommandLineApplication.md)
 
