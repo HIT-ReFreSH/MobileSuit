@@ -12,7 +12,7 @@ namespace HitRefresh.MobileSuit.Core.Middleware;
 /// <summary>
 ///     Middleware which provides user input
 /// </summary>
-public class UserInputMiddleware : ISuitMiddleware
+public class IOInputMiddleware : ISuitMiddleware
 {
     /// <inheritdoc />
     public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
