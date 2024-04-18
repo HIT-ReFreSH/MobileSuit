@@ -71,7 +71,10 @@ internal class SuitWorkFlow : ISuitWorkFlow
     {
         return this.UseCustom<UserInputMiddleware>();
     }
-
+    public ISuitWorkFlow UseRequestParsing()
+    {
+        return this.UseCustom<RequestParsingMiddleware>();
+    }
     public ISuitWorkFlow UseAppShell()
     {
         return this.UseCustom<AppShellMiddleware>();
