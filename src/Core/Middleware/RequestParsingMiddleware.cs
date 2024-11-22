@@ -10,9 +10,9 @@ using static HitRefresh.MobileSuit.Core.SuitBuildUtils;
 namespace HitRefresh.MobileSuit.Core.Middleware;
 
 /// <summary>
-///     Middleware which provides user input
+///     Middleware which parses user input into string[]
 /// </summary>
-public class UserInputMiddleware : ISuitMiddleware
+public class RequestParsingMiddleware : ISuitMiddleware
 {
     /// <inheritdoc />
     public async Task InvokeAsync(SuitContext context, SuitRequestDelegate next)
@@ -26,18 +26,14 @@ public class UserInputMiddleware : ISuitMiddleware
         if (context.Status == RequestStatus.NoRequest)
         {
             var io = context.ServiceProvider.GetRequiredService<IIOHub>();
-            var originInput = await io.ReadLineAsync();
-            if (originInput is null)
-            {
-                context.Status = RequestStatus.OnExit;
-                return;
-            }
 
-            if (originInput.StartsWith("#"))
+            if (context.Request is null or [])
             {
                 context.Status = RequestStatus.Ok;
                 return;
             }
+
+            var originInput = context.Request[0];
 
             var (request, control) = SplitCommandLine(originInput);
             for (var i = 0; i < control.Count; i++)

@@ -19,16 +19,10 @@ public interface ISuitExceptionHandler
     public Task InvokeAsync(SuitContext context);
 }
 
-internal class SuitExceptionHandler : ISuitExceptionHandler
+internal class SuitExceptionHandler(IHistoryService history, IIOHub io) : ISuitExceptionHandler
 {
-    public SuitExceptionHandler(IHistoryService history, IIOHub io)
-    {
-        History = history;
-        IO = io;
-    }
-
-    public IHistoryService History { get; }
-    public IIOHub IO { get; }
+    public IHistoryService History { get; } = history;
+    public IIOHub IO { get; } = io;
 
     public async Task InvokeAsync(SuitContext context)
     {
