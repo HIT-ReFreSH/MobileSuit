@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using HitRefresh.MobileSuit.Core;
 using HitRefresh.MobileSuit.Core.Services;
@@ -10,54 +11,103 @@ using Microsoft.Extensions.Hosting;
 namespace HitRefresh.MobileSuit;
 
 /// <summary>
+///     Specifies the startup of Suit Host is completed
+/// </summary>
+public class SuitHostStartCompletionSource : TaskCompletionSource;
+
+/// <summary>
+///     Specifies the middleware collection of MobileSuit
+/// </summary>
+public interface ISuitMiddlewareCollection : IReadOnlyList<ISuitMiddleware>
+{
+    /// <summary>
+    ///     Build Request delegate using middlewares in collection
+    /// </summary>
+    /// <returns></returns>
+    SuitRequestDelegate BuildSuitRequestDelegate();
+}
+
+/// <summary>
 ///     Builder to build a MobileSuit host.
 /// </summary>
 public class SuitHostBuilder
 {
     private readonly TaskRecorder _cancelTasks = new();
-    /// <summary>
-    /// Object SuitShell Clients
-    /// </summary>
-    protected readonly List<SuitShell> Clients = new();
-    protected Type CommandServer = typeof(SuitCommandServer);
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="args"></param>
     internal SuitHostBuilder(string[]? args)
     {
+        // Configuration and static
         AppInfo.StartArgs = args ?? [];
+        Services.AddSingleton<ISuitAppInfo>(AppInfo);
+        Services.AddSingleton<IConfiguration>(Configuration);
         Configuration.AddEnvironmentVariables();
 
+        // IO
+        Services.AddSingleton<IParsingService>(Parsing);
         Services.AddSingleton<PromptFormatter>(PromptFormatters.BasicPromptFormatter);
-        Services.AddSingleton<ITaskService>(new TaskService(_cancelTasks));
-        Services.AddSingleton<IHistoryService, HistoryService>();
-        Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
-        Services.AddScoped<ISuitContextProperties, SuitContextProperties>();
-        Services.AddScoped<ISuitContextProperties, SuitContextProperties>();
+        Services.AddSingleton<IIOHubConfigurator>(_ => { });
         Services.AddScoped<IIOHubYouShouldNeverUse, FourBitIOHub>();
         Services.AddScoped<IIOHub, RealIOHub>();
-        Services.AddScoped<ISuitLogBucket, SuitLogBucket>();
+
+
+        // History, logging and tasking
         Services.AddLogging();
-        Services.AddSingleton<IIOHubConfigurator>(_ => { });
-        Services.AddSingleton(Parsing);
+        Services.AddSingleton<ITaskRecorder>(_cancelTasks);
+        Services.AddSingleton<ITaskService, TaskService>();
+        Services.AddSingleton<IHistoryService, HistoryService>();
+        Services.AddScoped<ISuitLogBucket, SuitLogBucket>();
+
+        // Shells
+        Services.AddSingleton<SuitHostShell>
+            (sp => SuitHostShell.FromCommandServer(typeof(SuitCommandServer)));
+        Services.AddSingleton
+            (sp => SuitAppShell.FromClients(sp.GetKeyedServices<SuitShell>(SuitBuildUtils.SUIT_CLIENT_SHELL)));
+
+
+        // System and Lifecycle
         Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
+        Services.AddSingleton<SuitHostStartCompletionSource>();
+        Services.AddSingleton<IMobileSuitHost, SuitHost>();
+        Services.AddSingleton<ISuitContextFactory, SuitContextFactory>();
+        Services.AddScoped<CancellationTokenSource>();
+        Services.AddSingleton<SuitRequestDelegate>
+        (
+            sp => sp.GetRequiredService<ISuitMiddlewareCollection>().BuildSuitRequestDelegate()
+        );
+        Services.AddSingleton<IHostApplicationLifetime>
+        (
+            sp =>
+                new SuitHostApplicationLifetime
+                (
+                    sp.GetRequiredService<SuitHostStartCompletionSource>(),
+                    () =>
+                    {
+                        var taskRecorder = sp.GetRequiredService<TaskRecorder>();
+                        taskRecorder.IsLocked = true;
+                        return Task.WhenAll(taskRecorder);
+                    }
+                )
+        );
+        Services.AddScoped<ISuitCommandServer, SuitCommandServer>();
+        Services.AddScoped<ISuitContextProperties, SuitContextProperties>();
     }
+
     /// <summary>
-    /// Copy constructor
+    ///     Copy constructor
     /// </summary>
     /// <param name="origin"></param>
     protected internal SuitHostBuilder(SuitHostBuilder origin)
     {
         AppInfo = origin.AppInfo;
         Configuration = origin.Configuration;
-        Services=origin.Services;
-        Clients=origin.Clients;
-        CommandServer = origin.CommandServer;
+        Services = origin.Services;
         Parsing = origin.Parsing;
         WorkFlow = origin.WorkFlow;
     }
+
     /// <summary>
     /// </summary>
     public SuitAppInfo AppInfo { get; } = new();
@@ -84,19 +134,17 @@ public class SuitHostBuilder
     ///     Add a client shell to mobile suit
     /// </summary>
     /// <param name="client"></param>
-    public void AddClient(SuitShell client) { Clients.Add(client); }
+    public void AddClient(SuitShell client) { Services.AddKeyedSingleton(SuitBuildUtils.SUIT_CLIENT_SHELL, client); }
 
     /// <summary>
     ///     Add a client shell to mobile suit
     /// </summary>
     /// <param name="serverType"></param>
-    public void UseCommandServer(Type serverType)
+    public void UseCommandServer<T>() where T : class, ISuitCommandServer
     {
-        if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
-            throw new ArgumentOutOfRangeException(nameof(serverType));
-
-        Services.Add(new ServiceDescriptor(typeof(ISuitCommandServer), serverType, ServiceLifetime.Scoped));
-        CommandServer = serverType;
+        Services.AddSingleton<SuitHostShell>
+            (sp => SuitHostShell.FromCommandServer(typeof(T)));
+        Services.AddScoped<ISuitCommandServer, T>();
     }
 
     /// <summary>
@@ -109,36 +157,11 @@ public class SuitHostBuilder
     ///     Build a SuitHost.
     /// </summary>
     /// <returns></returns>
-    public virtual IMobileSuitHost Build()
+    public IMobileSuitHost Build()
     {
-        AddPreBuildMatters();
-        var startUp = new TaskCompletionSource();
-        Services.AddSingleton<IHostApplicationLifetime>
-        (
-            new SuitHostApplicationLifetime
-            (
-                startUp,
-                () =>
-                {
-                    _cancelTasks.IsLocked = true;
-                    return Task.WhenAll(_cancelTasks);
-                }
-            )
-        );
-
-        var providers = Services.BuildServiceProvider();
-        return new SuitHost(providers, WorkFlow.Build(providers), startUp, _cancelTasks);
-    }
-    /// <summary>
-    /// Inject IConfiguration, SuitAppShell, SuitHostShell and ISuitAppInfo into Services
-    /// </summary>
-    /// <returns></returns>
-    public SuitHostBuilder AddPreBuildMatters()
-    {
-        Services.AddSingleton<ISuitAppInfo>(AppInfo);
-        Services.AddSingleton(SuitAppShell.FromClients(Clients));
-        Services.AddSingleton(SuitHostShell.FromCommandServer(CommandServer));
-        Services.AddSingleton<IConfiguration>(Configuration);
-        return this;
+        return Services
+              .AddSuitMiddlewares(WorkFlow)
+              .BuildServiceProvider()
+              .GetRequiredService<IMobileSuitHost>();
     }
 }

@@ -7,11 +7,52 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using HitRefresh.MobileSuit.Core;
 using HitRefresh.MobileSuit.Core.Middleware;
+using HitRefresh.MobileSuit.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HitRefresh.MobileSuit;
+
+/// <summary>
+///     Specifies the middleware collection of MobileSuit
+/// </summary>
+internal class SuitMiddlewareCollection : List<ISuitMiddleware>, ISuitMiddlewareCollection
+{
+    /// <inheritdoc />
+    public SuitMiddlewareCollection(IEnumerable<ISuitMiddleware> enumerable) : base(enumerable) { }
+
+    /// <inheritdoc />
+    public SuitRequestDelegate BuildSuitRequestDelegate()
+    {
+        var requestStack = new Stack<SuitRequestDelegate>();
+        requestStack.Push(_ => Task.CompletedTask);
+
+
+        foreach (var middleware in (this as IEnumerable<ISuitMiddleware>).Reverse())
+        {
+            var next = requestStack.Peek();
+            requestStack.Push(async c => await middleware.InvokeAsync(c, next));
+        }
+
+        var standardPipeline= requestStack.Peek();
+        return async context=>
+        {
+            try
+            {
+                await standardPipeline(context);
+            }
+            catch (Exception ex)
+            {
+                context.Exception = ex;
+                context.Status = RequestStatus.Faulted;
+                await context.ServiceProvider.GetRequiredService<ISuitExceptionHandler>().InvokeAsync(context);
+            }
+        };
+    }
+}
 
 /// <summary>
 ///     Describes the work flow of mobile suit.
@@ -19,13 +60,15 @@ namespace HitRefresh.MobileSuit;
 public interface ISuitWorkFlow
 {
     /// <summary>
-    /// Get all middlewares configured
+    ///     Get all middlewares configured
     /// </summary>
     public IReadOnlyList<Type> Middlewares { get; }
+
     /// <summary>
     ///     Remove all existing middlewares
     /// </summary>
     public ISuitWorkFlow Reset();
+
     /// <summary>
     ///     Add a custom middleware
     /// </summary>
@@ -68,7 +111,7 @@ public interface ISuitWorkFlow
     /// </summary>
     /// <param name="serviceProvider"></param>
     /// <returns></returns>
-    IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider);
+    IServiceCollection Build(IServiceCollection serviceProvider);
 }
 
 /// <summary>
@@ -77,6 +120,7 @@ public interface ISuitWorkFlow
 public class SuitWorkFlow : ISuitWorkFlow
 {
     private readonly List<Type> _middlewares = new();
+
     /// <inheritdoc />
     public IReadOnlyList<Type> Middlewares => _middlewares;
 
@@ -116,7 +160,7 @@ public class SuitWorkFlow : ISuitWorkFlow
     public ISuitWorkFlow UseFinalize() { return this.UseCustom<FinalizeMiddleware>(); }
 
     /// <inheritdoc />
-    public IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider)
+    public IServiceCollection Build(IServiceCollection serviceProvider)
     {
         if (_middlewares.Count == 0)
             UsePrompt()
@@ -125,12 +169,20 @@ public class SuitWorkFlow : ISuitWorkFlow
                .UseHostShell()
                .UseAppShell()
                .UseFinalize();
-        var r = new List<ISuitMiddleware>();
-        foreach (var type in _middlewares)
-            if (ActivatorUtilities.CreateInstance(serviceProvider, type) is ISuitMiddleware middleware)
-                r.Add(middleware);
-            else
-                throw new ArgumentOutOfRangeException(type.FullName);
-        return r;
+        foreach (var middleware in _middlewares) serviceProvider.AddSingleton(middleware);
+
+        serviceProvider.AddSingleton<ISuitMiddlewareCollection>
+        (
+            provider => new SuitMiddlewareCollection
+            (
+                _middlewares
+                   .Select
+                    (
+                        t => provider.GetRequiredService(t) as ISuitMiddleware
+                          ?? throw new ArgumentOutOfRangeException(t.FullName)
+                    )
+            )
+        );
+        return serviceProvider;
     }
 }

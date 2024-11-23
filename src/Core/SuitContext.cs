@@ -21,7 +21,7 @@ public class SuitContext : IDisposable
     {
         _serviceScope = scope;
         ServiceProvider = scope.ServiceProvider;
-        CancellationToken = new CancellationTokenSource();
+        CancellationToken = ServiceProvider.GetRequiredService<CancellationTokenSource>();
         var hostLifeTime = ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
         Properties = ServiceProvider.GetRequiredService<ISuitContextProperties>();
         hostLifeTime.ApplicationStopping.Register(() => CancellationToken.Cancel());

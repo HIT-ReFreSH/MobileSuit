@@ -94,20 +94,50 @@ public interface ITaskService
     public void ClearCompleted();
 }
 
-internal class TaskRecorder : IEnumerable<Task>
+/// <summary>
+///     A entity to store tasks
+/// </summary>
+public interface ITaskRecorder : IEnumerable<Task>
+{
+    /// <summary>
+    ///     Whether the collection is locked (Cannot add more task)
+    /// </summary>
+    bool IsLocked { get; set; }
+
+    /// <summary>
+    ///     Add a new task to the collection
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    bool Add(Task task);
+
+    /// <summary>
+    ///     Remove certain task from the collection
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    bool Remove(Task task);
+}
+
+internal class TaskRecorder : ITaskRecorder
 {
     private readonly List<Task> _tasks = new();
+
+    /// <inheritdoc />
     public bool IsLocked { get; set; }
+
     public IEnumerator<Task> GetEnumerator() { return _tasks.GetEnumerator(); }
 
     IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
 
+    /// <inheritdoc />
     public bool Add(Task task)
     {
         if (!IsLocked) _tasks.Add(task);
         return !IsLocked;
     }
 
+    /// <inheritdoc />
     public bool Remove(Task task)
     {
         if (!IsLocked) _tasks.Remove(task);
@@ -115,7 +145,7 @@ internal class TaskRecorder : IEnumerable<Task>
     }
 }
 
-internal class TaskService(TaskRecorder cancelTasks) : ITaskService
+internal class TaskService(ITaskRecorder cancelTasks) : ITaskService
 {
     private readonly List<(Task, SuitContext)> _tasks = new();
 

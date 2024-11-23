@@ -34,8 +34,9 @@ public static class SuitHostBuilderExtensions
     /// <param name="builder">Builder for the host</param>
     /// <typeparam name="T">PromptServer</typeparam>
     /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder) where T : class
     {
+        builder.Services.AddScoped<T>();
         builder.AddClient(SuitObjectShell.FromType(typeof(T)));
         return builder;
     }
@@ -59,8 +60,9 @@ public static class SuitHostBuilderExtensions
     /// <param name="instance"></param>
     /// <typeparam name="T">PromptServer</typeparam>
     /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance) where T : class
     {
+        builder.Services.AddSingleton(instance);
         builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
         return builder;
     }
@@ -72,8 +74,9 @@ public static class SuitHostBuilderExtensions
     /// <param name="name"></param>
     /// <typeparam name="T">PromptServer</typeparam>
     /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name) where T : class
     {
+        builder.Services.AddScoped<T>();
         builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
         return builder;
     }
@@ -86,8 +89,9 @@ public static class SuitHostBuilderExtensions
     /// <param name="instance"></param>
     /// <typeparam name="T">PromptServer</typeparam>
     /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name, T instance)
+    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name, T instance) where T : class
     {
+        builder.Services.AddScoped<T>();
         builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance, name));
         return builder;
     }
@@ -139,6 +143,18 @@ public static class SuitHostBuilderExtensions
     public static SuitHostBuilder UseTrueColorIO(this SuitHostBuilder builder)
     {
         return builder.UseIO<TrueColorIOHub>();
+    }
+
+    /// <summary>
+    ///     Add all middleware and the request delegate to the collection
+    /// </summary>
+    /// <param name="servicesCollection"></param>
+    /// <param name="workFlow"></param>
+    /// <returns></returns>
+    public static IServiceCollection AddSuitMiddlewares
+        (this IServiceCollection servicesCollection, ISuitWorkFlow workFlow)
+    {
+        return workFlow.Build(servicesCollection);
     }
 
     /// <summary>

@@ -18,8 +18,6 @@ public class SuitHostShell : SuitObjectShell
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     internal static SuitHostShell FromCommandServer(Type serverType)
     {
-        if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
-            throw new ArgumentOutOfRangeException(nameof(serverType));
         return new SuitHostShell
         (
             serverType,

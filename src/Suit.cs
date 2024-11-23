@@ -16,7 +16,7 @@ public static class Suit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="args"></param>
-    public static async void QuickStart4BitPowerLine<T>(string[] args)
+    public static async void QuickStart4BitPowerLine<T>(string[] args) where T : class
     {
         await CreateBuilder(args)
              .HasName("demo")
@@ -32,7 +32,7 @@ public static class Suit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="args"></param>
-    public static void QuickStart<T>(string[] args)
+    public static void QuickStart<T>(string[] args) where T : class
     {
         CreateBuilder(args)
            .HasName("demo")
@@ -48,7 +48,7 @@ public static class Suit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="args"></param>
-    public static void QuickStartPowerLine<T>(string[] args)
+    public static void QuickStartPowerLine<T>(string[] args) where T : class
     {
         CreateBuilder(args)
            .HasName("demo")

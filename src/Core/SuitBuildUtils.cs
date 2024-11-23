@@ -24,6 +24,11 @@ public delegate object? InstanceFactory(SuitContext context);
 public static class SuitBuildUtils
 {
     /// <summary>
+    ///     Flag to mark SuitClientShells
+    /// </summary>
+    public const string SUIT_CLIENT_SHELL = "SuitClientShells";
+
+    /// <summary>
     ///     Property Flag Key for Specific CMD target
     /// </summary>
     public const string SUIT_COMMAND_TARGET = "suit-cmd-target";
@@ -214,20 +219,14 @@ public static class SuitBuildUtils
     /// <returns></returns>
     public static object? CreateInstance(Type type, SuitContext s)
     {
-        var tryGet = s.ServiceProvider.GetService(type);
-        if (tryGet is not null) return tryGet;
-        var constructors = type.GetConstructors();
-
-        foreach (var constructor in constructors)
+        try
         {
-            if (!constructor.IsPublic) continue;
-            var parameters = constructor.GetParameters();
-            if (parameters.Length == 0) return constructor.Invoke(null);
-            var args = GetArgs(parameters, Array.Empty<string>(), s);
-            if (args is not null) return constructor.Invoke(args);
+            return ActivatorUtilities.GetServiceOrCreateInstance(s.ServiceProvider, type);
         }
-
-        return null;
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     /// <summary>

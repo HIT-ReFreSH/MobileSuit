@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HitRefresh.MobileSuit.Core;
@@ -14,128 +12,110 @@ namespace HitRefresh.MobileSuit;
 /// <summary>
 ///     A entity, which serves the shell functions of a mobile-suit program.
 /// </summary>
-internal class SuitHost : IMobileSuitHost
+public class SuitHost : IMobileSuitHost
 {
-    private readonly TaskRecorder _cancellationTasks;
     private readonly ISuitExceptionHandler _exceptionHandler;
     private readonly IHostApplicationLifetime _lifetime;
+    /// <summary>
+    /// Factory to create a suit context.
+    /// </summary>
+    protected ISuitContextFactory ContextFactory { get; }
+    /// <summary>
+    /// Request Handler,
+    /// </summary>
+    protected SuitRequestDelegate RequestHandler { get; }
     private readonly AsyncServiceScope _rootScope;
-    private readonly TaskCompletionSource _startUp;
-    private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
+    /// <summary>
+    /// Specifies the task of suit host startup
+    /// </summary>
+    protected SuitHostStartCompletionSource StartUp { get; }
     private Task? _hostTask;
-    private SuitRequestDelegate? _requestHandler;
 
+    /// <summary>
+    ///     Create a SuitHost instance
+    /// </summary>
+    /// <param name="services">ServiceCollection</param>
+    /// <param name="startUp">Startup event</param>
+    /// <param name="requestHandler"></param>
+    /// <param name="contextFactory"></param>
     public SuitHost
     (
         IServiceProvider services,
-        IReadOnlyList<ISuitMiddleware> middleware,
-        TaskCompletionSource startUp,
-        TaskRecorder cancellationTasks
+        SuitHostStartCompletionSource startUp,
+        SuitRequestDelegate requestHandler,
+        ISuitContextFactory contextFactory
     )
     {
         Services = services;
-        _suitApp = middleware;
-        _startUp = startUp;
-        _cancellationTasks = cancellationTasks;
-        _lifetime = Services.GetRequiredService<IHostApplicationLifetime>();
+        StartUp = startUp;
         _exceptionHandler = Services.GetRequiredService<ISuitExceptionHandler>();
+        RequestHandler = requestHandler;
+        ContextFactory = contextFactory;
+        _lifetime = Services.GetRequiredService<IHostApplicationLifetime>();
+
         _rootScope = Services.CreateAsyncScope();
         Logger = Services.GetRequiredService<ILogger<SuitHost>>();
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    ///     Logger of given host
+    /// </summary>
     public ILogger Logger { get; }
 
+    /// <summary>
+    ///     Service collection of given host
+    /// </summary>
     public IServiceProvider Services { get; }
 
+    /// <inheritdoc />
     public void Dispose() { _rootScope.Dispose(); }
 
-    public async Task StartAsync(CancellationToken cancellationToken = new())
+    /// <inheritdoc />
+    public virtual async Task StartAsync(CancellationToken cancellationToken = new())
     {
         if (_hostTask is not null) return;
         Console.CancelKeyPress += StartTimeCancelKeyPress;
-        Initialize();
 
         var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
         Console.CancelKeyPress -= StartTimeCancelKeyPress;
         if (cancellationToken.IsCancellationRequested) return;
         if (appInfo.StartArgs.Length > 0)
         {
-            var requestScope = Services.CreateScope();
-            var context = new SuitContext(requestScope)
-                          {
-                              Status = RequestStatus.NotHandled,
-                              Request = appInfo.StartArgs
-                          };
+            var context = ContextFactory.CreateContext();
             var cancelKeyHandler = CreateCancelKeyHandler(context);
             Console.CancelKeyPress += cancelKeyHandler;
-            try
-            {
-                await _requestHandler(context);
-            }
-            catch (Exception ex)
-            {
-                context.Exception = ex;
-                context.Status = RequestStatus.Faulted;
-                await _exceptionHandler.InvokeAsync(context);
-            }
-
+            await RequestHandler(context);
             Console.CancelKeyPress -= cancelKeyHandler;
         }
 
-        _startUp.SetResult();
+        StartUp.SetResult();
         _hostTask = HandleRequest();
     }
 
-    public async Task StopAsync(CancellationToken cancellationToken = new())
+    /// <inheritdoc />
+    public virtual async Task StopAsync(CancellationToken cancellationToken = new())
     {
         if (_hostTask is null) return;
         _hostTask = null;
     }
 
-
+    /// <inheritdoc />
     public async ValueTask DisposeAsync() { await _rootScope.DisposeAsync(); }
 
-    public void Initialize()
+    /// <summary>
+    ///     Run middlewares in given order for a cycle
+    /// </summary>
+    protected async Task HandleRequest()
     {
-        if (_requestHandler != null) return;
-        var requestStack = new Stack<SuitRequestDelegate>();
-        requestStack.Push(_ => Task.CompletedTask);
-
-
-        foreach (var middleware in _suitApp.Reverse())
-        {
-            var next = requestStack.Peek();
-            requestStack.Push(async c => await middleware.InvokeAsync(c, next));
-        }
-
-        _requestHandler = requestStack.Peek();
-    }
-
-    private async Task HandleRequest()
-    {
-        if (_requestHandler is null) return;
         for (;;)
         {
-            var requestScope = Services.CreateScope();
-            var context = new SuitContext(requestScope);
+            var context = ContextFactory.CreateContext();
             var cancelKeyHandler = CreateCancelKeyHandler(context);
             Console.CancelKeyPress += cancelKeyHandler;
-            try
-            {
-                await _requestHandler(context);
-            }
-            catch (Exception ex)
-            {
-                context.Exception = ex;
-                context.Status = RequestStatus.Faulted;
-                await _exceptionHandler.InvokeAsync(context);
-                continue;
-            }
-
+            await RequestHandler(context);
             Console.CancelKeyPress -= cancelKeyHandler;
             if (context.Status == RequestStatus.OnExit
-             || (context.Status == RequestStatus.NoRequest && context.CancellationToken.IsCancellationRequested)) break;
+             || context is { Status: RequestStatus.NoRequest, CancellationToken.IsCancellationRequested: true }) break;
         }
 
         _lifetime.StopApplication();
