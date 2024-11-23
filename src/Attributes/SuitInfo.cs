@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Resources;
-using System.Security.AccessControl;
 using System.Threading;
 
 namespace HitRefresh.MobileSuit;
@@ -15,10 +14,7 @@ public class SuitInfoAttribute : Attribute
     ///     Initialize with the information.
     /// </summary>
     /// <param name="text">The information.</param>
-    public SuitInfoAttribute(string text)
-    {
-        Text = text;
-    }
+    public SuitInfoAttribute(string text) { Text = text; }
 
     /// <summary>
     ///     Initialize with a resource file's type, and the resource key.
@@ -38,6 +34,7 @@ public class SuitInfoAttribute : Attribute
     /// </summary>
     public string Text { get; }
 }
+
 /// <summary>
 ///     Stores the information of a member to be displayed.
 /// </summary>
@@ -47,8 +44,6 @@ public sealed class SuitInfoAttribute<T> : SuitInfoAttribute
     ///     Initialize with the information.
     /// </summary>
     /// <param name="text">The information.</param>
-    public SuitInfoAttribute(string text) : base(new ResourceManager(typeof(T)).GetString(text, Thread.CurrentThread.CurrentCulture) ?? "")
-    {
-    }
-
+    public SuitInfoAttribute(string text) : base
+        (new ResourceManager(typeof(T)).GetString(text, Thread.CurrentThread.CurrentCulture) ?? "") { }
 }

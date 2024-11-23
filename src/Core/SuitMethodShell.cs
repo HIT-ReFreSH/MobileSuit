@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +14,12 @@ public class SuitMethodShell : SuitShell
 {
     private readonly SuitMethodParameterInfo _suitMethodParameterInfo;
 
-    private SuitMethodShell(MethodBase method, InstanceFactory factory, string? absoluteName = null) : base(method,
-        factory, absoluteName)
+    private SuitMethodShell(MethodBase method, InstanceFactory factory, string? absoluteName = null) : base
+    (
+        method,
+        factory,
+        absoluteName
+    )
     {
         if (method == null) throw new Exception();
         InvokeMember = method.Invoke;
@@ -34,14 +37,17 @@ public class SuitMethodShell : SuitShell
                 foreach (var parameter in Parameters)
                 {
                     infoSb.Append(parameter.Name);
-                    infoSb.Append(parameter switch
-                    {
-                        { } when parameter.ParameterType.IsArray => "[]",
-                        { } when Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is not null =>
-                            "{}",
-                        {HasDefaultValue: true} => $"={parameter.DefaultValue}",
-                        _ => ""
-                    });
+                    infoSb.Append
+                    (
+                        parameter switch
+                        {
+                            not null when parameter.ParameterType.IsArray => "[]",
+                            not null when Parameters[^1].ParameterType.GetInterface("IDynamicParameter") is not null =>
+                                "{}",
+                            { HasDefaultValue: true } => $"={parameter.DefaultValue}",
+                            _ => ""
+                        }
+                    );
                     infoSb.Append(',');
                 }
 
@@ -85,8 +91,9 @@ public class SuitMethodShell : SuitShell
     /// <inheritdoc />
     public override bool MayExecute(IReadOnlyList<string> request)
     {
-        return request.Count > 0 && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
-                                 && CanFitTo(request.Count - 1);
+        return request.Count > 0
+            && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
+            && CanFitTo(request.Count - 1);
     }
 
     private async Task Execute(SuitContext context, object?[]? args)
@@ -130,7 +137,7 @@ public class SuitMethodShell : SuitShell
     private bool CanFitTo(int argumentCount)
     {
         return argumentCount >= _suitMethodParameterInfo.MinParameterCount
-               && argumentCount <= _suitMethodParameterInfo.MaxParameterCount;
+            && argumentCount <= _suitMethodParameterInfo.MaxParameterCount;
     }
 
     /// <inheritdoc />
@@ -150,8 +157,6 @@ public class SuitMethodShell : SuitShell
             if (pass is null) return;
             await Execute(context, pass);
         }
-        catch (FormatException)
-        {
-        }
+        catch (FormatException) { }
     }
 }

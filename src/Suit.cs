@@ -19,12 +19,12 @@ public static class Suit
     public static async void QuickStart4BitPowerLine<T>(string[] args)
     {
         await CreateBuilder(args)
-            .HasName("demo")
-            .UsePowerLine()
-            .Use4BitColorIO()
-            .MapClient<T>()
-            .Build()
-            .RunAsync();
+             .HasName("demo")
+             .UsePowerLine()
+             .Use4BitColorIO()
+             .MapClient<T>()
+             .Build()
+             .RunAsync();
     }
 
     /// <summary>
@@ -35,12 +35,12 @@ public static class Suit
     public static void QuickStart<T>(string[] args)
     {
         CreateBuilder(args)
-            .HasName("demo")
-            .UsePowerLine()
-            .Use4BitColorIO()
-            .MapClient<T>()
-            .Build()
-            .Run();
+           .HasName("demo")
+           .UsePowerLine()
+           .Use4BitColorIO()
+           .MapClient<T>()
+           .Build()
+           .Run();
     }
 
     /// <summary>
@@ -51,21 +51,18 @@ public static class Suit
     public static void QuickStartPowerLine<T>(string[] args)
     {
         CreateBuilder(args)
-            .HasName("demo")
-            .UsePowerLine()
-            .MapClient<T>()
-            .Build()
-            .Run();
+           .HasName("demo")
+           .UsePowerLine()
+           .MapClient<T>()
+           .Build()
+           .Run();
     }
 
     /// <summary>
     ///     Get a builder to create host
     /// </summary>
     /// <returns>The builder</returns>
-    public static SuitHostBuilder CreateBuilder(string[]? args = null)
-    {
-        return new SuitHostBuilder(args);
-    }
+    public static SuitHostBuilder CreateBuilder(string[]? args = null) { return new SuitHostBuilder(args); }
 
     /// <summary>
     ///     provides packaging for ContentArray
@@ -83,8 +80,7 @@ public static class Suit
     /// </summary>
     /// <param name="contents">ContentArray</param>
     /// <returns>packaged ContentArray</returns>
-    public static IEnumerable<PrintUnit> CreateContentArray(
-        params (string, Color?, Color?)[] contents)
+    public static IEnumerable<PrintUnit> CreateContentArray(params (string, Color?, Color?)[] contents)
     {
         return SuitUtils.CreateContentArray(contents);
     }
@@ -105,8 +101,7 @@ public static class Suit
     /// </summary>
     /// <param name="contents">ContentArray</param>
     /// <returns>packaged ContentArray</returns>
-    public static IEnumerable<PrintUnit> CreateContentArray(
-        params (string, ConsoleColor?, ConsoleColor?)[] contents)
+    public static IEnumerable<PrintUnit> CreateContentArray(params (string, ConsoleColor?, ConsoleColor?)[] contents)
     {
         return SuitUtils.CreateContentArray(contents);
     }
@@ -121,8 +116,11 @@ public static class Suit
     /// <param name="owner">Optional. Owner of the Assembly, You may add 'All right reserved' manually.</param>
     /// <param name="site">Optional. Site of the Assembly</param>
     /// <param name="showLsHelp">Optional. Show Ls usage help or not</param>
-    public static void PrintAssemblyInformation(this IIOHub io,
-        string assemblyName, Version? assemblyVersion,
+    public static void PrintAssemblyInformation
+    (
+        this IIOHub io,
+        string assemblyName,
+        Version? assemblyVersion,
         bool showMobileSuitPowered = false,
         string? owner = null,
         string? site = null,
@@ -132,29 +130,41 @@ public static class Suit
         if (io == null) return;
 
         if (showMobileSuitPowered)
-            io.WriteLine(SuitUtils.CreateContentArray(
-                (assemblyName, null),
-                (" ", null),
-                (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor),
-                (" ", null),
-                (Lang.PoweredBy, null),
-                ("MobileSuit ", io.ColorSetting.ErrorColor),
-                (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "",
-                    io.ColorSetting.TitleColor)
-            ));
+            io.WriteLine
+            (
+                SuitUtils.CreateContentArray
+                (
+                    (assemblyName, null),
+                    (" ", null),
+                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor),
+                    (" ", null),
+                    (Lang.PoweredBy, null),
+                    ("MobileSuit ", io.ColorSetting.ErrorColor),
+                    (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "",
+                     io.ColorSetting.TitleColor)
+                )
+            );
         else
-            io.WriteLine(SuitUtils.CreateContentArray(
-                (assemblyName, null),
-                (" ", null),
-                (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor)
-            ));
+            io.WriteLine
+            (
+                SuitUtils.CreateContentArray
+                (
+                    (assemblyName, null),
+                    (" ", null),
+                    (assemblyVersion?.ToString() ?? "", io.ColorSetting.TitleColor)
+                )
+            );
         io.WriteLine();
         if (owner != null)
-            io.WriteLine(SuitUtils.CreateContentArray(
-                (Lang.CopyrightC, null),
-                (owner, io.ColorSetting.TitleColor)
-                //, (Lang.AllRightsReserved, null)
-            ));
+            io.WriteLine
+            (
+                SuitUtils.CreateContentArray
+                (
+                    (Lang.CopyrightC, null),
+                    (owner, io.ColorSetting.TitleColor)
+                    //, (Lang.AllRightsReserved, null)
+                )
+            );
         io.WriteLine();
         if (site != null)
         {
@@ -164,11 +174,15 @@ public static class Suit
 
         if (showLsHelp)
         {
-            io.WriteLine(SuitUtils.CreateContentArray(
-                (Lang.LsHelp1, null),
-                ("Ls", io.ColorSetting.PromptColor),
-                (Lang.LsHelp2, null)
-            ));
+            io.WriteLine
+            (
+                SuitUtils.CreateContentArray
+                (
+                    (Lang.LsHelp1, null),
+                    ("Ls", io.ColorSetting.PromptColor),
+                    (Lang.LsHelp2, null)
+                )
+            );
             io.WriteLine();
         }
     }
@@ -180,24 +194,36 @@ public static class Suit
     public static void PrintMobileSuitInformation(this IIOHub io)
     {
         if (io == null) return;
-        io.WriteLine(SuitUtils.CreateContentArray(
-            (Lang.PoweredBy, null),
-            ("MobileSuit", io.ColorSetting.ErrorColor),
-            (" ", null),
-            (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.TitleColor)
-        ));
-        io.WriteLine(SuitUtils.CreateContentArray(
-            (Lang.CopyrightC, null),
-            ("HIT-ReFreSH", io.ColorSetting.TitleColor)
-            //, (Lang.AllRightsReserved, null)
-        ));
+        io.WriteLine
+        (
+            SuitUtils.CreateContentArray
+            (
+                (Lang.PoweredBy, null),
+                ("MobileSuit", io.ColorSetting.ErrorColor),
+                (" ", null),
+                (Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "", io.ColorSetting.TitleColor)
+            )
+        );
+        io.WriteLine
+        (
+            SuitUtils.CreateContentArray
+            (
+                (Lang.CopyrightC, null),
+                ("HIT-ReFreSH", io.ColorSetting.TitleColor)
+                //, (Lang.AllRightsReserved, null)
+            )
+        );
         io.WriteLine();
         io.WriteLine("https://ms.ifers.xyz", io.ColorSetting.InformationColor);
-        io.WriteLine(SuitUtils.CreateContentArray(
-            (Lang.LsHelp1, null),
-            ("Help", io.ColorSetting.PromptColor),
-            (Lang.MsHelp2, null)
-        ));
+        io.WriteLine
+        (
+            SuitUtils.CreateContentArray
+            (
+                (Lang.LsHelp1, null),
+                ("Help", io.ColorSetting.PromptColor),
+                (Lang.MsHelp2, null)
+            )
+        );
 
         io.WriteLine();
     }

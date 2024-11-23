@@ -8,9 +8,10 @@ namespace HitRefresh.MobileSuit.Core.Services;
 public interface ISuitExceptionHandler
 {
     /// <summary>
-    /// Define whether Exception will be thrown when faulted.
+    ///     Define whether Exception will be thrown when faulted.
     /// </summary>
     public static bool ThrowIfFaulted { get; set; }
+
     /// <summary>
     ///     To invoke the middleware
     /// </summary>
@@ -33,10 +34,7 @@ internal class SuitExceptionHandler(IHistoryService history, IIOHub io) : ISuitE
         }
         else
         {
-            if (ISuitExceptionHandler.ThrowIfFaulted)
-            {
-                throw context.Exception;
-            }
+            if (ISuitExceptionHandler.ThrowIfFaulted) throw context.Exception;
             History.Status = RequestStatus.Faulted;
             History.Response = context.Exception.Message;
             await IO.WriteLineAsync(context.Exception.Message, OutputType.Error);

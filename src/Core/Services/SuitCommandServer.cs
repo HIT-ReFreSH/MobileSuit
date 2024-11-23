@@ -31,28 +31,27 @@ public class SuitCommandServer : ISuitCommandServer
 
 
     /// <inheritdoc />
-    [SuitAlias("Ls")]
-    [SuitInfo(typeof(BuildInCommandInformations), "List")]
+    [SuitAlias("Ls"), SuitInfo(typeof(BuildInCommandInformations), "List")]
     public virtual async Task ListCommands(string[] args)
     {
         await IO.WriteLineAsync(Lang.Members, OutputType.Title);
         await ListMembersAsync(App);
         await IO.WriteLineAsync();
-        await IO.WriteLineAsync(CreateContentArray
+        await IO.WriteLineAsync
         (
-            (Lang.ViewBic, null),
-            ("@Help", ConsoleColor.Cyan),
-            ("'", null)
-        ), OutputType.Ok);
+            CreateContentArray
+            (
+                (Lang.ViewBic, null),
+                ("@Help", ConsoleColor.Cyan),
+                ("'", null)
+            ),
+            OutputType.Ok
+        );
     }
 
     /// <inheritdoc />
-    [SuitInfo(typeof(BuildInCommandInformations), "Exit")]
-    [SuitAlias("Exit")]
-    public virtual RequestStatus ExitSuit()
-    {
-        return RequestStatus.OnExit;
-    }
+    [SuitInfo(typeof(BuildInCommandInformations), "Exit"), SuitAlias("Exit")]
+    public virtual RequestStatus ExitSuit() { return RequestStatus.OnExit; }
 
     /// <inheritdoc />
     [SuitInfo(typeof(BuildInCommandInformations), nameof(Join))]
@@ -76,24 +75,24 @@ public class SuitCommandServer : ISuitCommandServer
         foreach (var task in TaskService.GetTasks())
         {
             var line = new List<PrintUnit>
-            {
-                (task.Index.ToString(), null, null),
-                ("\t", null, null),
-                (task.Request, IO.ColorSetting.InformationColor, null),
-                ("\t", null, null),
-                task.Status switch
-                {
-                    RequestStatus.Ok or RequestStatus.NoRequest or RequestStatus.Handled => (Lang.Done,
-                        IO.ColorSetting.OkColor),
-                    RequestStatus.Running => (Lang.Running, IO.ColorSetting.WarningColor),
-                    RequestStatus.CommandParsingFailure => (Lang.InvalidCommand, IO.ColorSetting.ErrorColor),
-                    RequestStatus.CommandNotFound => (Lang.MemberNotFound, IO.ColorSetting.ErrorColor),
-                    RequestStatus.Interrupt => (Lang.Interrupt, IO.ColorSetting.ErrorColor),
-                    _ => (Lang.OnError, IO.ColorSetting.ErrorColor)
-                },
-                ("\t", null, null),
-                (task.Response ?? "-", IO.ColorSetting.InformationColor, null)
-            };
+                       {
+                           (task.Index.ToString(), null, null),
+                           ("\t", null, null),
+                           (task.Request, IO.ColorSetting.InformationColor, null),
+                           ("\t", null, null),
+                           task.Status switch
+                           {
+                               RequestStatus.Ok or RequestStatus.NoRequest or RequestStatus.Handled => (Lang.Done,
+                                               IO.ColorSetting.OkColor),
+                               RequestStatus.Running => (Lang.Running, IO.ColorSetting.WarningColor),
+                               RequestStatus.CommandParsingFailure => (Lang.InvalidCommand, IO.ColorSetting.ErrorColor),
+                               RequestStatus.CommandNotFound => (Lang.MemberNotFound, IO.ColorSetting.ErrorColor),
+                               RequestStatus.Interrupt => (Lang.Interrupt, IO.ColorSetting.ErrorColor),
+                               _ => (Lang.OnError, IO.ColorSetting.ErrorColor)
+                           },
+                           ("\t", null, null),
+                           (task.Response ?? "-", IO.ColorSetting.InformationColor, null)
+                       };
             await IO.WriteLineAsync(line);
         }
     }
@@ -109,8 +108,18 @@ public class SuitCommandServer : ISuitCommandServer
     }
 
     /// <inheritdoc />
-    [SuitInfo(typeof(BuildInCommandInformations), nameof(ClearCompleted))]
-    [SuitAlias("Cct")]
+    [SuitInfo(typeof(BuildInCommandInformations), nameof(Task))]
+    public async Task Logs(int index)
+    {
+        if (TaskService.HasTask(index))
+            foreach (var pu in TaskService.GetLogs(index))
+                await IO.WriteAsync(pu);
+        else
+            await IO.WriteLineAsync(BuildInCommandInformations.TaskNotFound, OutputType.Error);
+    }
+
+    /// <inheritdoc />
+    [SuitInfo(typeof(BuildInCommandInformations), nameof(ClearCompleted)), SuitAlias("Cct")]
     public async Task ClearCompleted()
     {
         TaskService.ClearCompleted();
@@ -119,14 +128,10 @@ public class SuitCommandServer : ISuitCommandServer
 
     /// <inheritdoc />
     [SuitInfo(typeof(BuildInCommandInformations), nameof(Dir))]
-    public string Dir()
-    {
-        return Directory.GetCurrentDirectory();
-    }
+    public string Dir() { return Directory.GetCurrentDirectory(); }
 
     /// <inheritdoc />
-    [SuitInfo(typeof(BuildInCommandInformations), nameof(ChDir))]
-    [SuitAlias("cd")]
+    [SuitInfo(typeof(BuildInCommandInformations), nameof(ChDir)), SuitAlias("cd")]
     public string ChDir(string path)
     {
         if (!Directory.Exists(path)) return BuildInCommandInformations.DirectoryNotFound;
@@ -141,13 +146,17 @@ public class SuitCommandServer : ISuitCommandServer
         await IO.WriteLineAsync(Lang.Bic, OutputType.Title);
         await ListMembersAsync(Host);
         await IO.WriteLineAsync();
-        await IO.WriteLineAsync(CreateContentArray
+        await IO.WriteLineAsync
         (
-            (Lang.BicExp1, null),
-            ("@", ConsoleColor.Cyan),
-            (Lang.BicExp2,
-                null)
-        ), OutputType.Ok);
+            CreateContentArray
+            (
+                (Lang.BicExp1, null),
+                ("@", ConsoleColor.Cyan),
+                (Lang.BicExp2,
+                 null)
+            ),
+            OutputType.Ok
+        );
     }
 
     /// <summary>
@@ -162,20 +171,23 @@ public class SuitCommandServer : ISuitCommandServer
         foreach (var shell in suitObject.Members())
         {
             var (infoColor, lChar, rChar) = shell.Type switch
-            {
-                MemberType.MethodWithInfo => (ConsoleColor.Blue, '[', ']'),
-                MemberType.MethodWithoutInfo => (ConsoleColor.DarkBlue, '(', ')'),
-                MemberType.FieldWithInfo => (ConsoleColor.Green, '<', '>'),
-                _ => (ConsoleColor.DarkGreen, '{', '}')
-            };
+                                            {
+                                                MemberType.MethodWithInfo => (ConsoleColor.Blue, '[', ']'),
+                                                MemberType.MethodWithoutInfo => (ConsoleColor.DarkBlue, '(', ')'),
+                                                MemberType.FieldWithInfo => (ConsoleColor.Green, '<', '>'),
+                                                _ => (ConsoleColor.DarkGreen, '{', '}')
+                                            };
             var aliasesExpression = new StringBuilder();
             foreach (var alias in shell.Aliases) aliasesExpression.Append($"/{alias}");
-            await IO.WriteLineAsync(CreateContentArray
+            await IO.WriteLineAsync
             (
-                (shell.AbsoluteName, null),
-                (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
-                ($" {lChar}{shell.Information}{rChar}", infoColor)
-            ));
+                CreateContentArray
+                (
+                    (shell.AbsoluteName, null),
+                    (aliasesExpression.ToString(), ConsoleColor.DarkYellow),
+                    ($" {lChar}{shell.Information}{rChar}", infoColor)
+                )
+            );
         }
 
         IO.SubtractWriteLinePrefix();

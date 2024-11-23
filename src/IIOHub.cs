@@ -11,33 +11,46 @@ namespace HitRefresh.MobileSuit;
 ///     To configure Options of IOHub
 /// </summary>
 public delegate void IIOHubConfigurator(IIOHub hub);
+
 /// <summary>
-/// Featured Options of IOHub
+///     Featured Options of IOHub
 /// </summary>
 [Flags]
-public enum IOOptions:ulong
+public enum IOOptions : ulong
 {
     /// <summary>
-    /// No feature applied.
+    ///     No feature applied.
     /// </summary>
     None = 0,
+
     /// <summary>
-    /// Suggests no prompt should be output to the stream
+    ///     Suggests no prompt should be output to the stream
     /// </summary>
     DisablePrompt = 1 << 1,
+
     /// <summary>
-    /// Suggests no type/time tag should be output to the stream
+    ///     Suggests no type/time tag should be output to the stream
     /// </summary>
     DisableTag = 1 << 2,
+
     /// <summary>
-    /// Suggests no Line prefix should be output to the stream
+    ///     Suggests no Line prefix should be output to the stream
     /// </summary>
-    DisableLinePrefix = 1<< 3,
+    DisableLinePrefix = 1 << 3
 }
+
 /// <summary>
 ///     A entity, which serves the input/output of a mobile suit.
 /// </summary>
-public interface IIOHub
+public interface IIOHub : IIOHubYouShouldNeverUse;
+
+/// <summary>
+///     Well, <see cref="IIOHub">IIOHub</see> is just a alias for this `IIOHubYouShouldNeverUse`.
+///     We designed this to help you use the task log function correctly in any IIOHub adapter.
+///     If you don't understand why this is the case, please just use IIOHub.
+///     Yes, you should NEVER use this interface directly, unless you are me, haha
+/// </summary>
+public interface IIOHubYouShouldNeverUse
 {
     /*/// <summary>
     /// A input helper for current IOHub. Provides information to the prompt.
@@ -99,16 +112,16 @@ public interface IIOHub
     protected static string GetLabel(OutputType type = OutputType.Default)
     {
         return type switch
-        {
-            OutputType.Default => "",
-            OutputType.Prompt => "[Prompt]",
-            OutputType.Error => "[Error]",
-            OutputType.Ok => "[AllOk]",
-            OutputType.Title => "[List]",
-            OutputType.Info => "[Info]",
-            OutputType.System => "[System]",
-            _ => ""
-        };
+               {
+                   OutputType.Default => "",
+                   OutputType.Prompt => "[Prompt]",
+                   OutputType.Error => "[Error]",
+                   OutputType.Ok => "[AllOk]",
+                   OutputType.Title => "[List]",
+                   OutputType.Info => "[Info]",
+                   OutputType.System => "[System]",
+                   _ => ""
+               };
     }
 
 

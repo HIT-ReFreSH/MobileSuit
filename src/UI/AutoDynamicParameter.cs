@@ -24,20 +24,33 @@ public abstract class AutoDynamicParameter : IDynamicParameter
             if (memberAttr is null) continue;
             var parseAttr = property.GetCustomAttribute<SuitParserAttribute>(true);
 
-            Members.Add(memberAttr.Name, new ParsingMember(
-                property.GetCustomAttribute<AsCollectionAttribute>(true) != null
-                    ? new Action<object?, object?>((obj, value) =>
-                        {
-                            property.PropertyType.GetMethod("Add", new[]
+            Members.Add
+            (
+                memberAttr.Name,
+                new ParsingMember
+                (
+                    property.GetCustomAttribute<AsCollectionAttribute>(true) != null
+                        ? new Action<object?, object?>
+                        (
+                            (obj, value) =>
                             {
-                                property.GetType().GetElementType() ?? typeof(string)
-                            })?.Invoke(property.GetValue(obj), new[] { value });
-                        }
-                    )
-                    : property.SetValue,
-                SuitBuildUtils.CreateConverterFactory(property.PropertyType, parseAttr),
-                memberAttr.Length,
-                property.GetCustomAttribute<WithDefaultAttribute>(true) != null));
+                                property.PropertyType.GetMethod
+                                         (
+                                             "Add",
+                                             new[]
+                                             {
+                                                 property.GetType().GetElementType() ?? typeof(string)
+                                             }
+                                         )
+                                       ?.Invoke(property.GetValue(obj), new[] { value });
+                            }
+                        )
+                        : property.SetValue,
+                    SuitBuildUtils.CreateConverterFactory(property.PropertyType, parseAttr),
+                    memberAttr.Length,
+                    property.GetCustomAttribute<WithDefaultAttribute>(true) != null
+                )
+            );
         }
     }
 
@@ -56,25 +69,36 @@ public abstract class AutoDynamicParameter : IDynamicParameter
         for (var i = 0; i < args.Count;)
         {
             if (!ParseMemberRegex.IsMatch(args[i]))
-                throw new ArgumentException(
+                throw new ArgumentException
+                (
                     $@"{args[i]}{Lang.AutoDynamicParameter_Parse__0__not_match_format______}: '^-'",
-                    nameof(args));
+                    nameof(args)
+                );
 
             var name = args[i][1..];
             if (!Members.ContainsKey(name))
-                throw new ArgumentException(
+                throw new ArgumentException
+                (
                     $@"{args[i]}{Lang.AutoDynamicParameter_Parse__0__not_in_dictionary___1__}:{{{string.Join(',', Members.Keys)}}}",
-                    nameof(args));
+                    nameof(args)
+                );
 
             var parseMember = Members[name];
             i++;
             var j = i + parseMember.ParseLength;
             if (j > args.Count)
-                throw new ArgumentException($@"{args[i]}{Lang.AutoDynamicParameter_Parse__0__length_not_match}",
-                    nameof(args));
+                throw new ArgumentException
+                (
+                    $@"{args[i]}{Lang.AutoDynamicParameter_Parse__0__length_not_match}",
+                    nameof(args)
+                );
 
-            parseMember.Set(this,
-                ConnectStringArray(args.ToArray()[i..j]), context);
+            parseMember.Set
+            (
+                this,
+                ConnectStringArray(args.ToArray()[i..j]),
+                context
+            );
             i = j;
         }
 
@@ -94,8 +118,12 @@ public abstract class AutoDynamicParameter : IDynamicParameter
 
     private class ParsingMember
     {
-        public ParsingMember(Action<object?, object?> setter,
-            Func<SuitContext, Converter<string, object?>> converterFactory, int parseLength, bool withDefault
+        public ParsingMember
+        (
+            Action<object?, object?> setter,
+            Func<SuitContext, Converter<string, object?>> converterFactory,
+            int parseLength,
+            bool withDefault
         )
         {
             Setter = setter;

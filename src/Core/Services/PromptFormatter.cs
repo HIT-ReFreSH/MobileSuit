@@ -83,8 +83,11 @@ public static class PromptFormatters
                 txt = txt.Replace(Lang.Tasks, $"{Lightning} ", StringComparison.CurrentCulture);
             r.Add(($"{txt}", foreGrounds[i], backGrounds[i]));
             r.Add((" ", foreGrounds[i], backGrounds[i]));
-            r.Add(($"{RightTriangle} ", backGrounds[i],
-                i + 1 < orgList.Count ? backGrounds[i + 1] : null));
+            r.Add
+            (
+                ($"{RightTriangle} ", backGrounds[i],
+                 i + 1 < orgList.Count ? backGrounds[i + 1] : null)
+            );
         }
 
 

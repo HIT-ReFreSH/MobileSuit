@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
@@ -29,10 +28,10 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     ///     The BindingFlags stands for IgnoreCase,  Public and Instance members
     /// </summary>
     public const BindingFlags Flags = BindingFlags.IgnoreCase
-                                      | BindingFlags.Public
-                                      | BindingFlags.Instance;
+                                    | BindingFlags.Public
+                                    | BindingFlags.Instance;
 
-    private static readonly SortedSet<string> BlockList = new() {"ToString", "Equals", "GetHashCode", "GetType"};
+    private static readonly SortedSet<string> BlockList = new() { "ToString", "Equals", "GetHashCode", "GetType" };
     private readonly InstanceFactory _instanceFactory;
     private readonly List<SuitShell> _subSystems = new();
 
@@ -54,12 +53,15 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
                 AddField(field);
             else if (member is PropertyInfo property) AddProperty(property);
 
-        _subSystems.Sort((l, r) =>
-        {
-            var abs = string.Compare(l.AbsoluteName, r.AbsoluteName, true, CultureInfo.CurrentUICulture);
-            if (abs == 0) return l.MemberCount - r.MemberCount;
-            return abs;
-        });
+        _subSystems.Sort
+        (
+            (l, r) =>
+            {
+                var abs = string.Compare(l.AbsoluteName, r.AbsoluteName, true, CultureInfo.CurrentUICulture);
+                if (abs == 0) return l.MemberCount - r.MemberCount;
+                return abs;
+            }
+        );
         Information = info;
     }
 
@@ -70,10 +72,7 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     /// <summary>
     ///     Ordered members of this
     /// </summary>
-    public IEnumerable<SuitShell> Members()
-    {
-        return _subSystems.AsReadOnly();
-    }
+    public IEnumerable<SuitShell> Members() { return _subSystems.AsReadOnly(); }
 
     /// <summary>
     ///     Create a SuitObjectShell from an instance property
@@ -84,11 +83,16 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     public static SuitObjectShell FromInstanceProperty(PropertyInfo property, InstanceFactory instanceFactory)
     {
         var infoTag = property.GetCustomAttribute<SuitInfoAttribute>();
-        var sh = new SuitObjectShell(property.PropertyType,
-            c => property.GetValue(instanceFactory(c)), infoTag?.Text ?? property.Name, property.Name)
-        {
-            Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
-        };
+        var sh = new SuitObjectShell
+                 (
+                     property.PropertyType,
+                     c => property.GetValue(instanceFactory(c)),
+                     infoTag?.Text ?? property.Name,
+                     property.Name
+                 )
+                 {
+                     Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
+                 };
         if (infoTag is not null) return sh;
         sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
@@ -104,11 +108,16 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     public static SuitObjectShell FromInstance(Type type, InstanceFactory instanceFactory, string name = "")
     {
         var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
-        var sh = new SuitObjectShell(type,
-            instanceFactory, infoTag?.Text ?? type.Name, name)
-        {
-            Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
-        };
+        var sh = new SuitObjectShell
+                 (
+                     type,
+                     instanceFactory,
+                     infoTag?.Text ?? type.Name,
+                     name
+                 )
+                 {
+                     Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
+                 };
         if (infoTag is not null) return sh;
         sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
@@ -123,11 +132,16 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     public static SuitObjectShell FromInstanceField(FieldInfo field, InstanceFactory instanceFactory)
     {
         var infoTag = field.GetCustomAttribute<SuitInfoAttribute>();
-        var sh = new SuitObjectShell(field.FieldType,
-            s => field.GetValue(instanceFactory(s)), infoTag?.Text ?? field.Name, field.Name)
-        {
-            Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
-        };
+        var sh = new SuitObjectShell
+                 (
+                     field.FieldType,
+                     s => field.GetValue(instanceFactory(s)),
+                     infoTag?.Text ?? field.Name,
+                     field.Name
+                 )
+                 {
+                     Type = infoTag is null ? MemberType.FieldWithoutInfo : MemberType.FieldWithInfo
+                 };
         if (infoTag is not null) return sh;
         sh.Information = SuitBuildUtils.GetMemberInfo(sh);
         return sh;
@@ -141,38 +155,37 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     /// <returns></returns>
     public static SuitObjectShell FromType(Type type, string name = "")
     {
-        object? InstanceFactory(SuitContext s)
-        {
-            return SuitBuildUtils.CreateInstance(type, s) ?? new object();
-        }
+        object? InstanceFactory(SuitContext s) { return SuitBuildUtils.CreateInstance(type, s) ?? new object(); }
 
         var infoTag = type.GetCustomAttribute<SuitInfoAttribute>();
         return new SuitObjectShell(type, InstanceFactory, infoTag?.Text ?? type.Name, name)
-        {
-            Type = MemberType.FieldWithInfo
-        };
+               {
+                   Type = MemberType.FieldWithInfo
+               };
     }
 
     private void AddMethod(MethodBase method)
     {
-        if (method.IsStatic || !method.IsPublic ||
-            method.IsConstructor || method.IsSpecialName ||
-            method.GetCustomAttribute<SuitIgnoreAttribute>() is not null ||
-            BlockList.Contains(method.Name)) return;
+        if (method.IsStatic
+         || !method.IsPublic
+         || method.IsConstructor
+         || method.IsSpecialName
+         || method.GetCustomAttribute<SuitIgnoreAttribute>() is not null
+         || BlockList.Contains(method.Name)) return;
         _subSystems.Add(SuitMethodShell.FromInstance(method, _instanceFactory));
     }
 
     private void AddProperty(PropertyInfo property)
     {
-        if (property.GetCustomAttribute<SuitIncludedAttribute>() is null ||
-            (property.GetMethod?.IsStatic ?? true) || !(property.GetMethod?.IsPublic ?? false)) return;
+        if (property.GetCustomAttribute<SuitIncludedAttribute>() is null
+         || (property.GetMethod?.IsStatic ?? true)
+         || !(property.GetMethod?.IsPublic ?? false)) return;
         _subSystems.Add(FromInstanceProperty(property, _instanceFactory));
     }
 
     private void AddField(FieldInfo field)
     {
-        if (field.GetCustomAttribute<SuitIncludedAttribute>() is null ||
-            field.IsStatic || !field.IsPublic) return;
+        if (field.GetCustomAttribute<SuitIncludedAttribute>() is null || field.IsStatic || !field.IsPublic) return;
         _subSystems.Add(FromInstanceField(field, _instanceFactory));
     }
 
@@ -195,9 +208,9 @@ public class SuitObjectShell : SuitShell, ISuitShellCollection
     public override bool MayExecute(IReadOnlyList<string> request)
     {
         if (string.IsNullOrEmpty(AbsoluteName))
-            return request.Count > 0 &&
-                   _subSystems.Any(sys => sys.MayExecute(request.ToImmutableArray()));
-        return request.Count > 1 && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase) &&
-               _subSystems.Any(sys => sys.MayExecute(request.Skip(1).ToImmutableArray()));
+            return request.Count > 0 && _subSystems.Any(sys => sys.MayExecute(request.ToImmutableArray()));
+        return request.Count > 1
+            && FriendlyNames.Contains(request[0], StringComparer.OrdinalIgnoreCase)
+            && _subSystems.Any(sys => sys.MayExecute(request.Skip(1).ToImmutableArray()));
     }
 }

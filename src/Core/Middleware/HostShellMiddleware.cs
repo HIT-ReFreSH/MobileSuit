@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using HitRefresh.MobileSuit.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 using static HitRefresh.MobileSuit.Core.SuitBuildUtils;
 
 namespace HitRefresh.MobileSuit.Core.Middleware;
@@ -24,10 +24,12 @@ public class HostShellMiddleware : ISuitMiddleware
             await next(context);
             return;
         }
+
         var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
-        var force = context.Properties.TryGetValue(SuitCommandTarget, out var target) &&
-                    target == SuitCommandTargetHost;
-        var forceClient = target is SuitCommandTargetApp or SuitCommandTargetAppTask;
+        var force = context.Properties.TryGetValue
+                        (SUIT_COMMAND_TARGET, out var target)
+                 && target == SUIT_COMMAND_TARGET_HOST;
+        var forceClient = target is SUIT_COMMAND_TARGET_APP or SUIT_COMMAND_TARGET_APP_TASK;
         if (forceClient)
         {
             await next(context);
@@ -35,7 +37,7 @@ public class HostShellMiddleware : ISuitMiddleware
         }
 
         var server = context.ServiceProvider.GetRequiredService<SuitHostShell>();
-        await tasks.RunTaskImmediately( server.Execute(context));
+        await tasks.RunTaskImmediately(server.Execute(context));
         if (force && context.Status == RequestStatus.NotHandled) context.Status = RequestStatus.CommandNotFound;
         await next(context);
     }

@@ -17,7 +17,7 @@ public static class SuitUtils
     /// <returns>packaged ContentArray</returns>
     public static IEnumerable<PrintUnit> CreateContentArray(params (string, ConsoleColor?)[] contents)
     {
-        return contents.Select(c => (PrintUnit) c);
+        return contents.Select(c => (PrintUnit)c);
     }
 
 
@@ -26,10 +26,9 @@ public static class SuitUtils
     /// </summary>
     /// <param name="contents">ContentArray</param>
     /// <returns>packaged ContentArray</returns>
-    public static IEnumerable<PrintUnit> CreateContentArray(
-        params (string, ConsoleColor?, ConsoleColor?)[] contents)
+    public static IEnumerable<PrintUnit> CreateContentArray(params (string, ConsoleColor?, ConsoleColor?)[] contents)
     {
-        return contents.Select(c => (PrintUnit) c);
+        return contents.Select(c => (PrintUnit)c);
     }
 
     /// <summary>
@@ -39,7 +38,7 @@ public static class SuitUtils
     /// <returns>packaged ContentArray</returns>
     public static IEnumerable<PrintUnit> CreateContentArray(params (string, Color?)[] contents)
     {
-        return contents.Select(c => (PrintUnit) c);
+        return contents.Select(c => (PrintUnit)c);
     }
 
 
@@ -48,9 +47,8 @@ public static class SuitUtils
     /// </summary>
     /// <param name="contents">ContentArray</param>
     /// <returns>packaged ContentArray</returns>
-    public static IEnumerable<PrintUnit> CreateContentArray(
-        params (string, Color?, Color?)[] contents)
+    public static IEnumerable<PrintUnit> CreateContentArray(params (string, Color?, Color?)[] contents)
     {
-        return contents.Select(c => (PrintUnit) c);
+        return contents.Select(c => (PrintUnit)c);
     }
 }

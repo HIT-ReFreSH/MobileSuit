@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using HitRefresh.MobileSuit.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HitRefresh.MobileSuit.Core.Middleware;
 
@@ -26,12 +26,13 @@ public class AppShellMiddleware : ISuitMiddleware
 
         var tasks = context.ServiceProvider.GetRequiredService<ITaskService>();
         var client = context.ServiceProvider.GetRequiredService<SuitAppShell>();
-        var asTask = context.Properties.TryGetValue(SuitBuildUtils.SuitCommandTarget, out var target) &&
-                     target == SuitBuildUtils.SuitCommandTargetAppTask;
-        var forceClient = target == SuitBuildUtils.SuitCommandTargetApp;
+        var asTask = context.Properties.TryGetValue
+                         (SuitBuildUtils.SUIT_COMMAND_TARGET, out var target)
+                  && target == SuitBuildUtils.SUIT_COMMAND_TARGET_APP_TASK;
+        var forceClient = target == SuitBuildUtils.SUIT_COMMAND_TARGET_APP;
         if (asTask)
         {
-
+            context.Properties[SuitBuildUtils.SUIT_TASK_FLAG] = "";
             context.Status = RequestStatus.Running;
             tasks.AddTask(client.Execute(context), context);
         }

@@ -11,9 +11,7 @@ public class SuitAppShell : SuitShell, ISuitShellCollection
 {
     private readonly List<SuitShell> _members = new();
 
-    private SuitAppShell() : base(typeof(object), _ => null, "SuitClient")
-    {
-    }
+    private SuitAppShell() : base(typeof(object), _ => null, "SuitClient") { }
 
     /// <inheritdoc />
     public override int MemberCount => _members.Count;
@@ -26,18 +24,18 @@ public class SuitAppShell : SuitShell, ISuitShellCollection
         foreach (var shell in _members)
             switch (shell)
             {
-                case SuitMethodShell method:
-                    yield return method;
-                    break;
-                case SuitObjectShell obj:
-                {
-                    foreach (var objMember in obj.Members()) yield return objMember;
+            case SuitMethodShell method:
+                yield return method;
+                break;
+            case SuitObjectShell obj:
+            {
+                foreach (var objMember in obj.Members()) yield return objMember;
 
-                    break;
-                }
-                default:
-                    yield return shell;
-                    break;
+                break;
+            }
+            default:
+                yield return shell;
+                break;
             }
     }
 

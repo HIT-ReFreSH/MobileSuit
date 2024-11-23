@@ -57,17 +57,17 @@ public interface IColorSetting : IEquatable<IColorSetting>
     ///     Default color settings for IOServer.
     /// </summary>
     public static IColorSetting DefaultColorSetting => new ColorSetting
-    {
-        DefaultColor = Color.White,
-        ErrorColor = Color.Red,
-        PromptColor = Color.Magenta,
-        OkColor = Color.Green,
-        TitleColor = Color.YellowGreen,
-        InformationColor = Color.DarkCyan,
-        SystemColor = Color.DarkBlue,
-        WarningColor = Color.Orange,
-        BackgroundColor = Color.Black
-    };
+                                                       {
+                                                           DefaultColor = Color.White,
+                                                           ErrorColor = Color.Red,
+                                                           PromptColor = Color.Magenta,
+                                                           OkColor = Color.Green,
+                                                           TitleColor = Color.YellowGreen,
+                                                           InformationColor = Color.DarkCyan,
+                                                           SystemColor = Color.DarkBlue,
+                                                           WarningColor = Color.Orange,
+                                                           BackgroundColor = Color.Black
+                                                       };
 
 
     /// <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -82,12 +82,16 @@ public interface IColorSetting : IEquatable<IColorSetting>
     /// <param name="type">output type</param>
     /// <param name="customColor">customized color</param>
     /// <returns></returns>
-    static Color SelectColor(IColorSetting colorSetting, OutputType type = OutputType.Default,
-        Color? customColor = null)
+    static Color SelectColor
+    (
+        IColorSetting colorSetting,
+        OutputType type = OutputType.Default,
+        Color? customColor = null
+    )
     {
         return
             customColor
-            ?? type switch
+         ?? type switch
             {
                 OutputType.Default => colorSetting.DefaultColor,
                 OutputType.Prompt => colorSetting.PromptColor,

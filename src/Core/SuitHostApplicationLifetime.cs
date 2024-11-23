@@ -1,30 +1,36 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace HitRefresh.MobileSuit.Core;
 
 /// <summary>
-/// A HostApplicationLifetime for MobileSuit
+///     A HostApplicationLifetime for MobileSuit
 /// </summary>
-internal class SuitHostApplicationLifetime: IHostApplicationLifetime
+public class SuitHostApplicationLifetime : IHostApplicationLifetime
 {
     private readonly Func<Task> _stopCallback;
 
-    internal SuitHostApplicationLifetime(TaskCompletionSource startTask, Func<Task> stopCallback)
+    /// <summary>
+    ///     Describe a lifetime of MobileSuit
+    /// </summary>
+    /// <param name="startTask"></param>
+    /// <param name="stopCallback"></param>
+    public SuitHostApplicationLifetime(TaskCompletionSource startTask, Func<Task> stopCallback)
     {
         _stopCallback = stopCallback;
-        ApplicationStartedSource = new();
+        ApplicationStartedSource = new CancellationTokenSource();
         startTask.Task.ContinueWith(_ => ApplicationStartedSource.Cancel());
-        ApplicationStoppingSource = new();
-        ApplicationStoppedSource = new();
-
+        ApplicationStoppingSource = new CancellationTokenSource();
+        ApplicationStoppedSource = new CancellationTokenSource();
     }
-    /// <inheritdoc/>
+
+    private CancellationTokenSource ApplicationStartedSource { get; }
+    private CancellationTokenSource ApplicationStoppingSource { get; }
+    private CancellationTokenSource ApplicationStoppedSource { get; }
+
+    /// <inheritdoc />
     public async void StopApplication()
     {
         if (ApplicationStoppingSource.IsCancellationRequested) return;
@@ -33,13 +39,12 @@ internal class SuitHostApplicationLifetime: IHostApplicationLifetime
         ApplicationStoppedSource.Cancel();
     }
 
-    private CancellationTokenSource ApplicationStartedSource{ get; }
-    private CancellationTokenSource ApplicationStoppingSource { get; }
-    private CancellationTokenSource ApplicationStoppedSource { get; }
-    /// <inheritdoc/>
-    public CancellationToken ApplicationStarted =>ApplicationStartedSource.Token;
-    /// <inheritdoc/>
-    public CancellationToken ApplicationStopping =>ApplicationStoppingSource.Token;
-    /// <inheritdoc/>
-    public CancellationToken ApplicationStopped =>ApplicationStoppedSource.Token;
+    /// <inheritdoc />
+    public CancellationToken ApplicationStarted => ApplicationStartedSource.Token;
+
+    /// <inheritdoc />
+    public CancellationToken ApplicationStopping => ApplicationStoppingSource.Token;
+
+    /// <inheritdoc />
+    public CancellationToken ApplicationStopped => ApplicationStoppedSource.Token;
 }
