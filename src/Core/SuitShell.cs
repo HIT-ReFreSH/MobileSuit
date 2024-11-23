@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -25,10 +24,10 @@ public abstract class SuitShell : ISuitShell
         AbsoluteName = absoluteName ?? member.Name;
         FriendlyNames.Add(AbsoluteName);
         foreach (var alias in member != null
-                     ? (
-                         from a in member.GetCustomAttributes<SuitAliasAttribute>(true)
-                         select a.Text).ToArray()
-                     : Array.Empty<string>())
+                                  ? (
+                                        from a in member.GetCustomAttributes<SuitAliasAttribute>(true)
+                                        select a.Text).ToArray()
+                                  : Array.Empty<string>())
             FriendlyNames.Add(alias);
 
         _instanceFactory = factory;
@@ -75,8 +74,5 @@ public abstract class SuitShell : ISuitShell
     /// <summary>
     ///     Instance which contains this member.
     /// </summary>
-    public object? GetInstance(SuitContext context)
-    {
-        return _instanceFactory(context);
-    }
+    public object? GetInstance(SuitContext context) { return _instanceFactory(context); }
 }

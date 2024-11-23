@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
+using HitRefresh.MobileSuit.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,14 +13,18 @@ public class SuitContext : IDisposable
 {
     private readonly IServiceScope _serviceScope;
 
-    internal SuitContext(IServiceScope scope)
+    /// <summary>
+    ///     Create SuitContext with specified Service Scope
+    /// </summary>
+    /// <param name="scope"></param>
+    public SuitContext(IServiceScope scope)
     {
         _serviceScope = scope;
         ServiceProvider = scope.ServiceProvider;
-        CancellationToken = new();
+        CancellationToken = new CancellationTokenSource();
         var hostLifeTime = ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
+        Properties = ServiceProvider.GetRequiredService<ISuitContextProperties>();
         hostLifeTime.ApplicationStopping.Register(() => CancellationToken.Cancel());
-
     }
 
     /// <summary>
@@ -31,7 +35,7 @@ public class SuitContext : IDisposable
     /// <summary>
     ///     Properties of current request.
     /// </summary>
-    public Dictionary<string, string> Properties { get; } = new();
+    public ISuitContextProperties Properties { get; }
 
     /// <summary>
     ///     The execution status of current request.
@@ -59,8 +63,5 @@ public class SuitContext : IDisposable
     public string? Response { get; set; }
 
     /// <inheritdoc />
-    public void Dispose()
-    {
-        _serviceScope.Dispose();
-    }
+    public void Dispose() { _serviceScope.Dispose(); }
 }

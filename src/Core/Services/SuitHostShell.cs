@@ -8,9 +8,7 @@ namespace HitRefresh.MobileSuit.Core.Services;
 /// </summary>
 public class SuitHostShell : SuitObjectShell
 {
-    private SuitHostShell(Type type, InstanceFactory factory, string info) : base(type, factory, info, "")
-    {
-    }
+    private SuitHostShell(Type type, InstanceFactory factory, string info) : base(type, factory, info, "") { }
 
     /// <summary>
     ///     Create a Host shell from command server.
@@ -22,7 +20,11 @@ public class SuitHostShell : SuitObjectShell
     {
         if (serverType.GetInterface(nameof(ISuitCommandServer)) is null)
             throw new ArgumentOutOfRangeException(nameof(serverType));
-        return new SuitHostShell(serverType, s => s.ServiceProvider.GetRequiredService<ISuitCommandServer>(),
-            "SuitServer");
+        return new SuitHostShell
+        (
+            serverType,
+            s => s.ServiceProvider.GetRequiredService<ISuitCommandServer>(),
+            "SuitServer"
+        );
     }
 }

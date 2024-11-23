@@ -45,7 +45,7 @@ public interface IParsingService
     /// </summary>
     /// <param name="name"></param>
     public void Add<T>(string name = "");
-    }
+}
 
 internal class ParsingService : IParsingService
 {
@@ -80,10 +80,10 @@ internal class ParsingService : IParsingService
         if (!_parsers.ContainsKey(typeof(T)))
             _parsers.Add(typeof(T), new Dictionary<string, Converter<string, object?>>());
         if (_parsers[typeof(T)].ContainsKey(parser.Name)) _parsers[typeof(T)].Remove(parser.Name);
-        _parsers[typeof(T)].Add(parser.Name, x=>parser.Parser(x));
+        _parsers[typeof(T)].Add(parser.Name, x => parser.Parser(x));
     }
 
-    public void Add<T>(string name = "")=>Add(SuitParser<T>.FromName(name));
+    public void Add<T>(string name = "") { Add(SuitParser<T>.FromName(name)); }
 
     public Converter<string, object?> Get(Type type, string name = "")
     {

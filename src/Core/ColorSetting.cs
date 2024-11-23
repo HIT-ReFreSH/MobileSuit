@@ -54,21 +54,22 @@ public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     /// <returns>whether this instance and a specified object are equal.</returns>
     public bool Equals(IColorSetting? other)
     {
-        return other != null &&
-               DefaultColor == other.DefaultColor && PromptColor == other.PromptColor &&
-               ErrorColor == other.ErrorColor && OkColor == other.OkColor &&
-               TitleColor == other.TitleColor && InformationColor == other.InformationColor &&
-               SystemColor == other.SystemColor && WarningColor == other.WarningColor &&
-               BackgroundColor == other.BackgroundColor;
+        return other != null
+            && DefaultColor == other.DefaultColor
+            && PromptColor == other.PromptColor
+            && ErrorColor == other.ErrorColor
+            && OkColor == other.OkColor
+            && TitleColor == other.TitleColor
+            && InformationColor == other.InformationColor
+            && SystemColor == other.SystemColor
+            && WarningColor == other.WarningColor
+            && BackgroundColor == other.BackgroundColor;
     }
 
     /// <summary>Indicates whether this instance and a specified object are equal.</summary>
     /// <param name="that">The object to compare with the current instance.</param>
     /// <returns>whether this instance and a specified object are equal.</returns>
-    public override bool Equals(object? that)
-    {
-        return that is IColorSetting && Equals((ColorSetting) that);
-    }
+    public override bool Equals(object? that) { return that is IColorSetting && Equals((ColorSetting)that); }
 
     /// <summary>
     ///     generate hash code of all colors
@@ -76,10 +77,21 @@ public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     /// <returns> hash code of all colors</returns>
     public override int GetHashCode()
     {
-        return HashCode.Combine(HashCode.Combine(DefaultColor.GetHashCode(), PromptColor.GetHashCode(),
-            ErrorColor.GetHashCode(), OkColor.GetHashCode(),
-            TitleColor.GetHashCode(), InformationColor.GetHashCode(), SystemColor.GetHashCode(),
-            WarningColor.GetHashCode()), BackgroundColor.GetHashCode());
+        return HashCode.Combine
+        (
+            HashCode.Combine
+            (
+                DefaultColor.GetHashCode(),
+                PromptColor.GetHashCode(),
+                ErrorColor.GetHashCode(),
+                OkColor.GetHashCode(),
+                TitleColor.GetHashCode(),
+                InformationColor.GetHashCode(),
+                SystemColor.GetHashCode(),
+                WarningColor.GetHashCode()
+            ),
+            BackgroundColor.GetHashCode()
+        );
     }
 
     /// <summary>
@@ -88,10 +100,7 @@ public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     /// <param name="left">left instance</param>
     /// <param name="right">right instance</param>
     /// <returns>true for equal</returns>
-    public static bool operator ==(ColorSetting left, ColorSetting right)
-    {
-        return left.Equals(right);
-    }
+    public static bool operator ==(ColorSetting left, ColorSetting right) { return left.Equals(right); }
 
     /// <summary>
     ///     Indicates whether two instances are not-equal.
@@ -99,16 +108,10 @@ public struct ColorSetting : IColorSetting, IEquatable<ColorSetting>
     /// <param name="left">left instance</param>
     /// <param name="right">right instance</param>
     /// <returns>true for not-equal</returns>
-    public static bool operator !=(ColorSetting left, ColorSetting right)
-    {
-        return !(left == right);
-    }
+    public static bool operator !=(ColorSetting left, ColorSetting right) { return !(left == right); }
 
     /// <summary>Indicates whether this instance and a specified object are equal.</summary>
     /// <param name="other">The object to compare with the current instance.</param>
     /// <returns>whether this instance and a specified object are equal.</returns>
-    public bool Equals(ColorSetting other)
-    {
-        return Equals(other as IColorSetting);
-    }
+    public bool Equals(ColorSetting other) { return Equals(other as IColorSetting); }
 }

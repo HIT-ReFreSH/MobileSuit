@@ -11,107 +11,6 @@ namespace HitRefresh.MobileSuit;
 using static SuitUtils;
 
 /// <summary>
-///     A basic unit of output print, contains foreground, background and text.
-/// </summary>
-public struct PrintUnit
-{
-    /// <summary>
-    ///     Text of output.
-    /// </summary>
-    public string Text { get; set; }
-
-    /// <summary>
-    ///     Foreground color of output.
-    /// </summary>
-    public Color? Foreground { get; set; }
-
-    /// <summary>
-    ///     Background color of output.
-    /// </summary>
-    public Color? Background { get; set; }
-
-    /// <summary>
-    ///     Convert from print unit to a tuple
-    /// </summary>
-    /// <param name="pu">The print unit</param>
-    public static implicit operator (string, Color?, Color?)(PrintUnit pu)
-    {
-        return (pu.Text, pu.Foreground, pu.Background);
-    }
-
-    /// <summary>
-    ///     Convert ConsoleColor to Color
-    /// </summary>
-    /// <param name="origin"></param>
-    /// <returns></returns>
-    public static Color? ConsoleColorCast(ConsoleColor? origin)
-    {
-        return origin switch
-        {
-            ConsoleColor.DarkYellow => Color.Orange,
-            { } v => Color.FromName(Enum.GetName(typeof(ConsoleColor), v) ?? "White"),
-            _ => null
-        };
-    }
-
-    /// <summary>
-    ///     Convert from print unit back to a tuple
-    /// </summary>
-    /// <param name="tp">The print unit</param>
-    public static explicit operator PrintUnit((string, ConsoleColor?, ConsoleColor?) tp)
-    {
-        return new PrintUnit
-        {
-            Text = tp.Item1,
-            Foreground = ConsoleColorCast(tp.Item2),
-            Background = ConsoleColorCast(tp.Item3)
-        };
-    }
-
-    /// <summary>
-    ///     Convert from print unit back to a tuple
-    /// </summary>
-    /// <param name="tp">The print unit</param>
-    public static implicit operator PrintUnit((string, Color?) tp)
-    {
-        return new PrintUnit
-        {
-            Text = tp.Item1,
-            Foreground = tp.Item2,
-            Background = null
-        };
-    }
-
-    /// <summary>
-    ///     Convert from print unit back to a tuple
-    /// </summary>
-    /// <param name="tp">The print unit</param>
-    public static implicit operator PrintUnit((string, Color?, Color?) tp)
-    {
-        return new PrintUnit
-        {
-            Text = tp.Item1,
-            Foreground = tp.Item2,
-            Background = tp.Item3
-        };
-    }
-
-    /// <summary>
-    ///     Convert from print unit back to a tuple
-    /// </summary>
-    /// <param name="tp">The print unit</param>
-    public static explicit operator PrintUnit((string, ConsoleColor?) tp)
-    {
-        return new PrintUnit
-        {
-            Text = tp.Item1,
-            Foreground = ConsoleColorCast(tp.Item2),
-            Background = null
-        };
-    }
-}
-
-/// <summary>
 ///     Extension methods for IOHub.
 /// </summary>
 public static class IOExtensions
@@ -144,8 +43,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
     /// <param name="customColor">Optional. Customized color in console</param>
-    public static void Write(this IIOHub hub, string content, OutputType type,
-        ConsoleColor? customColor)
+    public static void Write
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type,
+        ConsoleColor? customColor
+    )
     {
         hub.Write(content, type, PrintUnit.ConsoleColorCast(customColor));
     }
@@ -157,8 +61,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
     /// <param name="customColor">Optional. Customized color in console</param>
-    public static void Write(this IIOHub hub, string content, OutputType type = OutputType.Default,
-        Color? customColor = null)
+    public static void Write
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type = OutputType.Default,
+        Color? customColor = null
+    )
     {
         var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
         if (type == OutputType.Prompt)
@@ -200,8 +109,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
     /// <param name="customColor">Optional. Customized color in console</param>
-    public static async Task WriteAsync(this IIOHub hub, string content, OutputType type,
-        ConsoleColor? customColor)
+    public static async Task WriteAsync
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type,
+        ConsoleColor? customColor
+    )
     {
         await WriteAsync(hub, content, type, PrintUnit.ConsoleColorCast(customColor));
     }
@@ -213,8 +127,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like.</param>
     /// <param name="customColor">Optional. Customized color in console</param>
-    public static async Task WriteAsync(this IIOHub hub, string content, OutputType type = OutputType.Default,
-        Color? customColor = null)
+    public static async Task WriteAsync
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type = OutputType.Default,
+        Color? customColor = null
+    )
     {
         var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
         if (type == OutputType.Prompt)
@@ -232,10 +151,7 @@ public static class IOExtensions
     ///     Write a blank line to output stream.
     /// </summary>
     /// <param name="hub">IOHub to write to</param>
-    public static void WriteLine(this IIOHub hub)
-    {
-        hub.WriteLine(string.Empty);
-    }
+    public static void WriteLine(this IIOHub hub) { hub.WriteLine(string.Empty); }
 
     /// <summary>
     ///     Writes some content to output stream, with line break. With certain color in console.
@@ -266,8 +182,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
     /// <param name="customColor">Optional. Customized color in console.</param>
-    public static void WriteLine(this IIOHub hub, string content, OutputType type,
-        ConsoleColor? customColor)
+    public static void WriteLine
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type,
+        ConsoleColor? customColor
+    )
     {
         hub.WriteLine(content, type, PrintUnit.ConsoleColorCast(customColor));
     }
@@ -279,8 +200,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
     /// <param name="customColor">Optional. Customized color in console.</param>
-    public static void WriteLine(this IIOHub hub, string content, OutputType type = OutputType.Default,
-        Color? customColor = null)
+    public static void WriteLine
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type = OutputType.Default,
+        Color? customColor = null
+    )
     {
         var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
         if (type == OutputType.Prompt)
@@ -305,8 +231,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static void Write(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static void Write
+    (
+        this IIOHub hub,
+        IEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         if (type == OutputType.Prompt)
         {
@@ -329,8 +259,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static void WriteLine(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static void WriteLine
+    (
+        this IIOHub hub,
+        IEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         Write(hub, hub.GetLinePrefix(type).Concat(contentArray).Append(("\n", null)), type);
     }
@@ -339,10 +273,7 @@ public static class IOExtensions
     ///     Asynchronously writes a blank line to output stream.
     /// </summary>
     /// <param name="hub">IOHub to write to</param>
-    public static async Task WriteLineAsync(this IIOHub hub)
-    {
-        await hub.WriteLineAsync(string.Empty);
-    }
+    public static async Task WriteLineAsync(this IIOHub hub) { await hub.WriteLineAsync(string.Empty); }
 
     /// <summary>
     ///     Asynchronously writes some content to output stream, with line break. With certain color in console.
@@ -373,8 +304,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
     /// <param name="customColor">Optional. Customized color in console.</param>
-    public static async Task WriteLineAsync(this IIOHub hub, string content, OutputType type,
-        ConsoleColor? customColor)
+    public static async Task WriteLineAsync
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type,
+        ConsoleColor? customColor
+    )
     {
         await hub.WriteLineAsync(content, type, PrintUnit.ConsoleColorCast(customColor));
     }
@@ -386,8 +322,13 @@ public static class IOExtensions
     /// <param name="content">Content to output.</param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
     /// <param name="customColor">Optional. Customized color in console.</param>
-    public static async Task WriteLineAsync(this IIOHub hub, string content, OutputType type = OutputType.Default,
-        Color? customColor = null)
+    public static async Task WriteLineAsync
+    (
+        this IIOHub hub,
+        string content,
+        OutputType type = OutputType.Default,
+        Color? customColor = null
+    )
     {
         var selColor = IColorSetting.SelectColor(hub.ColorSetting, type, customColor);
         if (type == OutputType.Prompt)
@@ -414,8 +355,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static async Task WriteLineAsync(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static async Task WriteLineAsync
+    (
+        this IIOHub hub,
+        IEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         await WriteAsync(hub, hub.GetLinePrefix(type).Concat(contentArray).Append(("\n", null)), type);
     }
@@ -432,8 +377,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static async Task WriteAsync(this IIOHub hub, IAsyncEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static async Task WriteAsync
+    (
+        this IIOHub hub,
+        IAsyncEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         if (type != OutputType.Prompt)
         {
@@ -460,8 +409,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static async Task WriteAsync(this IIOHub hub, IEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static async Task WriteAsync
+    (
+        this IIOHub hub,
+        IEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         if (type == OutputType.Prompt)
         {
@@ -484,8 +437,12 @@ public static class IOExtensions
     ///     third is optional, the background color of output.
     /// </param>
     /// <param name="type">Optional. Type of this content, this decides how will it be like (color in Console, label in file).</param>
-    public static async Task WriteLineAsync(this IIOHub hub, IAsyncEnumerable<PrintUnit> contentArray,
-        OutputType type = OutputType.Default)
+    public static async Task WriteLineAsync
+    (
+        this IIOHub hub,
+        IAsyncEnumerable<PrintUnit> contentArray,
+        OutputType type = OutputType.Default
+    )
     {
         if (type != OutputType.Prompt)
         {
@@ -534,8 +491,13 @@ public static class IOExtensions
     /// <param name="defaultValue">Default return value if user input ""</param>
     /// <param name="customPromptColor"></param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static string? ReadLine(this IIOHub hub, string prompt, string? defaultValue,
-        ConsoleColor? customPromptColor)
+    public static string? ReadLine
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        ConsoleColor? customPromptColor
+    )
     {
         return hub.ReadLine(prompt, defaultValue, false, customPromptColor);
     }
@@ -549,8 +511,14 @@ public static class IOExtensions
     /// <param name="newLine">Optional. If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static string? ReadLine(this IIOHub hub, string prompt, string? defaultValue,
-        bool newLine, ConsoleColor? customPromptColor)
+    public static string? ReadLine
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        bool newLine,
+        ConsoleColor? customPromptColor
+    )
     {
         return hub.ReadLine(prompt, defaultValue, newLine, PrintUnit.ConsoleColorCast(customPromptColor));
     }
@@ -564,8 +532,14 @@ public static class IOExtensions
     /// <param name="newLine">Optional. If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static string? ReadLine(this IIOHub hub, string prompt, string? defaultValue = null,
-        bool newLine = false, Color? customPromptColor = null)
+    public static string? ReadLine
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue = null,
+        bool newLine = false,
+        Color? customPromptColor = null
+    )
     {
         hub.Write(CreateReadLinePrompt(hub, prompt, defaultValue, customPromptColor), OutputType.Prompt);
         if (newLine)
@@ -593,8 +567,13 @@ public static class IOExtensions
     /// <param name="newLine">If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, bool newLine,
-        Color? customPromptColor)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        bool newLine,
+        Color? customPromptColor
+    )
     {
         return await hub.ReadLineAsync(prompt, null, newLine, customPromptColor).ConfigureAwait(false);
     }
@@ -607,8 +586,13 @@ public static class IOExtensions
     /// <param name="newLine">If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, bool newLine,
-        ConsoleColor? customPromptColor)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        bool newLine,
+        ConsoleColor? customPromptColor
+    )
     {
         return await hub.ReadLineAsync(prompt, null, newLine, customPromptColor).ConfigureAwait(false);
     }
@@ -645,8 +629,13 @@ public static class IOExtensions
     /// <param name="defaultValue">Default return value if user input ""</param>
     /// <param name="customPromptColor"></param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue,
-        ConsoleColor? customPromptColor)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        ConsoleColor? customPromptColor
+    )
     {
         return await hub.ReadLineAsync(prompt, defaultValue, false, customPromptColor).ConfigureAwait(false);
     }
@@ -659,21 +648,33 @@ public static class IOExtensions
     /// <param name="defaultValue">Default return value if user input ""</param>
     /// <param name="customPromptColor"></param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue,
-        Color? customPromptColor)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        Color? customPromptColor
+    )
     {
         return await hub.ReadLineAsync(prompt, defaultValue, false, customPromptColor).ConfigureAwait(false);
     }
 
-    private static IEnumerable<PrintUnit> CreateReadLinePrompt(IIOHub hub, string prompt, string? defaultValue,
-        Color? customPromptColor)
+    private static IEnumerable<PrintUnit> CreateReadLinePrompt
+    (
+        IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        Color? customPromptColor
+    )
     {
         var printUnit0 = (prompt, customPromptColor ?? hub.ColorSetting.PromptColor);
         return defaultValue is null
-            ? CreateContentArray(printUnit0)
-            : CreateContentArray(
-                printUnit0,
-                (defaultValue, hub.ColorSetting.SystemColor));
+                   ? CreateContentArray(printUnit0)
+                   : CreateContentArray
+                   (
+                       printUnit0,
+                       (defaultValue, hub.ColorSetting.SystemColor)
+                   );
     }
 
     /// <summary>
@@ -685,11 +686,22 @@ public static class IOExtensions
     /// <param name="newLine">Optional. If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue,
-        bool newLine, ConsoleColor? customPromptColor)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue,
+        bool newLine,
+        ConsoleColor? customPromptColor
+    )
     {
-        return await hub.ReadLineAsync(prompt, defaultValue, newLine,
-            PrintUnit.ConsoleColorCast(customPromptColor));
+        return await hub.ReadLineAsync
+               (
+                   prompt,
+                   defaultValue,
+                   newLine,
+                   PrintUnit.ConsoleColorCast(customPromptColor)
+               );
     }
 
     /// <summary>
@@ -701,8 +713,14 @@ public static class IOExtensions
     /// <param name="newLine">Optional. If the prompt will display in a single line</param>
     /// <param name="customPromptColor">Optional. Prompt's Color, ColorSetting.PromptColor as default.</param>
     /// <returns>Content from input stream, null if EOF, if user input "", return defaultValue</returns>
-    public static async Task<string?> ReadLineAsync(this IIOHub hub, string prompt, string? defaultValue = null,
-        bool newLine = false, Color? customPromptColor = null)
+    public static async Task<string?> ReadLineAsync
+    (
+        this IIOHub hub,
+        string prompt,
+        string? defaultValue = null,
+        bool newLine = false,
+        Color? customPromptColor = null
+    )
     {
         await hub.WriteAsync(CreateReadLinePrompt(hub, prompt, defaultValue, customPromptColor), OutputType.Prompt);
         if (newLine)

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using HitRefresh.MobileSuit.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HitRefresh.MobileSuit.Core.Middleware;
 
@@ -16,15 +16,15 @@ public class FinalizeMiddleware : ISuitMiddleware
         var history = context.ServiceProvider.GetRequiredService<IHistoryService>();
         history.Response = context.Response;
         history.Status = context.Status switch
-        {
-            RequestStatus.Handled or RequestStatus.Ok => RequestStatus.Ok,
-            RequestStatus.OnExit => RequestStatus.OnExit,
-            RequestStatus.NotHandled => RequestStatus.CommandNotFound,
-            RequestStatus.Running => RequestStatus.Running,
-            var r => r
-        };
-        if (!context.Properties.TryGetValue(SuitBuildUtils.SuitCommandTarget, out var target) ||
-            target != SuitBuildUtils.SuitCommandTargetAppTask)
+                         {
+                             RequestStatus.Handled or RequestStatus.Ok => RequestStatus.Ok,
+                             RequestStatus.OnExit => RequestStatus.OnExit,
+                             RequestStatus.NotHandled => RequestStatus.CommandNotFound,
+                             RequestStatus.Running => RequestStatus.Running,
+                             var r => r
+                         };
+        if (!context.Properties.TryGetValue(SuitBuildUtils.SUIT_COMMAND_TARGET, out var target)
+         || target != SuitBuildUtils.SUIT_COMMAND_TARGET_APP_TASK)
             context.Dispose();
         await next(context);
     }

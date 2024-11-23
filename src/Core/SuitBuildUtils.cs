@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-using Microsoft.Extensions.DependencyInjection;
 using HitRefresh.MobileSuit.Core.Services;
 using HitRefresh.MobileSuit.UI;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HitRefresh.MobileSuit.Core;
 
@@ -18,28 +18,77 @@ namespace HitRefresh.MobileSuit.Core;
 /// <returns></returns>
 public delegate object? InstanceFactory(SuitContext context);
 
-internal static class SuitBuildUtils
+/// <summary>
+///     General methods to build MobileSuit Core
+/// </summary>
+public static class SuitBuildUtils
 {
-    public const string SuitCommandTarget = "suit-cmd-target";
-    public const string SuitCommandTargetApp = "app";
-    public const string SuitCommandTargetHost = "suit";
-    public const string SuitCommandTargetAppTask = "app-task";
+    /// <summary>
+    ///     Property Flag Key for Specific CMD target
+    /// </summary>
+    public const string SUIT_COMMAND_TARGET = "suit-cmd-target";
 
-    public static Func<SuitContext, Converter<string, object?>> CreateConverterFactory(Type type,
-        SuitParserAttribute? parserAttribute)
+    /// <summary>
+    ///     Property Flag Key for task io
+    /// </summary>
+    public const string SUIT_TASK_FLAG = "suit-io-is-task";
+
+    /// <summary>
+    ///     Property Flag Value for Specific CMD target
+    /// </summary>
+    public const string SUIT_COMMAND_TARGET_APP = "app";
+
+    /// <summary>
+    ///     Property Flag Value for Specific CMD target
+    /// </summary>
+    public const string SUIT_COMMAND_TARGET_HOST = "suit";
+
+    /// <summary>
+    ///     Property Flag Key for Specific CMD target
+    /// </summary>
+    public const string SUIT_COMMAND_TARGET_APP_TASK = "app-task";
+
+    /// <summary>
+    ///     Create a factory to create converter
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="parserAttribute"></param>
+    /// <returns></returns>
+    public static Func<SuitContext, Converter<string, object?>> CreateConverterFactory
+    (
+        Type type,
+        SuitParserAttribute? parserAttribute
+    )
     {
         return context =>
         {
             if (parserAttribute?.Converter is { } c) return c;
-            if (type.GetInterfaces().FirstOrDefault(t =>
-                    t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ICollection<>)) is { } iCollection)
+            if (type.GetInterfaces()
+                    .FirstOrDefault
+                     (
+                         t =>
+                             t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ICollection<>)
+                     ) is { } iCollection)
                 type = iCollection.GetGenericArguments()[0];
             if (type.IsAssignableFrom(typeof(string))) return s => s;
-            return context.ServiceProvider.GetRequiredService<IParsingService>().Get(type,
-                parserAttribute?.Name ?? string.Empty);
+            return context.ServiceProvider.GetRequiredService<IParsingService>()
+                          .Get
+                           (
+                               type,
+                               parserAttribute?.Name ?? string.Empty
+                           );
         };
     }
 
+    /// <summary>
+    ///     Fill a Arg with given parameterInfo and arg string
+    /// </summary>
+    /// <param name="parameter"></param>
+    /// <param name="arg"></param>
+    /// <param name="context"></param>
+    /// <param name="step"></param>
+    /// <returns></returns>
+    /// <exception cref="FormatException"></exception>
     public static object? GetArg(ParameterInfo parameter, string? arg, SuitContext context, out int step)
     {
         if (arg is null || parameter.GetCustomAttribute<SuitInjected>() is not null)
@@ -62,6 +111,13 @@ internal static class SuitBuildUtils
         return CreateConverterFactory(parameter.ParameterType, converterAttr)(context)(arg);
     }
 
+    /// <summary>
+    ///     Fill an array Arg with given parameterInfo and args string[]
+    /// </summary>
+    /// <param name="parameter"></param>
+    /// <param name="argArray"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public static object GetArrayArg(ParameterInfo parameter, IReadOnlyList<string> argArray, SuitContext context)
     {
         var converterAttr = parameter.GetCustomAttribute<SuitParserAttribute>(true);
@@ -73,6 +129,11 @@ internal static class SuitBuildUtils
         return array;
     }
 
+    /// <summary>
+    ///     Get member description of SuitMember
+    /// </summary>
+    /// <param name="sh"></param>
+    /// <returns></returns>
     public static string GetMemberInfo(SuitObjectShell sh)
     {
         var infoSb = new StringBuilder();
@@ -82,12 +143,15 @@ internal static class SuitBuildUtils
             foreach (var sys in sh.Members())
             {
                 infoSb.Append(sys.AbsoluteName);
-                infoSb.Append(sys switch
-                {
-                    SuitMethodShell => "()",
-                    SuitObjectShell => "{}",
-                    _ => ""
-                });
+                infoSb.Append
+                (
+                    sys switch
+                    {
+                        SuitMethodShell => "()",
+                        SuitObjectShell => "{}",
+                        _ => ""
+                    }
+                );
                 infoSb.Append(',');
                 if (++i <= 5) continue;
                 infoSb.Append("...,");
@@ -130,9 +194,7 @@ internal static class SuitBuildUtils
                     ? parameters.Count
                     : parameters.Count - 1;
             var i = suitMethodParameterInfo.NonArrayParameterCount - 1;
-            for (; i >= 0 && parameters[i].IsOptional; i--)
-            {
-            }
+            for (; i >= 0 && parameters[i].IsOptional; i--) { }
 
             suitMethodParameterInfo.MinParameterCount = i + 1;
             suitMethodParameterInfo.NonArrayParameterCount =
@@ -144,8 +206,16 @@ internal static class SuitBuildUtils
         return suitMethodParameterInfo;
     }
 
+    /// <summary>
+    ///     Create instance of certain type according to the context
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="s"></param>
+    /// <returns></returns>
     public static object? CreateInstance(Type type, SuitContext s)
     {
+        var tryGet = s.ServiceProvider.GetService(type);
+        if (tryGet is not null) return tryGet;
         var constructors = type.GetConstructors();
 
         foreach (var constructor in constructors)
@@ -160,14 +230,37 @@ internal static class SuitBuildUtils
         return null;
     }
 
-    public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, IReadOnlyList<string> args,
-        SuitContext context)
+    /// <summary>
+    ///     Get args using given parameters, arg strings and suit context
+    /// </summary>
+    /// <param name="parameters"></param>
+    /// <param name="args"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public static object?[]? GetArgs
+    (
+        IReadOnlyList<ParameterInfo> parameters,
+        IReadOnlyList<string> args,
+        SuitContext context
+    )
     {
         return GetArgs(parameters, GetMethodParameterInfo(parameters), args, context);
     }
 
-    public static object?[]? GetArgs(IReadOnlyList<ParameterInfo> parameters, SuitMethodParameterInfo parameterInfo,
-        IReadOnlyList<string> args, SuitContext context)
+    /// <summary>
+    ///     Get args using given parameters, arg strings and suit context
+    /// </summary>
+    /// <param name="parameters"></param>
+    /// <param name="args"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public static object?[]? GetArgs
+    (
+        IReadOnlyList<ParameterInfo> parameters,
+        SuitMethodParameterInfo parameterInfo,
+        IReadOnlyList<string> args,
+        SuitContext context
+    )
     {
         var pass = new object?[parameters.Count];
         var i = 0;
@@ -189,11 +282,18 @@ internal static class SuitBuildUtils
 
             if (parameterInfo.TailParameterType == TailParameterType.DynamicParameter)
             {
-                var dynamicParameter = parameters[^1].ParameterType.Assembly
-                    .CreateInstance(parameters[^1].ParameterType.FullName
-                                    ?? parameters[^1].ParameterType.Name) as IDynamicParameter;
-                if (!dynamicParameter!.Parse(
-                        i < args.Count ? args.Skip(i).ToImmutableArray() : Array.Empty<string>(), context)) return null;
+                var dynamicParameter = parameters[^1]
+                                      .ParameterType.Assembly
+                                      .CreateInstance
+                                       (
+                                           parameters[^1].ParameterType.FullName
+                                        ?? parameters[^1].ParameterType.Name
+                                       ) as IDynamicParameter;
+                if (!dynamicParameter!.Parse
+                    (
+                        i < args.Count ? args.Skip(i).ToImmutableArray() : Array.Empty<string>(),
+                        context
+                    )) return null;
                 pass[i] = dynamicParameter;
 
                 return pass;
@@ -202,8 +302,12 @@ internal static class SuitBuildUtils
             if (i < args.Count)
                 pass[i] = GetArrayArg(parameters[^1], args.Skip(i).ToImmutableArray(), context);
             else
-                pass[i] = Array.CreateInstance(parameters[^1].ParameterType.GetElementType()
-                                               ?? typeof(string), 0);
+                pass[i] = Array.CreateInstance
+                (
+                    parameters[^1].ParameterType.GetElementType()
+                 ?? typeof(string),
+                    0
+                );
 
             return pass;
         }

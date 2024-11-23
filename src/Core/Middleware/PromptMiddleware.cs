@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using HitRefresh.MobileSuit.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HitRefresh.MobileSuit.Core.Middleware;
 
@@ -32,15 +32,18 @@ public class PromptMiddleware : ISuitMiddleware
                 prompt.Add((info.AppName, io.ColorSetting.PromptColor));
             if (history.Response is not null)
                 prompt.Add((history.Response, io.ColorSetting.InformationColor));
-            prompt.Add(history.Status switch
-            {
-                RequestStatus.Ok or RequestStatus.NoRequest => (Lang.AllOK, io.ColorSetting.OkColor),
-                RequestStatus.Running => (Lang.Running, io.ColorSetting.WarningColor),
-                RequestStatus.CommandParsingFailure => (Lang.InvalidCommand, io.ColorSetting.ErrorColor),
-                RequestStatus.CommandNotFound => (Lang.MemberNotFound, io.ColorSetting.ErrorColor),
-                RequestStatus.Interrupt => (Lang.Interrupt, io.ColorSetting.ErrorColor),
-                _ => (Lang.OnError, io.ColorSetting.ErrorColor)
-            });
+            prompt.Add
+            (
+                history.Status switch
+                {
+                    RequestStatus.Ok or RequestStatus.NoRequest => (Lang.AllOK, io.ColorSetting.OkColor),
+                    RequestStatus.Running => (Lang.Running, io.ColorSetting.WarningColor),
+                    RequestStatus.CommandParsingFailure => (Lang.InvalidCommand, io.ColorSetting.ErrorColor),
+                    RequestStatus.CommandNotFound => (Lang.MemberNotFound, io.ColorSetting.ErrorColor),
+                    RequestStatus.Interrupt => (Lang.Interrupt, io.ColorSetting.ErrorColor),
+                    _ => (Lang.OnError, io.ColorSetting.ErrorColor)
+                }
+            );
             await io.WriteAsync(prompt, OutputType.Prompt);
         }
 

@@ -12,10 +12,7 @@ public sealed class SuitAliasAttribute : Attribute
     ///     Initialize a SuitAlias with its text.
     /// </summary>
     /// <param name="text">The alias.</param>
-    public SuitAliasAttribute(string text)
-    {
-        Text = text;
-    }
+    public SuitAliasAttribute(string text) { Text = text; }
 
     /// <summary>
     ///     The alias.

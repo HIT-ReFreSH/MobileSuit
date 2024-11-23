@@ -6,6 +6,4 @@ namespace HitRefresh.MobileSuit;
 ///     A DynamicParameter member with default value
 /// </summary>
 [AttributeUsage(AttributeTargets.All)]
-public sealed class WithDefaultAttribute : Attribute
-{
-}
+public sealed class WithDefaultAttribute : Attribute { }

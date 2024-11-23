@@ -12,7 +12,5 @@ public sealed class SwitchAttribute : ParsingMemberAttribute
     ///     Initialize a Option with name
     /// </summary>
     /// <param name="name">The name of option, for '-a' option, it's 'a'</param>
-    public SwitchAttribute(string name) : base(name, 0)
-    {
-    }
+    public SwitchAttribute(string name) : base(name, 0) { }
 }

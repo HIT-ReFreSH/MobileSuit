@@ -43,6 +43,13 @@ public interface ISuitCommandServer
     Task Stop(int index);
 
     /// <summary>
+    ///     Stop a Running task
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    Task Logs(int index);
+
+    /// <summary>
     ///     Clear all Completed Tasks.
     /// </summary>
     /// <returns></returns>

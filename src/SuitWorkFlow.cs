@@ -33,11 +33,13 @@ public interface ISuitWorkFlow
     ///     Add IOHub input middleware
     /// </summary>
     public ISuitWorkFlow UseIOInput();
+
     /// <summary>
     ///     Add
     /// </summary>
     /// <returns></returns>
     public ISuitWorkFlow UseRequestParsing();
+
     /// <summary>
     ///     Add AppShell middleware
     /// </summary>
@@ -52,12 +54,23 @@ public interface ISuitWorkFlow
     ///     Add Finalize middleware
     /// </summary>
     public ISuitWorkFlow UseFinalize();
+
+    /// <summary>
+    ///     Build workflow into middleware list.
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <returns></returns>
+    IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider);
 }
 
-internal class SuitWorkFlow : ISuitWorkFlow
+/// <summary>
+///     Default Implementation of ISuitWorkFlow
+/// </summary>
+public class SuitWorkFlow : ISuitWorkFlow
 {
     private readonly List<Type> _middlewares = new();
 
+    /// <inheritdoc />
     public ISuitWorkFlow UseCustom(Type middlewareType)
     {
         if (middlewareType.GetInterface(nameof(ISuitMiddleware)) is not null)
@@ -67,16 +80,25 @@ internal class SuitWorkFlow : ISuitWorkFlow
         return this;
     }
 
+    /// <inheritdoc />
     public ISuitWorkFlow UsePrompt() { return this.UseCustom<PromptMiddleware>(); }
 
+    /// <inheritdoc />
     public ISuitWorkFlow UseIOInput() { return this.UseCustom<IOInputMiddleware>(); }
+
+    /// <inheritdoc />
     public ISuitWorkFlow UseRequestParsing() { return this.UseCustom<RequestParsingMiddleware>(); }
+
+    /// <inheritdoc />
     public ISuitWorkFlow UseAppShell() { return this.UseCustom<AppShellMiddleware>(); }
 
+    /// <inheritdoc />
     public ISuitWorkFlow UseHostShell() { return this.UseCustom<HostShellMiddleware>(); }
 
+    /// <inheritdoc />
     public ISuitWorkFlow UseFinalize() { return this.UseCustom<FinalizeMiddleware>(); }
 
+    /// <inheritdoc />
     public IReadOnlyList<ISuitMiddleware> Build(IServiceProvider serviceProvider)
     {
         if (_middlewares.Count == 0)

@@ -1,91 +1,91 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net8</TargetFrameworks>
-		<PackageId>HitRefresh.MobileSuit</PackageId>
-		<Authors>HIT-ReFreSH</Authors>
-		<OutputType>Library</OutputType>
-		<ApplicationIcon />
-		<StartupObject />
-		<AssemblyName>HitRefresh.MobileSuit</AssemblyName>
-		<RootNamespace>HitRefresh.MobileSuit</RootNamespace>
-		<GenerateDocumentFile>true</GenerateDocumentFile>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PropertyGroup>
+        <TargetFrameworks>net8</TargetFrameworks>
+        <PackageId>HitRefresh.MobileSuit</PackageId>
+        <Authors>HIT-ReFreSH</Authors>
+        <OutputType>Library</OutputType>
+        <ApplicationIcon/>
+        <StartupObject/>
+        <AssemblyName>HitRefresh.MobileSuit</AssemblyName>
+        <RootNamespace>HitRefresh.MobileSuit</RootNamespace>
+        <GenerateDocumentFile>true</GenerateDocumentFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-		<Company>HitReFreSH</Company>
-		<PackageProjectUrl>https://github.com/HIT-ReFreSH/MobileSuit</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/HIT-ReFreSH/MobileSuit.git</RepositoryUrl>
-		<RepositoryType>Github</RepositoryType>
-		<Version>4.4</Version>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-	</PropertyGroup>
+        <Company>HitReFreSH</Company>
+        <PackageProjectUrl>https://github.com/HIT-ReFreSH/MobileSuit</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/HIT-ReFreSH/MobileSuit.git</RepositoryUrl>
+        <RepositoryType>Github</RepositoryType>
+        <Version>4.5</Version>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    </PropertyGroup>
 
-	<PropertyGroup>
-		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-		<PackageReleaseNotes>Spliting UserInputMiddleware into IOInputMiddleware and RequestParsingMiddleware.</PackageReleaseNotes>
-		<Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
-		<Copyright>Copyright (c) 2019-2024 HIT-ReFreSH</Copyright>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>logo.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<NeutralLanguage>en-US</NeutralLanguage>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
+    <PropertyGroup>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+        <PackageReleaseNotes>Added Log System for Backgroud Tasks.</PackageReleaseNotes>
+        <Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
+        <Copyright>Copyright (c) 2019-2024 HIT-ReFreSH</Copyright>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="/"/>
-		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<None Include="..\images\logo.png" Pack="true" PackagePath="/" />
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="/"/>
+        <None Include="..\.editorconfig" Link=".editorconfig"/>
+        <None Include="..\images\logo.png" Pack="true" PackagePath="/"/>
 
-	</ItemGroup>
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.4">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
+    </ItemGroup>
 
-	<ItemGroup>
-		<Compile Update="BuildInCommandInformations.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>BuildInCommandInformations.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
+    <ItemGroup>
+        <Compile Update="BuildInCommandInformations.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>BuildInCommandInformations.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Update="BuildInCommandInformations.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>BuildInCommandInformations.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
+    <ItemGroup>
+        <EmbeddedResource Update="BuildInCommandInformations.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>BuildInCommandInformations.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
 
-	</ItemGroup>
+    </ItemGroup>
 
-	<ItemGroup>
-		<Compile Update="Lang.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Lang.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
+    <ItemGroup>
+        <Compile Update="Lang.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Lang.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Update="Lang.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Lang.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Lang.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

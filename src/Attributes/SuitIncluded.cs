@@ -6,6 +6,4 @@ namespace HitRefresh.MobileSuit;
 ///     Indicate that Mobile Suit should Inject to this Object.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property)]
-public sealed class SuitIncludedAttribute : Attribute
-{
-}
+public sealed class SuitIncludedAttribute : Attribute { }

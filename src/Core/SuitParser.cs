@@ -16,7 +16,6 @@ public class SuitParser<T>
     }
 
 
-
     /// <summary>
     ///     Name of the Parser
     /// </summary>
@@ -35,23 +34,33 @@ public class SuitParser<T>
     /// <returns></returns>
     public static SuitParser<T> FromConverter(Converter<string, T> converter, string name = "")
     {
-        return new SuitParser<T>( name, converter);
+        return new SuitParser<T>(name, converter);
     }
 
     /// <summary>
     ///     Create a mobile suit parser from a converter
     /// </summary>
-
     /// <param name="name">Name of the parser, if set empty, the parser will be default.</param>
     /// <returns></returns>
     public static SuitParser<T> FromName(string name)
-        => FromConverter((typeof(T).GetMethod("Parse",
-                                 BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase, new[]{typeof(string)})
-                             ?.CreateDelegate(typeof(Converter<string, T>)) as Converter<string, T>) ??
-                         throw new KeyNotFoundException("Parse"), name);
+    {
+        return FromConverter
+        (
+            typeof(T).GetMethod
+                      (
+                          "Parse",
+                          BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase,
+                          new[] { typeof(string) }
+                      )
+                    ?.CreateDelegate(typeof(Converter<string, T>)) as Converter<string, T>
+         ?? throw new KeyNotFoundException("Parse"),
+            name
+        );
+    }
+
     /// <summary>
     ///     Create a mobile suit parser from a converter
     /// </summary>
     /// <returns></returns>
-    public static SuitParser<T> From() => FromName("");
+    public static SuitParser<T> From() { return FromName(""); }
 }

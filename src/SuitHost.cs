@@ -1,16 +1,13 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using HitRefresh.MobileSuit.Core;
-using HitRefresh.MobileSuit.Core.Services;
 
 namespace HitRefresh.MobileSuit;
 
@@ -19,14 +16,14 @@ namespace HitRefresh.MobileSuit;
 /// </summary>
 internal class SuitHost : IMobileSuitHost
 {
-    private readonly ISuitExceptionHandler _exceptionHandler;
-    private readonly AsyncServiceScope _rootScope;
-    private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
-    private IHostApplicationLifetime _lifetime;
-    private TaskCompletionSource _startUp;
     private readonly TaskRecorder _cancellationTasks;
-    private SuitRequestDelegate? _requestHandler;
+    private readonly ISuitExceptionHandler _exceptionHandler;
+    private readonly IHostApplicationLifetime _lifetime;
+    private readonly AsyncServiceScope _rootScope;
+    private readonly TaskCompletionSource _startUp;
+    private readonly IReadOnlyList<ISuitMiddleware> _suitApp;
     private Task? _hostTask;
+    private SuitRequestDelegate? _requestHandler;
 
     public SuitHost
     (
@@ -52,22 +49,6 @@ internal class SuitHost : IMobileSuitHost
     public IServiceProvider Services { get; }
 
     public void Dispose() { _rootScope.Dispose(); }
-
-    public void Initialize()
-    {
-        if (_requestHandler != null) return;
-        var requestStack = new Stack<SuitRequestDelegate>();
-        requestStack.Push(_ => Task.CompletedTask);
-
-
-        foreach (var middleware in _suitApp.Reverse())
-        {
-            var next = requestStack.Peek();
-            requestStack.Push(async c => await middleware.InvokeAsync(c, next));
-        }
-
-        _requestHandler = requestStack.Peek();
-    }
 
     public async Task StartAsync(CancellationToken cancellationToken = new())
     {
@@ -112,6 +93,25 @@ internal class SuitHost : IMobileSuitHost
         _hostTask = null;
     }
 
+
+    public async ValueTask DisposeAsync() { await _rootScope.DisposeAsync(); }
+
+    public void Initialize()
+    {
+        if (_requestHandler != null) return;
+        var requestStack = new Stack<SuitRequestDelegate>();
+        requestStack.Push(_ => Task.CompletedTask);
+
+
+        foreach (var middleware in _suitApp.Reverse())
+        {
+            var next = requestStack.Peek();
+            requestStack.Push(async c => await middleware.InvokeAsync(c, next));
+        }
+
+        _requestHandler = requestStack.Peek();
+    }
+
     private async Task HandleRequest()
     {
         if (_requestHandler is null) return;
@@ -135,7 +135,7 @@ internal class SuitHost : IMobileSuitHost
 
             Console.CancelKeyPress -= cancelKeyHandler;
             if (context.Status == RequestStatus.OnExit
-             || context.Status == RequestStatus.NoRequest && context.CancellationToken.IsCancellationRequested) break;
+             || (context.Status == RequestStatus.NoRequest && context.CancellationToken.IsCancellationRequested)) break;
         }
 
         _lifetime.StopApplication();
@@ -151,7 +151,4 @@ internal class SuitHost : IMobileSuitHost
             context.CancellationToken.Cancel();
         };
     }
-
-
-    public async ValueTask DisposeAsync() { await _rootScope.DisposeAsync(); }
 }
