@@ -19,6 +19,14 @@ namespace HitRefresh.MobileSuit;
 public interface ISuitWorkFlow
 {
     /// <summary>
+    /// Get all middlewares configured
+    /// </summary>
+    public IReadOnlyList<Type> Middlewares { get; }
+    /// <summary>
+    ///     Remove all existing middlewares
+    /// </summary>
+    public ISuitWorkFlow Reset();
+    /// <summary>
     ///     Add a custom middleware
     /// </summary>
     /// <param name="middlewareType"></param>
@@ -69,6 +77,15 @@ public interface ISuitWorkFlow
 public class SuitWorkFlow : ISuitWorkFlow
 {
     private readonly List<Type> _middlewares = new();
+    /// <inheritdoc />
+    public IReadOnlyList<Type> Middlewares => _middlewares;
+
+    /// <inheritdoc />
+    public ISuitWorkFlow Reset()
+    {
+        _middlewares.Clear();
+        return this;
+    }
 
     /// <inheritdoc />
     public ISuitWorkFlow UseCustom(Type middlewareType)

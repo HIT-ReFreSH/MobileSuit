@@ -15,9 +15,16 @@ namespace HitRefresh.MobileSuit;
 public class SuitHostBuilder
 {
     private readonly TaskRecorder _cancelTasks = new();
-    private readonly List<SuitShell> _clients = new();
-    private Type _commandServer = typeof(SuitCommandServer);
+    /// <summary>
+    /// Object SuitShell Clients
+    /// </summary>
+    protected readonly List<SuitShell> Clients = new();
+    protected Type CommandServer = typeof(SuitCommandServer);
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="args"></param>
     internal SuitHostBuilder(string[]? args)
     {
         AppInfo.StartArgs = args ?? [];
@@ -37,7 +44,20 @@ public class SuitHostBuilder
         Services.AddSingleton(Parsing);
         Services.AddSingleton<ISuitExceptionHandler, SuitExceptionHandler>();
     }
-
+    /// <summary>
+    /// Copy constructor
+    /// </summary>
+    /// <param name="origin"></param>
+    protected internal SuitHostBuilder(SuitHostBuilder origin)
+    {
+        AppInfo = origin.AppInfo;
+        Configuration = origin.Configuration;
+        Services=origin.Services;
+        Clients=origin.Clients;
+        CommandServer = origin.CommandServer;
+        Parsing = origin.Parsing;
+        WorkFlow = origin.WorkFlow;
+    }
     /// <summary>
     /// </summary>
     public SuitAppInfo AppInfo { get; } = new();
@@ -64,7 +84,7 @@ public class SuitHostBuilder
     ///     Add a client shell to mobile suit
     /// </summary>
     /// <param name="client"></param>
-    public void AddClient(SuitShell client) { _clients.Add(client); }
+    public void AddClient(SuitShell client) { Clients.Add(client); }
 
     /// <summary>
     ///     Add a client shell to mobile suit
@@ -76,7 +96,7 @@ public class SuitHostBuilder
             throw new ArgumentOutOfRangeException(nameof(serverType));
 
         Services.Add(new ServiceDescriptor(typeof(ISuitCommandServer), serverType, ServiceLifetime.Scoped));
-        _commandServer = serverType;
+        CommandServer = serverType;
     }
 
     /// <summary>
@@ -89,7 +109,7 @@ public class SuitHostBuilder
     ///     Build a SuitHost.
     /// </summary>
     /// <returns></returns>
-    public IMobileSuitHost Build()
+    public virtual IMobileSuitHost Build()
     {
         AddPreBuildMatters();
         var startUp = new TaskCompletionSource();
@@ -109,12 +129,15 @@ public class SuitHostBuilder
         var providers = Services.BuildServiceProvider();
         return new SuitHost(providers, WorkFlow.Build(providers), startUp, _cancelTasks);
     }
-
+    /// <summary>
+    /// Inject IConfiguration, SuitAppShell, SuitHostShell and ISuitAppInfo into Services
+    /// </summary>
+    /// <returns></returns>
     public SuitHostBuilder AddPreBuildMatters()
     {
         Services.AddSingleton<ISuitAppInfo>(AppInfo);
-        Services.AddSingleton(SuitAppShell.FromClients(_clients));
-        Services.AddSingleton(SuitHostShell.FromCommandServer(_commandServer));
+        Services.AddSingleton(SuitAppShell.FromClients(Clients));
+        Services.AddSingleton(SuitHostShell.FromCommandServer(CommandServer));
         Services.AddSingleton<IConfiguration>(Configuration);
         return this;
     }
