@@ -12,63 +12,52 @@ namespace HitRefresh.MobileSuit;
 /// <summary>
 ///     A entity, which serves the shell functions of a mobile-suit program.
 /// </summary>
-public class SuitHost : IMobileSuitHost
+/// <param name="services">ServiceCollection</param>
+/// <param name="startUp">Startup event</param>
+/// <param name="requestHandler"></param>
+/// <param name="contextFactory"></param>
+/// <param name="lifetime"></param>
+/// <param name="logger"></param>
+public class SuitHost    (
+    IServiceProvider services,
+    SuitHostStartCompletionSource startUp,
+    SuitRequestDelegate requestHandler,
+    ISuitContextFactory contextFactory,
+    IHostApplicationLifetime lifetime,
+    ILogger logger
+) : IMobileSuitHost
 {
-    private readonly ISuitExceptionHandler _exceptionHandler;
-    private readonly IHostApplicationLifetime _lifetime;
     /// <summary>
     /// Factory to create a suit context.
     /// </summary>
-    protected ISuitContextFactory ContextFactory { get; }
+    protected ISuitContextFactory ContextFactory { get; } = contextFactory;
+
     /// <summary>
     /// Request Handler,
     /// </summary>
-    protected SuitRequestDelegate RequestHandler { get; }
-    private readonly AsyncServiceScope _rootScope;
+    protected SuitRequestDelegate RequestHandler { get; } = requestHandler;
+
     /// <summary>
     /// Specifies the task of suit host startup
     /// </summary>
-    protected SuitHostStartCompletionSource StartUp { get; }
+    protected SuitHostStartCompletionSource StartUp { get; } = startUp;
+
     private Task? _hostTask;
 
-    /// <summary>
-    ///     Create a SuitHost instance
-    /// </summary>
-    /// <param name="services">ServiceCollection</param>
-    /// <param name="startUp">Startup event</param>
-    /// <param name="requestHandler"></param>
-    /// <param name="contextFactory"></param>
-    public SuitHost
-    (
-        IServiceProvider services,
-        SuitHostStartCompletionSource startUp,
-        SuitRequestDelegate requestHandler,
-        ISuitContextFactory contextFactory
-    )
-    {
-        Services = services;
-        StartUp = startUp;
-        _exceptionHandler = Services.GetRequiredService<ISuitExceptionHandler>();
-        RequestHandler = requestHandler;
-        ContextFactory = contextFactory;
-        _lifetime = Services.GetRequiredService<IHostApplicationLifetime>();
 
-        _rootScope = Services.CreateAsyncScope();
-        Logger = Services.GetRequiredService<ILogger<SuitHost>>();
-    }
 
     /// <summary>
     ///     Logger of given host
     /// </summary>
-    public ILogger Logger { get; }
+    public ILogger Logger { get; } =logger;
 
     /// <summary>
     ///     Service collection of given host
     /// </summary>
-    public IServiceProvider Services { get; }
+    public IServiceProvider Services { get; } = services;
 
     /// <inheritdoc />
-    public void Dispose() { _rootScope.Dispose(); }
+    public void Dispose() { }
 
     /// <inheritdoc />
     public virtual async Task StartAsync(CancellationToken cancellationToken = new())
@@ -76,7 +65,7 @@ public class SuitHost : IMobileSuitHost
         if (_hostTask is not null) return;
         Console.CancelKeyPress += StartTimeCancelKeyPress;
 
-        var appInfo = _rootScope.ServiceProvider.GetRequiredService<ISuitAppInfo>();
+        var appInfo = Services.GetRequiredService<ISuitAppInfo>();
         Console.CancelKeyPress -= StartTimeCancelKeyPress;
         if (cancellationToken.IsCancellationRequested) return;
         if (appInfo.StartArgs.Length > 0)
@@ -93,14 +82,15 @@ public class SuitHost : IMobileSuitHost
     }
 
     /// <inheritdoc />
-    public virtual async Task StopAsync(CancellationToken cancellationToken = new())
+    public virtual Task StopAsync(CancellationToken cancellationToken = new())
     {
-        if (_hostTask is null) return;
+        if (_hostTask is null) return Task.CompletedTask;
         _hostTask = null;
+        return Task.CompletedTask;
     }
 
     /// <inheritdoc />
-    public async ValueTask DisposeAsync() { await _rootScope.DisposeAsync(); }
+    public ValueTask DisposeAsync() { return ValueTask.CompletedTask; }
 
     /// <summary>
     ///     Run middlewares in given order for a cycle
@@ -118,7 +108,7 @@ public class SuitHost : IMobileSuitHost
              || context is { Status: RequestStatus.NoRequest, CancellationToken.IsCancellationRequested: true }) break;
         }
 
-        _lifetime.StopApplication();
+        lifetime.StopApplication();
     }
 
     private void StartTimeCancelKeyPress(object? sender, ConsoleCancelEventArgs e) { e.Cancel = true; }
