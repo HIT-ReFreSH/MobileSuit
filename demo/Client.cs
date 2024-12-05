@@ -119,13 +119,18 @@ public class Client
         ;
         return $"bye, {IO.ReadLine("Name", "foo", true)}";
     }
-
+    [SuitAlias("ha")]
     public async Task<string> HelloAsync()
     {
         await Task.Delay(10);
         return "Hello from async Task<string>!";
     }
-
+    [SuitAlias("hva")]
+    public async Task HelloVoidAsync()
+    {
+        await Task.Delay(10);
+        await IO.WriteLineAsync("Hello from async Task<string>!");
+    }
     public async Task<string> HelloAsync(string name)
     {
         await Task.Delay(10);

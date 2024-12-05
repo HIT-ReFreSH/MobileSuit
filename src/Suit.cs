@@ -16,15 +16,15 @@ public static class Suit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="args"></param>
-    public static async void QuickStart4BitPowerLine<T>(string[] args) where T : class
+    public static void QuickStart4BitPowerLine<T>(string[] args) where T : class
     {
-        await CreateBuilder(args)
+        CreateBuilder(args)
              .HasName("demo")
              .UsePowerLine()
              .Use4BitColorIO()
              .MapClient<T>()
              .Build()
-             .RunAsync();
+             .Run();
     }
 
     /// <summary>

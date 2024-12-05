@@ -24,7 +24,8 @@ public class SuitHost    (
     SuitRequestDelegate requestHandler,
     ISuitContextFactory contextFactory,
     IHostApplicationLifetime lifetime,
-    ILogger logger
+    ILogger<SuitHost> logger,
+    ITaskRecorder tasks
 ) : IMobileSuitHost
 {
     /// <summary>
@@ -82,11 +83,16 @@ public class SuitHost    (
     }
 
     /// <inheritdoc />
-    public virtual Task StopAsync(CancellationToken cancellationToken = new())
+    public virtual async Task StopAsync(CancellationToken cancellationToken = new())
     {
-        if (_hostTask is null) return Task.CompletedTask;
+        lifetime.StopApplication();
+        await Task.WhenAll(tasks);
+        if (_hostTask is null) return;
+        await _hostTask;
         _hostTask = null;
-        return Task.CompletedTask;
+
+        return;
+
     }
 
     /// <inheritdoc />

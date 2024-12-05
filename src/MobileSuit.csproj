@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
-        <TargetFrameworks>net8</TargetFrameworks>
+        <TargetFramework>net8.0</TargetFramework>
         <PackageId>HitRefresh.MobileSuit</PackageId>
         <Authors>HIT-ReFreSH</Authors>
         <OutputType>Library</OutputType>
@@ -16,14 +15,11 @@
         <PackageProjectUrl>https://github.com/HIT-ReFreSH/MobileSuit</PackageProjectUrl>
         <RepositoryUrl>https://github.com/HIT-ReFreSH/MobileSuit.git</RepositoryUrl>
         <RepositoryType>Github</RepositoryType>
-        <Version>4.6.1</Version>
+        <Version>4.6.3</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
         <PackageReleaseNotes>Added Log System for Backgroud Tasks.</PackageReleaseNotes>
         <Description>MobileSuit provides an easy way to quickly build a .NET Console App.</Description>
