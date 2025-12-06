@@ -31,3 +31,31 @@ with PowerLine theme & I18N support
 ![MsRtExample-2](https://raw.githubusercontent.com/HIT-ReFreSH/MobileSuit/main/images/MsRtExample-2.png)
 
 **Previously named as [PlasticMetal.MobileSuit](https://github.com/Plastic-Metal/MobileSuit).**
+
+
+
+```markdown
+## Theme System
+
+MobileSuit now supports several popular color themes, including Nord, Dracula, Solarized Light/Dark, and Monokai.
+
+### Available Themes
+
+| Theme | Description | Screenshot |
+|-------|-------------|------------|
+| **Nord** | Arctic, north-bluish color palette | ![Nord Theme](docs/images/themes/nord.png) |
+| **Dracula** | Popular dark theme | ![Dracula Theme](docs/images/themes/dracula.png) |
+| **Solarized Light** | Light Solarized theme |
+| **Solarized Dark** | Dark Solarized theme | ![Solarized Dark](docs/images/solarized.png) |
+| **Monokai** | Sublime Text style theme | 
+| **Default** | System default theme | |
+
+### Usage
+
+#### Set theme at startup
+
+```csharp
+var host = Suit.CreateBuilder(args)
+    .UseNordTheme()            // Use Nord theme
+    .MapClient<Client>()
+    .Build();

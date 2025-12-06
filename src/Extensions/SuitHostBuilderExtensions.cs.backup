@@ -1,0 +1,81 @@
+using HitRefresh.MobileSuit.Core;
+using HitRefresh.MobileSuit.Themes;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace HitRefresh.MobileSuit;
+
+/// <summary>
+/// Extension methods for SuitHostBuilder.
+/// </summary>
+public static class SuitHostBuilderExtensions
+{
+    /// <summary>
+    ///     Add a custom middleware
+    /// </summary>
+    public static ISuitWorkFlow UseCustom<T>(this ISuitWorkFlow workFlow)
+        where T : ISuitMiddleware
+    {
+        return workFlow.UseCustom(typeof(T));
+    }
+
+    /// <summary>
+    /// Use Nord color theme.
+    /// </summary>
+    public static SuitHostBuilder UseNordTheme(this SuitHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, Themes.NordTheme>());
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Dracula color theme.
+    /// </summary>
+    public static SuitHostBuilder UseDraculaTheme(this SuitHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, Themes.DraculaTheme>());
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Solarized light theme.
+    /// </summary>
+    public static SuitHostBuilder UseSolarizedLightTheme(this SuitHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, Themes.SolarizedLightTheme>());
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Solarized dark theme.
+    /// </summary>
+    public static SuitHostBuilder UseSolarizedDarkTheme(this SuitHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, Themes.SolarizedDarkTheme>());
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Monokai theme.
+    /// </summary>
+    public static SuitHostBuilder UseMonokaiTheme(this SuitHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, Themes.MonokaiTheme>());
+        return builder;
+    }
+
+    /// <summary>
+    /// Use custom theme.
+    /// </summary>
+    public static SuitHostBuilder UseCustomTheme<T>(this SuitHostBuilder builder)
+        where T : class, Core.IColorSetting
+    {
+        builder.ConfigureServices(services =>
+            services.AddSingleton<Core.IColorSetting, T>());
+        return builder;
+    }
+}

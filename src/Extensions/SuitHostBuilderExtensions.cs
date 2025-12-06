@@ -1,21 +1,11 @@
-// /*
-//  * Author: Ferdinand Su
-//  * Email: ${User.Email}
-//  * Date: 11 23, 2024
-//  *
-//  */
-
-using System;
-using System.Text;
 using HitRefresh.MobileSuit.Core;
-using HitRefresh.MobileSuit.Core.Services;
+using HitRefresh.MobileSuit.Themes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
+using System;
 namespace HitRefresh.MobileSuit;
 
 /// <summary>
-///     Extensions for MobileSuitHostBuilder
+/// Extension methods for SuitHostBuilder.
 /// </summary>
 public static class SuitHostBuilderExtensions
 {
@@ -23,152 +13,120 @@ public static class SuitHostBuilderExtensions
     ///     Add a custom middleware
     /// </summary>
     public static ISuitWorkFlow UseCustom<T>(this ISuitWorkFlow workFlow)
-    where T : ISuitMiddleware
+        where T : ISuitMiddleware
     {
         return workFlow.UseCustom(typeof(T));
     }
 
     /// <summary>
-    ///     Use given PromptGenerator for the Host
+    /// Set the application name.
     /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <typeparam name="T">PromptServer</typeparam>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
-    {
-        builder.AddClient(SuitObjectShell.FromType(typeof(T)));
-        return builder;
-    }
-
-    /// <summary>
-    ///     Use given PromptGenerator for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <param name="name">Set a name for the client</param>
-    /// <returns>Builder for the host</returns>
+    /// <param name="builder">The builder</param>
+    /// <param name="name">Application name</param>
+    /// <returns>The builder</returns>
     public static SuitHostBuilder HasName(this SuitHostBuilder builder, string name)
     {
-        builder.AppInfo.AppName = name;
+        builder.AppInfo.AppName = name;  // 修正：使用 AppName 而不是 Name
         return builder;
     }
 
     /// <summary>
-    ///     Use given PromptGenerator for the Host
+    /// Use PowerLine prompt.
     /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <param name="instance"></param>
-    /// <typeparam name="T">PromptServer</typeparam>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, T instance)
-    {
-        builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance));
-        return builder;
-    }
-
-    /// <summary>
-    ///     Use given PromptGenerator for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <param name="name"></param>
-    /// <typeparam name="T">PromptServer</typeparam>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name)
-    {
-        builder.AddClient(SuitObjectShell.FromType(typeof(T), name));
-        return builder;
-    }
-
-    /// <summary>
-    ///     Use given PromptGenerator for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <param name="name"></param>
-    /// <param name="instance"></param>
-    /// <typeparam name="T">PromptServer</typeparam>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder, string name, T instance)
-    {
-        builder.AddClient(SuitObjectShell.FromInstance(typeof(T), _ => instance, name));
-        return builder;
-    }
-
-    /// <summary>
-    ///     Use given PromptGenerator for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <param name="name"></param>
-    /// <param name="method"></param>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder Map(this SuitHostBuilder builder, string name, Delegate method)
-    {
-        builder.AddClient(SuitMethodShell.FromDelegate(name, method));
-        return builder;
-    }
-
-    /// <summary>
-    ///     Use PowerLine PromptGenerator for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <returns>Builder for the host</returns>
     public static SuitHostBuilder UsePowerLine(this SuitHostBuilder builder)
     {
-        Console.OutputEncoding = Encoding.UTF8;
-        builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLineFormatter);
+
+        // builder.Services.AddSingleton<PromptFormatter>(PromptFormatters.PowerLinePromptFormatter);
         return builder;
     }
 
     /// <summary>
-    ///     Use Plain text IO for the Host
+    /// Use 4-bit color IO.
     /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder UsePureTextIO(this SuitHostBuilder builder) { return builder.UseIO<PureTextIOHub>(); }
-
-    /// <summary>
-    ///     Use 4-bit color IO for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder) { return builder.UseIO<FourBitIOHub>(); }
-
-    /// <summary>
-    ///     Use 4-bit color IO for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder UseTrueColorIO(this SuitHostBuilder builder)
+    public static SuitHostBuilder Use4BitColorIO(this SuitHostBuilder builder)
     {
-        return builder.UseIO<TrueColorIOHub>();
-    }
-
-    /// <summary>
-    ///     Use certain IO for the Host
-    /// </summary>
-    /// <param name="builder">Builder for the host</param>
-    /// <returns>Builder for the host</returns>
-    public static SuitHostBuilder UseIO<T>(this SuitHostBuilder builder)
-    where T : class, IIOHub
-    {
-        builder.Services.AddScoped<IIOHubYouShouldNeverUse, T>();
+        builder.ConfigureIO(_ => { });
         return builder;
     }
-    ///// <summary>
-    /////     Run a mobile suit
-    ///// </summary>
-    ///// <param name="host"></param>
-    ///// <returns></returns>
-    //public static async Task RunAsync(this IMobileSuitHost host)
-    //{
-    //    var token = new CancellationTokenSource().Token;
-    //    await host.StartAsync(token).ConfigureAwait(false);
-    //    await host.StopAsync(token).ConfigureAwait(false);
-    //    host.Dispose();
-    //}
+
+/// <summary>
+/// Map a client type.
+/// </summary>
+public static SuitHostBuilder MapClient<T>(this SuitHostBuilder builder)
+{
+    Console.WriteLine($"DEBUG: MapClient called for type {typeof(T).FullName}");
+
+    try
+    {
+        // 使用 SuitObjectShell.FromType
+        var suitShell = SuitObjectShell.FromType(typeof(T));
+        Console.WriteLine($"DEBUG: SuitShell created. MemberCount: {suitShell.MemberCount}");
+
+        builder.AddClient(suitShell);
+        Console.WriteLine($"DEBUG: Client added to builder");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"DEBUG: Error in MapClient: {ex.Message}");
+        Console.WriteLine($"DEBUG: StackTrace: {ex.StackTrace}");
+    }
+
+    return builder;
+}
 
     /// <summary>
-    ///     Run a mobile suit
+    /// Use Nord color theme.
     /// </summary>
-    /// <param name="host"></param>
-    /// <returns></returns>
-    public static void Run(this IMobileSuitHost host) { host.RunAsync().GetAwaiter().GetResult(); }
+    public static SuitHostBuilder UseNordTheme(this SuitHostBuilder builder)
+    {
+        builder.Services.AddSingleton<IColorSetting, NordTheme>();
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Dracula color theme.
+    /// </summary>
+    public static SuitHostBuilder UseDraculaTheme(this SuitHostBuilder builder)
+    {
+        builder.Services.AddSingleton<IColorSetting, DraculaTheme>();
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Solarized light theme.
+    /// </summary>
+    public static SuitHostBuilder UseSolarizedLightTheme(this SuitHostBuilder builder)
+    {
+        builder.Services.AddSingleton<IColorSetting, SolarizedLightTheme>();
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Solarized dark theme.
+    /// </summary>
+    public static SuitHostBuilder UseSolarizedDarkTheme(this SuitHostBuilder builder)
+    {
+        builder.Services.AddSingleton<IColorSetting, SolarizedDarkTheme>();
+        return builder;
+    }
+
+    /// <summary>
+    /// Use Monokai theme.
+    /// </summary>
+    public static SuitHostBuilder UseMonokaiTheme(this SuitHostBuilder builder)
+    {
+        builder.Services.AddSingleton<IColorSetting, MonokaiTheme>();
+        return builder;
+    }
+
+    /// <summary>
+    /// Use custom color theme.
+    /// </summary>
+    /// <typeparam name="T">Theme type implementing IColorSetting</typeparam>
+    public static SuitHostBuilder UseCustomTheme<T>(this SuitHostBuilder builder)
+        where T : class, IColorSetting
+    {
+        builder.Services.AddSingleton<IColorSetting, T>();
+        return builder;
+    }
 }

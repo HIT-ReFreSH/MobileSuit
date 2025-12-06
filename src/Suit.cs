@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
 
+using HitRefresh.MobileSuit.Core;
 namespace HitRefresh.MobileSuit;
 
 /// <summary>
@@ -11,6 +12,55 @@ namespace HitRefresh.MobileSuit;
 /// </summary>
 public static class Suit
 {
+
+/// <summary>
+/// Quick start a mobilesuit with specific theme.
+/// </summary>
+/// <typeparam name="TTheme">Theme type</typeparam>
+/// <typeparam name="TClient">Client type</typeparam>
+/// <param name="args">Command line arguments</param>
+public static async void QuickStartWithTheme<TTheme, TClient>(string[] args)
+    where TTheme : class, Core.IColorSetting, new()
+{
+    await CreateBuilder(args)
+        .HasName("demo")
+        .UsePowerLine()
+        .Use4BitColorIO()
+        .UseCustomTheme<TTheme>()
+        .MapClient<TClient>()
+        .Build()
+        .RunAsync();
+}
+
+/// <summary>
+/// Quick start with Nord theme.
+/// </summary>
+public static async void QuickStartWithNordTheme<TClient>(string[] args)
+{
+    await CreateBuilder(args)
+        .HasName("demo")
+        .UsePowerLine()
+        .Use4BitColorIO()
+        .UseNordTheme()
+        .MapClient<TClient>()
+        .Build()
+        .RunAsync();
+}
+
+/// <summary>
+/// Quick start with Dracula theme.
+/// </summary>
+public static async void QuickStartWithDraculaTheme<TClient>(string[] args)
+{
+    await CreateBuilder(args)
+        .HasName("demo")
+        .UsePowerLine()
+        .Use4BitColorIO()
+        .UseDraculaTheme()
+        .MapClient<TClient>()
+        .Build()
+        .RunAsync();
+}
     /// <summary>
     ///     Quick start a mobilesuit on specific client class with 4bit IO and PowerLine
     /// </summary>
